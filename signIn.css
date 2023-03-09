@@ -1,0 +1,33 @@
+body {
+    font-family: 'Inter var', sans-serif;
+}
+
+:root {
+    --joinDarkblue: #2A3647;
+}
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 232px;
+    background-color: var(--joinDarkblue);
+    z-index: 1;
+} 
+
+.topbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 89px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 36px 20px 348px;
+    gap: 34px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+
