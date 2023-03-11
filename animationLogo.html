@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+  </head>
+
+  <style>
+    .startScreen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-delay: 400ms;
+      animation-fill-mode: both;
+      animation-name: startAnimation;
+    }
+
+    @keyframes startAnimation {
+      0% {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+      }
+      100% {
+        width: 150px;
+        height: 150px;
+        background-color: transparent;
+      }
+    }
+
+    .startScreen > img {
+      height: 150px;
+      width: auto;
+      opacity: 1;
+
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-delay: 400ms;
+      animation-fill-mode: both;
+      animation-name: startLogo;
+    }
+
+    @keyframes startLogo {
+      0% {
+        height: 150px;
+      }
+      100% {
+        height: 100px;
+      }
+    }
+  </style>
+
+  <body>
+    <div id="startScreen" class="startScreen">
+      <img id="startScreenLogo" src="img/Capa1.svg" />
+    </div>
+
+    <script></script>
+  </body>
+</html>

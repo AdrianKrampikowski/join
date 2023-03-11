@@ -1,0 +1,415 @@
+body,
+head {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: #f6f7f8;
+}
+
+button {
+  background-color: #2a3647;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  width: 91px;
+  height: 51px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px 10px;
+  z-index: 99;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mainContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loginButton {
+  width: 145px;
+  height: 51px;
+  background: #2a3647;
+  border-radius: 8px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 120%;
+}
+
+.whiteButton {
+  background-color: white;
+  width: 145px;
+  height: 51px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 120%;
+
+  color: #2a3647;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+}
+
+.signInField {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.contentContainer {
+  /* width: 100%;
+  height: 100%; */
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -100px;
+}
+
+.loginScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 642px;
+  height: 513px;
+  border-radius: 30px;
+  padding: 35px 0px;
+  gap: 35px;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  position: relative;
+  top: 150px;
+}
+
+.loginHeading {
+  width: 315px;
+  height: 73px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: relative;
+}
+
+.loginHeading:before {
+  content: "";
+  border-bottom: 3px solid #29abe2;
+  position: absolute;
+  left: 25%;
+  bottom: -24px;
+  height: 1px;
+  width: 50%;
+}
+
+.inputFields {
+  box-sizing: border-box;
+  padding: 13px 21px;
+  gap: 10px;
+  width: 422px;
+  height: 51px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+}
+
+::placeholder {
+  width: 80px;
+  height: 25px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
+  color: #d1d1d1;
+}
+
+.inputContainer {
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inputContainer img {
+  width: 20px;
+  height: 18px;
+}
+
+.inputFieldContainer {
+  position: relative;
+}
+
+.inputFieldContainer .img {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 18px;
+}
+
+.rememberOrForgetFields {
+  display: flex;
+  gap: 35px;
+}
+
+.checkboxContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.forgotMyPassword {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: #29abe2;
+}
+
+/* Animation */
+.startScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 750ms;
+  animation-fill-mode: both;
+  animation-name: startAnimation;
+}
+
+@keyframes startAnimation {
+  0% {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  10% {
+    background-color: transparent;
+  }
+  100% {
+    width: 200px; 
+    height: 200px;
+    background-color: transparent;
+  }
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  z-index: 99;
+
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 400ms;
+  animation-fill-mode: both;
+  animation-name: startLogo;
+}
+
+@keyframes startLogo {
+  0% {
+    height: 150px;
+  }
+  100% {
+    height: 100px;
+  }
+}
+
+@media (max-width: 720px) {
+  .loginScreen {
+    width: 560px;
+    height: 560px;
+    margin: 50px 0;
+  }
+
+  .logo {
+    height: 100px;
+  }
+
+  .contentContainer {
+    top: -100px;
+  }
+
+  .loginHeading:before {
+    bottom: -16px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    margin: 0px;
+  }
+
+  .signInContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 5%;
+  }
+  .signInField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: auto;
+    right: auto;
+  }
+
+  .loginScreen {
+    width: 460px;
+    height: 460px;
+    margin: 50px 0;
+  }
+  .logo {
+    height: 85px !important; 
+  }
+
+  .inputFields {
+    padding: 13px 21px;
+    gap: 10px;
+    width: 327px;
+    height: 51px;
+  }
+
+  ::placeholder {
+    width: 80px;
+    height: 25px;
+    font-size: 21px;
+    line-height: 120%;
+  }
+
+  .inputContainer {
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .inputContainer img {
+    width: 20px;
+    height: 18px;
+  }
+
+  .inputFieldContainer {
+    position: relative;
+  }
+
+  .inputFieldContainer .img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 18px;
+  }
+
+  .rememberOrForgetFields {
+    display: flex;
+    gap: 35px;
+  }
+
+  .checkboxContainer {
+    display: flex;
+    gap: 15px;
+  }
+
+  .forgotMyPassword {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #29abe2;
+  }
+  .loginHeading:before {
+    bottom: -11px;
+  }
+  .contentContainer {
+    top: -150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginScreen {
+    background-color: white;
+    width: 300px;
+    height: 475px;
+    margin: 50px 0;
+  }
+  .logo {
+    height: 75px !important;
+  }
+  .rememberOrForgetFields {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 90%;
+  }
+  .rememberOrForgetFields p{
+    margin: 10px 0;
+  }
+  .inputFields {
+    width: 260px;
+  }
+  .rememberOrForgetFields {
+    gap: 0;
+  }
+  .loginAndWhiteButton {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -35px;
+  }
+}
+
+@media (max-width: 300px) {
+  .loginScreen {
+    background-color: white;
+    width: 250px;
+    height: 350px;
+    margin: 50px 0;
+  }
+  .logo {
+    height: 50px !important;
+  }
+  .inputFields {
+    width: 230px;
+  }
+}
