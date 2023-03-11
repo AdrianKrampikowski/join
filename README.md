@@ -7,3 +7,4 @@ https://stackoverflow.com/questions/15745045/how-do-i-resolve-git-saying-commit-
 
 test test 
 falscher Test
+test
