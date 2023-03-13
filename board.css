@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 
@@ -129,6 +130,10 @@ a {
   outline: none;
 }
 
+.addTaskImage {
+  padding-left: 15px;
+}
+
 .board-add-task-button {
   height: 51px;
   width: 137px;
@@ -139,5 +144,42 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+/*Todo liste*/
+
+.todoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.todoList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 230px;
+  margin-left: 10px;
+}
+
+.buttonPlus {
+  border-radius: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-color: #2A3647;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonPlus:hover{
+  color: #29ABE2;
+  border-color: #29ABE2;
+}
+.todoFont{
+  font-size: 21px;
+  font-weight: 700px;
   cursor: pointer;
 }
