@@ -100,6 +100,10 @@ a {
   line-height: 120%;
 }
 
+.summeryProjectTitle {
+  display: none;
+}
+
 .topNavBarRightImg {
   display: flex;
   gap: 15px;
@@ -119,7 +123,6 @@ a {
   height: 73px;
   display: flex;
   align-items: center;
-  gap: 25px;
 }
 
 .summeryHeadline {
@@ -130,18 +133,25 @@ a {
   line-height: 120%;
 }
 
-.summeryDescription {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 27px;
-  line-height: 120%;
+.summeryBorderAndDesription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .summeryBorder {
   width: 0px;
   height: 59px;
   border: 3px solid #29abe2;
+  margin: 0px 20px;
+}
+
+.summeryDescription {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
 }
 
 .mainContentData {
@@ -372,6 +382,22 @@ a {
   }
   .topNavBar {
     width: calc(100vw - 152px);
+    height: 39px;
+  }
+  .topNavBarLeftText {
+    display: none;
+  }
+  .summeryProjectTitle {
+    display: block;
+  }
+  .topNavBarRightImg {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .topNavBarRightImgQuestionmark {
+    display: none;
+  }
+  .topNavBarRightImgPicture {
   }
   .mainContainer {
     flex-direction: column;
@@ -379,14 +405,29 @@ a {
   .mainContentContainer {
     width: 100vw;
     height: 100vh;
-    align-items: center;
+    align-items: normal;
     padding: 0px;
   }
   .mainContentSummary {
-    width: 480px;
+    /* width: 480px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .summeryBorderAndDesription {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 25px;
+  }
+  .summeryBorder {
+    width: 90px;
+    height: 0px;
+    border: 3px solid #29abe2;
+    margin: 0px;
   }
   .mainRightContainer {
     left: 0px;
+    width: 100vw;
   }
   .mainContentDataRight {
     display: none;
@@ -394,6 +435,8 @@ a {
   .mainContentDataLeft {
     width: 360px;
     height: 360px;
+    position: relative;
+    top: 75px;
   }
   .topCards {
     width: 110px;
