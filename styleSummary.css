@@ -165,6 +165,7 @@ a {
   width: 170px;
   height: 170px;
   border-radius: 30px;
+  padding: 25px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -288,6 +289,11 @@ a {
   gap: 18px;
 }
 
+.bottomCardsImg {
+  width: 69px;
+  height: 69px;
+}
+
 .bottomCardsDetails {
   display: flex;
   flex-direction: column;
@@ -391,10 +397,14 @@ a {
   }
   .topCards {
     width: 110px;
-    height: 110px;
+    height: 60px;
   }
   .cardNumberTopBottom {
     font-size: 47px;
+  }
+  .cardTextTopBottom {
+    width: 54px;
+    font-size: 14px;
   }
   .middleCard {
     width: 264px;
@@ -410,9 +420,9 @@ a {
     width: 139.5px;
     height: 34px;
   }
-  .cardTextTopBottom {
-    width: 54px;
-    font-size: 14px;
+  .bottomCardsImg {
+    width: 40px;
+    height: 40px;
   }
 }
 
