@@ -372,7 +372,7 @@ a {
   }
   .sideNavBarList {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0px 12px;
   }
   .sideNavBarList li {
@@ -415,13 +415,16 @@ a {
   .mainContentContainer {
     width: 100vw;
     height: 100vh;
-    align-items: normal;
+    /* align-items: normal; */
     padding: 0px;
+    align-items: center;
   }
   .mainContentSummary {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
+    left: -40px;
   }
   .summeryBorderAndDesription {
     flex-direction: column-reverse;
@@ -460,7 +463,7 @@ a {
     font-size: 47px;
   }
   .cardTextTopBottom {
-    width: 54px;
+    /* width: 54px; */
     font-size: 14px;
   }
   .middleCard {
