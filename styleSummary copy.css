@@ -33,20 +33,17 @@ a {
 
 .sideNavBar {
   width: 232px;
-  height: 100vh;
-  position: sticky;
+  /* height: 100vh; */
   background-color: #2a3647;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  z-index: 2;
 }
 
 .sideNavBarLogo {
   position: absolute;
   top: 66px;
   left: 66px;
-  z-index: 3;
 }
 
 .whiteLogo {
@@ -77,19 +74,17 @@ a {
   height: 18px;
 }
 
-.mainRightContainer {
+/* .mainRightContainer {
   position: absolute;
-  top: 129px;
+  width: calc(100vw - 232px);
+  height: 100vh;
   left: 232px;
-  padding: 20px 0px 0px 20px;
-}
+} */
 
 .topNavBar {
   background-color: #ffffff;
-  position: absolute;
-  top: 0px;
-  left: 232px;
-  width: calc(100vw - 384px);
+  position: relative;
+  width: calc(100vw - 152px);
   height: 89px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 36px 20px 116px;
@@ -116,7 +111,7 @@ a {
 }
 
 .mainContentContainer {
-  /* width: 100vw; */
+  width: 100vw;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -125,6 +120,7 @@ a {
   gap: 25px;
   /* position: relative;
   left: 25px; */
+  
 }
 
 .mainContentSummary {
@@ -169,8 +165,8 @@ a {
 }
 
 .mainContentDataLeft {
-  /* width: 580px;
-  height: 580px; */
+  width: 580px;
+  height: 580px;
 }
 
 .mainContentDataLeftTopCards {
@@ -181,12 +177,10 @@ a {
 
 .topCards {
   background-color: white;
-  /* width: 170px;
-  height: 60px; */
-  width: auto;
-  height: auto;
+  width: 170px;
+  height: 120px;
   border-radius: 30px;
-  padding: 25px 20px;
+  padding: 25px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,10 +217,8 @@ a {
 
 .middleCard {
   background-color: white;
-  /* width: 484px;
-  height: 57px; */
-  width: auto;
-  height: auto;
+  width: 484px;
+  height: 114px;
   border-radius: 30px;
   padding: 28px 48px;
   display: flex;
@@ -303,10 +295,8 @@ a {
 
 .bottomCards {
   background-color: white;
-  /* width: 234.5px;
-  height: 37px; */
-  width: auto;
-  height: auto;
+  width: 234.5px;
+  height: 74px;
   border-radius: 30px;
   padding: 38px 19px;
   display: flex;
@@ -337,12 +327,11 @@ a {
 }
 
 .mainContentDataRight {
-  display: none;
-  /* width: 385px;
+  width: 385px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 50px; */
+  padding-left: 50px;
 }
 
 .mainContenDataRightGreeting {
@@ -365,7 +354,7 @@ a {
 
 @media ((max-width: 720px) and (min-width: 480px)) {
   .sideNavBar {
-    width: 100vw;
+    width: 100%;
     height: 80px;
     position: absolute;
     bottom: 0px;
@@ -397,9 +386,8 @@ a {
     display: none;
   }
   .topNavBar {
-    width: calc(100vw - 152px);
+    /* width: calc(100vw - 152px); */
     height: 39px;
-    left: 0px;
   }
   .topNavBarLeftText {
     display: none;
@@ -411,6 +399,7 @@ a {
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
+    margin-top: 35px;
   }
   .summeryHeadline {
     font-size: 47px;
@@ -429,12 +418,10 @@ a {
     height: 100vh;
   }
   .mainContentContainer {
-    /* width: 100vw;
-    height: 100vh; */
-    /* align-items: normal; */
-    /* padding: 0px; */
-    overflow: scroll;
     width: 100vw;
+    height: 100vh;
+    /* align-items: normal; */
+    padding: 0px;
     align-items: center;
   }
   .mainContentSummary {
@@ -456,11 +443,10 @@ a {
     border: 3px solid #29abe2;
     margin: 0px;
   }
-  .mainRightContainer {
-    top: 79px;
+  /* .mainRightContainer {
     left: 0px;
-    /* width: 100vw; */
-  }
+    width: 100vw;
+  } */
   .mainContentData {
     position: relative;
     top: 35px;
@@ -469,16 +455,14 @@ a {
     display: none;
   }
   .mainContentDataLeft {
-    /* width: 360px;
-    height: 360px; */
+    width: 360px;
+    height: 360px;
     position: relative;
     top: 75px;
   }
   .topCards {
-    /* width: 110px;
-    height: 60px; */
-    width: auto;
-    height: auto;
+    width: 110px;
+    height: 60px;
   }
   .cardNumberTopBottom {
     font-size: 47px;
@@ -488,10 +472,8 @@ a {
     font-size: 14px;
   }
   .middleCard {
-    /* width: 264px;
-    height: 54px; */
-    width: auto;
-    height: auto;
+    width: 264px;
+    height: 54px;
   }
   .middleCardDeadlineDate {
     font-size: 16px;
@@ -503,10 +485,8 @@ a {
     height: 68px;
   }
   .bottomCards {
-    /* width: 139.5px;
-    height: 34px; */
-    width: auto;
-    height: auto;
+    width: 139.5px;
+    height: 34px;
   }
   .bottomCardsImg {
     width: 40px;
