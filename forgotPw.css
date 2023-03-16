@@ -1,6 +1,15 @@
 .loginHeading {
     width: 100%;
     font-size: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    height: auto;
+}
+
+.loginHeading::before {
+    width: none;
+    content: none;
+    border: none;
 }
 
 .loginHeading::before {
@@ -29,7 +38,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 6rem;
-
 }
 
 .loginScreen{
@@ -38,15 +46,89 @@
     left: unset;
     height: 30%;
     padding: 1.5rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
-
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
+
+.loginScreen > div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginScreen > div:first-of-type > div {
+    height: 3px;
+    background-color: #29abe2;
+    width: 30%;
+}
+
+.loginScreen > span {
+    text-align: center;
+    width: 100%;
+}
+
+
 
 .inputFieldContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 150px;
 }
+
+.startScreen {
+    animation: none;
+    width: 200px; 
+    height: 200px;
+    background-color: transparent;
+}
+
+.logo {
+    animation: none;
+    height: 100px;
+    width: 100px;
+}
+
+::placeholder {
+    width: 100%;
+}
+
+
+@media (max-width: 839px) {
+    .contentContainer {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 780px) {
+    .loginScreen, .contentContainer {
+        width: 100% !important;
+    }
+    .loginHeading {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .loginButton {
+        width: 200px;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .loginScreen {
+        height: 500px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+
+
+    .loginScreen{
+        padding: 1rem !important;
+    }
+}
+
