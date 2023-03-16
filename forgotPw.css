@@ -1,0 +1,52 @@
+.loginHeading {
+    width: 100%;
+    font-size: 3rem;
+}
+
+.loginHeading::before {
+    width: 25%;
+    left: 240px;
+}
+
+.loginButton {
+    width: 250px;
+    font-weight: 600;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.contentContainer {
+    position: unset;
+    top: unset;
+    left: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+
+}
+
+.loginScreen{
+    position: unset;
+    top: unset;
+    left: unset;
+    height: 30%;
+    padding: 1.5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+
+}
+
+.inputFieldContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+}
