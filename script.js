@@ -1,4 +1,4 @@
-//Quelle: https://developer-akademie.teachable.com/courses/902235/lectures/31232815
+//Source: https://developer-akademie.teachable.com/courses/902235/lectures/31232815
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -12,3 +12,5 @@ async function includeHTML() {
         }
     }
 }
+
+// Own Code

@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  font-family: "Inter";
+  font-style: normal;
+  line-height: 120%;
 }
 
 html,
@@ -82,6 +85,10 @@ a {
   align-items: center;
 }
 
+.placeholderBottom {
+  height: calc(100% - 89px);
+}
+
 .placeholderRightLeft {
   position: relative;
   left: 0px;
@@ -116,6 +123,156 @@ a {
 .legalnotice {
   margin-top: 100px;
   margin-bottom: 25px;
+}
+
+/* Board */
+.placeholderBoard {
+  height: 100%;
+}
+.placeholderBoardTop {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .placeholderBoardTopLeft {
+
+} */
+
+.placeholderBoardTopRight {
+  display: flex;
+}
+
+/* .placeholderBoardBottom {
+  
+} */
+
+.boardParts {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.boardTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 20px;
+  font-weight: 700;
+  font-size: 21px;
+}
+.boardContainer {
+  height: 100%;
+  border-radius: 30px;
+  padding: 18px 20.5px;
+
+  border: 1px solid black;
+}
+
+.boardContainerTop {
+  width: 103px;
+  height: 27px;
+  background-color: #ff7a00;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.boardContainerHeadline h2 {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.boardContainerDescripton span {
+  font-weight: 400;
+  font-size: 16px;
+  color: #a8a8a8;
+}
+
+.boardContainerProgress {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.progress {
+  height: 5px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+
+  width: 50%;
+  border: 1px solid purple;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.progressInNumbers {
+  display: flex;
+}
+
+.boardContainerUserBubbles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userBubble {
+  display: flex;
+  position: relative;
+}
+
+.userBubbleOne {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #0190e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
+}
+
+.userBubbleTwo {
+  position: absolute;
+  left: 27px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #ee00d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
+}
+
+.userBubbleConcatenation {
+  position: absolute;
+  left: 54px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
 }
 
 @media (max-width: 480px) {
