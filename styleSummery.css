@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+head {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: #f6f7f8;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  color: #f6f7f8;
+  display: flex;
+  gap: 18px;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+}
+
+.sideNavBar {
+  position: relative;
+  width: 232px;
+  background-color: #2a3647;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sideNavBarList {
+  color: white;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sideNavBarTask {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sideNavBarTask span {
+  color: white;
+}
+
+.sideNavBarLegalNotice {
+  margin: 50px 0px 25px 0px;
+}
+
+.placeholderRight {
+  position: relative;
+  width: calc(100vw - 232px);
+}
+
+.placeholderTop {
+  position: relative;
+  top: 0px;
+  height: 89px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  /* padding: 20px 36px 20px 116px; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.placeholderRightLeft {
+  position: relative;
+  left: 0px;
+  height: calc(100% - 89px);
+}
+
+/* Logo TopLeftCorner */
+.sideNavBarLogo {
+  position: absolute;
+  top: 66px;
+  left: 66px;
+  z-index: 3;
+}
+
+.whiteLogo {
+  position: relative;
+  width: 100px;
+  height: 121px;
+}
+
+.blackLogo {
+  position: relative;
+  display: none;
+}
+
+/* SideBar */
+.svg {
+  width: 25px;
+  height: 25px;
+}
+
+.legalnotice {
+  margin-top: 100px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    flex-direction: column-reverse;
+  }
+  .placeholderRight {
+    width: 100%;
+  }
+  .placeholderTop {
+    width: 100%;
+    padding-left: 25px;
+  }
+  .placeholderBottom {
+    height: calc(100vh - 169px);
+  }
+  .sideNavBar {
+    width: 100%;
+  }
+  .sideNavBarLogo {
+    top: 20px;
+    left: 25px;
+  }
+  .whiteLogo {
+    display: none;
+  }
+  .blackLogo {
+    display: flex;
+    z-index: 2;
+    width: 32px;
+    height: 39px;
+  }
+  .sideNavBar {
+    height: 80px;
+    width: 100%;
+    /* top: calc(100% - 80px); */
+    align-items: center;
+    flex-direction: initial;
+    justify-content: space-around;
+  }
+  .sideNavBarList {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: initial;
+    padding: 0px 12px;
+    width: 100%;
+  }
+  .sideNavBarTask {
+    /* display: flex; */
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  /* .sideNavBarTask span {
+    color: white;
+  } */
+  .sideNavBarLegalNotice {
+    display: none;
+  }
+}
