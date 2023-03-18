@@ -9,7 +9,20 @@
     <link rel="stylesheet" href="styleSummery.css" />
 </head>
 
-<body>
+<style>
+    #inProgress {
+        height: 200px;
+    }
+
+    .todo {
+        height: 50px;
+        width: 100px;
+        background-color: red;
+    }
+
+</style>
+
+<body onload="updateHTML()">
 
 
     <div class="mainContainer">
@@ -80,7 +93,7 @@
                             <!-- toDo -->
                             <div class="boardTask">
                                 <div>To do</div>
-                                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
+                                <div><img src="img/plusbuttonv1.svg"></div>
                             </div>
                             <div class="boardContainer">
                                 <div class="boardContainerTop">Design</div>
@@ -112,7 +125,7 @@
                             <!-- inProgress -->
                             <div class="boardTask">
                                 <div>In Progress</div>
-                                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
+                                <div><img src="img/plusbuttonv1.svg"></div>
                             </div>
                         </div>
 
@@ -120,7 +133,7 @@
                             <!-- AwaitingFeedback -->
                             <div class="boardTask">
                                 <div>Awaiting Feedback</div>
-                                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
+                                <div><img src="img/plusbuttonv1.svg"></div>
                             </div>
                         </div>
 
@@ -128,7 +141,7 @@
                             <!-- Done -->
                             <div class="boardTask">
                                 <div>Done</div>
-                                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
+                                <div><img src="img/plusbuttonv1.svg"></div>
                             </div>
                         </div>
 
@@ -141,7 +154,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
