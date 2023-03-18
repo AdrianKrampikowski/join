@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styleSummery.css" />
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -18,31 +19,10 @@
             <img id="startScreenLogo" src="img/whitelogo.svg" class="whiteLogo" />
             <img src="img/blacklogo.svg" class="blackLogo" />
         </div>
-        <!-- Desktop:SidebarLeft Mobil:SidebarBottom -->
-        <div class="sideNavBar">
-            <div class="sideNavBarList">
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/summary.svg"
-                            class="svg"><span>Summary</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/board.svg"
-                            class="svg"><span>Board</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/addtask.svg" class="svg"><span>Add
-                            Task</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/contacts.svg"
-                            class="svg"><span>Contacts</span></a>
-                </div>
-                <div class="sideNavBarLegalNotice">
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/legalnotice.svg" class="svg">Legal
-                        Notice</a>
-                </div>
-            </div>
-        </div>
+
+        <!-- Sidebar -->
+        <div w3-include-html="templates\sideNavBar.html"></div>
+
         <div class="placeholderRight">
             <div class="placeholderTop">
                 <div class="topNavBarLeftText">Kanban Project Management Tool</div>
@@ -62,11 +42,11 @@
 
                             <div class="inputContainer">
                                 <div class="inputFieldContainer">
-                                  <input class="inputFields" placeholder="Find Task" />
-                                  <div class="inputFieldVerticalLine"></div>
-                                  <img src="img/searchicon.svg" class="img" />
+                                    <input class="inputFields" placeholder="Find Task" />
+                                    <div class="inputFieldVerticalLine"></div>
+                                    <img src="img/searchicon.svg" class="img" />
                                 </div>
-                              </div>
+                            </div>
 
                             <button class="addTaskButton">
                                 <span>Add task</span>
@@ -141,7 +121,7 @@
             </div>
         </div>
     </div>
-
+    <script>includeHTML();</script>
 </body>
 
 </html>
