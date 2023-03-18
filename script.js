@@ -1,5 +1,5 @@
 //Source: https://developer-akademie.teachable.com/courses/902235/lectures/31232815
-async function includeHTML() { 
+async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -44,8 +44,10 @@ let toDos = [{
     "category": "inProgress"
 }];
 
+let currentDraggedElement;
+
 function updateHTML() {
-    
+
     let toDo = toDos.filter(t => t["category"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
@@ -61,12 +63,25 @@ function updateHTML() {
     }
 
     function generateToDoHTML(element) {
-        
         return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
         <div class="boardContainerTop">${element["title"]}</div>
         </div>
         `;
-
     }
+
+
+}
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function moveTo(category) {
+    toDos[currentDraggedElement]['category'] = category;
+    updateHTML();
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
 }

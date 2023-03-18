@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="placeholderBoardBottom">
-        <div class="boardParts">
+        <div class="boardParts" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
             <!-- toDoHeadline -->
             <div class="boardTask">
                 <div>To do</div>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="boardParts">
+        <div class="boardParts" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
             <!-- inProgress -->
             <div class="boardTask">
                 <div>In Progress</div>
