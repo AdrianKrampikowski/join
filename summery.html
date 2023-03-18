@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styleSummery.css" />
+    <script src="script.js"></script>
 </head>
 
 <style>
@@ -24,38 +25,16 @@
 
 <body onload="updateHTML()">
 
-
     <div class="mainContainer">
         <!-- LogoTopLeftCorner -->
         <div class="sideNavBarLogo">
             <img id="startScreenLogo" src="img/whitelogo.svg" class="whiteLogo" />
             <img src="img/blacklogo.svg" class="blackLogo" />
         </div>
-        <!-- Desktop:SidebarLeft Mobil:SidebarBottom -->
-        <div class="sideNavBar">
-            <div class="sideNavBarList">
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/summary.svg"
-                            class="svg"><span>Summary</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/board.svg"
-                            class="svg"><span>Board</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/addtask.svg" class="svg"><span>Add
-                            Task</span></a>
-                </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/contacts.svg"
-                            class="svg"><span>Contacts</span></a>
-                </div>
-                <div class="sideNavBarLegalNotice">
-                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/legalnotice.svg" class="svg">Legal
-                        Notice</a>
-                </div>
-            </div>
-        </div>
+
+        <!-- Sidebar -->
+        <div w3-include-html="templates\sideNavBar.html"></div>
+
         <div class="placeholderRight">
             <div class="placeholderTop">
                 <div class="topNavBarLeftText">Kanban Project Management Tool</div>
@@ -65,14 +44,11 @@
                 </div>
             </div>
             <div class="placeholderBottom">
-                <!-- Board -->
-                <div class="placeholderBoard">
-                    <div class="placeholderBoardTop">
-                        <div class="placeholderBoardTopLeft">
-                            <h1>Board</h1>
-                        </div>
-                        <div class="placeholderBoardTopRight">
 
+                <!-- Board -->
+                <div w3-include-html="templates\board.html"></div>
+
+<<<<<<< HEAD
                             <div class="inputContainer">
                                 <div class="inputFieldContainer">
                                   <input class="inputFields" placeholder="Find Task" />
@@ -149,11 +125,18 @@
                     </div>
 
                 </div>
+=======
+>>>>>>> e63250850a5357801eda7e27b76c317cc08f439c
                 <!-- <div class="placeholderRightLeft"></div>
                 <div class="placeholderRightRight"></div> -->
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+    <script>includeHTML();</script>
+    <script></script>
+>>>>>>> e63250850a5357801eda7e27b76c317cc08f439c
 </body>
 
 </html>

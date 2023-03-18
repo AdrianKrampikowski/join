@@ -39,6 +39,7 @@ a {
 
 .sideNavBar {
   position: relative;
+  height: 100%;
   width: 232px;
   background-color: #2a3647;
   display: flex;
