@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fonts.css">
 
-    <script src="script.js"></script>
-  </head>
-  <body class="test">
-    <div class="test"></div>
-    <div class="mainContainer">
-      <div class="startScreen">
-        <img id="startScreenLogo" src="img/blacklogo.svg" class="logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="fonts.css">
+
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="mainContainer">
+    <div class="startScreen">
+      <img id="startScreenLogo" src="img/blacklogo.svg" class="logo" />
+    </div>
+    <div class="header">
+      <!-- <img src="img/Capa1.svg" class="logo" /> -->
+    </div>
+    <!--SignInField-->
+    <div class="signInContainer">
+      <div class="signInField">
+        <span>Not a Join user?</span>
+        <button><a href="/signup.html">Sign Up</a></button>
       </div>
-      <div class="header">
-        <!-- <img src="img/Capa1.svg" class="logo" /> -->
-      </div>
-      <!--SignInField-->
-      <div class="signInContainer">
-        <div class="signInField">
-          <span>Not a Join user?</span>
-          <button><a href="/signup.html">Sign Up</a></button>
+    </div>
+    <div class="contentContainer">
+      <div class="loginScreen">
+        <h1 class="loginHeading">Log in</h1>
+
+        <div class="inputContainer">
+          <div class="inputFieldContainer">
+            <input class="inputFields" placeholder="Email" />
+            <img src="img/letter.svg" class="img" />
+          </div>
         </div>
-      </div>
-      <div class="contentContainer">
-        <div class="loginScreen">
-          <h1 class="loginHeading">Log in</h1>
 
-          <div class="inputContainer">
-            <div class="inputFieldContainer">
-              <input class="inputFields" placeholder="Email" />
-              <img src="img/letter.svg" class="img" />
-            </div>
+        <div class="inputContainer">
+          <div class="inputFieldContainer">
+            <input class="inputFields" placeholder="Password" />
+            <img src="img/lock.svg" class="img" />
           </div>
+        </div>
 
-          <div class="inputContainer">
-            <div class="inputFieldContainer">
-              <input class="inputFields" placeholder="Password" />
-              <img src="img/lock.svg" class="img" />
-            </div>
+        <div class="rememberOrForgetFields">
+          <div class="checkboxContainer">
+            <input type="checkbox" />
+            <p>Remember me</p>
           </div>
+          <p class="forgotMyPassword">Forgot my Password</p>
+        </div>
 
-          <div class="rememberOrForgetFields">
-            <div class="checkboxContainer">
-              <input type="checkbox" />
-              <p>Remember me</p>
-            </div>
-            <p class="forgotMyPassword">Forgot my Password</p>
-          </div>
-
-          <div class="loginAndWhiteButton">
-            <button class="loginButton">
-              <a href="/summery.html">Log in</a>
-            </button>
-            <button class="whiteButton">Guest Log in</button>
-          </div>
+        <div class="loginAndWhiteButton">
+          <button class="loginButton">
+            <a href="/summery.html">Log in</a>
+          </button>
+          <button class="whiteButton">Guest Log in</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
