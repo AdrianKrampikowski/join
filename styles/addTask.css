@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    font-family: 'Inter';
+
+}
+
+.mainContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: -450px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+}
+
+.mainContainerTaskForm {
+    background-color: #FFFFFF;
+    width: 83vw;
+    height: vh;
+    border-radius: 30px;
+    position: relative;
+
+}
+
+.mainContainer1 {
+    padding-left: 120px;
+    position: relative;
+    width: 1116px;
+    height: 914px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.addTask {
+    display: flex;
+    width: 466px;
+    height: 120px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+
+}
+
+.addTaskTitel {
+    margin-top: 45px;
+    color: #000000;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%
+}
+
+.formContainer {
+    display: flex;
+}
+
+.leftContainer {
+    padding-left: 0px;
+}
+
+.leftContainer p {
+    font-size: 21px;
+    font-weight: 400px;
+}
+
+.titelInputFields {
+    margin-top: 22px;
+    margin-bottom: 5px;
+}
+
+.leftContainerInput {
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    width: 420px;
+    height: 27px;
+    padding: 8px;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.leftContainerDescription {
+    width: 420px;
+    height: 70px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.categorySelecTask {
+    width: 400px;
+    height: 7px;
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.selectTaskCategory{
+    margin-left: 0px;
+}
+.inputFiledNewCategory{
+    outline: none !important;
+    border: none !important;
+    z-index: 999 !important;
+    width: 300px;
+    height: 30px !important;
+}
+.d-none {
+    display: none !important;
+}
+
+.borderButton {
+    border-bottom: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 0px;
+}
+.selectNewCategoryCancel {
+    padding-right: 5px;
+}
+.selectNewCategoryCheckmark {
+    padding-left: 12px;
+}
+.categoryList {
+    padding-left: 12px;
+    margin-top: 0px;
+    border: 1px solid lightgray;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-left: 0px;
+    list-style-type: none;
+    height: 133px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.categoryMediaDiv{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.taskCategory {
+    font-size: 21px;
+    margin: 10px 19px;
+}

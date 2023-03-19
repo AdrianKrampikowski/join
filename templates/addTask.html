@@ -1,24 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <Style>
-        .mainContainer{
-            position: relative;
-            width: 1116px;
-            height: 914px;
-            background: #FFFFFF;
-            box-shadow: 0px 0px 4px rgba(0,0,0.1);
-            border-radius: 30px;
-            
-        }
-        .addTsak{
-            width: 466px;
-            height: 78px;
-        }
-    </Style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/addTask.css">
 </head>
-<div class="mainContainer">
-    <div class="addTask">
-       <h1>
-        Add Task
-      </h1>
- </div>
-</div>
+
+<body>
+    <div class="mainContainer">
+        <div class="mainContainerTaskForm">
+
+        </div>
+        <div class="mainContainer1">
+            <div class="addTask">
+                <p class="addTaskTitel">Add Task</p>
+            </div>
+            <form class="formContainer" onsubmit="myFunction()">
+                <div class="leftContainer">
+                    <p class="titelInputFields">Title</p>
+                    <input class="leftContainerInput" placeholder="Enter a Title" required>
+                    <p class="titelnIputFileds">Description</p>
+                    <textarea class="leftContainerDescription" required placeholder="Enter a Description"></textarea>
+                    <p class="titelInputFields">Category</p>
+                    <div onclick="myFunction()" class="categorySelecTask">
+                        <p class="selectTaskCategory">Select Task Category</p>
+                        <img src="/img/Vector 2.png">
+                        <input class="inputFiledNewCategory d-none" placeholder="New Category Name">
+                        <div class="selectNewCategory d-none">
+                            <img onclick="selectNewCategoryCancel" src="/img/cancel.png" alt="Cancel"class="selectNewCategoryCancel">
+                            <img oncklick="creatNewCategory" class="selectNewCategoryCheckMark" src="/img/hacken-schwarz.png"  alt="Hook">
+                        </div>
+                    </div>
+                    <ul class="categoryList">
+                        <div onclick="myFunction()" class=".categoryMediaDiv">
+                            <li class="taskCategory">New Category</li>
+                        </div>
+                        <div id="createNewTategory"></div>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
