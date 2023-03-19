@@ -31,6 +31,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .contactsBar > div > div:first-of-type {
@@ -64,22 +65,40 @@ body {
     align-items: center;
     border-radius: 50%;
     background-color: #FF7A00;
-    margin-bottom: 1.5rem;
 }
 
 .contactIcon > span {
     font-size: 14px;
 }
 
+.contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
+.contact > div:first-of-type {
+    width: 25%;
+}
 
+.contact > div:last-of-type {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 
+.contact > div:last-of-type > span:first-of-type {
+    margin-bottom: 0.5rem;
+}
 
-
-
-
-
-
+.contactEmail {
+    color: #007CEE;
+    text-decoration: none;
+}
 
 .contactsContentHeader {
     display: flex;
@@ -135,3 +154,4 @@ body {
 .newContactButton > span {
     color: white;
 }
+

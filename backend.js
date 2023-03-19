@@ -10,8 +10,6 @@ async function init() {
     users = JSON.parse(backend.getItem('users')) || [];
 } 
 
-// || [];
-/*-------------------------------------------------------------------------------------------- */
 
 // ================================================ REGISTRIEREN ==========================================================
 // Am besten eine separate "register.js" Datei erstellen
@@ -35,20 +33,25 @@ function addUser(){
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if(user){
-        // show Infobox go to Login Site
+         alert("You are already registered, click here to log in");
     } else {
         users.push(userData);
+
+    // Weiterleitung zur Loginseite + Nachricht anzeigen: "Erfolgreiche registrierung"
+
+
+/*     window.location.href = 'index.html?id=' + id;    // Es wird die so URL so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+    alert("You have successfully signed up!");
+ */
+
+        
+/*  let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
+    let idMsg = urlParams.get('id');
+ */
     }
 
     save();
-    
-    // Weiterleitung zur Loginseite + Nachricht anzeigen: "Erfolgreiche registrierung"
-//         window.location.href = 'login.html?id=' + id;    // Es wird die so URL so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
-
-        
-/*         let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
-        let idMsg = urlParams.get('id');
- */}
+}
 
 function save() {
        let usersAsString = JSON.stringify(users);
@@ -65,12 +68,15 @@ function login() {
     let passwordLog = document.getElementById('passwordLog');
 
     let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
+    let existingUser = users.find(u => u.email == emailLog.value);
+
     if(user){
-        window.location.href = 'summary.html?id=' + id;
+        window.location.href = 'summery.html?id=' + id;
+    } else if (existingUser) {
+        altert("E-Mail or Password incorrect!");
     } else {
-        // Meldung zuerst registrieren
+        altert("User does not exist, please sign up");
     }
-    
 }
 
 // ================================================ DATEN SPEICHERN ==========================================================
@@ -84,8 +90,8 @@ function login() {
 
 // AUF DEM SERVER
 /* 
-    URLSearchParams.push(task);
-    backend.setItem('users')    => Mehr Parameter nötig????
+    let allTasksAsString = JSON.stringify(allTasks);
+    backend.setItem('allTasks', allTasksAsString)
 */
 
 
