@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignUp</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+
+    <script src="script.js"></script>
+    <script src="backend.js"></script>
+    <script src="mini_backend.js"></script>
+    <script>setURL('http://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever')</script>
+
   </head>
   <body>
     <div class="mainContainer">
@@ -15,26 +21,26 @@
 
           <div class="inputContainer">
             <div class="inputFieldContainer">
-              <input class="inputFields" placeholder="Name" />
+              <input id="name" class="inputFields" placeholder="Name" required/>
               <img src="img/name.svg" class="img" />
             </div>
           </div>
 
           <div class="inputContainer">
             <div class="inputFieldContainer">
-              <input class="inputFields" placeholder="Email" />
+              <input id="email" class="inputFields" placeholder="Email" required/>
               <img src="img/letter.svg" class="img" />
             </div>
           </div>
 
           <div class="inputContainer">
             <div class="inputFieldContainer">
-              <input class="inputFields" placeholder="Password" />
+              <input id="password" class="inputFields" placeholder="Password" required/>
               <img src="img/lock.svg" class="img" />
             </div>
           </div>
 
-          <button class="loginButton"><a href="/index.html">Sign up</a></button>
+          <button onclick="addUser()" class="loginButton"><a href="/index.html">Sign up</a></button>
 
         </div>
       </div>

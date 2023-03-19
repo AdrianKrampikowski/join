@@ -10,9 +10,13 @@
   <link rel="stylesheet" href="./styles/fonts.css">
 
   <script src="script.js"></script>
+  <script src="backend.js"></script>
+  <script src="mini_backend.js"></script>
+  <script>setURL('http://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever')</script>
+
 </head>
 
-<body>
+<body onload="init()">
   <div class="mainContainer">
     <div class="startScreen">
       <img id="startScreenLogo" src="img/blacklogo.svg" class="logo" />
@@ -24,7 +28,7 @@
     <div class="signInContainer">
       <div class="signInField">
         <span>Not a Join user?</span>
-        <button><a href="/signup.html">Sign Up</a></button>
+        <button><a href="signup.html">Sign Up</a></button>
       </div>
     </div>
     <div class="contentContainer">
@@ -33,14 +37,14 @@
 
         <div class="inputContainer">
           <div class="inputFieldContainer">
-            <input class="inputFields" placeholder="Email" />
+            <input id="emailLog" class="inputFields" placeholder="Email" />
             <img src="img/letter.svg" class="img" />
           </div>
         </div>
 
         <div class="inputContainer">
           <div class="inputFieldContainer">
-            <input class="inputFields" placeholder="Password" />
+            <input id="passwordLog" class="inputFields" placeholder="Password" />
             <img src="img/lock.svg" class="img" />
           </div>
         </div>
@@ -54,11 +58,12 @@
         </div>
 
         <div class="loginAndWhiteButton">
-          <button class="loginButton">
+          <button onclick="login()" class="loginButton">
             <a href="/summery.html">Log in</a>
           </button>
           <button class="whiteButton">Guest Log in</button>
         </div>
+
       </div>
     </div>
   </div>
