@@ -98,13 +98,12 @@ function saveJSONToServer() {
 
 
 function determineProxySettings() {
-/*      return '';
- */
-    if (window.location.href.indexOf('.gruppenarbeit-486join.developerakademie.net') > -1) {
+      return '';
+
+    if (window.location.href.indexOf('.developerakademie.com') > -1) {
         return '';
     } else {
         return 'https://cors-anywhere.herokuapp.com/';
     }
 }
 
-// developerakademie.com

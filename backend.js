@@ -36,31 +36,24 @@ function addUser(){
          alert("You are already registered, click here to log in");
     } else {
         users.push(userData);
+        save();
 
     // Weiterleitung zur Loginseite + Nachricht anzeigen: "Erfolgreiche registrierung"
 
-
-/*     window.location.href = 'index.html?id=' + id;    // Es wird die so URL so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+    window.location.href = 'index.html?id=' + id;    // Es wird die so URL so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     alert("You have successfully signed up!");
- */
-
         
 /*  let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
     let idMsg = urlParams.get('id');
  */
     }
 
-    save();
 }
 
 function save() {
        let usersAsString = JSON.stringify(users);
        backend.setItem('users', usersAsString);
-
-
-/*     let usersAsString = JSON.stringify(users);
-    localStorage.setItem('users', usersAsString)
- */}
+}
 
 // ================================================ LOGIN ==========================================================
 function login() {
@@ -73,9 +66,9 @@ function login() {
     if(user){
         window.location.href = 'summery.html?id=' + id;
     } else if (existingUser) {
-        altert("E-Mail or Password incorrect!");
+        alert("E-Mail or Password incorrect!");
     } else {
-        altert("User does not exist, please sign up");
+        alert("User does not exist, please sign up");
     }
 }
 
