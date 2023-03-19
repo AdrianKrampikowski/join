@@ -6,7 +6,7 @@ body {
     margin: 0  ;
 }
 
-.contactsContainer {
+.contactsMainContainer {
     position: relative;
     display: flex;
     width: 100%;
@@ -19,9 +19,59 @@ body {
    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08); 
    display: flex;
    flex-direction: column;
-   align-items: flex-start;
-   justify-content: center;
+   align-items: center;
+   justify-content: flex-start;
+   padding-left: 3rem;
+   padding-right: 3rem;
+   padding-top: 1.5rem;
 }
+
+.contactsBar > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.contactsBar > div > div:first-of-type {
+    width: 100%;
+}
+
+.letter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.letter > span {
+    font-size: 21px;
+}
+
+.contactsHline {
+    width: 100%;
+    height: 1px;
+    border-radius: 3px;
+    background-color: #D1D1D1;
+    margin-bottom: 1.5rem;
+}
+
+.contactIcon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #FF7A00;
+    margin-bottom: 1.5rem;
+}
+
+.contactIcon > span {
+    font-size: 14px;
+}
+
+
 
 
 
@@ -39,6 +89,7 @@ body {
     padding-left: 4rem;
     width: 100%;
     height: 300px;
+    background-color: #F5F5F5;;
 }
 
 .contactsContentHeader > div {
