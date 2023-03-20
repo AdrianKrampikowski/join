@@ -149,16 +149,6 @@ function calculateProgressbar(index) {
 }
 
 
-function sdf() {
-    let x = toDos[0]["numerator"] / toDos[0]["denominator"];
-    console.log(x);
-    let progressBarElements = document.getElementsByClassName("progressBar");
-    for (let i = 0; i < progressBarElements.length; i++) {
-        progressBarElements[i].style.width = x + "%";
-    }
-}
-
-
 function startDragging(id) {
     currentDraggedElement = id;
 }
