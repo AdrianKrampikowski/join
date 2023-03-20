@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Inter';
 }
 
 body {
@@ -45,8 +46,17 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.letter > span {
-    font-size: 21px;
+.letter > div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end ;
+    height: 42px;
+    width: 42px;
+}
+
+.letter span {
+        font-size: 21px;
+
 }
 
 .contactsHline {
@@ -69,6 +79,7 @@ body {
 
 .contactIcon > span {
     font-size: 14px;
+    color: white;
 }
 
 .contact {
@@ -100,22 +111,23 @@ body {
     text-decoration: none;
 }
 
-.contactsContentHeader {
+.contactsContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding-left: 4rem;
     width: 100%;
-    height: 300px;
+    height: 100%;
     background-color: #F5F5F5;;
 }
 
-.contactsContentHeader > div {
+.contactsContentHeader {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 50px;
+    height: 300px;
 }
 
 .contactsContentHeader h1 {
@@ -130,9 +142,72 @@ body {
     width: 3px;
 }
 
-.contactsContentHeader > div > div:last-of-type {
+.contactsContentHeader > div:last-of-type {
     font-size: 27px;
     color: rgba(42, 54, 71, 1);
+}
+
+.contactsContent {
+    width: 100%;
+    height: 100%;
+}
+
+.contactDetails > div:first-of-type {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.contactDetails > div:first-of-type > div:first-of-type {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+
+}
+
+.contactIconBig {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #FF7A00;
+    border: 2px solid white;
+}
+
+.contactIconBig  > span {
+    font-size: 47px;
+    color: white;
+}
+
+.contactDetailsName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+}
+
+.name > span{
+    font-size: 47px;
+}
+
+.addTask {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.addTask > span {
+    color: #29ABE2;
+    font-size: 16px;
+    margin-left: 10px;
 }
 
 .newContactButton {
@@ -154,4 +229,32 @@ body {
 .newContactButton > span {
     color: white;
 }
+
+.addContactContainer {
+    height: 600px;
+    width: 1200px;
+    display: flex;
+    border-radius: 30px;
+}
+
+
+.addContactLeftSide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px;
+    background-color: #2A3647;
+    padding: 46px;
+    color: white;
+}
+
+.addContactLeftSide > div:last-of-type{
+    height: 3px;
+    width: 100px;
+    background-color: #29ABE2;
+}
+
+
+
 
