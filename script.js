@@ -47,7 +47,6 @@ let toDos = [{
 let currentDraggedElement;
 
 function updateHTML() {
-
     let toDo = toDos.filter(t => t["category"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
@@ -69,18 +68,19 @@ function updateHTML() {
         </div>
         `;
     }
-
-
 }
+
 
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+
 function moveTo(category) {
     toDos[currentDraggedElement]['category'] = category;
     updateHTML();
 }
+
 
 function allowDrop(ev) {
     ev.preventDefault();
