@@ -28,21 +28,15 @@
                 <div>To do</div>
                 <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
-            <!-- shoppingCards -->
-            <div class="toDoCard" id="toDoCard">
-                <div class="boardContainer">
-                    <div class="boardContainerTop">Design</div>
-                </div>
-            </div>
             <!-- toDoCards -->
-            <div class="toDoCard" draggable="true" ondragstart="drag(event)">
-                <!-- <div class="boardContainer">
-                    <div class="boardContainerTop">Design</div>
-                    <div class="boardContainerHeadline">
-                        <h2>Website redesign</h2>
-                    </div>
-                    <div class="boardContainerDescripton"><span>Modify the contents of the main
-                            website...</span></div>
+            <div class="toDoCard" id="toDoCard">
+
+            </div>
+
+
+            <!-- 
+                    
+                    
                     <div class="boardContainerProgress">
                         <div class="progress">
                             <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
@@ -60,7 +54,7 @@
                         <div><img src="img/greenArrow.svg"></div>
                     </div>
                 </div> -->
-            </div>
+
         </div>
 
         <div class="boardParts" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
@@ -72,20 +66,22 @@
             <div id="inProgress"></div>
         </div>
 
-        <div class="boardParts">
+        <div class="boardParts" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
             <!-- AwaitingFeedback -->
             <div class="boardTask">
                 <div>Awaiting Feedback</div>
                 <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
+            <div id="awaitingFeedback"></div>
         </div>
 
-        <div class="boardParts">
+        <div class="boardParts" ondrop="moveTo('done')" ondragover="allowDrop(event)">
             <!-- Done -->
             <div class="boardTask">
                 <div>Done</div>
                 <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
+            <div id="done"></div>
         </div>
     </div>
 </div>

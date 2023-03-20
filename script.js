@@ -33,25 +33,48 @@ function drop(ev) {
 let toDos = [{
     "id": 0,
     "title": "Design",
+    "headline": "Website redesign",
+    "description": "Modify the contents of the main website...",
+    "numerator": "1",
+    "denominator": "10",
     "category": "toDo"
 }, {
     "id": 1,
-    "title": "Kochen",
-    "category": "toDo"
+    "title": "Sales",
+    "headline": "Call potential clients",
+    "description": "Make the product presen-tation to prospective buyers",
+    "numerator": "1",
+    "denominator": "1",
+    "category": "inProgress"
 }, {
     "id": 2,
-    "title": "Einkaufen",
-    "category": "inProgress"
+    "title": "Backoffice",
+    "headline": "Accounting invoices",
+    "description": "Write open invoices for customer",
+    "numerator": "1",
+    "denominator": "3",
+    "category": "awaitingFeedback"
+}
+    , {
+    "id": 3,
+    "title": "Marketing",
+    "headline": "Social media strategy",
+    "description": "Develop an ad campaign for brand positioning",
+    "numerator": "1",
+    "denominator": "5",
+    "category": "done"
 }];
 
 let currentDraggedElement;
 
 function updateHTML() {
+
     let toDo = toDos.filter(t => t["category"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element);
+        // calculateProgressbar(i);
     }
 
     let inProgress = toDos.filter(t => t["category"] == "inProgress");
@@ -59,14 +82,79 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         let element = inProgress[i];
         document.getElementById("inProgress").innerHTML += generateToDoHTML(element);
+
+    }
+
+    let awaitingFeedback = toDos.filter(t => t["category"] == "awaitingFeedback");
+    document.getElementById("awaitingFeedback").innerHTML = ``;
+    for (let i = 0; i < awaitingFeedback.length; i++) {
+        let element = awaitingFeedback[i];
+        document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element);
+
+    }
+
+    let done = toDos.filter(t => t["category"] == "done");
+    document.getElementById("done").innerHTML = ``;
+    for (let i = 0; i < done.length; i++) {
+        let element = done[i];
+        document.getElementById("done").innerHTML += generateToDoHTML(element);
+
     }
 
     function generateToDoHTML(element) {
         return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
-        <div class="boardContainerTop">${element["title"]}</div>
+
+            <div class="boardContainerTop">
+                ${element["title"]}
+            </div>
+
+            <div class="boardContainerHeadline">
+                <h2>${element["headline"]}</h2>
+            </div>
+
+            <div class="boardContainerDescripton">
+                <span>${element["description"]}</span>
+            </div>
+
+            <div class="boardContainerProgress">
+                <div class="progress">
+                    <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                    </div>
+                </div>
+            <div class="progressInNumbers">
+                ${element["numerator"]}
+                /
+                ${element["denominator"]}
+                Done
+            </div>
+
+        </div>
+
         </div>
         `;
+    }
+    for (let i = 0; i < toDos.length; i++) {
+        calculateProgressbar(i);
+    }
+}
+
+
+function calculateProgressbar(index) {
+    let x = toDos[index]["numerator"] / toDos[index]["denominator"];
+    x = x * 100;
+    let progressBarElements = document.getElementsByClassName("progressBar");
+    progressBarElements[index].style.width = x + "%";
+}
+
+
+function sdf() {
+    let x = toDos[0]["numerator"] / toDos[0]["denominator"];
+    console.log(x);
+    let progressBarElements = document.getElementsByClassName("progressBar");
+    for (let i = 0; i < progressBarElements.length; i++) {
+        progressBarElements[i].style.width = x + "%";
     }
 }
 
