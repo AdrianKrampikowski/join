@@ -17,19 +17,23 @@
 
 <body onload="init()">
   <div class="mainContainer">
-    <div class="startScreen">
-      <img id="startScreenLogo" src="img/blacklogo.svg" class="logo" />
-    </div>
+
     <div class="header">
-      <!-- <img src="img/Capa1.svg" class="logo" /> -->
-    </div>
-    <!--SignInField-->
-    <div class="signInContainer">
-      <div class="signInField">
-        <span>Not a Join user?</span>
-        <button><a href="signup.html">Sign Up</a></button>
+
+      <div class="startScreen">
+        <img id="startScreenLogo" class="logo" src="img/logo.svg"  />
       </div>
+
+    <!--SignInField-->
+      <div class="signInContainer">
+        <div class="signInField">
+          <span>Not a Join user?</span>
+          <button><a href="signup.html">Sign Up</a></button>
+        </div>
+      </div>
+
     </div>
+
     <div class="contentContainer">
       <div class="loginScreen">
         <h1 class="loginHeading">Log in</h1>
@@ -57,14 +61,13 @@
         </div>
 
         <div class="loginAndWhiteButton">
-          <button onclick="login()" class="loginButton">Log in
-            <!--             <a href="/summery.html">Log in</a>
- --> </button>
+          <button onclick="login()" class="loginButton">Log in</button>
+          <!--<a href="/summery.html">Log in</a> --> 
           <button class="whiteButton">Guest Log in</button>
         </div>
-
       </div>
     </div>
+
   </div>
 </body>
 
