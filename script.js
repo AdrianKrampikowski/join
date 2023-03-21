@@ -36,7 +36,7 @@ let toDos = [{
     "headline": "Website redesign",
     "description": "Modify the contents of the main website...",
     "numerator": "1",
-    "denominator": "10",
+    "denominator": "2",
     "category": "toDo"
 }, {
     "id": 1,
@@ -54,8 +54,7 @@ let toDos = [{
     "numerator": "1",
     "denominator": "3",
     "category": "awaitingFeedback"
-}
-    , {
+}, {
     "id": 3,
     "title": "Marketing",
     "headline": "Social media strategy",
@@ -64,6 +63,21 @@ let toDos = [{
     "denominator": "5",
     "category": "done"
 }];
+
+let newUsers = [{
+    "id": 0,
+    "name": "Adrian",
+    "surname": "Krampikowski"
+}, {
+    "id": 1,
+    "name": "Tobias",
+    "surname": "Odermatt"
+}, {
+    "id": 2,
+    "name": "Fausto",
+    "surname": "Oliveira"
+}];
+
 
 let currentDraggedElement;
 
@@ -129,16 +143,45 @@ function updateHTML() {
                 ${element["denominator"]}
                 Done
             </div>
+            </div>
+
+            <div class="boardContainerUserBubbles" id="boardContainerUserBubbles${element["id"]}">
+
+
+            <div>
+                <img src="img/greenArrow.svg">
+            </div>
 
         </div>
 
-        </div>
         `;
     }
     for (let i = 0; i < toDos.length; i++) {
         calculateProgressbar(i);
+        getFirstLetter(i);
     }
 }
+
+
+function getFirstLetter(i) {
+    if (i < newUsers.length) {
+        let x = newUsers[i]["name"];
+        x = x.split(' ').map(word => word.charAt(0)).join('');
+        let y = newUsers[i]["surname"];
+        y = y.split(' ').map(word => word.charAt(0)).join('');
+        z = x + y;
+        console.log(z);
+    }
+}
+// function createUserBubbles(i){
+//     debugger
+//     document.getElementById("boardContainerUserBubbles"[i]);
+// };
+{/* <div class="userBubble">
+<div class="userBubbleOne">AA</div>
+<div class="userBubbleTwo">MV</div>
+<div class="userBubbleConcatenation">+2</div>
+</div> */}
 
 
 function calculateProgressbar(index) {
