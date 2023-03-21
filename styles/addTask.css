@@ -46,6 +46,49 @@ body {
 
 
 }
+.addTask_categoryList {
+    padding-left: 12px;
+    margin-top: 0px;
+    border: 1px solid lightgray;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-left: 0px;
+    list-style-type: none;
+    height: 133px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.addTask_categoryDiv {
+    width: 31vw;
+    height: 7px;
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+}
+.addTask_selectTaskCategory {
+    font-size: 21px;
+    margin: 0px;
+}
+.addTask_subLine {
+    width: 0px;
+    height: 30px;
+    border: 1px solid lightgray;
+}
+.addTask_taskCategory {
+    font-size: 21px;
+    margin: 10px 19px;
+}
+.addTask_categoryMediaDivSmoll{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
 .addTaskTitel {
     margin-top: 45px;
@@ -130,24 +173,8 @@ body {
 .selectNewCategoryCheckmark {
     padding-left: 12px;
 }
-.categoryList {
-    padding-left: 12px;
-    margin-top: 0px;
-    border: 1px solid lightgray;
-    border-top: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-left: 0px;
-    list-style-type: none;
-    height: 133px;
-    overflow: scroll;
-    overflow-x: hidden;
-}
-.categoryMediaDiv{
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
+
+
 .taskCategory {
     font-size: 21px;
     margin: 10px 19px;

@@ -1,7 +1,9 @@
+let newCategorySelected = false;
+
 function openCategory() {
 
     if (newCategorySelected) {
-        return; // Function cancel
+        return; // Funktion abbrechen
     }
 
     // Öffnen - Wird nicht ausgeführt nach einem return

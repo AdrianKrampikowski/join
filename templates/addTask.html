@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/addTask.css">
-   
+    <script src="/addTask.js"></script>
+
 </head>
 
 <body>
@@ -18,25 +19,30 @@
             <div class="addTask">
                 <p class="addTaskTitel">Add Task</p>
             </div>
-            <form class="formContainer" onsubmit="myFunction()">
+            <form class="formContainer" onsubmit="onSubmits(event);">
                 <div class="leftContainer">
-                    <p class="titelInputFields">Title</p>
-                    <input class="leftContainerInput" placeholder="Enter a Title" required>
+                    <p id="title" class="titelInputFields">Title</p>
+                    <input id="titles" class="leftContainerInput" placeholder="Enter a Title" required>
                     <p class="titelnIputFileds">Description</p>
-                    <textarea class="leftContainerDescription" required placeholder="Enter a Description"></textarea>
-                    <p class="titelInputFields">Category</p>
-                    <div onclick="myFunction()" class="categorySelecTask">
-                        <p class="selectTaskCategory">Select Task Category</p>
-                        <img src="/img/Vector 2.png">
-                        <input class="inputFiledNewCategory d-none" placeholder="New Category Name">
-                        <div class="selectNewCategory d-none">
-                            <img onclick="selectNewCategoryCancel" src="/img/cancel.png" alt="Cancel"class="selectNewCategoryCancel">
-                            <img oncklick="creatNewCategory" class="selectNewCategoryCheckMark" src="/img/hacken-schwarz.png"  alt="Hook">
+                    <textarea id="descriptions" class="leftContainerDescription" required
+                        placeholder="Enter a Description"></textarea>
+                    <p id="category" class="titelInputFields">Category</p>
+                    <div id="addTask_borderButton" onclick="openCategory()" class="categorySelecTask borderButton">
+                        <p id="addTask_selectTaskCategory" class="selectTaskCategory">Select Task Category</p>
+                        <img id="addTask_selectTaskCategoryImg" src="/img/Vector 2.png">
+                        <input id="addTask_selectTaskCategoryImg" class="inputFiledNewCategory d-none"
+                            placeholder="New Category Name">
+                        <div id="addTask_selectNewCategoryImg" class="selectNewCategory d-none">
+                            <img onclick="selectNewCategoryCancel" src="/img/cancel.png" alt="Cancel"
+                                class="selectNewCategoryCancel">
+                                <div class="addTask_subLine"></div>
+                            <img oncklick="creatNewCategory" class="selectNewCategoryCheckMark"
+                                src="/img/hacken-schwarz.png" alt="Hook">
                         </div>
                     </div>
-                    <ul class="categoryList">
-                        <div onclick="myFunction()" class=".categoryMediaDiv">
-                            <li class="taskCategory">New Category</li>
+                    <ul id="addTask_categoryList" class="addTask_categoryList">
+                        <div onclick="selectNewCategory()" id="newCategory" class="addTask_categoryMediaDivSmoll">
+                            <li class="addTask_taskCategory">New Category</li>
                         </div>
                         <div id="createNewTategory"></div>
                     </ul>
