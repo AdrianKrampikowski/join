@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="../styles/contacts.css">
     <link rel="stylesheet" href="../styles/fonts.css">
 </head>
-<body>
 
+<body onload="loadContacts(), renderContacts()">
     <div class="contactsMainContainer">
         
         <div class="contactsBar">
-            <div>
+            <div id="contactList" class="contactList">
                 <div>
                     <div class="letter">
                         <div>A</div>
                     </div>
                     <div class="contactsHline"></div>
                 </div>
-                <div class="contactContainer">
-                    <div class="contact">
+
+                <div id="contactContainer" class="contactContainer">
+<!--                     <div class="contact">
                         <div>
                             <div class="contactIcon">
                                 <span>AM</span>
@@ -68,9 +69,8 @@
                             <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
                         </div>
                     </div>
-
+ -->
                 </div>
-
             </div>
         </div>
 
@@ -122,50 +122,149 @@
             </div>
         </div>
 
-        <div class="newContactButton">
+        <button class="newContactButton" onclick="newContact()">
             <span>New contact</span>
             <img src="../img/newContact.svg">
-        </div>
+        </button>
 
     </div>
 
-
-    <div class="addContactContainer">
+<div id="addContactBackground" class="addContactBackground d-none" onclick="close()">
+    <div id="addContactContainer" class="addContactContainer">
         <div class="addContactLeftSide">
             <img src="../img/logo.svg">
             <h1>Add contact</h1>
-            <div>Task are better with a Team!</div>
+            <span>Task are better with a Team!</span>
             <div></div>
         </div>
         <div class="addContactRightSide">
-            <div>
+            <div class="contactImg">
                 <div>
-                    <img src="">
+                    <img src="../img/addUserIcon.svg">
                 </div>
             </div>
-            <div>
+            <div class="contactInfo">
                 <div>
-                    <img src="">
+                    <div onclick="close()">
+                        <img src="../img/close.svg">
+                    </div>
                 </div>
-                <form>
-                    <input type="text">
-                    <input type="email">
-                    <input type="number">
-                </form>
                 <div>
-                    <button></button>
-                    <button></button>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
+                            <img src="../img/userIcon.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactSurname" class="inputFields" type="text" placeholder="Surname" required />
+                            <img src="../img/userIcon.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
+                            <img src="../img/letter.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactPhone" class="inputFields" type="tel" placeholder="Phone" required />
+                            <img src="../img/phone.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="cancleButton" onclick="close()">
+                            <span>Cancle</span>
+                            <img src="../img/cancel.svg">
+                        </button>
+                        <button class="createContact" onclick="createContact()">
+                            <span>Create contact</span>
+                            <img src="../img/tick.svg">
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </div>
+</div>
 
 
 
+<script>
+    let contacts = [];
+
+    let name = document.getElementById('contactName');
+    let surname = document.getElementById('contactSurname');
+    let email = document.getElementById('contactEmail');
+    let phone = +document.getElementById('contactPhone');
+
+    function renderContacts() {
+        let contactContainer = document.getElementById('contactList');
+        contactContainer.innerHTML = '';
+
+        for (let i = 0; i < contacts.length; i++) {
+            let contactListname = contacts[i]['name'];
+            let contactListSurname = contacts[i]['surname'];
+            let contactEmail = contacts[i]['email'];
+
+            contactContainer.innerHTML = `
+                    <div class="contact">
+                        <div>
+                            <div class="contactIcon">
+                                <span>AM</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="contactName">${contactListname} ${contactListSurname}</span>
+                            <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
+                        </div>
+                    </div>`;
+        }
+    }  
+
+    function newContact() {
+        document.getElementById('addContactBackground').classList.remove('d-none');
+    }
+
+    function createContact() {
+        let newContact = {name: name.value, surname: surname.value, email: email.value, phone: phone.value};
+
+        contacts.push(newContact);
+        saveContacts();
+
+        name.value = '';
+        surname.value = '';
+        email.value = '';
+        phone.value = '';
+    }
+
+    function close() {
+        document.getElementById('addContactBackground').classList.add('d-none');
+        name.value = '';
+        surname.value = '';
+        email.value = '';
+        phone.value = '';
+    }
+
+    async function saveContacts() {
+        let contactAsString = JSON.stringify(contacts);
+        await localStorage.setItem('contacts', contactAsString);
+    }
+
+    async function loadContacts() {
+        let contactAsString = localStorage.getItem('contacts');
+        contacts = JSON.parse(contactAsString) || [];
+    }
+
+        function editContact() {               // es muss eine Variable übergeben werden
+
+    }
 
 
+
+</script>
 
 </body>
 </html>
