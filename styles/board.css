@@ -137,7 +137,6 @@
 
 .boardParts {
     width: 380px;
-    height: 240px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -167,7 +166,7 @@
 }
   
 .boardContainer {
-    height: 100%;
+    /* height: 100%; */
     border-radius: 30px;
     padding: 18px 20.5px;
     background-color: #ffffff;

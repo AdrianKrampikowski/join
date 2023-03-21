@@ -13,22 +13,7 @@ async function includeHTML() {
     }
     updateHTML();
 }
-//Source: www.w3schools.com/html/html5_draganddrop.asp
-function allowDrop(ev) {
-    ev.preventDefault();
-}
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-
-// Own Code
 
 let toDos = [{
     "id": 0,
@@ -77,7 +62,6 @@ let newUsers = [{
     "name": "Fausto",
     "surname": "Oliveira"
 }];
-
 
 let currentDraggedElement;
 
@@ -146,10 +130,6 @@ function updateHTML() {
             </div>
 
             <div class="boardContainerUserBubbles" id="boardContainerUserBubbles${element["id"]}">
-
-
-            <div>
-                <img src="img/greenArrow.svg">
             </div>
 
         </div>
@@ -170,19 +150,18 @@ function getFirstLetter(i) {
         let y = newUsers[i]["surname"];
         y = y.split(' ').map(word => word.charAt(0)).join('');
         z = x + y;
-        console.log(z);
+        document.getElementById(`boardContainerUserBubbles${[i]}`).innerHTML = `
+        <div class="userBubble">
+            <div class="userBubbleOne">AA</div>
+            <div class="userBubbleTwo">MV</div>
+            <div class="userBubbleConcatenation">+2</div>
+        </div>
+        <div>
+            <img src="img/greenArrow.svg">
+        </div>
+        `;
     }
 }
-// function createUserBubbles(i){
-//     debugger
-//     document.getElementById("boardContainerUserBubbles"[i]);
-// };
-{/* <div class="userBubble">
-<div class="userBubbleOne">AA</div>
-<div class="userBubbleTwo">MV</div>
-<div class="userBubbleConcatenation">+2</div>
-</div> */}
-
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -191,7 +170,7 @@ function calculateProgressbar(index) {
     progressBarElements[index].style.width = x + "%";
 }
 
-
+//Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
     currentDraggedElement = id;
 }
@@ -206,3 +185,14 @@ function moveTo(category) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
+// import { contacts} from './backend.js'
+// function showAllContacts() {
+// console.log(contacts);
+    // document.getElementById("allContacts").innerHTML = `
+    // <div>Name:</div>
+    // <div>Surname:</div>
+    // <div>Mail:</div>
+    // `;
+// }
+// showAllContacts();

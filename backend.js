@@ -1,6 +1,4 @@
-let users = [
-    /* {'email': 'odermatt.tobias.w@gmail.com', 'password': 'test123'} */
-];
+let users = [];
 
 let id;
 
@@ -59,12 +57,18 @@ function save() {
 
 // ================================================ LOGIN ==========================================================
 function login() {
+    
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
-
-    let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
+    
+    let user = users.find((u) =>{
+        // debugger
+        return u.email == emailLog.value && u.password == passwordLog.value
+    });
     let existingUser = users.find(u => u.email == emailLog.value);
-
+    
+    console.log(emailLog.value);
+    console.log(passwordLog.value);
     if(user){
         window.location.href = 'summery.html?id=' + id;
     } else if (existingUser) {
@@ -103,7 +107,19 @@ function login() {
 */
 
 
+// BITTE NICHT LÖSCHEN
+function getContacts() {
+    let contacts = users;
+    if(contacts) {
+        console.log(contacts)
+        return contacts;
+    } else {
+        alert("No Contact Found")
 
+    }
+}
+
+// export let contacts = users;
 
 
 
