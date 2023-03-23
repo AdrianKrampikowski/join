@@ -27,12 +27,13 @@ body {
    padding-top: 1.5rem;
 }
 
-.contactsBar > div {
+.contactList {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
+    overflow: hidden;
 }
 
 .contactsBar > div > div:first-of-type {
@@ -64,7 +65,81 @@ body {
     height: 1px;
     border-radius: 3px;
     background-color: #D1D1D1;
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.contactContainer::-webkit-scrollbar {
+    width: 10px;
+    scrollbar-gutter: stable;
+}
+
+.contactContainer::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.contactContainer::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+.contactContainer::-webkit-scrollbar-button {
+    color: #A8A8A8;
+}
+
+.contactContainer::-webkit-scrollbar-button {
+    display: block;
+    background-repeat: no-repeat;   
+    background-size: 50%;
+    background-position: center;
+}
+
+.contactContainer::-webkit-scrollbar-button:vertical:start:increment {
+    background-image: url(../img/upArrow.svg);
+    background-size: 10px 4px;  
+}
+
+.contactContainer::-webkit-scrollbar-button:vertical:start:decrement {
+    display: none;
+}
+
+.contactContainer::-webkit-scrollbar-button:vertical:end:increment {
+    display: none;
+}
+
+.contactContainer::-webkit-scrollbar-button:vertical:end:decrement {
+    background-image: url(../img/downArrow.svg);   
+    background-size: 10px 4px;  
+}
+
+.contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.contact > div:first-of-type {
+    width: 25%;
+}
+
+.contact > div:last-of-type {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .contactIcon {
@@ -80,26 +155,6 @@ body {
 .contactIcon > span {
     font-size: 14px;
     color: white;
-}
-
-.contact {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.contact > div:first-of-type {
-    width: 25%;
-}
-
-.contact > div:last-of-type {
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
 }
 
 .contact > div:last-of-type > span:first-of-type {
@@ -150,6 +205,14 @@ body {
 .contactsContent {
     width: 100%;
     height: 100%;
+}
+
+.contactDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 50px;
 }
 
 .contactDetails > div:first-of-type {
@@ -210,6 +273,126 @@ body {
     margin-left: 10px;
 }
 
+.contactInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 500px;
+}
+
+.contactInformation > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 50px;
+}
+
+.contactInformationHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+
+.contactInformationHeader > div:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactInformationHeader > div:first-of-type > span {
+    font-size: 21px;
+}
+
+.contactInformationHeader > div:last-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contactInformationHeader > div:last-of-type img, 
+.contactInformationHeader > div:last-of-type span {
+    color: #2A3647;
+}
+
+.contactInformationMain {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px
+}
+
+.contactInformationMain > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+ }
+
+ .contactInformationMain > div > span:first-of-type {
+    font-weight: bold;
+    font-size: 16px;
+ }
+
+ .contactInformationMain > div > a {
+    text-decoration: none;
+ }
+
+ .contactInformationMain > div:last-of-type > a {
+    color: black;
+ }
+
+ .deleteContact > div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    width: auto;
+    gap: 10px;
+ }
+
+ .deleteContact > div:hover {
+    text-decoration: underline;
+    text-decoration-color: red;
+ }
+
+
+ .deleteContact span {
+    color: red;
+ }
+
+ .deleteContact img {
+    width: 20px;
+    height: auto;
+    color: red;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= New Contact Button ============== */
 .newContactButton {
     position: absolute;
     right: 52px;
@@ -230,6 +413,7 @@ body {
     color: white;
 }
 
+/* ================= Add Contact Popup ============== */
 .addContactBackground {
     position: absolute;
     top: 0;
@@ -238,18 +422,17 @@ body {
     width: 100%;
     backdrop-filter: blur(5px);
     background-color: rgba(0,0,0,0.2);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
 
 .addContactContainer {
-    height: 600px;
-    width: 1200px;
+    height: 500px;
+    width: 1000px;
     display: flex;
     border-radius: 30px;
 }
-
 
 .addContactLeftSide {
     display: flex;
@@ -358,7 +541,7 @@ body {
     box-sizing: border-box;
     padding: 13px 21px;
     gap: 10px;
-    width: 400px;
+    width: 300px;
     height: 51px;
     background: #ffffff;
     border: 1px solid #d1d1d1;
