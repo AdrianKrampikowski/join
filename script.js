@@ -132,6 +132,10 @@ function updateHTML() {
             <div class="boardContainerUserBubbles" id="boardContainerUserBubbles${element["id"]}">
             </div>
 
+            <div>
+            <img src="img/greenArrow.svg">
+        </div>
+
         </div>
 
         `;
@@ -150,16 +154,15 @@ function getFirstLetter(i) {
         let y = newUsers[i]["surname"];
         y = y.split(' ').map(word => word.charAt(0)).join('');
         z = x + y;
-        document.getElementById(`boardContainerUserBubbles${[i]}`).innerHTML = `
-        <div class="userBubble">
-            <div class="userBubbleOne">AA</div>
-            <div class="userBubbleTwo">MV</div>
-            <div class="userBubbleConcatenation">+2</div>
-        </div>
-        <div>
-            <img src="img/greenArrow.svg">
-        </div>
-        `;
+        for (let j = 0; j < newUsers.length; j++) {
+            document.getElementById(`boardContainerUserBubbles${[i]}`).innerHTML = `
+            <div class="userBubble">
+                <div class="userBubbleOne">${z}</div>
+                <div class="userBubbleTwo">MV</div>
+                <div class="userBubbleConcatenation">+2</div>
+            </div>
+           `; 
+        }
     }
 }
 
@@ -169,6 +172,7 @@ function calculateProgressbar(index) {
     let progressBarElements = document.getElementsByClassName("progressBar");
     progressBarElements[index].style.width = x + "%";
 }
+
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
