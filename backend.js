@@ -108,18 +108,20 @@ function login() {
 
 
 // BITTE NICHT LÖSCHEN
-function getContacts() {
-    let contacts = users;
-    if(contacts) {
-        console.log(contacts)
-        return contacts;
-    } else {
-        alert("No Contact Found")
+// function getContacts() {
+//     let contacts = users;
+//     if(contacts) {
+//         console.log(contacts)
+//         return contacts;
+//     } else {
+//         alert("No Contact Found")
 
-    }
-}
-
+//     }
+// }
+// getContacts();
 // export let contacts = users;
+
+
 
 
 

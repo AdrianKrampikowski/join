@@ -161,7 +161,7 @@ function getFirstLetter(i) {
                 <div class="userBubbleTwo">MV</div>
                 <div class="userBubbleConcatenation">+2</div>
             </div>
-           `; 
+           `;
         }
     }
 }
@@ -190,7 +190,19 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// import { contacts} from './backend.js'
+function showAllContacts() {
+    fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const users = JSON.parse(data.users);
+            console.log(users[0]["email"]);
+        })
+}
+showAllContacts();
+
+// import {contacts} from './backend.js'
 // function showAllContacts() {
 // console.log(contacts);
     // document.getElementById("allContacts").innerHTML = `

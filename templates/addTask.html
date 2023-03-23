@@ -13,43 +13,180 @@
 
 <body>
     <div class="mainContainer">
-        <div class="mainContainerTaskForm">
+        <!-- LogoTopLeftCorner -->
+        <div class="sideNavBarLogo">
+            <img id="startScreenLogo" src="/img/whitelogo.svg" class="whiteLogo">
+            <img src="/img/blacklogo.svg" class="blackLogo">
         </div>
-        <div class="mainContainer1">
-            <div class="addTask">
-                <p class="addTaskTitel">Add Task</p>
+
+        <!-- Sidebar -->
+        <div w3-include-html="templates\sideNavBar.html"><!-- Desktop:SidebarLeft Mobil:SidebarBottom -->
+            <div class="sideNavBar">
+                <div class="sideNavBarList">
+                    <div>
+                        <a href="www.google.com" class="sideNavBarTask"><img src="/img/summary.svg"
+                                class="svg"><span>Summary</span></a>
+                    </div>
+                    <div>
+                        <a href="www.google.com" class="sideNavBarTask"><img src="/img/board.svg"
+                                class="svg"><span>Board</span></a>
+                    </div>
+                    <div>
+                        <a href="www.google.com" class="sideNavBarTask"><img src="/img/addtask.svg"
+                                class="svg"><span>Add
+                                Task</span></a>
+                    </div>
+                    <div>
+                        <a href="www.google.com" class="sideNavBarTask"><img src="/img/contacts.svg"
+                                class="svg"><span>Contacts</span></a>
+                    </div>
+                    <div class="sideNavBarLegalNotice">
+                        <a href="www.google.com" class="sideNavBarTask"><img src="/img/legalnotice.svg"
+                                class="svg">Legal
+                            Notice</a>
+                    </div>
+                </div>
             </div>
-            <form class="formContainer" onsubmit="onSubmits(event);">
-                <div class="leftContainer">
-                    <p id="title" class="titelInputFields">Title</p>
-                    <input id="titles" class="leftContainerInput" placeholder="Enter a Title" required>
-                    <p class="titelnIputFileds">Description</p>
-                    <textarea id="descriptions" class="leftContainerDescription" required
-                        placeholder="Enter a Description"></textarea>
-                    <p id="category" class="titelInputFields">Category</p>
-                    <div id="addTask_borderButton" onclick="openCategory()" class="categorySelecTask borderButton">
-                        <p id="addTask_selectTaskCategory" class="selectTaskCategory">Select Task Category</p>
-                        <img id="addTask_selectTaskCategoryImg" src="/img/Vector 2.png">
-                        <input id="addTask_selectTaskCategoryImg" class="inputFiledNewCategory d-none"
-                            placeholder="New Category Name">
-                        <div id="addTask_selectNewCategoryImg" class="selectNewCategory d-none">
-                            <img onclick="selectNewCategoryCancel" src="/img/cancel.png" alt="Cancel"
-                                class="selectNewCategoryCancel">
+        </div>
+
+        <div class="placeholderRight">
+            <div class="placeholderTop">
+                <div class="topNavBarLeftText">Kanban Project Management Tool</div>
+                <div class="topNavBarRightImg">
+                    <img src="/img/questionmark.svg" class="topNavBarRightImgQuestionmark">
+                    <img src="/img/picture.svg" class="topNavBarRightImgPicture">
+                </div>
+            </div>
+           
+        <!--RightContent-->
+
+        <div class="mainContents" id="mainContents">
+            <div class="mainContent">
+                <div class="headline">
+                  
+                    <h1>Add Task</h1>
+                </div>
+            </div>
+
+            <form onsubmit="onSubmits(event);">
+
+                <div id="addTaskatMobile" class="flexContainer">
+                    <div class="leftContainer">
+                        <p id="title" class="addTask_titleInputFields">Title</p>
+                        <input id="titles" class="titlesInputfild" placeholder="Enter a title" required="">
+                        <p class="addTask_titleInputFields">Description</p>
+                        <textarea id="descriptions" required="" placeholder="Enter a Description"></textarea>
+
+                        <p id="category" class="addTask_titleInputFields">Category</p>
+                        <div id="addTask_borderButton" class="addTask_categoryDiv" onclick="openCategory();">
+                            <p id="addTask_selectTaskCategory" class="addTask_selectTaskCategory">Select Task Category
+                            </p>
+                            <img id="addTask_selectTaskCategoryImg" src="/img/Vector 2.png">
+                            <input id="addTask_selectNewCategory" class="addTask_inputfieldNewCategory d-none" placeholder="New Catetogory Name">
+                            <div id="addTask_selectNewCategoryImg" class="addTask_selectNewCategory d-none">
+                                <img onclick="selectNewCatagoryCancel()" class="addTask_selectNewCategoryCancel" src="/img/cancel.png">
                                 <div class="addTask_subLine"></div>
-                            <img oncklick="creatNewCategory" class="selectNewCategoryCheckMark"
-                                src="/img/hacken-schwarz.png" alt="Hook">
+                                <img onclick="createNewCategory()" class="addTask_selectNewCategoryCheckmark" src="/img/hacken-schwarz.png">
+                            </div>
+                        </div>
+
+                        <ul id="addTask_categoryList" class="addTask_categoryList d-none">
+                            <div onclick="selectNewCategory()" id="newCategory" class="addTask_categoryMediaDivSmoll">
+                                <li class="addTask_taskCategory">New Category</li>
+                            </div>
+
+                            <div id="addTask_createNewTategory"></div>
+                        </ul>
+                        
+                        <p id="assigned" class="addTask_titleInputFields">Assigned to</p>
+                        <div id="addTask_openContact" onclick="openContactss()" class="assignedDiv">
+                            <p id="assignedContactsSelect" class="assignedToArea">Select contacts to assigt</p>
+                            <img id="assignedContactImg" src="/img/Vector 2.png">
+                        </div>
+
+                        <ul id="addTask_assignedToList" class="assignedToList d-none">
+<label class="assignedToListBox">
+    <li class="taskAssignedTo"></li>
+    <input onclick="selectContacteds(id)" class="inputCheckbox" type="checkbox" value="" id="">
+</label>
+
+<label class="assignedToListBox">
+    <li class="taskAssignedTo"></li>
+    <input onclick="selectContacteds(id)" class="inputCheckbox" type="checkbox" value="" id="">
+</label>
+
+<label class="assignedToListBox">
+    <li class="taskAssignedTo"></li>
+    <input onclick="selectContacteds(id)" class="inputCheckbox" type="checkbox" value="" id="">
+</label>
+
+<label class="assignedToListBox">
+    <li class="taskAssignedTo"></li>
+    <input onclick="selectContacteds(id)" class="inputCheckbox" type="checkbox" value="" id="">
+</label>
+</ul>
+
+                        <div class="assignedAddContact" id="addTask_assignedAddContact">
+
                         </div>
                     </div>
-                    <ul id="addTask_categoryList" class="addTask_categoryList">
-                        <div onclick="selectNewCategory()" id="newCategory" class="addTask_categoryMediaDivSmoll">
-                            <li class="addTask_taskCategory">New Category</li>
+
+                    <div class="rightContainer">
+                        <p id="dueDate" class="addTask_titleInputFields">Due date</p>
+                        <div>
+                            <input id="dueDates" type="date" placeholder="dd/mm/yyyy" required="">
                         </div>
-                        <div id="createNewTategory"></div>
-                    </ul>
+
+                        <p class="addTask_titleInputFields">Prio</p>
+                        <div class="prio">
+                            <div id="addTask_Red" onclick="changeColors(id)" class="prioContainer">Urgent
+                                <img id="addRedImg" src="/img/pfeil-oben-rot.png">
+                            </div>
+                            <div id="addTask_Yellow" onclick="changeColors(id)" class="prioContainer">Medium
+                                <img id="addYellowImg" class="medium" src="/img/medium-gelb.png">
+                            </div>
+                            <div id="addTask_Green" onclick="changeColors(id)" class="prioContainer">Low
+                                <img id="addGreenImg" src="/img/pfeil-unten-weiss.png">
+                            </div>
+                        </div>
+
+                        <p id="subtask" class="addTask_titleInputFields">Subtasks</p>
+                        <div id="subtaskDiv" class="relativeContainer">
+                            <input id="addTask_openSubtasks" onclick="openSubtasks()" placeholder="Add new subtask">
+                            <div class="smallRelativeContainer">
+                                <img id="addTask_subtasksAddImg" class="subtaskIMG" src="/img/Vector (1).png">
+                                
+                                <div id="addTask_subtasksSubLine" class="subtasksSsubLine d-none"></div>
+                               
+                            </div>
+                       
+                            </div>
+                        </div>
+
+                        <div id="addTask_allAddSubtask" class="subtaskContainer">
+
+                        </div>
+
+                        <div id="btn" class="btn">
+                            <button onclick="inputfieldsValues()" class="btnClear">Clear
+                            X
+                        </button>
+                            <button class="btnCreate"> Create Task
+                            <img src="/img/hacken-schwarz.png">
+                        </button>
+                        </div>
+                    </div>
+
                 </div>
             </form>
+            <div class="selectionMessage d-none" id="div"></div>
+           
+
         </div>
-    </div>
+
+
+
+
 </body>
 
 </html>
