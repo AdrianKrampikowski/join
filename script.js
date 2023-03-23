@@ -61,6 +61,10 @@ let newUsers = [{
     "id": 2,
     "name": "Fausto",
     "surname": "Oliveira"
+}, {
+    "id": 3,
+    "name": "test",
+    "surname": "test"
 }];
 
 let currentDraggedElement;
@@ -96,7 +100,6 @@ function updateHTML() {
     for (let i = 0; i < done.length; i++) {
         let element = done[i];
         document.getElementById("done").innerHTML += generateToDoHTML(element);
-
     }
 
     function generateToDoHTML(element) {
@@ -129,7 +132,9 @@ function updateHTML() {
             </div>
             </div>
 
-            <div class="boardContainerUserBubbles" id="boardContainerUserBubbles${element["id"]}">
+            <div class="boardContainerUserBubbles">
+            <div class="userBubble" id="userBubble${element["id"]}">
+            </div>
             </div>
 
             <div>
@@ -140,13 +145,14 @@ function updateHTML() {
 
         `;
     }
+
     for (let i = 0; i < toDos.length; i++) {
         calculateProgressbar(i);
         getFirstLetter(i);
     }
 }
 
-
+let testCounter = 0;
 function getFirstLetter(i) {
     if (i < newUsers.length) {
         let x = newUsers[i]["name"];
@@ -154,17 +160,41 @@ function getFirstLetter(i) {
         let y = newUsers[i]["surname"];
         y = y.split(' ').map(word => word.charAt(0)).join('');
         z = x + y;
-        for (let j = 0; j < newUsers.length; j++) {
-            document.getElementById(`boardContainerUserBubbles${[i]}`).innerHTML = `
-            <div class="userBubble">
-                <div class="userBubbleOne">${z}</div>
-                <div class="userBubbleTwo">MV</div>
-                <div class="userBubbleConcatenation">+2</div>
-            </div>
-           `;
+        if (newUsers.length <= 3) {
+            createThreeBubbles(z);
+        } else {
+            createMoreThanThreeBubbles(z, i);
         }
     }
 }
+
+function createThreeBubbles(z) {
+    for (let j = 0; j < toDos.length; j++) {
+        document.getElementById(`userBubble${[j]}`).innerHTML += `
+        <div class="userBubbleOne">${z}</div>
+   `;
+    }
+}
+
+
+let normalyCounter = 0;
+const newUserCount = newUsers.length - 2;
+
+function createMoreThanThreeBubbles(z) {
+    for (let j = 0; j < toDos.length; j++) {
+        if(j < 2){
+            document.getElementById(`userBubble${[j]}`).innerHTML += `
+            <div class="userBubbleOne">${z}</div>
+            `;
+        } else {
+            document.getElementById(`userBubble${[0]}`).innerHTML = `
+            <div class="userBubbleOne">+${newUserCount}</div>
+       `;
+        }
+    }
+    //     console.log("NC", normalyCounter);
+}
+
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -197,18 +227,11 @@ function showAllContacts() {
         })
         .then(data => {
             const users = JSON.parse(data.users);
+            console.log(users[0]);
+            console.log(users[0]["name"]);
             console.log(users[0]["email"]);
+            console.log(users[0]["password"]);
+            console.log(users[0]["userid"]);
         })
 }
 showAllContacts();
-
-// import {contacts} from './backend.js'
-// function showAllContacts() {
-// console.log(contacts);
-    // document.getElementById("allContacts").innerHTML = `
-    // <div>Name:</div>
-    // <div>Surname:</div>
-    // <div>Mail:</div>
-    // `;
-// }
-// showAllContacts();
