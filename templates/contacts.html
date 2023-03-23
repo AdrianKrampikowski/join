@@ -15,13 +15,14 @@
         
         <div class="contactsBar">
             <div id="contactList" class="contactList">
-                <div>
+
+<!--            <div>
                     <div class="letter">
                         <div>A</div>
                     </div>
                     <div class="contactsHline"></div>
                 </div>
-
+ -->
                 <div id="contactContainer" class="contactContainer">
 <!--                <div class="contact">
                         <div>
@@ -34,43 +35,7 @@
                             <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
                         </div>
                     </div>
-
-                    <div class="contact">
-                        <div>
-                            <div class="contactIcon">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="contactName">Anton Mayer</span>
-                            <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
-                        </div>
-                    </div>
-
-                    <div class="contact">
-                        <div>
-                            <div class="contactIcon">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="contactName">Anton Mayer</span>
-                            <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
-                        </div>
-                    </div>
-
-                    <div class="contact">
-                        <div>
-                            <div class="contactIcon">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="contactName">Anton Mayer</span>
-                            <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
-                        </div>
-                    </div>
- -->
+    -->
                 </div>
             </div>
         </div>
@@ -114,7 +79,7 @@
                                 <div>
                                     <span>Contact Information</span>
                                 </div>
-                                <div>
+                                <div calss="editContact">
                                     <img src="../img/edit.svg">
                                     <span>Edit Contact</span>
                                 </div>
@@ -153,10 +118,9 @@
 
 
 <!-- ======================== AddContacts Overlay ======================== -->
+    <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
 
-    <div id="addContactBackground" class="addContactBackground" onclick="close()">
-
-        <div class="addContactContainer">
+        <div class="addContactContainer" onclick="doNotClose(event)">
 
             <div class="addContactLeftSide">
                 <img src="../img/logo.svg">
@@ -173,7 +137,7 @@
                 </div>
                 <div class="contactInfo">
                     <div>
-                        <div>
+                        <div onclick="canclePopup()">
                             <img src="../img/close.svg">
                         </div>
                     </div>
@@ -198,12 +162,12 @@
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactPhone" class="inputFields" type="tel" placeholder="Phone" required />
+                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone" required />
                                 <img src="../img/phone.svg" class="img" />
                             </div>
                         </div>
                         <div class="buttons">
-                            <button class="cancleButton" onclick="close()">
+                            <button class="cancleButton" onclick="canclePopup()">
                                 <span>Cancle</span>
                                 <img src="../img/cancel.svg">
                             </button>
@@ -215,13 +179,70 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
+    <!-- ======================== Edit Contacts Overlay ======================== -->
+    <div id="editContactBackground" class="addContactBackground" onclick="closePopup()">
 
+        <div class="addContactContainer" onclick="doNotClose(event)">
 
+            <div class="addContactLeftSide">
+                <img src="../img/logo.svg">
+                <h1>Add contact</h1>
+                <span>Task are better with a Team!</span>
+                <div></div>
+            </div>
+            
+            <div class="addContactRightSide">
+                <div class="contactImg">
+                    <div>
+                        <img src="../img/addUserIcon.svg">
+                    </div>
+                </div>
+                <div class="contactInfo">
+                    <div>
+                        <div onclick="canclePopup()">
+                            <img src="../img/close.svg">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inputContainer">
+                            <div class="inputFieldContainer">
+                                <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
+                                <img src="../img/userIcon.svg" class="img" />
+                            </div>
+                        </div>
+                        <div class="inputContainer">
+                            <div class="inputFieldContainer">
+                                <input id="contactSurname" class="inputFields" type="text" placeholder="Surname" required />
+                                <img src="../img/userIcon.svg" class="img" />
+                            </div>
+                        </div>
+                        <div class="inputContainer">
+                            <div class="inputFieldContainer">
+                                <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
+                                <img src="../img/letter.svg" class="img" />
+                            </div>
+                        </div>
+                        <div class="inputContainer">
+                            <div class="inputFieldContainer">
+                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone" required />
+                                <img src="../img/phone.svg" class="img" />
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="createContact" onclick="createContact()">
+                                <span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ================================== SCRIPT ======================================= -->
 <script>
 
     let contacts = [];
@@ -229,16 +250,28 @@
     let name = document.getElementById('contactName');
     let surname = document.getElementById('contactSurname');
     let email = document.getElementById('contactEmail');
-    let phone = +document.getElementById('contactPhone');
+    let phone = document.getElementById('contactPhone');
 
     let newContactPopUp = document.getElementById('addContactBackground');
-
+    let editContactPopUp = document.getElementById('editContactBackground');
+   
     let bgColor;
 
     async function init() {
         await loadContacts();
         renderContacts();
     }
+
+    function renderLetter() {
+            for (let i = 0; i < letters.length; i++) {
+        let letter = letter[i];
+
+        if (letter = contactListNamecharAt(0)) {
+            
+        }
+    }
+    }
+
 
     function renderContacts() {
         let contactContainer = document.getElementById('contactContainer');
@@ -271,6 +304,8 @@
                             <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
                         </div>
                     </div>`;
+            
+
     }
 }   
 
@@ -278,20 +313,43 @@
         newContactPopUp.style.display = 'flex';
     }
 
-    function close() {
+    function closePopup() {
         newContactPopUp.style.display ='none';
-    }
-
-    function createContact() {
-        randomBackground();
-        let newContact = {name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor};
-        contacts.push(newContact);
-        saveContacts();
-
+        editContactPopUp.style.display ='none';
         name.value = '';
         surname.value = '';
         email.value = '';
         phone.value = '';
+    }
+
+    function canclePopup() {
+        newContactPopUp.style.display ='none';
+        editContactPopUp.style.display ='none';
+        name.value = '';
+        surname.value = '';
+        email.value = '';
+        phone.value = '';
+    }
+
+    function doNotClose(event) {
+        event.stopPropagation();
+    }
+
+    function createContact() {
+
+        if(name.vlaue == '' || email.value == '') {
+            alert('input required');
+        } else {
+            randomBackground();
+            let newContact = {name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor};
+            contacts.push(newContact);
+            saveContacts();
+            name.value = '';
+            surname.value = '';
+            email.value = '';
+            phone.value = '';
+            renderContacts();
+        }
     }
 
     function randomBackground() {
@@ -348,7 +406,7 @@
                                 <div>
                                     <span>Contact Information</span>
                                 </div>
-                                <div>
+                                <div class="editContact" onclick="editContact(${i})">
                                     <img src="../img/edit.svg">
                                     <span>Edit Contact</span>
                                 </div>
@@ -375,6 +433,10 @@
                         </div>
                     </div>
             `;
+    }
+
+    function editContact(i) {
+        editContactPopUp.style.display = 'flex';
     }
 
     function deleteContact(i) {

@@ -75,6 +75,7 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
     width: 100%;
+    overflow: auto;
 }
 
 .contactContainer::-webkit-scrollbar {
@@ -173,7 +174,7 @@ body {
     align-items: flex-start;
     padding-left: 4rem;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #F5F5F5;;
 }
 
@@ -308,15 +309,16 @@ body {
     font-size: 21px;
 }
 
-.contactInformationHeader > div:last-of-type {
+.editContact {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
-.contactInformationHeader > div:last-of-type img, 
-.contactInformationHeader > div:last-of-type span {
+.editContact img, 
+.editContact span {
     color: #2A3647;
 }
 
@@ -411,6 +413,7 @@ body {
 
 .newContactButton > span {
     color: white;
+    font-size: 21px;
 }
 
 /* ================= Add Contact Popup ============== */
@@ -546,6 +549,7 @@ body {
     background: #ffffff;
     border: 1px solid #d1d1d1;
     border-radius: 10px;
+    font-size: 21px;
 }
   
 ::placeholder {
@@ -559,7 +563,7 @@ body {
 /* .inputContainer img {
     width: 20px;
     height: 18px;
-} */
+}*/
   
 .img {
     position: absolute;
@@ -609,7 +613,6 @@ body {
     gap: 5px;
     cursor: pointer;
 }
-
 
 .d-none {
     display: none;
