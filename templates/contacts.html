@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../styles/fonts.css">
 </head>
 
-<body onload="init()">
+<body id='body'   onload="init()">
 
     <div class="contactsMainContainer">
         
@@ -120,13 +120,7 @@
 <!-- ======================== AddContacts Overlay ======================== -->
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
 
-<<<<<<< HEAD
         <div class="addContactContainer" onclick="doNotClose(event)">
-=======
-    <div id="addContactBackground" class="addContactBackground" onclick="closeIT()">
-
-        <div class="addContactContainer">
->>>>>>> 9ae20f788d72bb6c6c7fd29e4017fead5805908d
 
             <div class="addContactLeftSide">
                 <img src="../img/logo.svg">
@@ -173,11 +167,7 @@
                             </div>
                         </div>
                         <div class="buttons">
-<<<<<<< HEAD
                             <button class="cancleButton" onclick="canclePopup()">
-=======
-                            <button class="cancleButton" onclick="closeIT()">
->>>>>>> 9ae20f788d72bb6c6c7fd29e4017fead5805908d
                                 <span>Cancle</span>
                                 <img src="../img/cancel.svg">
                             </button>
@@ -219,38 +209,58 @@
                     <div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
+                                <input id="editContactName" class="inputFields" type="text" placeholder="Name" required />
                                 <img src="../img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactSurname" class="inputFields" type="text" placeholder="Surname" required />
+                                <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname" required />
                                 <img src="../img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
+                                <input id="editContactEmail" class="inputFields" type="email" placeholder="Email" />
                                 <img src="../img/letter.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone" required />
+                                <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone" required />
                                 <img src="../img/phone.svg" class="img" />
                             </div>
                         </div>
-                        <div class="buttons">
-                            <button class="createContact" onclick="createContact()">
-                                <span>Save</span>
-                            </button>
-                        </div>
+                        <div class="buttons" id="saveChangesButton">
+<!--                            <button class="createContact" onclick="saveChanges()">
+                                    <span>Save</span>
+                                </button>
+ -->                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+<!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
+<div id="contactCreated">Contact succesfully created</div>
+
+
+<!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
+<div id="contactChangesSaved">Changes saved</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ================================== SCRIPT ======================================= -->
 <script>
@@ -262,31 +272,26 @@
     let email = document.getElementById('contactEmail');
     let phone = document.getElementById('contactPhone');
 
+    let editName = document.getElementById('editContactName');
+    let editSurname = document.getElementById('editContactSurname');
+    let editEmail = document.getElementById('editContactEmail');
+    let editPhone = document.getElementById('editContactPhone');
+
     let newContactPopUp = document.getElementById('addContactBackground');
     let editContactPopUp = document.getElementById('editContactBackground');
    
     let bgColor;
+
+    let firstLetters;
 
     async function init() {
         await loadContacts();
         renderContacts();
     }
 
-    function renderLetter() {
-            for (let i = 0; i < letters.length; i++) {
-        let letter = letter[i];
-
-        if (letter = contactListNamecharAt(0)) {
-            
-        }
-    }
-    }
-
-
     function renderContacts() {
         let contactContainer = document.getElementById('contactContainer');
         contactContainer.innerHTML = '';
-
 
         contactsSorted = contacts.sort((a, b) => {
             if (a.name < b.name) {
@@ -302,32 +307,40 @@
 
             randomBackground();
 
+            getFirstLetter(i);
+
             contactContainer.innerHTML += `
                     <div id="contactID${i}" class="contact" onclick="openContactInfo(${i})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
-                                <span>AM</span>
+                                <span>${firstLetters}</span>
                             </div>
                         </div>
                         <div>
-                            <span class="contactName">${contactListName} ${contactListSurname}</span>
+                            <div class="contactName">
+                                <span>${contactListName}</span>
+                                <span>${contactListSurname}</span>
+                            </div>
                             <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
                         </div>
                     </div>`;
-            
-
     }
-}   
+    }  
+    
+    function getFirstLetter(i) {
+        let x = contacts[i]['name'];
+        x = x.split(' ').map(word => word.charAt(0)).join('');
+        let y = contacts[i]['surname'];
+        y = y.split(' ').map(word => word.charAt(0)).join('');
+
+        firstLetters = x + y;
+    }
 
     function newContact() {
         newContactPopUp.style.display = 'flex';
     }
 
-<<<<<<< HEAD
     function closePopup() {
-=======
-    function closeIT() {
->>>>>>> 9ae20f788d72bb6c6c7fd29e4017fead5805908d
         newContactPopUp.style.display ='none';
         editContactPopUp.style.display ='none';
         name.value = '';
@@ -363,6 +376,7 @@
             email.value = '';
             phone.value = '';
             renderContacts();
+            showContactCreatedPupup();
         }
     }
 
@@ -393,12 +407,14 @@
             let contactInfoEmail = contacts[i]['email'];
             let contactInfoPhone = contacts[i]['phone'];
             let contactInfoBgColor = contacts[i]['background'];
+
+            getFirstLetter(i);
             
             contactInformation.innerHTML += `
                     <div>
                         <div>
                             <div class="contactIconBig">
-                                <span>AM</span>
+                                <span>${firstLetters}</span>
                             </div>
                         </div>
                         <div class="contactDetailsName">
@@ -451,7 +467,33 @@
 
     function editContact(i) {
         editContactPopUp.style.display = 'flex';
+
+        editName.value = contacts[i]['name']; 
+        editSurname.value = contacts[i]['surname']; 
+        editEmail.value = contacts[i]['email']; 
+        editPhone.value = contacts[i]['phone'];
+
+        let saveChangesButton = document.getElementById('saveChangesButton');
+
+        saveChangesButton.innerHTML = `
+                <button class="createContact" onclick="saveChanges(${i})">
+                    <span>Save</span>
+                </button>
+        `;
     }
+
+    function saveChanges(i) {
+        contacts[i]['name'] = editName.value; 
+        contacts[i]['surname'] = editSurname.value; 
+        contacts[i]['emailpho'] = editEmail.value; 
+        contacts[i]['phone'] = editPhone.value; 
+
+        saveContacts();
+        renderContacts();
+        editContactPopUp.style.display = 'none';
+        contactChangesSavedPupup();
+    }
+
 
     function deleteContact(i) {
         contacts.splice(i, 1);
@@ -460,6 +502,29 @@
         renderContacts();
     }
 
+
+/* ================================== SNACKBAR =======================================*/
+    function showContactCreatedPupup() {
+  // Get the snackbar DIV
+  var x = document.getElementById("contactCreated");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function contactChangesSavedPupup() {
+  // Get the snackbar DIV
+  var x = document.getElementById("contactChangesSaved");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 
 </script>
 

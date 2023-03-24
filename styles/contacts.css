@@ -7,6 +7,10 @@ body {
     margin: 0  ;
 }
 
+.d-none {
+    display: none;
+}
+
 .contactsMainContainer {
     position: relative;
     display: flex;
@@ -22,8 +26,8 @@ body {
    flex-direction: column;
    align-items: center;
    justify-content: flex-start;
-   padding-left: 3rem;
-   padding-right: 3rem;
+   padding-left: 2rem;
+   padding-right: 2rem;
    padding-top: 1.5rem;
 }
 
@@ -126,17 +130,28 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 1.5rem;
     margin-bottom: 1.5rem;
     cursor: pointer;
 }
 
+.contactSelected {
+    background-color: #2A3647;
+    color: white;
+}
+
+.contact:selected {
+    background-color: #2A3647;
+}
+
 .contact > div:first-of-type {
-    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    margin-right: 15px;
 }
 
 .contact > div:last-of-type {
-    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -158,8 +173,12 @@ body {
     color: white;
 }
 
-.contact > div:last-of-type > span:first-of-type {
+.contact > div:last-of-type > div {
+    display: felx;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 0.5rem;
+    overflow: hidden;
 }
 
 .contactEmail {
@@ -614,6 +633,54 @@ body {
     cursor: pointer;
 }
 
-.d-none {
-    display: none;
-}
+/* ================================== SNACKBAR CONTACT CREATED =======================================*/
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#contactCreated, #contactChangesSaved {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #2A3647; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 10px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #contactCreated.show, #contactChangesSaved.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+
+
