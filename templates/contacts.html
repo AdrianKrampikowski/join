@@ -189,17 +189,17 @@
 
             <div class="addContactLeftSide">
                 <img src="../img/logo.svg">
-                <h1>Add contact</h1>
+                <h1>Edit contact</h1>
                 <span>Task are better with a Team!</span>
                 <div></div>
             </div>
             
             <div class="addContactRightSide">
-                <div class="contactImg">
-                    <div>
+                <div id="contactImg" class="contactImg">
+<!--                <div>
                         <img src="../img/addUserIcon.svg">
                     </div>
-                </div>
+ -->                </div>
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
@@ -231,7 +231,7 @@
                                 <img src="../img/phone.svg" class="img" />
                             </div>
                         </div>
-                        <div class="buttons" id="saveChangesButton">
+                        <div class="buttons editButton" id="saveChangesButton">
 <!--                            <button class="createContact" onclick="saveChanges()">
                                     <span>Save</span>
                                 </button>
@@ -413,7 +413,7 @@
             contactInformation.innerHTML += `
                     <div>
                         <div>
-                            <div class="contactIconBig">
+                            <div id="contactIconBig${i}" class="contactIconBig">
                                 <span>${firstLetters}</span>
                             </div>
                         </div>
@@ -463,6 +463,8 @@
                         </div>
                     </div>
             `;
+
+            document.getElementById('contactIconBig'+i).style.backgroundColor = contactInfoBgColor;
     }
 
     function editContact(i) {
@@ -472,6 +474,8 @@
         editSurname.value = contacts[i]['surname']; 
         editEmail.value = contacts[i]['email']; 
         editPhone.value = contacts[i]['phone'];
+        let contactInfoBgColor = contacts[i]['background'];
+
 
         let saveChangesButton = document.getElementById('saveChangesButton');
 
@@ -480,6 +484,16 @@
                     <span>Save</span>
                 </button>
         `;
+
+        getFirstLetter(i);
+
+        document.getElementById('contactImg').innerHTML = `
+            <div id="contactImgBg${i}" class="contactImgBg">
+                <span>${firstLetters}</span>
+            </div>
+        `;
+
+        document.getElementById('contactImgBg'+i).style.backgroundColor = contactInfoBgColor;
     }
 
     function saveChanges(i) {

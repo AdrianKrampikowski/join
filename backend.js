@@ -25,58 +25,56 @@ function addUser(){
     let userId = id;
 
     for (let i = 0; i < users.length; i++) {
-        if(users[i]['userid'].includes === id)
+        if(users[i]['userid'].includes === id) {
             generateUserId();
-    } 
+        } 
+    }
 
     let userData = {name: name.value, email: email.value, password: password.value, userid: userId};
     let user = users.find(u => u.email == email.value && u.password == password.value);
-
+    
     if(user){
-         alert("You are already registered, click here to log in");
+        alreadySignedUpPupup();
+        name.value = '';
+        email.value = '';
+        password.value ='';
     } else {
         users.push(userData);
         save();
-
-    // Weiterleitung zur Loginseite + Nachricht anzeigen: "Erfolgreiche registrierung"
-
-    window.location.href = 'index.html?id=' + id;    // Es wird die so URL so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
-    alert("You have successfully signed up!");
+        successfullySignedUpPopup();
         
-/*  let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
-    let idMsg = urlParams.get('id');
- */
+        // Weiterleitung zur Loginseite
+        window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     }
 
-}
+//    let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
+//    let idMsg = urlParams.get('id');
+} 
 
-function save() {
+async function save() {
        let usersAsString = JSON.stringify(users);
-       backend.setItem('users', usersAsString);
+       await backend.setItem('users', usersAsString);
 }
 
 // ================================================ LOGIN ==========================================================
 function login() {
-    
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
     
-    let user = users.find((u) =>{
-        // debugger
-        return u.email == emailLog.value && u.password == passwordLog.value
-    });
+    let user = users.find(u => u.email == emailLog.vlue && u.password == passwordLog);
     let existingUser = users.find(u => u.email == emailLog.value);
-    
-    console.log(emailLog.value);
-    console.log(passwordLog.value);
-    if(user){
-        window.location.href = 'summery.html?id=' + id;
+
+    if(user) {
+        let urlParams = new URLSearchParams(window.location.search); // query paramter von einem query string (window.location.search) von der URL auslesen
+        let userId = urlParams.get('id');
+        window.location.href = 'summery.html?id=' + userId;          // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     } else if (existingUser) {
-        alert("E-Mail or Password incorrect!");
+        pwEmailIncorrectPopup();
     } else {
-        alert("User does not exist, please sign up");
+        userDoesNotExistPopup();
     }
 }
+
 
 // ================================================ DATEN SPEICHERN ==========================================================
 // IM LOCAL STORAGE
@@ -105,3 +103,49 @@ function login() {
 /* 
     backend.setItem('users')    => Mehr Parameter nötig????
 */
+
+
+/* ================================== SNACKBAR =======================================*/
+function alreadySignedUpPupup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("alreadySignedUp");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function successfullySignedUpPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("successfullySignedUp");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+  function userDoesNotExistPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("userDoesNotExist");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+  function pwEmailIncorrectPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("pwEmailIncorrect");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }

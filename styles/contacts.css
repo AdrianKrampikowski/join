@@ -239,7 +239,6 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
 }
 
 .contactDetails > div:first-of-type > div:first-of-type {
@@ -248,7 +247,7 @@ body {
     align-items: center;
     width: 120px;
     height: 120px;
-
+    margin-right: 70px;
 }
 
 .contactIconBig {
@@ -258,7 +257,6 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: #FF7A00;
     border: 2px solid white;
 }
 
@@ -276,8 +274,9 @@ body {
     width: 100%;
 }
 
-.name > span{
+.name > div > span{
     font-size: 47px;
+    font-weight: 500;
 }
 
 .addTask {
@@ -354,12 +353,16 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 5px;
+    gap: 15px;
  }
 
  .contactInformationMain > div > span:first-of-type {
     font-weight: bold;
     font-size: 16px;
+ }
+
+ .contactInformationMain > div:first-of-type > a {
+    color: #007CEE;
  }
 
  .contactInformationMain > div > a {
@@ -380,13 +383,12 @@ body {
  }
 
  .deleteContact > div:hover {
-    text-decoration: underline;
-    text-decoration-color: red;
+    scale: 1.05;
  }
 
 
  .deleteContact span {
-    color: red;
+    color: #ff0000;
  }
 
  .deleteContact img {
@@ -451,7 +453,8 @@ body {
 
 .addContactContainer {
     height: 500px;
-    width: 1000px;
+    width: 75%;
+    max-width: 1050px;
     display: flex;
     border-radius: 30px;
 }
@@ -465,6 +468,8 @@ body {
     gap: 15px;
     background-color: #2A3647;
     padding: 46px;
+    padding-left: 23px;
+    padding-right: 23px;
     color: white;
     border-radius: 30px 0 0 30px;
 }
@@ -494,7 +499,7 @@ body {
 }
 
 .contactImg {
-    width: 33.33%;
+    width: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -514,29 +519,36 @@ body {
     border-radius: 50%;
 }
 
+.contactImg span {
+    font-size: 47px;
+    font-weight: 500;
+    color: white;
+}
+
 .contactInfo {
-    width: 66.66%;
+    width: 67%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.contactInfo > div {
+    width: 100%;
 }
 
 .contactInfo > div:first-of-type {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
 }
 
 .contactInfo > div:first-of-type > div {
     cursor: pointer;
 }
-
-
 
 .contactInfo > div:last-of-type {
     display: flex;
@@ -563,7 +575,7 @@ body {
     box-sizing: border-box;
     padding: 13px 21px;
     gap: 10px;
-    width: 300px;
+    width: 100%;
     height: 51px;
     background: #ffffff;
     border: 1px solid #d1d1d1;
@@ -579,10 +591,14 @@ body {
     color: #d1d1d1;
 }
 
+.inputContainer {
+    width: 100%;
+}
+
 /* .inputContainer img {
     width: 20px;
     height: 18px;
-}*/
+} */
   
 .img {
     position: absolute;
@@ -599,6 +615,10 @@ body {
     align-items: center;
     gap: 20px;
     width: 100%;
+}
+
+.editButton {
+    justify-content: center;
 }
 
 .createContact {
@@ -633,7 +653,7 @@ body {
     cursor: pointer;
 }
 
-/* ================================== SNACKBAR CONTACT CREATED =======================================*/
+/* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #contactCreated, #contactChangesSaved {

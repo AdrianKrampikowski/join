@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="./styles/fonts.css">
 
     <script src="backend.js"></script>
-    <script src="script.js"></script>
     <script src="mini_backend.js"></script>
 
   </head>
   <body onload="init()">
     <div class="mainContainer">
+
+      <div class="header">
+
+        <div class="startScreen signUpScreen">
+          <img id="startScreenLogo" class="logo c" src="img/blacklogo.svg"  />
+        </div>
+      </div>
+
       <div class="contentContainer">
         <div class="loginScreen">
           <h1 class="loginHeading">Sign up</h1>
@@ -40,10 +47,17 @@
             </div>
           </div>
 
-          <button onclick="addUser()" class="loginButton"><a href="/index.html">Sign up</a></button>
+          <button onclick="addUser()" class="loginButton">Sign up</button>
 
         </div>
       </div>
     </div>
+
+    <!-- ================================== SNACKBAR ALREADY SIGNE UP ======================================= -->
+    <div id="alreadySignedUp">You have already signed up, go back to login</div>
+
+    <!-- ================================== SNACKBAR SUCCESSFULLY SIGNED UP ======================================= -->
+    <div id="successfullySignedUp">You have successfully signed up!</div>
+
   </body>
 </html>
