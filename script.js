@@ -76,7 +76,6 @@ function updateHTML() {
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element);
-        // calculateProgressbar(i);
     }
 
     let inProgress = toDos.filter(t => t["category"] == "inProgress");
@@ -84,7 +83,6 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         let element = inProgress[i];
         document.getElementById("inProgress").innerHTML += generateToDoHTML(element);
-
     }
 
     let awaitingFeedback = toDos.filter(t => t["category"] == "awaitingFeedback");
@@ -92,7 +90,6 @@ function updateHTML() {
     for (let i = 0; i < awaitingFeedback.length; i++) {
         let element = awaitingFeedback[i];
         document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element);
-
     }
 
     let done = toDos.filter(t => t["category"] == "done");
@@ -101,9 +98,9 @@ function updateHTML() {
         let element = done[i];
         document.getElementById("done").innerHTML += generateToDoHTML(element);
     }
-
-    function generateToDoHTML(element) {
-        return `
+}
+function generateToDoHTML(element) {
+    return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
 
             <div class="boardContainerTop">
@@ -133,26 +130,27 @@ function updateHTML() {
             </div>
 
             <div class="boardContainerUserBubbles">
-            <div class="userBubble" id="userBubble${element["id"]}">
-            </div>
+                <div class="userBubble" id="userBubble${element["id"]}">
+                </div>
             </div>
 
             <div>
-            <img src="img/greenArrow.svg">
-        </div>
+                <img src="img/greenArrow.svg">
+            </div>
 
         </div>
 
         `;
-    }
-
-    for (let i = 0; i < toDos.length; i++) {
-        calculateProgressbar(i);
-        getFirstLetter(i);
-    }
+        for (let i = 0; i < toDos.length; i++) {
+            calculateProgressbar(i);
+        }
+}
+    
+for (let j = 0; j < newUsers.length; j++) {
+    getFirstLetter(j);
 }
 
-let testCounter = 0;
+
 function getFirstLetter(i) {
     if (i < newUsers.length) {
         let x = newUsers[i]["name"];
@@ -160,11 +158,15 @@ function getFirstLetter(i) {
         let y = newUsers[i]["surname"];
         y = y.split(' ').map(word => word.charAt(0)).join('');
         z = x + y;
-        if (newUsers.length <= 3) {
-            createThreeBubbles(z);
-        } else {
-            createMoreThanThreeBubbles(z, i);
-        }
+        createBubbles(z, i);
+    }
+}
+
+function createBubbles(z, index) {
+    if (newUsers.length <= 3) {
+        createThreeBubbles(z);
+    } else {
+        createMoreThanThreeBubbles(z, index);
     }
 }
 
@@ -176,13 +178,12 @@ function createThreeBubbles(z) {
     }
 }
 
-
 let normalyCounter = 0;
 const newUserCount = newUsers.length - 2;
 
 function createMoreThanThreeBubbles(z) {
     for (let j = 0; j < toDos.length; j++) {
-        if(j < 2){
+        if (j < 2) {
             document.getElementById(`userBubble${[j]}`).innerHTML += `
             <div class="userBubbleOne">${z}</div>
             `;
@@ -192,8 +193,8 @@ function createMoreThanThreeBubbles(z) {
        `;
         }
     }
-    //     console.log("NC", normalyCounter);
 }
+
 
 
 function calculateProgressbar(index) {
