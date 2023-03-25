@@ -14,7 +14,6 @@ async function includeHTML() {
     updateHTML();
 }
 
-
 let toDos = [{
     "id": 0,
     "title": "Design",
@@ -68,7 +67,7 @@ let newUsers = [{
 }];
 
 let userChar = [];
-let allContacts = [];
+let allUsers = [];
 
 let currentDraggedElement;
 
@@ -107,6 +106,7 @@ function updateHTML() {
     }
     getFirstLetter();
 }
+
 function generateToDoHTML(element) {
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
@@ -219,7 +219,7 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-
+let startWithLetter = [];
 function showAllContacts() {
     fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
         .then(response => {
@@ -234,8 +234,25 @@ function showAllContacts() {
             console.log(users[0]["userid"]);
             for (let i = 0; i < users.length; i++) {
                 let contactMemory = users[i]["name"];
-                allContacts.push(contactMemory);
-                allContacts.sort();
+                allUsers.push(contactMemory);
+                allUsers.sort();
+            }
+            console.log(allUsers);
+            
+            for (let i = 65; i < 90; i++) {
+                let contacts = allUsers
+                    .filter(function (contact) {
+                        return contact.charAt(0).toUpperCase().charCodeAt(0) === i;
+                    })
+                    .map(function (contact) {
+                        return contact.charAt(0).toUpperCase();
+                    });
+                if (contacts.length > 0) {
+                    startWithLetter.push(contacts);
+                }
+            }
+            if (startWithLetter.length > 0) {
+                console.log(startWithLetter);
             }
         })
 
