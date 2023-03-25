@@ -68,6 +68,7 @@ let newUsers = [{
 }];
 
 let userChar = [];
+let allContacts = [];
 
 let currentDraggedElement;
 
@@ -148,8 +149,8 @@ function generateToDoHTML(element) {
         </div>
 
         `;
-    
-    
+
+
 }
 
 function getFirstLetter(i) {
@@ -168,7 +169,7 @@ function createBubbles(i) {
     let positionForBubbles = document.getElementById(`userBubble${[i]}`);
     // if (newUsers.length < 99) {
     // for (let j = 0; j < 2; j++) {
-        positionForBubbles.innerHTML += `
+    positionForBubbles.innerHTML += `
         <div class="userBubbleOne">${userChar[i]}</div>
    `;
     // }
@@ -218,6 +219,7 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
 function showAllContacts() {
     fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
         .then(response => {
@@ -230,6 +232,25 @@ function showAllContacts() {
             console.log(users[0]["email"]);
             console.log(users[0]["password"]);
             console.log(users[0]["userid"]);
+            for (let i = 0; i < users.length; i++) {
+                let contactMemory = users[i]["name"];
+                allContacts.push(contactMemory);
+                allContacts.sort();
+            }
         })
+
 }
 showAllContacts();
+
+
+function conlogAllContacts() {
+    let startWithLetter = [];
+    for (let i = 65; i < 90; i++) {
+        for (let j = 0; j < allContacts.length; j++) {
+            if (allContacts[j].charAt[0].toUpperCase() === String.fromCharCode(i)) {
+                startWithLetter.push(allContacts[j]);
+            }
+        }
+    }
+    console.log(startWithLetter);
+}

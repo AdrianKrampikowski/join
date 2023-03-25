@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +10,14 @@
     <link rel="stylesheet" href="../styles/fonts.css">
 </head>
 
-<body id='body'   onload="init()">
+<body id='body' onload="init()">
 
     <div class="contactsMainContainer">
-        
+
         <div class="contactsBar">
             <div id="contactList" class="contactList">
 
-<!--            <div>
+                <!--            <div>
                     <div class="letter">
                         <div>A</div>
                     </div>
@@ -24,7 +25,7 @@
                 </div>
  -->
                 <div id="contactContainer" class="contactContainer">
-<!--                <div class="contact">
+                    <!--                <div class="contact">
                         <div>
                             <div class="contactIcon">
                                 <span>AM</span>
@@ -54,7 +55,7 @@
 
             <div class="contactsContent">
                 <div class="contactDetails" id="contactDetails">
-<!--                     <div>
+                    <!--                     <div>
                         <div>
                             <div class="contactIconBig">
                                 <span>AM</span>
@@ -117,7 +118,7 @@
     </div>
 
 
-<!-- ======================== AddContacts Overlay ======================== -->
+    <!-- ======================== AddContacts Overlay ======================== -->
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
 
         <div class="addContactContainer" onclick="doNotClose(event)">
@@ -127,7 +128,7 @@
                 <span>Task are better with a Team!</span>
                 <div></div>
             </div>
-            
+
             <div class="addContactRightSide">
                 <div class="contactImg">
                     <div>
@@ -149,7 +150,8 @@
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactSurname" class="inputFields" type="text" placeholder="Surname" required />
+                                <input id="contactSurname" class="inputFields" type="text" placeholder="Surname"
+                                    required />
                                 <img src="../img/userIcon.svg" class="img" />
                             </div>
                         </div>
@@ -161,7 +163,8 @@
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone" required />
+                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone"
+                                    required />
                                 <img src="../img/phone.svg" class="img" />
                             </div>
                         </div>
@@ -193,13 +196,14 @@
                 <span>Task are better with a Team!</span>
                 <div></div>
             </div>
-            
+
             <div class="addContactRightSide">
                 <div id="contactImg" class="contactImg">
-<!--                <div>
+                    <!--                <div>
                         <img src="../img/addUserIcon.svg">
                     </div>
- -->                </div>
+ -->
+                </div>
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
@@ -209,13 +213,15 @@
                     <div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="editContactName" class="inputFields" type="text" placeholder="Name" required />
+                                <input id="editContactName" class="inputFields" type="text" placeholder="Name"
+                                    required />
                                 <img src="../img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname" required />
+                                <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname"
+                                    required />
                                 <img src="../img/userIcon.svg" class="img" />
                             </div>
                         </div>
@@ -227,30 +233,29 @@
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
-                                <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone" required />
+                                <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone"
+                                    required />
                                 <img src="../img/phone.svg" class="img" />
                             </div>
                         </div>
                         <div class="buttons editButton" id="saveChangesButton">
-<!--                            <button class="createContact" onclick="saveChanges()">
+                            <!--                            <button class="createContact" onclick="saveChanges()">
                                     <span>Save</span>
                                 </button>
- -->                        </div>
+ -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
-<div id="contactCreated">Contact succesfully created</div>
+    <!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
+    <div id="contactCreated">Contact succesfully created</div>
 
 
-<!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
-<div id="contactChangesSaved">Changes saved</div>
-
-
-
+    <!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
+    <div id="contactChangesSaved">Changes saved</div>
 
 
 
@@ -262,54 +267,57 @@
 
 
 
-<!-- ================================== SCRIPT ======================================= -->
-<script>
 
-    let contacts = [];
 
-    let name = document.getElementById('contactName');
-    let surname = document.getElementById('contactSurname');
-    let email = document.getElementById('contactEmail');
-    let phone = document.getElementById('contactPhone');
 
-    let editName = document.getElementById('editContactName');
-    let editSurname = document.getElementById('editContactSurname');
-    let editEmail = document.getElementById('editContactEmail');
-    let editPhone = document.getElementById('editContactPhone');
+    <!-- ================================== SCRIPT ======================================= -->
+    <script>
 
-    let newContactPopUp = document.getElementById('addContactBackground');
-    let editContactPopUp = document.getElementById('editContactBackground');
-   
-    let bgColor;
+        let contacts = [];
 
-    let firstLetters;
+        let name = document.getElementById('contactName');
+        let surname = document.getElementById('contactSurname');
+        let email = document.getElementById('contactEmail');
+        let phone = document.getElementById('contactPhone');
 
-    async function init() {
-        await loadContacts();
-        renderContacts();
-    }
+        let editName = document.getElementById('editContactName');
+        let editSurname = document.getElementById('editContactSurname');
+        let editEmail = document.getElementById('editContactEmail');
+        let editPhone = document.getElementById('editContactPhone');
 
-    function renderContacts() {
-        let contactContainer = document.getElementById('contactContainer');
-        contactContainer.innerHTML = '';
+        let newContactPopUp = document.getElementById('addContactBackground');
+        let editContactPopUp = document.getElementById('editContactBackground');
 
-        contactsSorted = contacts.sort((a, b) => {
-            if (a.name < b.name) {
-                return -1;
-            }
-        });
+        let bgColor;
 
-        for (let i = 0; i < contactsSorted.length; i++) {
-            let contactListName = contacts[i]['name'];
-            let contactListSurname = contacts[i]['surname'];
-            let contactEmail = contacts[i]['email'];
-            let contactBgColor = contacts[i]['background']
+        let firstLetters;
 
-            randomBackground();
+        async function init() {
+            await loadContacts();
+            renderContacts();
+        }
 
-            getFirstLetter(i);
+        function renderContacts() {
+            let contactContainer = document.getElementById('contactContainer');
+            contactContainer.innerHTML = '';
 
-            contactContainer.innerHTML += `
+            contactsSorted = contacts.sort((a, b) => {
+                if (a.name < b.name) {
+                    return -1;
+                }
+            });
+
+            for (let i = 0; i < contactsSorted.length; i++) {
+                let contactListName = contacts[i]['name'];
+                let contactListSurname = contacts[i]['surname'];
+                let contactEmail = contacts[i]['email'];
+                let contactBgColor = contacts[i]['background']
+
+                randomBackground();
+
+                getFirstLetter(i);
+
+                contactContainer.innerHTML += `
                     <div id="contactID${i}" class="contact" onclick="openContactInfo(${i})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
@@ -324,84 +332,84 @@
                             <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
                         </div>
                     </div>`;
-    }
-    }  
-    
-    function getFirstLetter(i) {
-        let x = contacts[i]['name'];
-        x = x.split(' ').map(word => word.charAt(0)).join('');
-        let y = contacts[i]['surname'];
-        y = y.split(' ').map(word => word.charAt(0)).join('');
+            }
+        }
 
-        firstLetters = x + y;
-    }
+        function getFirstLetter(i) {
+            let x = contacts[i]['name'];
+            x = x.split(' ').map(word => word.charAt(0)).join('');
+            let y = contacts[i]['surname'];
+            y = y.split(' ').map(word => word.charAt(0)).join('');
 
-    function newContact() {
-        newContactPopUp.style.display = 'flex';
-    }
+            firstLetters = x + y;
+        }
+
+        function newContact() {
+            newContactPopUp.style.display = 'flex';
+        }
 
 
-    function closePopup() {
-        newContactPopUp.style.display ='none';
-        editContactPopUp.style.display ='none';
-        name.value = '';
-        surname.value = '';
-        email.value = '';
-        phone.value = '';
-    }
-
-    function canclePopup() {
-        newContactPopUp.style.display ='none';
-        editContactPopUp.style.display ='none';
-        name.value = '';
-        surname.value = '';
-        email.value = '';
-        phone.value = '';
-    }
-
-    function doNotClose(event) {
-        event.stopPropagation();
-    }
-
-    function createContact() {
-
-        if(name.vlaue == '' || email.value == '') {
-            alert('input required');
-        } else {
-            randomBackground();
-            let newContact = {name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor};
-            contacts.push(newContact);
-            saveContacts();
+        function closePopup() {
+            newContactPopUp.style.display = 'none';
+            editContactPopUp.style.display = 'none';
             name.value = '';
             surname.value = '';
             email.value = '';
             phone.value = '';
-            renderContacts();
-            showContactCreatedPupup();
         }
-    }
 
-    function randomBackground() {
+        function canclePopup() {
+            newContactPopUp.style.display = 'none';
+            editContactPopUp.style.display = 'none';
+            name.value = '';
+            surname.value = '';
+            email.value = '';
+            phone.value = '';
+        }
+
+        function doNotClose(event) {
+            event.stopPropagation();
+        }
+
+        function createContact() {
+
+            if (name.vlaue == '' || email.value == '') {
+                alert('input required');
+            } else {
+                randomBackground();
+                let newContact = { name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor };
+                contacts.push(newContact);
+                saveContacts();
+                name.value = '';
+                surname.value = '';
+                email.value = '';
+                phone.value = '';
+                renderContacts();
+                showContactCreatedPupup();
+            }
+        }
+
+        function randomBackground() {
             let x = Math.floor(Math.random() * 256)
             let y = Math.floor(Math.random() * 256)
             let z = Math.floor(Math.random() * 256)
             bgColor = `rgb(${x}, ${y}, ${z})`
-    }
+        }
 
 
-    async function saveContacts() {
-        let contactAsString = JSON.stringify(contacts);
-        await localStorage.setItem('contacts', contactAsString);
-    }
+        async function saveContacts() {
+            let contactAsString = JSON.stringify(contacts);
+            await localStorage.setItem('contacts', contactAsString);
+        }
 
-    async function loadContacts() {
-        let contactAsString = localStorage.getItem('contacts');
-        contacts = await JSON.parse(contactAsString) || [];
-    }
+        async function loadContacts() {
+            let contactAsString = localStorage.getItem('contacts');
+            contacts = await JSON.parse(contactAsString) || [];
+        }
 
-    function openContactInfo(i) {
-        let contactInformation = document.getElementById('contactDetails');
-        contactInformation.innerHTML = '';
+        function openContactInfo(i) {
+            let contactInformation = document.getElementById('contactDetails');
+            contactInformation.innerHTML = '';
 
             let contactInfotName = contacts[i]['name'];
             let contactInfoSurname = contacts[i]['surname'];
@@ -410,7 +418,7 @@
             let contactInfoBgColor = contacts[i]['background'];
 
             getFirstLetter(i);
-            
+
             contactInformation.innerHTML += `
                     <div>
                         <div>
@@ -465,83 +473,84 @@
                     </div>
             `;
 
-            document.getElementById('contactIconBig'+i).style.backgroundColor = contactInfoBgColor;
-    }
+            document.getElementById('contactIconBig' + i).style.backgroundColor = contactInfoBgColor;
+        }
 
-    function editContact(i) {
-        editContactPopUp.style.display = 'flex';
+        function editContact(i) {
+            editContactPopUp.style.display = 'flex';
 
-        editName.value = contacts[i]['name']; 
-        editSurname.value = contacts[i]['surname']; 
-        editEmail.value = contacts[i]['email']; 
-        editPhone.value = contacts[i]['phone'];
-        let contactInfoBgColor = contacts[i]['background'];
+            editName.value = contacts[i]['name'];
+            editSurname.value = contacts[i]['surname'];
+            editEmail.value = contacts[i]['email'];
+            editPhone.value = contacts[i]['phone'];
+            let contactInfoBgColor = contacts[i]['background'];
 
 
-        let saveChangesButton = document.getElementById('saveChangesButton');
+            let saveChangesButton = document.getElementById('saveChangesButton');
 
-        saveChangesButton.innerHTML = `
+            saveChangesButton.innerHTML = `
                 <button class="createContact" onclick="saveChanges(${i})">
                     <span>Save</span>
                 </button>
         `;
 
-        getFirstLetter(i);
+            getFirstLetter(i);
 
-        document.getElementById('contactImg').innerHTML = `
+            document.getElementById('contactImg').innerHTML = `
             <div id="contactImgBg${i}" class="contactImgBg">
                 <span>${firstLetters}</span>
             </div>
         `;
 
-        document.getElementById('contactImgBg'+i).style.backgroundColor = contactInfoBgColor;
-    }
+            document.getElementById('contactImgBg' + i).style.backgroundColor = contactInfoBgColor;
+        }
 
-    function saveChanges(i) {
-        contacts[i]['name'] = editName.value; 
-        contacts[i]['surname'] = editSurname.value; 
-        contacts[i]['emailpho'] = editEmail.value; 
-        contacts[i]['phone'] = editPhone.value; 
+        function saveChanges(i) {
+            contacts[i]['name'] = editName.value;
+            contacts[i]['surname'] = editSurname.value;
+            contacts[i]['emailpho'] = editEmail.value;
+            contacts[i]['phone'] = editPhone.value;
 
-        saveContacts();
-        renderContacts();
-        editContactPopUp.style.display = 'none';
-        contactChangesSavedPupup();
-    }
-
-
-    function deleteContact(i) {
-        contacts.splice(i, 1);
-        saveContacts();
-        loadContacts();
-        renderContacts();
-    }
+            saveContacts();
+            renderContacts();
+            editContactPopUp.style.display = 'none';
+            contactChangesSavedPupup();
+        }
 
 
-/* ================================== SNACKBAR =======================================*/
-    function showContactCreatedPupup() {
-  // Get the snackbar DIV
-  var x = document.getElementById("contactCreated");
+        function deleteContact(i) {
+            contacts.splice(i, 1);
+            saveContacts();
+            loadContacts();
+            renderContacts();
+        }
 
-  // Add the "show" class to DIV
-  x.className = "show";
 
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
+        /* ================================== SNACKBAR =======================================*/
+        function showContactCreatedPupup() {
+            // Get the snackbar DIV
+            var x = document.getElementById("contactCreated");
 
-function contactChangesSavedPupup() {
-  // Get the snackbar DIV
-  var x = document.getElementById("contactChangesSaved");
+            // Add the "show" class to DIV
+            x.className = "show";
 
-  // Add the "show" class to DIV
-  x.className = "show";
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
 
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
+        function contactChangesSavedPupup() {
+            // Get the snackbar DIV
+            var x = document.getElementById("contactChangesSaved");
 
-</script>
+            // Add the "show" class to DIV
+            x.className = "show";
+
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+    </script>
 
 </body>
+
 </html>
