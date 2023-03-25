@@ -44,7 +44,7 @@ function addUser(){
         successfullySignedUpPopup();
         
         // Weiterleitung zur Loginseite
-        window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+        //window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     }
 
 //    let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
@@ -54,6 +54,10 @@ function addUser(){
 async function save() {
        let usersAsString = JSON.stringify(users);
        await backend.setItem('users', usersAsString);
+}
+
+function backToLoginScreen() {
+    window.location.href = 'index.html';
 }
 
 // ================================================ LOGIN ==========================================================

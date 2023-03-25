@@ -120,14 +120,7 @@
 <!-- ======================== AddContacts Overlay ======================== -->
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
 
-<<<<<<< HEAD
-    <div id="addContactBackground" class="addContactBackground" onclick="closeIT()">
-
-        <div class="addContactContainer">
-=======
         <div class="addContactContainer" onclick="doNotClose(event)">
->>>>>>> dc38b31890c5fbef7e697062965b969affea4e52
-
             <div class="addContactLeftSide">
                 <img src="../img/logo.svg">
                 <h1>Add contact</h1>
@@ -173,11 +166,8 @@
                             </div>
                         </div>
                         <div class="buttons">
-<<<<<<< HEAD
-                            <button class="cancleButton" onclick="closeIT()">
-=======
+
                             <button class="cancleButton" onclick="canclePopup()">
->>>>>>> dc38b31890c5fbef7e697062965b969affea4e52
                                 <span>Cancle</span>
                                 <img src="../img/cancel.svg">
                             </button>
@@ -350,11 +340,8 @@
         newContactPopUp.style.display = 'flex';
     }
 
-<<<<<<< HEAD
-    function closeIT() {
-=======
+
     function closePopup() {
->>>>>>> dc38b31890c5fbef7e697062965b969affea4e52
         newContactPopUp.style.display ='none';
         editContactPopUp.style.display ='none';
         name.value = '';
