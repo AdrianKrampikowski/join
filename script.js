@@ -98,6 +98,12 @@ function updateHTML() {
         let element = done[i];
         document.getElementById("done").innerHTML += generateToDoHTML(element);
     }
+    for (let i = 0; i < toDos.length; i++) {
+        calculateProgressbar(i);
+    }
+    for (let i = 0; i < newUsers.length; i++) {
+        getFirstLetter(i);
+    }
 }
 function generateToDoHTML(element) {
     return `
@@ -141,15 +147,8 @@ function generateToDoHTML(element) {
         </div>
 
         `;
-        for (let i = 0; i < toDos.length; i++) {
-            calculateProgressbar(i);
-        }
-}
-    
-for (let j = 0; j < newUsers.length; j++) {
-    getFirstLetter(j);
-}
 
+}
 
 function getFirstLetter(i) {
     if (i < newUsers.length) {
@@ -162,20 +161,23 @@ function getFirstLetter(i) {
     }
 }
 
-function createBubbles(z, index) {
-    if (newUsers.length <= 3) {
-        createThreeBubbles(z);
-    } else {
-        createMoreThanThreeBubbles(z, index);
-    }
-}
-
-function createThreeBubbles(z) {
-    for (let j = 0; j < toDos.length; j++) {
-        document.getElementById(`userBubble${[j]}`).innerHTML += `
+function createBubbles(z, i) {
+    if (newUsers.length < 3) {
+        for (let j = 0; j < toDos.length; j++) {
+            document.getElementById(`userBubble${[j]}`).innerHTML += `
         <div class="userBubbleOne">${z}</div>
    `;
+        }
     }
+    else {
+        for (let j = 0; j < 2; j++) {
+            document.getElementById(`userBubble${[j]}`).innerHTML += `
+        <div class="userBubbleOne">${z}</div>
+   `;
+        }
+    }
+}
+function createThreeBubbles(z) {
 }
 
 let normalyCounter = 0;
@@ -194,8 +196,6 @@ function createMoreThanThreeBubbles(z) {
         }
     }
 }
-
-
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
