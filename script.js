@@ -14,7 +14,6 @@ async function includeHTML() {
     updateHTML();
 }
 
-
 let toDos = [{
     "id": 0,
     "title": "Design",
@@ -49,28 +48,29 @@ let toDos = [{
     "category": "done"
 }];
 
-let newUsers = [{
-    "id": 0,
-    "name": "Adrian",
-    "surname": "Krampikowski"
-}, {
-    "id": 1,
-    "name": "Tobias",
-    "surname": "Odermatt"
-}, {
-    "id": 2,
-    "name": "Fausto",
-    "surname": "Oliveira"
-}, {
-    "id": 3,
-    "name": "test",
-    "surname": "test"
-}];
+// let newUsers = [{
+//     "id": 0,
+//     "name": "Adrian",
+//     "surname": "Krampikowski"
+// }, {
+//     "id": 1,
+//     "name": "Tobias",
+//     "surname": "Odermatt"
+// }, {
+//     "id": 2,
+//     "name": "Fausto",
+//     "surname": "Oliveira"
+// }, {
+//     "id": 3,
+//     "name": "test",
+//     "surname": "test"
+// }];
 
 let userChar = [];
+let allUsers = [];
 
 let currentDraggedElement;
-
+showAllContacts();
 function updateHTML() {
 
     let toDo = toDos.filter(t => t["category"] == "toDo");
@@ -104,10 +104,14 @@ function updateHTML() {
     for (let i = 0; i < toDos.length; i++) {
         calculateProgressbar(i);
     }
-    getFirstLetter();
+    createBubbles();
 }
 
+<<<<<<< HEAD
 function generateToDoHTML(element, i) {
+=======
+function generateToDoHTML(element) {
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
 
@@ -137,63 +141,75 @@ function generateToDoHTML(element, i) {
             </div>
             </div>
 
+<<<<<<< HEAD
             <div class="boardContainerUserBubbles">
                 <div class="userBubble" id="${element['id']}">
                 </div>
             </div>
+=======
+                <div class="boardContainerUserBubbles">
+                    <div class="userBubble" id="userBubble${element["id"]}">
+                    </div>
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 
-            <div>
-                <img src="img/greenArrow.svg">
-            </div>
+                    <div>
+                        <img src="img/greenArrow.svg">
+                    </div>
+
+                </div>
 
         </div>
-
         `;
+<<<<<<< HEAD
     
+=======
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 }
 
 
 function getFirstLetter(i) {
-    for (let i = 0; i < newUsers.length; i++) {
-        let x = newUsers[i]["name"];
+    if (i < allUsers.length) {
+        let x = allUsers[i];
         x = x.split(' ').map(word => word.charAt(0)).join('');
-        let y = newUsers[i]["surname"];
-        y = y.split(' ').map(word => word.charAt(0)).join('');
-        z = x + y;
-        userChar.push(z);
+        return x;
     }
-    createBubbles(i);
 }
 
-function createBubbles(i) {
-    let positionForBubbles = document.getElementById(`userBubble${[i]}`);
-    // if (newUsers.length < 99) {
-    // for (let j = 0; j < 2; j++) {
-        positionForBubbles.innerHTML += `
-        <div class="userBubbleOne">${userChar[i]}</div>
-   `;
-    // }
-}
-
-function createThreeBubbles(z) {
-}
-
-let normalyCounter = 0;
-const newUserCount = newUsers.length - 2;
-
-function createMoreThanThreeBubbles(z) {
-    for (let j = 0; j < toDos.length; j++) {
-        if (j < 2) {
+function createBubbles() {
+    if (allUsers.length > 3) {
+        let Counter = allUsers.length
+        for (let j = 0; j < toDos.length; j++) {
+            for (let i = 0; i < 2; i++) {
+                let name = getFirstLetter(i)
+                document.getElementById(`userBubble${[j]}`).innerHTML += `
+                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+                    `;
+                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+                userBubbleOne.style.backgroundColor = changeColorBubble();
+            }
+        }
+        for (let j = 0; j < toDos.length; j++) {
+            let remainingCount = Counter - 2;
             document.getElementById(`userBubble${[j]}`).innerHTML += `
-            <div class="userBubbleOne">${z}</div>
-            `;
-        } else {
-            document.getElementById(`userBubble${[0]}`).innerHTML = `
-            <div class="userBubbleOne">+${newUserCount}</div>
-       `;
+                <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
+                `;
+            let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
+            userBubbleOne.style.backgroundColor = "black";
+        }
+    } else {
+        for (let j = 0; j < toDos.length; j++) {
+            for (let i = 0; i < allUsers.length; i++) {
+                let name = getFirstLetter(i)
+                document.getElementById(`userBubble${[j]}`).innerHTML += `
+                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+                    `;
+                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+                userBubbleOne.style.backgroundColor = changeColorBubble();
+            }
         }
     }
 }
+
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -202,6 +218,22 @@ function calculateProgressbar(index) {
     progressBarElements[index].style.width = x + "%";
 }
 
+function changeColorBubble() {
+    let colors = [];
+    let numColors = 42;
+    for (let i = 0; i < numColors; i++) {
+        colors.push(generateRandomColor());
+    }
+    let randomColor = Math.floor(Math.random() * colors.length);
+    return colors[randomColor];
+}
+
+function generateRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
@@ -219,8 +251,10 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function showAllContacts() {
-    fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
+
+let startWithLetter = [];
+async function showAllContacts() {
+    await fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
         .then(response => {
             return response.json();
         })
@@ -231,6 +265,42 @@ function showAllContacts() {
             console.log(users[0]["email"]);
             console.log(users[0]["password"]);
             console.log(users[0]["userid"]);
+            for (let i = 0; i < users.length; i++) {
+                let contactMemory = users[i]["name"];
+                allUsers.push(contactMemory);
+                allUsers.sort();
+            }
+            console.log(allUsers);
+
+            for (let i = 65; i < 90; i++) {
+                let contacts = allUsers
+                    .filter(function (contact) {
+                        return contact.charAt(0).toUpperCase().charCodeAt(0) === i;
+                    })
+                    .map(function (contact) {
+                        return contact.charAt(0).toUpperCase();
+                    });
+                if (contacts.length > 0) {
+                    startWithLetter.push(contacts);
+                }
+            }
+            if (startWithLetter.length > 0) {
+                console.log(startWithLetter);
+            }
         })
+
 }
-showAllContacts();
+
+
+
+// function conlogAllContacts() {
+//     let startWithLetter = [];
+//     for (let i = 65; i < 90; i++) {
+//         for (let j = 0; j < allContacts.length; j++) {
+//             if (allContacts[j].charAt[0].toUpperCase() === String.fromCharCode(i)) {
+//                 startWithLetter.push(allContacts[j]);
+//             }
+//         }
+//     }
+//     console.log(startWithLetter);
+// }
