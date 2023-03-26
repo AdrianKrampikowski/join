@@ -16,34 +16,12 @@
 
         <div class="contactsBar">
             <div id="contactList" class="contactList">
-<<<<<<< HEAD
 <!--            <div>
-=======
-
-                <!--            <div>
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
                     <div class="letter">
                         <div>A</div>
                     </div>
                     <div class="contactsHline"></div>
-<<<<<<< HEAD
                     <div id="sortedContacts" class="sortedContacts">
-
-=======
-                </div>
- -->
-                <div id="contactContainer" class="contactContainer">
-                    <!--                <div class="contact">
-                        <div>
-                            <div class="contactIcon">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="contactName">Anton Mayer</span>
-                            <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
-                        </div>
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
                     </div>
                 </div> -->
             </div>
@@ -63,11 +41,7 @@
 
             <div class="contactsContent">
                 <div class="contactDetails" id="contactDetails">
-<<<<<<< HEAD
 <!--                <div>
-=======
-                    <!--                     <div>
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
                         <div>
                             <div class="contactIconBig">
                                 <span>AM</span>
@@ -285,38 +259,29 @@
     <!-- ================================== SCRIPT ======================================= -->
     <script>
 
-        let contacts = [];
+    let contacts = [];
 
-<<<<<<< HEAD
     let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     let name = document.getElementById('contactName');
     let surname = document.getElementById('contactSurname');
     let email = document.getElementById('contactEmail');
     let phone = document.getElementById('contactPhone');
-=======
-        let name = document.getElementById('contactName');
-        let surname = document.getElementById('contactSurname');
-        let email = document.getElementById('contactEmail');
-        let phone = document.getElementById('contactPhone');
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 
-        let editName = document.getElementById('editContactName');
-        let editSurname = document.getElementById('editContactSurname');
-        let editEmail = document.getElementById('editContactEmail');
-        let editPhone = document.getElementById('editContactPhone');
+    let editName = document.getElementById('editContactName');
+    let editSurname = document.getElementById('editContactSurname');
+    let editEmail = document.getElementById('editContactEmail');
+    let editPhone = document.getElementById('editContactPhone');
 
-        let newContactPopUp = document.getElementById('addContactBackground');
-        let editContactPopUp = document.getElementById('editContactBackground');
+    let newContactPopUp = document.getElementById('addContactBackground');
+    let editContactPopUp = document.getElementById('editContactBackground');
 
-        let bgColor;
+    let bgColor;
 
-<<<<<<< HEAD
     async function init() {
         await loadContacts();
         renderLetters()
-/*         renderContacts();
- */    } 
+    } 
 
     function renderLetters() {
         let contactList = document.getElementById('contactList');
@@ -341,33 +306,15 @@
         }
     }
 
-    function checkForEmptyLetters(i) {
-        let contactContainer = document.getElementById('contactContainer'+i);
-        let emptyLetters = document.getElementById('sortedContacts'+i);
-
-        if(emptyLetters.innerHTML == '') {
-            contactContainer.style.display = 'none';
-        }
-    }
-
     function renderContacts(i, letter) {
         let sortedContacts = document.getElementById('sortedContacts'+i);
         sortedContacts.innerHTML = '';
-=======
-        let firstLetters;
 
-        async function init() {
-            await loadContacts();
-            renderContacts();
-        }
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
-
-        function renderContacts() {
-            let contactContainer = document.getElementById('contactContainer');
-            contactContainer.innerHTML = '';
-
-<<<<<<< HEAD
-        
+        contactsSorted = contacts.sort((a, b) => {
+                if (a.name < b.name) {
+                    return -1;
+                }
+            });
 
         for (let c = 0; c < contactsSorted.length; c++) {
             let contactListName = contacts[c]['name'];
@@ -381,26 +328,6 @@
             if(firstLetters.charAt(0) == letter) {
                 sortedContacts.innerHTML += `
                     <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
-=======
-            contactsSorted = contacts.sort((a, b) => {
-                if (a.name < b.name) {
-                    return -1;
-                }
-            });
-
-            for (let i = 0; i < contactsSorted.length; i++) {
-                let contactListName = contacts[i]['name'];
-                let contactListSurname = contacts[i]['surname'];
-                let contactEmail = contacts[i]['email'];
-                let contactBgColor = contacts[i]['background']
-
-                randomBackground();
-
-                getFirstLetter(i);
-
-                contactContainer.innerHTML += `
-                    <div id="contactID${i}" class="contact" onclick="openContactInfo(${i})">
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
                                 <span>${firstLetters}</span>
@@ -413,56 +340,55 @@
                             </div>
                             <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
                         </div>
-                    </div>`;
-            }
-<<<<<<< HEAD
+                    </div>
+                    `;
+        }
     }
     }  
+
+    function checkForEmptyLetters(i) {
+        let contactContainer = document.getElementById('contactContainer'+i);
+        let emptyLetters = document.getElementById('sortedContacts'+i);
+
+        if(emptyLetters.innerHTML == '') {
+            contactContainer.style.display = 'none';
+        }
+    }
      
     function getFirstLetter(c) {
-        let x = contacts[i]['name'];
+        let x = contacts[c]['name'];
         x = x.split(' ').map(word => word.charAt(0)).join('');
-        let y = contacts[i]['surname'];
+        let y = contacts[c]['surname'];
         y = y.split(' ').map(word => word.charAt(0)).join('');
-=======
-        }
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
+        firstLetters = x + y;
+    }
 
-        function getFirstLetter(i) {
-            let x = contacts[i]['name'];
-            x = x.split(' ').map(word => word.charAt(0)).join('');
-            let y = contacts[i]['surname'];
-            y = y.split(' ').map(word => word.charAt(0)).join('');
-
-            firstLetters = x + y;
-        }
-
-        function newContact() {
-            newContactPopUp.style.display = 'flex';
-        }
+    function newContact() {
+        newContactPopUp.style.display = 'flex';
+    }
 
 
-        function closePopup() {
-            newContactPopUp.style.display = 'none';
-            editContactPopUp.style.display = 'none';
-            name.value = '';
-            surname.value = '';
-            email.value = '';
-            phone.value = '';
-        }
+    function closePopup() {
+        newContactPopUp.style.display = 'none';
+        editContactPopUp.style.display = 'none';
+        name.value = '';
+        surname.value = '';
+        email.value = '';
+        phone.value = '';
+    }
 
-        function canclePopup() {
-            newContactPopUp.style.display = 'none';
-            editContactPopUp.style.display = 'none';
-            name.value = '';
-            surname.value = '';
-            email.value = '';
-            phone.value = '';
-        }
+    function canclePopup() {
+        newContactPopUp.style.display = 'none';
+        editContactPopUp.style.display = 'none';
+        name.value = '';
+        surname.value = '';
+        email.value = '';
+        phone.value = '';
+    }
 
-        function doNotClose(event) {
-            event.stopPropagation();
-        }
+    function doNotClose(event) {
+        event.stopPropagation();
+    }
 
         function createContact() {
 
@@ -486,21 +412,13 @@
             let x = Math.floor(Math.random() * 256)
             let y = Math.floor(Math.random() * 256)
             let z = Math.floor(Math.random() * 256)
-            bgColor = `rgb(${x}, ${y}, ${z})`
+            bgColor = `rgb(${x}, ${y}, ${z})`;
         }
 
-
-<<<<<<< HEAD
-    async function saveContacts() {
-        let contactAsString = JSON.stringify(contacts);
-        await backend.setItem('contacts', contactAsString);
-    }
-=======
         async function saveContacts() {
             let contactAsString = JSON.stringify(contacts);
             await localStorage.setItem('contacts', contactAsString);
         }
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 
         async function loadContacts() {
             let contactAsString = localStorage.getItem('contacts');

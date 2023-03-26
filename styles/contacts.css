@@ -26,9 +26,7 @@ body {
    flex-direction: column;
    align-items: center;
    justify-content: flex-start;
-   padding-left: 2rem;
-   padding-right: 2rem;
-   padding-top: 1.5rem;
+   padding: 1rem 1rem 1rem 2rem;
 }
 
 .contactList {
@@ -37,10 +35,69 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow: auto;
+    padding-right: 1.5rem;
 }
 
+/* ================================ SCROLLBAR ====================================== */
+
+.contactList::-webkit-scrollbar {
+    width: 10px;
+    scrollbar-gutter: stable;
+}
+
+.contactList::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.contactList::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+.contactList::-webkit-scrollbar-button {
+    color: #A8A8A8;
+}
+
+.contactList::-webkit-scrollbar-button {
+    display: block;
+    background-repeat: no-repeat;   
+    background-size: 50%;
+    background-position: center;
+}
+
+.contactList::-webkit-scrollbar-button:vertical:start:increment {
+    background-image: url(../img/upArrow.svg);
+    background-size: 10px 4px;  
+}
+
+.contactList::-webkit-scrollbar-button:vertical:start:decrement {
+    display: none;
+}
+
+.contactList::-webkit-scrollbar-button:vertical:end:increment {
+    display: none;
+}
+
+.contactList::-webkit-scrollbar-button:vertical:end:decrement {
+    background-image: url(../img/downArrow.svg);   
+    background-size: 10px 4px;  
+}
+
+/* ================================================================================== */
+
 .contactsBar > div > div:first-of-type {
+    width: 100%;
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
 }
 
@@ -69,62 +126,21 @@ body {
     height: 1px;
     border-radius: 3px;
     background-color: #D1D1D1;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-.contactContainer {
+.sortedContacts {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: flex-start;
     justify-content: center;
-    overflow-x: hidden;
-    overflow-y: scroll;
     width: 100%;
-    overflow: auto;
 }
 
-.contactContainer::-webkit-scrollbar {
-    width: 10px;
-    scrollbar-gutter: stable;
-}
 
-.contactContainer::-webkit-scrollbar-track {
-    background-color: white;
-}
+/* =================================== CHECK ================================== */
 
-.contactContainer::-webkit-scrollbar-thumb {
-    background-color: #A8A8A8;
-    border: 2px solid white;
-    border-radius: 6px;
-}
-
-.contactContainer::-webkit-scrollbar-button {
-    color: #A8A8A8;
-}
-
-.contactContainer::-webkit-scrollbar-button {
-    display: block;
-    background-repeat: no-repeat;   
-    background-size: 50%;
-    background-position: center;
-}
-
-.contactContainer::-webkit-scrollbar-button:vertical:start:increment {
-    background-image: url(../img/upArrow.svg);
-    background-size: 10px 4px;  
-}
-
-.contactContainer::-webkit-scrollbar-button:vertical:start:decrement {
-    display: none;
-}
-
-.contactContainer::-webkit-scrollbar-button:vertical:end:increment {
-    display: none;
-}
-
-.contactContainer::-webkit-scrollbar-button:vertical:end:decrement {
-    background-image: url(../img/downArrow.svg);   
-    background-size: 10px 4px;  
-}
 
 .contact {
     display: flex;
@@ -132,15 +148,7 @@ body {
     align-items: center;
     margin-bottom: 1.5rem;
     cursor: pointer;
-}
-
-.contactSelected {
-    background-color: #2A3647;
-    color: white;
-}
-
-.contact:selected {
-    background-color: #2A3647;
+    width: 100%;
 }
 
 .contact > div:first-of-type {
