@@ -8,6 +8,7 @@ async function init() {
 
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
 } 
 
 
@@ -20,6 +21,7 @@ function generateUserId(){
 function addUser(){
     generateUserId();
     let name = document.getElementById('name');
+    let surname = document.getElementById('surname');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     let userId = id;
@@ -30,26 +32,32 @@ function addUser(){
         } 
     }
 
-    let userData = {name: name.value, email: email.value, password: password.value, userid: userId};
+    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, userid: userId};
     let user = users.find(u => u.email == email.value && u.password == password.value);
     
     if(user){
         alreadySignedUpPupup();
         name.value = '';
+        surname.value = '';
         email.value = '';
         password.value ='';
     } else {
         users.push(userData);
         save();
         successfullySignedUpPopup();
-        
-        // Weiterleitung zur Loginseite
-        //window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+
+        setInterval(forwardToLogin, 1200);
     }
 
 //    let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
 //    let idMsg = urlParams.get('id');
 } 
+
+function forwardToLogin() {
+    // Weiterleitung zur Loginseite
+    window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+
+}
 
 async function save() {
        let usersAsString = JSON.stringify(users);

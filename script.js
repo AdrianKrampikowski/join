@@ -107,7 +107,11 @@ function updateHTML() {
     createBubbles();
 }
 
+<<<<<<< HEAD
+function generateToDoHTML(element, i) {
+=======
 function generateToDoHTML(element) {
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
 
@@ -137,9 +141,16 @@ function generateToDoHTML(element) {
             </div>
             </div>
 
+<<<<<<< HEAD
+            <div class="boardContainerUserBubbles">
+                <div class="userBubble" id="${element['id']}">
+                </div>
+            </div>
+=======
                 <div class="boardContainerUserBubbles">
                     <div class="userBubble" id="userBubble${element["id"]}">
                     </div>
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 
                     <div>
                         <img src="img/greenArrow.svg">
@@ -149,7 +160,12 @@ function generateToDoHTML(element) {
 
         </div>
         `;
+<<<<<<< HEAD
+    
+=======
+>>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 }
+
 
 function getFirstLetter(i) {
     if (i < allUsers.length) {
