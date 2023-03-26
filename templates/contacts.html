@@ -15,28 +15,15 @@
         
         <div class="contactsBar">
             <div id="contactList" class="contactList">
-
 <!--            <div>
                     <div class="letter">
                         <div>A</div>
                     </div>
                     <div class="contactsHline"></div>
-                </div>
- -->
-                <div id="contactContainer" class="contactContainer">
-<!--                <div class="contact">
-                        <div>
-                            <div class="contactIcon">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="contactName">Anton Mayer</span>
-                            <a class="contactEmail" href="antom@gmail.com">antom@gmail.com</a> 
-                        </div>
+                    <div id="sortedContacts" class="sortedContacts">
+
                     </div>
-    -->
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -54,7 +41,7 @@
 
             <div class="contactsContent">
                 <div class="contactDetails" id="contactDetails">
-<!--                     <div>
+<!--                <div>
                         <div>
                             <div class="contactIconBig">
                                 <span>AM</span>
@@ -267,6 +254,8 @@
 
     let contacts = [];
 
+    let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
     let name = document.getElementById('contactName');
     let surname = document.getElementById('contactSurname');
     let email = document.getElementById('contactEmail');
@@ -286,12 +275,45 @@
 
     async function init() {
         await loadContacts();
-        renderContacts();
+        renderLetters()
+/*         renderContacts();
+ */    } 
+
+    function renderLetters() {
+        let contactList = document.getElementById('contactList');
+        contactList.innerHTML = '';
+
+        for (let i = 0; i < letters.length; i++) {
+            let letter = letters[i];
+            
+            contactList.innerHTML += `
+                <div id='contactContainer${i}' >
+                    <div class="letter">
+                        <div>${letter}</div>
+                    </div>
+                    <div class="contactsHline"></div>
+                    <div id="sortedContacts${i}" class="sortedContacts">
+                    </div>
+                </div>
+            `;
+
+            renderContacts(i, letter);
+            checkForEmptyLetters(i)
+        }
     }
 
-    function renderContacts() {
-        let contactContainer = document.getElementById('contactContainer');
-        contactContainer.innerHTML = '';
+    function checkForEmptyLetters(i) {
+        let contactContainer = document.getElementById('contactContainer'+i);
+        let emptyLetters = document.getElementById('sortedContacts'+i);
+
+        if(emptyLetters.innerHTML == '') {
+            contactContainer.style.display = 'none';
+        }
+    }
+
+    function renderContacts(i, letter) {
+        let sortedContacts = document.getElementById('sortedContacts'+i);
+        sortedContacts.innerHTML = '';
 
         contactsSorted = contacts.sort((a, b) => {
             if (a.name < b.name) {
@@ -299,18 +321,20 @@
             }
         });
 
-        for (let i = 0; i < contactsSorted.length; i++) {
-            let contactListName = contacts[i]['name'];
-            let contactListSurname = contacts[i]['surname'];
-            let contactEmail = contacts[i]['email'];
-            let contactBgColor = contacts[i]['background']
+        
+
+        for (let c = 0; c < contactsSorted.length; c++) {
+            let contactListName = contacts[c]['name'];
+            let contactListSurname = contacts[c]['surname'];
+            let contactEmail = contacts[c]['email'];
+            let contactBgColor = contacts[c]['background']
 
             randomBackground();
+            getFirstLetter(c);
 
-            getFirstLetter(i);
-
-            contactContainer.innerHTML += `
-                    <div id="contactID${i}" class="contact" onclick="openContactInfo(${i})">
+            if(firstLetters.charAt(0) == letter) {
+                sortedContacts.innerHTML += `
+                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
                                 <span>${firstLetters}</span>
@@ -324,10 +348,11 @@
                             <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
                         </div>
                     </div>`;
+            }
     }
     }  
-    
-    function getFirstLetter(i) {
+     
+    function getFirstLetter(c) {
         let x = contacts[i]['name'];
         x = x.split(' ').map(word => word.charAt(0)).join('');
         let y = contacts[i]['surname'];
@@ -391,7 +416,7 @@
 
     async function saveContacts() {
         let contactAsString = JSON.stringify(contacts);
-        await localStorage.setItem('contacts', contactAsString);
+        await backend.setItem('contacts', contactAsString);
     }
 
     async function loadContacts() {

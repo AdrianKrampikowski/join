@@ -106,7 +106,8 @@ function updateHTML() {
     }
     getFirstLetter();
 }
-function generateToDoHTML(element) {
+
+function generateToDoHTML(element, i) {
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
 
@@ -137,7 +138,7 @@ function generateToDoHTML(element) {
             </div>
 
             <div class="boardContainerUserBubbles">
-                <div class="userBubble" id="userBubble${element["id"]}">
+                <div class="userBubble" id="${element['id']}">
                 </div>
             </div>
 
@@ -149,8 +150,8 @@ function generateToDoHTML(element) {
 
         `;
     
-    
 }
+
 
 function getFirstLetter(i) {
     for (let i = 0; i < newUsers.length; i++) {
