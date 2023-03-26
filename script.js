@@ -194,7 +194,6 @@ function createBubbles() {
     }
 }
 
-
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
     x = x * 100;
