@@ -86,9 +86,9 @@ a {
   align-items: center;
 }
 
-.placeholderBottom {
+/* .placeholderBottom {
   height: calc(100% - 89px);
-}
+} */
 
 .placeholderRightLeft {
   position: relative;
@@ -137,9 +137,9 @@ a {
     width: 100%;
     padding-left: 25px;
   }
-  .placeholderBottom {
+  /* .placeholderBottom {
     height: calc(100vh - 169px);
-  }
+  } */
   .sideNavBar {
     width: 100%;
   }

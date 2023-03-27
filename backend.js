@@ -24,6 +24,7 @@ function addUser(){
     let surname = document.getElementById('surname');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
+    let color = document.getElementById('color');
     let userId = id;
 
     for (let i = 0; i < users.length; i++) {
@@ -32,7 +33,7 @@ function addUser(){
         } 
     }
 
-    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, userid: userId};
+    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId};
     let user = users.find(u => u.email == email.value && u.password == password.value);
     
     if(user){
