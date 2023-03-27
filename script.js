@@ -245,17 +245,11 @@ async function showAllContacts() {
         })
         .then(data => {
             const users = JSON.parse(data.users);
-            console.log(users[0]);
-            console.log(users[0]["name"]);
-            console.log(users[0]["email"]);
-            console.log(users[0]["password"]);
-            console.log(users[0]["userid"]);
             for (let i = 0; i < users.length; i++) {
                 let contactMemory = users[i]["name"];
                 allUsers.push(contactMemory);
                 allUsers.sort();
             }
-            console.log(allUsers);
 
             for (let i = 65; i < 90; i++) {
                 let contacts = allUsers
@@ -268,9 +262,6 @@ async function showAllContacts() {
                 if (contacts.length > 0) {
                     startWithLetter.push(contacts);
                 }
-            }
-            if (startWithLetter.length > 0) {
-                console.log(startWithLetter);
             }
         })
 
@@ -349,7 +340,6 @@ function greeting() {
 function displayUserName() {
     let userName = localStorage.getItem("userName");
     let abbreviatedName = abbreviateName(userName, 10);
-    console.log("Length", userName.length);
     document.getElementById("userName").innerHTML = `
     ${abbreviatedName}
     `;
