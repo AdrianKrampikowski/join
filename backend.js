@@ -74,18 +74,26 @@ function login() {
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
     
-    let user = users.find(u => u.email == emailLog.vlue && u.password == passwordLog);
+    let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
     let existingUser = users.find(u => u.email == emailLog.value);
-
+    
     if(user) {
         let urlParams = new URLSearchParams(window.location.search); // query paramter von einem query string (window.location.search) von der URL auslesen
         let userId = urlParams.get('id');
+        let userName = user.name;
+        localStorage.setItem('userName', userName);
         window.location.href = 'summery.html?id=' + userId;          // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     } else if (existingUser) {
         pwEmailIncorrectPopup();
     } else {
         userDoesNotExistPopup();
     }
+}
+
+function guestLogin(){
+    let userName = "Guest";
+    localStorage.setItem('userName', userName);
+    window.location.href = 'summery.html';  
 }
 
 

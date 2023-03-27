@@ -277,16 +277,20 @@ async function showAllContacts() {
 }
 
 setTimeout(() => {
-    todoCounter();
+    taskCounter();
     inProgressCounter();
     awaitingFeedbackCounter();
+    todoCounter();
+    doneCounter();
+
+    greeting();
+    displayUserName();
 }, 100);
 
-function todoCounter() {
-    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
-    toDoCounter = toDoCounter.length;
-    document.getElementById("todoCounter").innerHTML = `
-    ${toDoCounter}
+function taskCounter() {
+    let taskCounter = toDos.length
+    document.getElementById("taskCounter").innerHTML = `
+    ${taskCounter}
     `;
 }
 
@@ -306,7 +310,49 @@ function inProgressCounter() {
     `;
 }
 
+function urgenCounter() {
+    // Fehlt noch
+}
 
+function todoCounter() {
+    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
+    toDoCounter = toDoCounter.length;
+    document.getElementById("todoCounter").innerHTML = `
+    ${toDoCounter}
+    `;
+}
+
+function doneCounter() {
+    let doneCounter = toDos.filter(t => t["category"] == "done");
+    doneCounter = doneCounter.length;
+    document.getElementById("doneCounter").innerHTML = `
+    ${doneCounter}
+    `;
+}
+
+function greeting() {
+    let currentdate = new Date();
+    let datetime = currentdate.getHours();
+    let greeting = "Good morning,";
+    if (datetime > 12) {
+        greeting = "Good evening,";
+    }
+    document.getElementById("greeting").innerHTML = `
+    ${greeting}
+    `;
+}
+
+function displayUserName(){
+    let userName = localStorage.getItem("userName");
+    document.getElementById("userName").innerHTML = `
+    ${userName}
+    `;
+}
+
+function logout(){
+    localStorage.removeItem("userName");
+    window.location.href = 'index.html';   
+}
 
 // function conlogAllContacts() {
 //     let startWithLetter = [];
