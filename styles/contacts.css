@@ -20,13 +20,13 @@ body {
 
 .contactsBar {
    width: 453px;
-   height: 100vh;
+   height: 100%;
    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08); 
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: flex-start;
-   padding: 1rem 1rem 1rem 2rem;
+   padding: 1rem;
 }
 
 .contactList {
@@ -99,6 +99,7 @@ body {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
+    padding-right: 1.5rem;
 }
 
 .letter {
@@ -201,16 +202,22 @@ body {
     align-items: flex-start;
     padding-left: 4rem;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #F5F5F5;;
 }
 
 .contactsContentHeader {
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 50px;
     height: 300px;
+    width: 100%;
+}
+
+.contactsContentHeader > div {
+    margin-right: 50px;
+
 }
 
 .contactsContentHeader h1 {
@@ -228,19 +235,23 @@ body {
 .contactsContentHeader > div:last-of-type {
     font-size: 27px;
     color: rgba(42, 54, 71, 1);
+    margin-right: 0;
 }
 
 .contactsContent {
     width: 100%;
     height: 100%;
+    padding-bottom: 2rem;
+    padding-right: 1.5rem;
 }
 
 .contactDetails {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
     gap: 50px;
+    width: 100%;
+    height: 100%;
 }
 
 .contactDetails > div:first-of-type {
@@ -305,7 +316,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 500px;
+    height: 100%;
 }
 
 .contactInformation > div {
@@ -323,6 +334,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     gap: 100px;
+    width: 100%;
 }
 
 .contactInformationHeader > div:first-of-type {
@@ -381,6 +393,13 @@ body {
     color: black;
  }
 
+ .deleteContact {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    height: 100% !important;
+ }
+
  .deleteContact > div{
     display: flex;
     justify-content: flex-start;
@@ -405,29 +424,11 @@ body {
     color: red;
  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ================= New Contact Button ============== */
 .newContactButton {
     position: absolute;
-    right: 52px;
-    bottom: 67px;
+    right: 32px;
+    bottom: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -461,8 +462,7 @@ body {
 
 .addContactContainer {
     height: 500px;
-    width: 75%;
-    max-width: 1050px;
+    width: 1000px;
     display: flex;
     border-radius: 30px;
 }
@@ -710,5 +710,150 @@ body {
   }
 
 
+/* ================================== RESPONSIVENESS =======================================*/
+@media (max-width: 1235px) {
+    .contactsContentHeader > div{
+        margin-right: 20px;
+    }
 
+    .contactsContentHeader > div:last-of-type{
+        margin-right: 0;
+    }
+
+    .contactsContentHeader  h1 {
+        font-size: 40px;
+    }
+
+    .contactsContainer {
+        padding-left: 1.5rem;
+    }
+
+    .contactIconBig {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name > div > span {
+        font-size: 35px;
+    }
+}
+ 
+@media (max-width: 1020px) {
+    .contactsContentHeader  h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .contactsContentHeader {
+        align-items: center;
+        gap: 10px;
+        height: 160px;
+        margin-top: 1.5rem;
+        margin-bottom: 50px;
+    }
+    .contactDetails > div:first-of-type > div:first-of-type {
+        margin-right: 40px;
+    }
+    .contactInformationHeader {
+        justify-content: space-between;
+        gap: 0;
+    }
+    .contactIconBig > span {
+        font-size: 35px;
+    }
+    .name > div > span {
+        font-size: 27px;
+    }
+    .addContactBackground {
+        padding: 20px;
+    }
+
+    .addContactConatiner {
+        width: 100%;
+    }
+
+} 
+
+@media (max-width: 950px) {
+    .contactsBar {
+        width: 100%;
+        padding-top: 100px;
+    }
+    .contactsContainer {
+        display: none;
+    }
+    .newContactButton {
+        top: 32px;
+        right: 32px;
+    }
+    .contactContainer {
+        width: 100%;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 830px) {
+    .addContactContainer {
+        height: 900px;
+        width: 500px;
+        flex-direction: column;
+        position: absolute;
+    }
+    .addContactLeftSide {
+        width: 100%;
+        border-radius: 30px 30px 0 0;
+        align-items: center;
+        height: 40%;
+    }
+    .addContactLeftSide > img {
+        display: none;
+    }
+
+    .addContactRightSide {
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+        flex-direction: column;
+        height: 60%;
+        gap: 0;
+
+    }
+    .contactImg {
+        position: relative;
+        top: -50px;
+    }
+
+    .contactInfo {
+        padding: 0;
+    }
+
+    .contactInfo > div:last-of-type {
+        gap: 20px;
+    }   
+
+    .contactInfo > div:last-of-type {
+        justify-content: flex-start;
+    }
+
+    .contactInfo > div:first-of-type > div {
+        position: relative;
+        top: 1.5rem;
+        right: 1.5rem;
+        background-color: white;
+    }
+
+}
+
+@media (max-width: 720px) {
+    .newContactButton {
+        width: 160px;
+        height: 43px;
+    }
+    .newContactButton span {
+        font-size: 16px;
+    }
+    .newContactButton img {
+        width: 30px;
+        height: auto;
+    }
+}
 
