@@ -8,101 +8,148 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/contacts.css">
     <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/styleSummery.css">
 </head>
 
 <body id='body' onload="init()">
 
-    <div class="contactsMainContainer">
-
-        <div class="contactsBar">
-            <div id="contactList" class="contactList">
-<!--            <div>
-                    <div class="letter">
-                        <div>A</div>
-                    </div>
-                    <div class="contactsHline"></div>
-                    <div id="sortedContacts" class="sortedContacts">
-                    </div>
-                </div> -->
-            </div>
+    <div class="mainContainer">
+        <!-- LogoTopLeftCorner -->
+        <div class="sideNavBarLogo">
+            <img id="startScreenLogo" src="img/whitelogo.svg" class="whiteLogo" />
+            <img src="img/blacklogo.svg" class="blackLogo" />
         </div>
 
-        <div class="contactsContainer">
-            <div class="contactsContentHeader">
+        <!-- Sidebar -->
+        <div class="sideNavBar">
+            <div class="sideNavBarList">
+                <div> 
+                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/summary.svg"
+                            class="svg"><span>Summary</span></a>
+                </div>
                 <div>
-                    <h1>Contacts</h1>
-                </div>
-                <div class="contactsVline">
+                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/board.svg" class="svg"><span>Board</span></a>
                 </div>
                 <div>
-                    Better with a team
+                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/addtask.svg" class="svg"><span>Add
+                            Task</span></a>
                 </div>
-            </div>
-
-            <div class="contactsContent">
-                <div class="contactDetails" id="contactDetails">
-<!--                <div>
-                        <div>
-                            <div class="contactIconBig">
-                                <span>AM</span>
-                            </div>
-                        </div>
-                        <div class="contactDetailsName">
-                            <div class="name">
-                                <div>
-                                    <span>Anton</span>
-                                    <span>Mayer</span>
-                                </div>
-                            </div>
-                            <div class="addTask">
-                                <img src="../img/plus.svg"><span>Add Task</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contactInformation">
-                        <div>
-                            <div class="contactInformationHeader">
-                                <div>
-                                    <span>Contact Information</span>
-                                </div>
-                                <div calss="editContact">
-                                    <img src="../img/edit.svg">
-                                    <span>Edit Contact</span>
-                                </div>
-                            </div>
-    
-                            <div class="contactInformationMain">
-                                <div>
-                                    <span>Email</span>
-                                    <a href="antom@gmail.com">antom@gmail.com</a>
-                                </div>
-                                <div>
-                                    <span>Phone</span>
-                                    <a href="tel:+491111111111">+49 1111 111 11 1</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="deleteContact">
-                            <div onclick="deleteContact()">
-                                <span>Delete contact</span>
-                                <img src="../img/delete.svg">
-                            </div>
-                        </div>
-                    </div>
- -->
+                <div>
+                    <a class="sideNavBarTask"><img src="/img/contacts.svg"
+                            class="svg"><span>Contacts</span></a>
+                </div>
+                <div class="sideNavBarLegalNotice">
+                    <a href="www.google.com" class="sideNavBarTask"><img src="/img/legalnotice.svg" class="svg">Legal
+                        Notice</a>
                 </div>
             </div>
         </div>
 
-        <button class="newContactButton" onclick="newContact()">
-            <span>New contact</span>
-            <img src="../img/newContact.svg">
-        </button>
+
+        <div class="placeholderRight">
+            <div class="placeholderTop">
+                <div class="topNavBarLeftText">Kanban Project Management Tool</div>
+                <div class="topNavBarRightImg">
+                    <img src="img/questionmark.svg" class="topNavBarRightImgQuestionmark">
+                    <img src="img/picture.svg" class="topNavBarRightImgPicture">
+                </div>
+            </div>
+
+            <div class="placeholderBottom">
+                <div class="contactsMainContainer">
+
+                    <div class="contactsBar">
+                        <div id="contactList" class="contactList">
+            <!--            <div>
+                                <div class="letter">
+                                    <div>A</div>
+                                </div>
+                                <div class="contactsHline"></div>
+                                <div id="sortedContacts" class="sortedContacts">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+            
+                    <div id="contactsContainer" class="contactsContainer">
+                        <div class="contactsContentHeader">
+                            <div>
+                                <h1>Contacts</h1>
+                            </div>
+                            <div class="contactsVline">
+                            </div>
+                            <div>
+                                Better with a team
+                            </div>
+                        </div>
+            
+                        <div id="contactsContent" class="contactsContent">
+                            <div class="contactDetails" id="contactDetails">
+            <!--                <div>
+                                    <div>
+                                        <div class="contactIconBig">
+                                            <span>AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="contactDetailsName">
+                                        <div class="name">
+                                            <div>
+                                                <span>Anton</span>
+                                                <span>Mayer</span>
+                                            </div>
+                                        </div>
+                                        <div class="addTask">
+                                            <img src="../img/plus.svg"><span>Add Task</span>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="contactInformation">
+                                    <div>
+                                        <div class="contactInformationHeader">
+                                            <div>
+                                                <span>Contact Information</span>
+                                            </div>
+                                            <div calss="editContact">
+                                                <img src="../img/edit.svg">
+                                                <span>Edit Contact</span>
+                                            </div>
+                                        </div>
+                
+                                        <div class="contactInformationMain">
+                                            <div>
+                                                <span>Email</span>
+                                                <a href="antom@gmail.com">antom@gmail.com</a>
+                                            </div>
+                                            <div>
+                                                <span>Phone</span>
+                                                <a href="tel:+491111111111">+49 1111 111 11 1</a>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+            
+                                    <div class="deleteContact">
+                                        <div onclick="deleteContact()">
+                                            <span>Delete contact</span>
+                                            <img src="../img/delete.svg">
+                                        </div>
+                                    </div>
+                                </div>
+             -->
+                            </div>
+                        </div>
+                    </div>
+            
+                    <button class="newContactButton" onclick="newContact()">
+                        <span>New contact</span>
+                        <img src="../img/newContact.svg">
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </div>
-
 
     <!-- ======================== AddContacts Overlay ======================== -->
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
@@ -170,7 +217,7 @@
             </div>
         </div>
     </div>
-
+                
     <!-- ======================== Edit Contacts Overlay ======================== -->
     <div id="editContactBackground" class="addContactBackground" onclick="closePopup()">
 
@@ -188,7 +235,7 @@
                     <!--                <div>
                         <img src="../img/addUserIcon.svg">
                     </div>
- -->
+    -->
                 </div>
                 <div class="contactInfo">
                     <div>
@@ -228,28 +275,21 @@
                             <!--                            <button class="createContact" onclick="saveChanges()">
                                     <span>Save</span>
                                 </button>
- -->
+    -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+                
     <!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
     <div id="contactCreated">Contact succesfully created</div>
 
 
     <!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
     <div id="contactChangesSaved">Changes saved</div>
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -291,7 +331,7 @@
             let letter = letters[i];
             
             contactList.innerHTML += `
-                <div id='contactContainer${i}' >
+                <div id='contactContainer${i}' class="contactContainer">
                     <div class="letter">
                         <div>${letter}</div>
                     </div>
@@ -327,7 +367,7 @@
 
             if(firstLetters.charAt(0) == letter) {
                 sortedContacts.innerHTML += `
-                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
+                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c}), openContactInfoMobile()">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
                                 <span>${firstLetters}</span>
@@ -345,6 +385,10 @@
         }
     }
     }  
+
+
+
+
 
     function checkForEmptyLetters(i) {
         let contactContainer = document.getElementById('contactContainer'+i);
@@ -390,50 +434,50 @@
         event.stopPropagation();
     }
 
-        function createContact() {
+    function createContact() {
 
-            if (name.vlaue == '' || email.value == '') {
-                alert('input required');
-            } else {
-                randomBackground();
-                let newContact = { name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor };
-                contacts.push(newContact);
-                saveContacts();
-                name.value = '';
-                surname.value = '';
-                email.value = '';
-                phone.value = '';
-                renderContacts();
-                showContactCreatedPupup();
-            }
+        if (name.vlaue == '' || email.value == '') {
+            alert('input required');
+        } else {
+            randomBackground();
+            let newContact = { name: name.value, surname: surname.value, email: email.value, phone: phone.value, background: bgColor };
+            contacts.push(newContact);
+            saveContacts();
+            name.value = '';
+            surname.value = '';
+            email.value = '';
+            phone.value = '';
+            renderContacts();
+            showContactCreatedPupup();
         }
+    }
 
-        function randomBackground() {
-            let x = Math.floor(Math.random() * 256)
-            let y = Math.floor(Math.random() * 256)
-            let z = Math.floor(Math.random() * 256)
-            bgColor = `rgb(${x}, ${y}, ${z})`;
-        }
+    function randomBackground() {
+        let x = Math.floor(Math.random() * 256)
+        let y = Math.floor(Math.random() * 256)
+        let z = Math.floor(Math.random() * 256)
+        bgColor = `rgb(${x}, ${y}, ${z})`;
+    }
 
-        async function saveContacts() {
-            let contactAsString = JSON.stringify(contacts);
-            await localStorage.setItem('contacts', contactAsString);
-        }
+    async function saveContacts() {
+        let contactAsString = JSON.stringify(contacts);
+        await localStorage.setItem('contacts', contactAsString);
+    }
 
-        async function loadContacts() {
-            let contactAsString = localStorage.getItem('contacts');
-            contacts = await JSON.parse(contactAsString) || [];
-        }
+    async function loadContacts() {
+        let contactAsString = localStorage.getItem('contacts');
+        contacts = await JSON.parse(contactAsString) || [];
+    }
 
-        function openContactInfo(i) {
-            let contactInformation = document.getElementById('contactDetails');
-            contactInformation.innerHTML = '';
+    function openContactInfo(i) {
+        let contactInformation = document.getElementById('contactDetails');
+        contactInformation.innerHTML = '';
 
-            let contactInfotName = contacts[i]['name'];
-            let contactInfoSurname = contacts[i]['surname'];
-            let contactInfoEmail = contacts[i]['email'];
-            let contactInfoPhone = contacts[i]['phone'];
-            let contactInfoBgColor = contacts[i]['background'];
+        let contactInfotName = contacts[i]['name'];
+        let contactInfoSurname = contacts[i]['surname'];
+        let contactInfoEmail = contacts[i]['email'];
+        let contactInfoPhone = contacts[i]['phone'];
+        let contactInfoBgColor = contacts[i]['background'];
 
             getFirstLetter(i);
 
