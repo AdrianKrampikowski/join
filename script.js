@@ -330,6 +330,10 @@ function doneCounter() {
     `;
 }
 
+function deadlineDate(){
+    // Fehlt von AddTask
+}
+
 function greeting() {
     let currentdate = new Date();
     let datetime = currentdate.getHours();
@@ -342,16 +346,36 @@ function greeting() {
     `;
 }
 
-function displayUserName(){
+function displayUserName() {
     let userName = localStorage.getItem("userName");
+    let abbreviatedName = abbreviateName(userName, 10);
+    console.log("Length", userName.length);
     document.getElementById("userName").innerHTML = `
-    ${userName}
+    ${abbreviatedName}
     `;
 }
 
-function logout(){
+function abbreviateName(name, maxLength) {
+    if (name.length <= maxLength) {
+        // If the name is already short enough, just return it as is
+        return name;
+    } else {
+        // Otherwise, abbreviate the name by taking the first letter of each word
+        // and adding an ellipsis at the end
+        // let words = name.split(' ');
+        // let initials = words.map(word => word.charAt(0)).join('');
+        // return initials;
+        let words = name.split(' ');
+        let firstWord = words[0];
+        let secondWordInitial = words[1].charAt(0);
+        return `${firstWord} ${secondWordInitial}.`;
+    }
+}
+
+
+function logout() {
     localStorage.removeItem("userName");
-    window.location.href = 'index.html';   
+    window.location.href = 'index.html';
 }
 
 // function conlogAllContacts() {
