@@ -12,6 +12,7 @@ async function includeHTML() {
         }
     }
     updateHTML();
+
 }
 
 let toDos = [{
@@ -273,6 +274,36 @@ async function showAllContacts() {
             }
         })
 
+}
+
+setTimeout(() => {
+    todoCounter();
+    inProgressCounter();
+    awaitingFeedbackCounter();
+}, 100);
+
+function todoCounter() {
+    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
+    toDoCounter = toDoCounter.length;
+    document.getElementById("todoCounter").innerHTML = `
+    ${toDoCounter}
+    `;
+}
+
+function awaitingFeedbackCounter() {
+    let awaitingFeedbackCounter = toDos.filter(t => t["category"] == "awaitingFeedback");
+    awaitingFeedbackCounter = awaitingFeedbackCounter.length;
+    document.getElementById("awaitingFeedbackCounter").innerHTML = `
+    ${awaitingFeedbackCounter}
+    `;
+}
+
+function inProgressCounter() {
+    let inProgressCounter = toDos.filter(t => t["category"] == "inProgress");
+    inProgressCounter = inProgressCounter.length;
+    document.getElementById("inProgressCounter").innerHTML = `
+    ${inProgressCounter}
+    `;
 }
 
 
