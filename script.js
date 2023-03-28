@@ -12,6 +12,7 @@ async function includeHTML() {
         }
     }
     updateHTML();
+
 }
 
 let toDos = [{
@@ -107,11 +108,7 @@ function updateHTML() {
     createBubbles();
 }
 
-<<<<<<< HEAD
-function generateToDoHTML(element, i) {
-=======
 function generateToDoHTML(element) {
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
 
@@ -141,16 +138,9 @@ function generateToDoHTML(element) {
             </div>
             </div>
 
-<<<<<<< HEAD
-            <div class="boardContainerUserBubbles">
-                <div class="userBubble" id="${element['id']}">
-                </div>
-            </div>
-=======
                 <div class="boardContainerUserBubbles">
                     <div class="userBubble" id="userBubble${element["id"]}">
                     </div>
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 
                     <div>
                         <img src="img/greenArrow.svg">
@@ -160,10 +150,6 @@ function generateToDoHTML(element) {
 
         </div>
         `;
-<<<<<<< HEAD
-    
-=======
->>>>>>> a76d9d4c690dfa23c475d0485cdc3393cf224732
 }
 
 
@@ -209,7 +195,6 @@ function createBubbles() {
         }
     }
 }
-
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -260,17 +245,11 @@ async function showAllContacts() {
         })
         .then(data => {
             const users = JSON.parse(data.users);
-            console.log(users[0]);
-            console.log(users[0]["name"]);
-            console.log(users[0]["email"]);
-            console.log(users[0]["password"]);
-            console.log(users[0]["userid"]);
             for (let i = 0; i < users.length; i++) {
                 let contactMemory = users[i]["name"];
                 allUsers.push(contactMemory);
                 allUsers.sort();
             }
-            console.log(allUsers);
 
             for (let i = 65; i < 90; i++) {
                 let contacts = allUsers
@@ -284,14 +263,110 @@ async function showAllContacts() {
                     startWithLetter.push(contacts);
                 }
             }
-            if (startWithLetter.length > 0) {
-                console.log(startWithLetter);
-            }
         })
 
 }
 
+setTimeout(() => {
+    taskCounter();
+    inProgressCounter();
+    awaitingFeedbackCounter();
+    todoCounter();
+    doneCounter();
 
+    greeting();
+    displayUserName();
+}, 100);
+
+function taskCounter() {
+    let taskCounter = toDos.length
+    document.getElementById("taskCounter").innerHTML = `
+    ${taskCounter}
+    `;
+}
+
+function awaitingFeedbackCounter() {
+    let awaitingFeedbackCounter = toDos.filter(t => t["category"] == "awaitingFeedback");
+    awaitingFeedbackCounter = awaitingFeedbackCounter.length;
+    document.getElementById("awaitingFeedbackCounter").innerHTML = `
+    ${awaitingFeedbackCounter}
+    `;
+}
+
+function inProgressCounter() {
+    let inProgressCounter = toDos.filter(t => t["category"] == "inProgress");
+    inProgressCounter = inProgressCounter.length;
+    document.getElementById("inProgressCounter").innerHTML = `
+    ${inProgressCounter}
+    `;
+}
+
+function urgenCounter() {
+    // Fehlt noch
+}
+
+function todoCounter() {
+    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
+    toDoCounter = toDoCounter.length;
+    document.getElementById("todoCounter").innerHTML = `
+    ${toDoCounter}
+    `;
+}
+
+function doneCounter() {
+    let doneCounter = toDos.filter(t => t["category"] == "done");
+    doneCounter = doneCounter.length;
+    document.getElementById("doneCounter").innerHTML = `
+    ${doneCounter}
+    `;
+}
+
+function deadlineDate(){
+    // Fehlt von AddTask
+}
+
+function greeting() {
+    let currentdate = new Date();
+    let datetime = currentdate.getHours();
+    let greeting = "Good morning,";
+    if (datetime > 12) {
+        greeting = "Good evening,";
+    }
+    document.getElementById("greeting").innerHTML = `
+    ${greeting}
+    `;
+}
+
+function displayUserName() {
+    let userName = localStorage.getItem("userName");
+    let abbreviatedName = abbreviateName(userName, 10);
+    document.getElementById("userName").innerHTML = `
+    ${abbreviatedName}
+    `;
+}
+
+function abbreviateName(name, maxLength) {
+    if (name.length <= maxLength) {
+        // If the name is already short enough, just return it as is
+        return name;
+    } else {
+        // Otherwise, abbreviate the name by taking the first letter of each word
+        // and adding an ellipsis at the end
+        // let words = name.split(' ');
+        // let initials = words.map(word => word.charAt(0)).join('');
+        // return initials;
+        let words = name.split(' ');
+        let firstWord = words[0];
+        let secondWordInitial = words[1].charAt(0);
+        return `${firstWord} ${secondWordInitial}.`;
+    }
+}
+
+
+function logout() {
+    localStorage.removeItem("userName");
+    window.location.href = 'index.html';
+}
 
 // function conlogAllContacts() {
 //     let startWithLetter = [];

@@ -24,6 +24,7 @@ function addUser(){
     let surname = document.getElementById('surname');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
+    let color = document.getElementById('color');
     let userId = id;
 
     for (let i = 0; i < users.length; i++) {
@@ -32,7 +33,7 @@ function addUser(){
         } 
     }
 
-    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, userid: userId};
+    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId};
     let user = users.find(u => u.email == email.value && u.password == password.value);
     
     if(user){
@@ -73,18 +74,26 @@ function login() {
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
     
-    let user = users.find(u => u.email == emailLog.vlue && u.password == passwordLog);
+    let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
     let existingUser = users.find(u => u.email == emailLog.value);
-
+    
     if(user) {
         let urlParams = new URLSearchParams(window.location.search); // query paramter von einem query string (window.location.search) von der URL auslesen
         let userId = urlParams.get('id');
+        let userName = user.name;
+        localStorage.setItem('userName', userName);
         window.location.href = 'summery.html?id=' + userId;          // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
     } else if (existingUser) {
         pwEmailIncorrectPopup();
     } else {
         userDoesNotExistPopup();
     }
+}
+
+function guestLogin(){
+    let userName = "Guest";
+    localStorage.setItem('userName', userName);
+    window.location.href = 'summery.html';  
 }
 
 
