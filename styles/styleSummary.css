@@ -68,6 +68,10 @@
   border-radius: 30px;
 }
 
+.allCardsNumberFontSize {
+  font-size: 64px;
+}
+
 .allTopCards {
   display: flex;
   gap: 35px;
@@ -193,6 +197,9 @@
   .summaryDescription {
     font-size: 20.25px;
   }
+  .allCardsNumberFontSize {
+    font-size: 48px;
+  }
   .allTopCards{
     gap: 26.25px;
   }
@@ -200,6 +207,9 @@
   .topCard {
     width: 127.5px;
     height: 127.5px;
+  }
+  .topCardText {
+    font-size: 15.75px;
   }
 
   .middleCard {

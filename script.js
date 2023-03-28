@@ -49,6 +49,8 @@ let toDos = [{
     "category": "done"
 }];
 
+let allTasks = [];
+
 // let newUsers = [{
 //     "id": 0,
 //     "name": "Adrian",
@@ -244,7 +246,7 @@ async function showAllContacts() {
             return response.json();
         })
         .then(data => {
-            const users = JSON.parse(data.users);
+            let users = JSON.parse(data.users);
             for (let i = 0; i < users.length; i++) {
                 let contactMemory = users[i]["name"];
                 allUsers.push(contactMemory);
@@ -263,6 +265,10 @@ async function showAllContacts() {
                     startWithLetter.push(contacts);
                 }
             }
+
+            let tasks = JSON.parse(data.tasks);
+            let test = tasks[0];
+            console.log("test",test);
         })
 
 }
@@ -279,7 +285,7 @@ setTimeout(() => {
 }, 100);
 
 function taskCounter() {
-    let taskCounter = toDos.length
+    let taskCounter = toDos.length;
     document.getElementById("taskCounter").innerHTML = `
     ${taskCounter}
     `;

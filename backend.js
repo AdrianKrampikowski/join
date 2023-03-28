@@ -1,4 +1,5 @@
 let users = [];
+let tasks = [];
 
 let id;
 
@@ -9,6 +10,7 @@ async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
 } 
 
 
@@ -52,7 +54,46 @@ function addUser(){
 
 //    let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
 //    let idMsg = urlParams.get('id');
+}
+
+// ToDoStart
+function createTask(){
+    // generateUserId();
+    let title = document.getElementById('titleTextfield');
+    console.log("createTask", title);
+    let taskData = {title: title.value};
+    tasks.push(taskData);
+    saveTasks();
+    // let surname = document.getElementById('surname');
+    // let email = document.getElementById('email');
+    // let password = document.getElementById('password');
+    // let color = document.getElementById('color');
+    // let userId = id;
+
+    // for (let i = 0; i < users.length; i++) {
+    //     if(users[i]['userid'].includes === id) {
+    //         generateUserId();
+    //     } 
+    // }
+
+    // let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId};
+    // let user = users.find(u => u.email == email.value && u.password == password.value);
+    
+    // if(user){
+    //     alreadySignedUpPupup();
+    //     name.value = '';
+    //     surname.value = '';
+    //     email.value = '';
+    //     password.value ='';
+    // } else {
+    //     users.push(userData);
+    //     save();
+    //     successfullySignedUpPopup();
+
+    //     setInterval(forwardToLogin, 1200);
+    // }
 } 
+//ToDoEnd
 
 function forwardToLogin() {
     // Weiterleitung zur Loginseite
@@ -63,6 +104,10 @@ function forwardToLogin() {
 async function save() {
        let usersAsString = JSON.stringify(users);
        await backend.setItem('users', usersAsString);
+}
+async function saveTasks() {
+    let tasksAsString = JSON.stringify(tasks);
+    await backend.setItem('tasks', tasksAsString);
 }
 
 function backToLoginScreen() {
