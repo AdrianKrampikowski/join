@@ -12,22 +12,6 @@ body {
 
 }
 
-.loginHeading {
-    width: 80%;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    height: auto;
-    font-weight: bold;
-    text-align: center;
-    color: #000000;
-}
-
-.loginHeading2 {
-    width: 100%;
-
-}
-
 .loginButton {
     width: 250px;
     font-weight: bold;
@@ -63,6 +47,7 @@ body {
 }
 
 .loginScreen{
+  position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,15 +65,40 @@ body {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
 
-.loginScreen > div:first-of-type {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+ .arrowBack {
+  position: absolute;
+  top: 24px;
+  left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+} 
+
+
+.loginHeading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
-.loginScreen > div:first-of-type > div {
+.loginHeading > h1 {
+  text-align: center;
+
+  font-size: 3rem;
+/*   font-weight: bold;
+ */
+}
+
+.loginHeading2 {
+  width: 100%;
+  margin-top: 0;
+}
+
+.loginHeading > div {
     height: 3px;
     background-color: #29abe2;
     width: 30%;
@@ -102,8 +112,10 @@ body {
 
 .inputContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .inputFieldContainer {
@@ -233,6 +245,53 @@ body {
     width: 83px;
   }
 
+/* ================================== SNACKBAR =======================================*/
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#sendEmail {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #2A3647; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 10px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#sendEmail.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
   
 
 
@@ -248,7 +307,7 @@ body {
     .loginScreen, .contentContainer {
         width: 100%;
     }
-    .loginHeading {
+    .loginHeading > h1 {
         font-size: 2.5rem;
     }
     .inputFields {
@@ -277,15 +336,25 @@ body {
     margin-left: 25px !important;
   }
 
+  .arrowBack {
+    top: 16px;
+    left: 16px;
+  } 
+
 }
 
 @media (max-width: 480px) {
-    .loginScreen {
+  .loginScreen {
         height: 500px;
  }
 
- .inputFields {
-    width: 260px;
+ .inputFields, .inputContainer, .inputFieldContainer   {
+    width: 100%;
+ }
+
+ .inputContainer {
+  padding-left: 2rem;
+  padding-right: 2rem;
  }
 
  .logo {
@@ -300,16 +369,17 @@ body {
 }
 
  @media (max-width: 380px) {
- .inputFields {
-     width: 230px !important;
-}
-
  .contentContainer {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 1rem;
+    margin-right: 1rem;
  }
 
- .loginHeading {
+ .inputContainer {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+ }
+
+ .loginHeading > h1 {
     font-size: 2.2rem;
  }
 

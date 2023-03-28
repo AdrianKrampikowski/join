@@ -10,15 +10,10 @@
     <link rel="stylesheet" href="./styles/forgotPw.css">
 
     <script src="backend.js"></script>
-    <script src="script.js"></script>
-    <script src="mini_backend.js"></script>
 
   </head>
-  <body onload="init()">
+  <body>
     <div class="mainContainer">
-
-
-
 
       <div class="header">
         <div class="startScreen forgotPwScreen">
@@ -26,26 +21,33 @@
         </div>
       </div>
 
-    
         <div class="contentContainer">
             <div class="loginScreen">
-                <div>
-                  <h1 class="loginHeading">I forgot my password</h1>
+                <div class="arrowBack" onclick="backToLoginScreen()">
+                  <img src="./img/arrowLeft.svg">
+                </div>              
+                <div class="loginHeading">
+                  <h1>I forgot my password</h1>
                   <div></div>
                 </div>
 
                 <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
                 
-                <div class="inputContainer">
+                <form class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
                     <div class="inputFieldContainer">
-                      <input class="inputFields" type="email" placeholder="Email" required/>
+                      <input name="email" class="inputFields" type="email" placeholder="Email" required/>
                       <img src="img/letter.svg" class="img" />
                     </div>
-                </div>
 
-                <button class="loginButton">Send me the email</button>
+                    <button onclick="sendEmail()" type="submit" class="loginButton">Send me the email</button>
+                </form>
+
             </div>
         </div>
     </div>
+
+      <!-- ================================== SNACKBAR ALREADY SIGNE UP ======================================= -->
+      <div id="sendEmail">E-Mail has been sent!</div>
+
   </body>
 </html>

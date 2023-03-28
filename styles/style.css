@@ -85,6 +85,7 @@ a {
   right: 50px;
   font-size: 25px;
   font-weight: bold;
+  z-index: 0;
 }
 
 .contentContainer {
@@ -110,7 +111,11 @@ a {
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   background-color: white;
   width: 650px;
-  height: 550px;
+  height: 600px;
+}
+
+.signUpScreenMain {
+  height: 500px;
 }
 
 .arrowBack {
@@ -122,7 +127,6 @@ a {
   align-items: center;
   cursor: pointer;
 }
-
 
 
 .loginHeading {
@@ -139,7 +143,7 @@ a {
   order: 0;
   flex-grow: 0;
   position: relative;
-    margin-top: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 
 }
@@ -160,12 +164,13 @@ a {
   text-align: center;
 }
 
+
 .inputFields {
   box-sizing: border-box;
   padding: 13px 21px;
   gap: 10px;
   width: 422px;
-  height: 41px;
+  height: 51px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
@@ -231,7 +236,12 @@ a {
 
 .rememberOrForgetFields {
   display: flex;
+  align-items: center;
   gap: 35px;
+}
+
+.rememberOrForgetFields > a {
+  text-align: center;
 }
 
 .checkboxContainer {
@@ -282,8 +292,6 @@ a {
     height: 100px;
     width: 83px;
     background-color: transparent;
-    margin-left: 50px;
-    margin-top: 25px;
   }
 }
 
@@ -297,6 +305,7 @@ a {
 }
 
 .logo {
+  position: relative;
   height: 150px;
   width: 124px;
   opacity: 1;
@@ -316,6 +325,8 @@ a {
   100% {
     height: 100px;
     width: 83px;
+    left: 50px;
+    top: 25px;
   }
 }
 
@@ -391,14 +402,9 @@ a {
 }
 
 @media (max-width: 600px) {
-  .startScreen {
-  margin-left: 25px !important;
-  }
-
-  h1 {
-/*     margin-top: 1rem;
-    margin-bottom: 1rem;
- */  }
+  .logo {
+    margin-left: -25px !important;
+}
 
   .signInContainer {
     width: 100%;
@@ -423,6 +429,10 @@ a {
 
   .loginScreen {
     height: 600px;
+  }
+
+  .signUpScreenMain {
+    height: 500px;
   }
 
   .inputFields {
@@ -465,8 +475,6 @@ a {
     width: 100%;
   }
 
-
-
   .inputFieldContainer .img {
     position: absolute;
     top: 50%;
@@ -506,18 +514,13 @@ a {
     top: -150px;
     padding-left: 25px;
     padding-right: 25px;
-  
-  }
+   }
 }
 
 @media (max-width: 480px) {
   .logo {
     height: 75px !important;
     width: auto;
-  }
-
-  .startScreen {
-    margin-left: 15px !important;
   }
 
   .loginScreen {
@@ -562,6 +565,11 @@ a {
 
   .inputFields {
     font-size: 16px;
+  }
+
+  .arrowBack img{
+    width: 25px;
+    height: 25px;
   }
 }
 
