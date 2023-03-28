@@ -53,19 +53,19 @@ function checkPrioity() {
     let prio;
     let priotity;
     if (priotity_low) {
-        prio = "assets/img/low_priotity.png";
+        prio = "/img/low_priotity.png";
         priotity = 'low';
 
     }
     else if (priotity_medium) {
-        prio = "assets/img/medium_priotity.png";
+        prio = "/img/medium_priotity.png";
         priotity = 'medium';
     }
     else if (priotity_urgent) {
-        prio = "assets/img/high_priotity.png";
+        prio = "/img/high_priotity.png";
         priotity = 'urgent';
     }
-    return [{ 'img': prio, 'priotity': priotity, "img_white": "assets/img/Prio-" + priotity + "-white.png" }];
+    return [{ 'img': prio, 'priotity': priotity, "img_white": "/img/Prio-" + priotity + "-white.png" }];
 }
 
 /**
@@ -206,17 +206,19 @@ function clearSubtask() {
  * Clears all fields and checkboxes in the task form.
  */
 function clearAll() {
-    document.getElementById('title_textfield').value = '';
-    document.getElementById('description_textfield').value = '';
-    document.getElementById('category-header').innerHTML = 'Select your Category';
-    for (let i = 0; i < contactsAddTask.length; i++) {
-        if (document.getElementById('assigned-to-' + i).checked) {
-            document.getElementById('assigned-to-' + i).checked = false;
-        }
+    window.location.reload();
 
-    }
-    document.getElementById('date').value = '';
-    document.getElementById('subtask-list').innerHTML = '';
+    //document.getElementById('title_textfield').value = '';
+    //document.getElementById('description_textfield').value = '';
+    //document.getElementById('category-header').innerHTML = 'Select your Category';
+    // for (let i = 0; i < contactsAddTask.length; i++) {
+    //    if (document.getElementById('assigned-to-' + i).checked) {
+    //       document.getElementById('assigned-to-' + i).checked = false;
+    // }
+
+    // }
+    //document.getElementById('date').value = '';
+    //document.getElementById('subtask-list').innerHTML = '';
 }
 
 /**
@@ -298,5 +300,5 @@ async function editAddTask(id){
     tasks[id] = new_task;
     await saveNotes();
     subtasks = [];
-    window.location.href = './board.html'
+    window.location.href = '/board.html'
 }

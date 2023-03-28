@@ -475,7 +475,7 @@ select::-ms-expand {
 }
 
 .btn-clear:hover .clear-img {
-    content: url('../assets/img/iconoir_cancel_hover.svg');
+    content: url(/img/iconoir_cancel.svg)
 }
 
 fieldset {
