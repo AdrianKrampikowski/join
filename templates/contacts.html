@@ -58,7 +58,7 @@
             <div class="placeholderBottom">
                 <div class="contactsMainContainer">
 
-                    <div class="contactsBar">
+                    <div id="contactsBar" class="contactsBar">
                         <div id="contactList" class="contactList">
             <!--            <div>
                                 <div class="letter">
@@ -140,7 +140,8 @@
                             </div>
                         </div>
                     </div>
-            
+
+           
                     <button class="newContactButton" onclick="newContact()">
                         <span>New contact</span>
                         <img src="../img/newContact.svg">
@@ -340,9 +341,8 @@
                     </div>
                 </div>
             `;
-
             renderContacts(i, letter);
-            checkForEmptyLetters(i)
+            checkForEmptyLetters(i);
         }
     }
 
@@ -367,7 +367,7 @@
 
             if(firstLetters.charAt(0) == letter) {
                 sortedContacts.innerHTML += `
-                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c}), openContactInfoMobile()">
+                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
                                 <span>${firstLetters}</span>
@@ -384,12 +384,8 @@
                     `;
         }
     }
-    }  
-
-
-
-
-
+}  
+    
     function checkForEmptyLetters(i) {
         let contactContainer = document.getElementById('contactContainer'+i);
         let emptyLetters = document.getElementById('sortedContacts'+i);
@@ -471,6 +467,7 @@
 
     function openContactInfo(i) {
         let contactInformation = document.getElementById('contactDetails');
+        let body = document.getElementById('body')
         contactInformation.innerHTML = '';
 
         let contactInfotName = contacts[i]['name'];
@@ -479,9 +476,19 @@
         let contactInfoPhone = contacts[i]['phone'];
         let contactInfoBgColor = contacts[i]['background'];
 
-            getFirstLetter(i);
+        getFirstLetter(i);
 
-            contactInformation.innerHTML += `
+        contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfotName, contactInfoSurname, i, contactInfoEmail, contactInfoPhone);
+        document.getElementById('contactIconBig' + i).style.backgroundColor = contactInfoBgColor;
+
+        if (window.innerWidth < 950) {
+            document.getElementById('contactsBar').classList.add('d-none');
+            document.getElementById('contactsContainer').classList.add('contactsContainerMobile');
+        } 
+}
+
+        function contactInfoTemplate(firstLetters, contactInfotName, contactInfoSurname, i, contactInfoEmail, contactInfoPhone) {
+            return `
                     <div>
                         <div>
                             <div id="contactIconBig${i}" class="contactIconBig">
@@ -534,8 +541,6 @@
                         </div>
                     </div>
             `;
-
-            document.getElementById('contactIconBig' + i).style.backgroundColor = contactInfoBgColor;
         }
 
         function editContact(i) {
@@ -551,7 +556,7 @@
             let saveChangesButton = document.getElementById('saveChangesButton');
 
             saveChangesButton.innerHTML = `
-                <button class="createContact" onclick="saveChanges(${i})">
+                <button class="createContact" onclick="saveChanges(${i})">  
                     <span>Save</span>
                 </button>
         `;
@@ -575,8 +580,8 @@
 
             saveContacts();
             renderContacts();
-            editContactPopUp.style.display = 'none';
             contactChangesSavedPupup();
+            editContactPopUp.style.display = 'none';
         }
 
 
