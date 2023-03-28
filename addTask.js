@@ -11,7 +11,7 @@ let priotity_low = true;
  * @returns {Promise<void>}
  */
 async function addTask() {
-    let title = document.getElementById('title_textfield').value;
+    let title = document.getElementById('titleTextfield').value;
     let description = document.getElementById('description_textfield').value;
     let category = currentCategory;
     let assigned_to = [];
@@ -39,7 +39,7 @@ async function addTask() {
         'subtasks': subtasks
     }
     tasks.push(new_task);
-    await saveNotes();
+    // await saveNotes();
     subtasks = [];
     window.location.href = './board.html'
 }
@@ -71,6 +71,7 @@ function checkPrioity() {
 /**
  * Changes the color of the priority sections based on the selected priority radio button.
  */
+let selectedPriority = "";
 function changeColor() {
     priotity_urgent = document.getElementById('urgentBtn').checked;
     priotity_medium = document.getElementById('mediumBtn').checked;
@@ -80,17 +81,20 @@ function changeColor() {
         document.getElementById('urgentSection').innerHTML = loadPrioIMGWithText('Urgent', 'Prio-urgent-white');
         document.getElementById('mediumSection').innerHTML = loadPrioIMGWithText('Medium', 'Prio-medium');
         document.getElementById('lowSection').innerHTML = loadPrioIMGWithText('Low', 'Prio-low');
+        selectedPriority = "urgent";
     }
     if (priotity_medium) {
         document.getElementById('urgentSection').innerHTML = loadPrioIMGWithText('Urgent', 'Prio-urgent');
         document.getElementById('mediumSection').innerHTML = loadPrioIMGWithText('Medium', 'prio-medium-white');
         document.getElementById('lowSection').innerHTML = loadPrioIMGWithText('Low', 'Prio-low');
+        selectedPriority = "medium";
 
     }
     if (priotity_low) {
         document.getElementById('urgentSection').innerHTML = loadPrioIMGWithText('Urgent', 'Prio-urgent');
         document.getElementById('mediumSection').innerHTML = loadPrioIMGWithText('Medium', 'Prio-medium');
         document.getElementById('lowSection').innerHTML = loadPrioIMGWithText('Low', 'Prio-low-white');
+        selectedPriority = "low";
 
     }
 }
@@ -206,19 +210,16 @@ function clearSubtask() {
  * Clears all fields and checkboxes in the task form.
  */
 function clearAll() {
-    window.location.reload();
-
-    //document.getElementById('title_textfield').value = '';
-    //document.getElementById('description_textfield').value = '';
-    //document.getElementById('category-header').innerHTML = 'Select your Category';
-    // for (let i = 0; i < contactsAddTask.length; i++) {
-    //    if (document.getElementById('assigned-to-' + i).checked) {
-    //       document.getElementById('assigned-to-' + i).checked = false;
-    // }
-
-    // }
-    //document.getElementById('date').value = '';
-    //document.getElementById('subtask-list').innerHTML = '';
+    document.getElementById('titleTextfield').value = '';
+    document.getElementById('description_textfield').value = '';
+    document.getElementById('category-header').innerHTML = 'Select your Category';
+    for (let i = 0; i < contactsAddTask.length; i++) {
+        if (document.getElementById('assigned-to-' + i).checked) {
+            document.getElementById('assigned-to-' + i).checked = false;
+        }
+    }
+    document.getElementById('date').value = '';
+    document.getElementById('subtask-list').innerHTML = '';
 }
 
 /**
@@ -265,11 +266,11 @@ function fillTheTasks(id) {
     }
     for (let s = 0; s < thisSubtasks.length; s++) {
         const subtask = thisSubtasks[s];
-        document.getElementById('subtask-list').innerHTML += `<li>${subtask['subtaskName']}</li>`;        
+        document.getElementById('subtask-list').innerHTML += `<li>${subtask['subtaskName']}</li>`;
     }
 }
 
-async function editAddTask(id){
+async function editAddTask(id) {
     let title = document.getElementById('title_textfield').value;
     let description = document.getElementById('description_textfield').value;
     let category = currentCategory || tasks[id]['category'];
@@ -298,7 +299,7 @@ async function editAddTask(id){
         'subtasks': subtasks
     }
     tasks[id] = new_task;
-    await saveNotes();
+    // await saveNotes();
     subtasks = [];
     window.location.href = '/board.html'
 }

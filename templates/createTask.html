@@ -1,0 +1,51 @@
+<div clas="addTaskHeadline"></div>
+
+<div class="mainContainer">
+    <form onsubmit="createTask();return false">
+
+        <div class="addTaskCaptionAndInput">
+            <span>Title</span>
+            <input placeholder="Enter a title" id="title">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Description</span>
+            <input placeholder="Enter a Description" id="description">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Category</span>
+            <select id="categoryChoices">
+                <option value="toDo">to do</option>
+                <option value="inProgress">in Progress</option>
+                <option value="awaitingFeedback">awaiting Feedback</option>
+                <option value="done">done</option>
+            </select>
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Assigned to</span>
+            <select id="assignedToUsers">
+                <option value=""  hidden selected>Select contact to assign</option>
+            </select>
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Due date</span>
+            <input class="date" type="date" id="dueDate">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Prio</span>
+            <button class="urgent prioButton">Urgent</button>
+            <button class="medium prioButton">Medium</button>
+            <button class="low prioButton">Low</button>
+        </div>
+
+        <button>Clear</button>
+        <button type="submit">Create Task</button>
+
+
+    </form>
+</div>
+

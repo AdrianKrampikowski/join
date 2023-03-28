@@ -267,10 +267,9 @@ async function showAllContacts() {
             }
 
             let tasks = JSON.parse(data.tasks);
-            let test = tasks[0];
+            let test = tasks[0]["title"];
             console.log("test",test);
         })
-
 }
 
 setTimeout(() => {

@@ -59,11 +59,17 @@ function addUser(){
 // ToDoStart
 function createTask(){
     // generateUserId();
-    let title = document.getElementById('titleTextfield');
-    console.log("createTask", title);
-    let taskData = {title: title.value};
-    tasks.push(taskData);
-    saveTasks();
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let category = document.getElementById('categoryChoices');
+    let assignTo = document.getElementById('assignedToUsers');
+    let dueDate = document.getElementById('dueDate');
+    // let priority = selectedPriority;
+    let taskData = {title: title.value, description: description.value, category: category.value, assignTo: assignTo.value, dueDate: dueDate.value};
+    // tasks.push(taskData);
+    // saveTasks();
+    console.log("taskdata", taskData);
+
     // let surname = document.getElementById('surname');
     // let email = document.getElementById('email');
     // let password = document.getElementById('password');
@@ -93,6 +99,10 @@ function createTask(){
     //     setInterval(forwardToLogin, 1200);
     // }
 } 
+async function saveTasks() {
+    let tasksAsString = JSON.stringify(tasks);
+    await backend.setItem('tasks', tasksAsString);
+}
 //ToDoEnd
 
 function forwardToLogin() {
@@ -104,10 +114,6 @@ function forwardToLogin() {
 async function save() {
        let usersAsString = JSON.stringify(users);
        await backend.setItem('users', usersAsString);
-}
-async function saveTasks() {
-    let tasksAsString = JSON.stringify(tasks);
-    await backend.setItem('tasks', tasksAsString);
 }
 
 function backToLoginScreen() {
