@@ -12,7 +12,7 @@ body {
 }
 
 .contactsMainContainer {
-    position: relative;
+     position: relative;
     display: flex;
     width: 100%;
     height: 100%;
@@ -142,7 +142,6 @@ body {
 
 /* =================================== CHECK ================================== */
 
-
 .contact {
     display: flex;
     justify-content: flex-start;
@@ -150,6 +149,13 @@ body {
     margin-bottom: 1.5rem;
     cursor: pointer;
     width: 100%;
+    border-radius: 10px;
+    padding: 15px 25px 15px 25px;
+}
+
+.contact:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .contact > div:first-of-type {
@@ -203,7 +209,14 @@ body {
     padding-left: 4rem;
     width: 100%;
     height: 100%;
-    background-color: #F5F5F5;;
+    background-color: #F5F5F5;
+}
+
+.contactsContainerMobile {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
 }
 
 .contactsContentHeader {
@@ -431,7 +444,7 @@ body {
     bottom: 32px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
     width: 193px;
     height: 53px;
     border-radius: 10px;
@@ -521,6 +534,7 @@ body {
     width: 120px;
     height: 120px;
     background-color: #D1D1D1;
+    border: 3px solid white;
 }
 
 .contactImg img {
@@ -674,7 +688,7 @@ body {
     border-radius: 10px; /* Rounded borders */
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
+    z-index: 5; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
     bottom: 30px; /* 30px from the bottom */
   }
@@ -779,9 +793,15 @@ body {
         width: 100%;
         padding-top: 100px;
     }
-    .contactsContainer {
+    #contactsContainer {
         display: none;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
+
     .newContactButton {
         top: 32px;
         right: 32px;
