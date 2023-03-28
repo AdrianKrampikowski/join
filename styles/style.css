@@ -110,7 +110,7 @@ a {
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   background-color: white;
   width: 650px;
-  height: 500px;
+  height: 550px;
 }
 
 .arrowBack {
@@ -139,6 +139,9 @@ a {
   order: 0;
   flex-grow: 0;
   position: relative;
+    margin-top: 1rem;
+  margin-bottom: 1rem;
+
 }
 
 .loginHeading:before {
@@ -151,12 +154,18 @@ a {
   width: 50%;
 }
 
+.loginHeading > h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .inputFields {
   box-sizing: border-box;
   padding: 13px 21px;
   gap: 10px;
   width: 422px;
-  height: 51px;
+  height: 41px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
@@ -187,6 +196,25 @@ a {
   width: 20px;
   height: 18px;
 }
+
+.selectColor {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  color: #d1d1d1;
+}
+
+.selectColor span {
+  color: white;
+}
+
+.colorCircle {
+  width: 20px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+
 
 .inputFieldContainer {
   position: relative;
@@ -364,13 +392,13 @@ a {
 
 @media (max-width: 600px) {
   .startScreen {
-    margin-left: 25px !important;
+  margin-left: 25px !important;
   }
 
   h1 {
-    margin-top: 1rem;
+/*     margin-top: 1rem;
     margin-bottom: 1rem;
-  }
+ */  }
 
   .signInContainer {
     width: 100%;
@@ -394,16 +422,20 @@ a {
   }
 
   .loginScreen {
-    height: 460px;
-    padding-left: 20px;
-    padding-right: 20px;
+    height: 600px;
   }
 
   .inputFields {
     padding: 13px 21px;
     gap: 10px;
     width: 327px;
-    height: 51px;
+    height: 41px;
+      width: 100%;
+   }
+  
+   .selectColor {
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   ::placeholder {
@@ -420,6 +452,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
   }
 
   .inputContainer img {
@@ -429,7 +462,10 @@ a {
 
   .inputFieldContainer {
     position: relative;
+    width: 100%;
   }
+
+
 
   .inputFieldContainer .img {
     position: absolute;
@@ -475,9 +511,6 @@ a {
 }
 
 @media (max-width: 480px) {
-  .loginScreen {
-    height: 500px;
-  }
   .logo {
     height: 75px !important;
     width: auto;
@@ -485,6 +518,11 @@ a {
 
   .startScreen {
     margin-left: 15px !important;
+  }
+
+  .loginScreen {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .inputContainer {
@@ -506,9 +544,7 @@ a {
   .rememberOrForgetFields p{
     margin: 10px 0;
   }
-  .inputFields {
-    width: 100%;
- }
+
   .rememberOrForgetFields {
     gap: 0;
   }
