@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
 
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/forgotPw.css">
+    <!-- ============================== CSS FILES ================================= -->
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="forgotPw.css">
 
+    <!-- ============================== SCRIPTS ================================= -->
     <script src="backend.js"></script>
+    <script src="mini_backend.js"></script>
 
   </head>
-  <body>
+  <body onload="init()">
 
     <div class="mainContainer">
 
@@ -34,17 +37,21 @@
                 <div class="inputContainer">
 
                     <form class="inputFieldContainer2" onsubmit="">
-                        <input type="password" class="inputFields" placeholder="New password" required/>
-                        <input type="password" class="inputFields" placeholder="Confirm password" required/>
+                        <input id="newPassword" type="password" class="inputFields" placeholder="New password" required/>
+                        <input id="confirmPassword" type="password" class="inputFields" placeholder="Confirm password" required/>
                     </form>
                 </div>
 
-                <button class="loginButton">Continue</button>
+                <button class="loginButton" onclick="resetPassword()">Continue</button>
             </div>
 <!--             <button class="loginButton"><img src="./img/SendCheck.svg">An E-Mail has been sent to you</button>
  -->
         </div>
     </div>
+
+      <!-- ================================== SNACKBAR PW RESET/INCORRECT ======================================= -->
+      <div id="passwordReset">Your password has succesfully been reset!</div>
+      <div id="passwordsNotIdentical">Passwords are not identical!</div>
 
   </body>
 </html>

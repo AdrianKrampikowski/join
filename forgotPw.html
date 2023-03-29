@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forgot Password</title>
 
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/forgotPw.css">
+    <!-- ============================== CSS FILES ================================= -->
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="forgotPw.css">
 
+    <!-- ============================== SCRIPTS ================================= -->
     <script src="backend.js"></script>
+    <script src="mini_backend.js"></script>
 
   </head>
   <body>
@@ -21,33 +24,33 @@
         </div>
       </div>
 
-        <div class="contentContainer">
-            <div class="loginScreen">
-                <div class="arrowBack" onclick="backToLoginScreen()">
-                  <img src="./img/arrowLeft.svg">
-                </div>              
-                <div class="loginHeading">
-                  <h1>I forgot my password</h1>
-                  <div></div>
-                </div>
+      <div class="contentContainer">
+          <div class="loginScreen">
+              <div class="arrowBack" onclick="backToLoginScreen()">
+                <img src="./img/arrowLeft.svg">
+              </div>              
+              <div class="loginHeading">
+                <h1>I forgot my password</h1>
+                <div></div>
+              </div>
 
-                <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
-                
-                <form class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
-                    <div class="inputFieldContainer">
-                      <input name="email" class="inputFields" type="email" placeholder="Email" required/>
-                      <img src="img/letter.svg" class="img" />
-                    </div>
+              <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
+              
+              <form class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
+                  <div class="inputFieldContainer">
+                    <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email" required/>
+                    <img src="img/letter.svg" class="img" />
+                  </div>
+<!--                     <input name="userId" class="userIdForgotPw" type="number"/>  -->
+                  <button onclick="checkForCorrectEmail()" type="submit" class="loginButton">Send me the email</button>
+              </form>
+          </div>
+      </div>
 
-                    <button onclick="sendEmail()" type="submit" class="loginButton">Send me the email</button>
-                </form>
-
-            </div>
-        </div>
     </div>
 
-      <!-- ================================== SNACKBAR ALREADY SIGNE UP ======================================= -->
-      <div id="sendEmail">E-Mail has been sent!</div>
+    <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
+    <div id="sendEmail"><img src="./img/emailSent.svg"> An E-Mail has been sent to you</div>
 
   </body>
 </html>
