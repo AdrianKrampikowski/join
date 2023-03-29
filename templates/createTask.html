@@ -23,12 +23,21 @@
             </select>
         </div>
 
-        <div class="addTaskCaptionAndInput">
-            <span>Assigned to</span>
-            <select id="assignedToUsers">
-                <option value=""  hidden selected>Select contact to assign</option>
-            </select>
+        <div class="selection-container prevent-select">
+            <label>Assigned To</label>
+            <div class="select-wrapper assigned-to-wrapper">
+                <div class="sector_top" onclick="openDropdown('assignedToChoices')">
+                    <p id="assigned-to-header">Select your Members</p><img src="/img/Vector 2.png">
+                </div>
+
+                <div class="assigned-to-choices d-none" id="assignedToChoices">
+                </div>
+
+            </div>
         </div>
+        <!-- <select id="assignedToUsers" size="3" multiple>
+            <option value="" hidden selected>Select contact to assign</option>
+        </select> -->
 
         <div class="addTaskCaptionAndInput">
             <span>Due date</span>
@@ -45,7 +54,25 @@
         <button>Clear</button>
         <button type="submit">Create Task</button>
 
+        <!-- <div class="addTaskCaptionAndInput">
+            <span>Assigned to</span>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="assignedToDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Select contact(s) to assign
+                </button>
+                <div class="dropdown-menu" aria-labelledby="assignedToDropdown">
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="userSearchInput" placeholder="Search users">
+                        </div>
+                        <div id="userCheckboxes"></div>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+
+
 
     </form>
 </div>
-
