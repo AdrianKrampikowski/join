@@ -88,13 +88,16 @@ a {
   z-index: 0;
 }
 
+.signInField button {
+  margin: 0;
+}
+
 .contentContainer {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 40px;
 }
 
 .loginScreen {
@@ -103,7 +106,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   padding: 1.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -111,12 +114,12 @@ a {
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   background-color: white;
   width: 650px;
-  height: 600px;
-}
-
-.signUpScreenMain {
   height: 500px;
 }
+
+ .signUpScreen {
+  height: 550px;
+} 
 
 .arrowBack {
   position: absolute;
@@ -289,23 +292,20 @@ a {
     background-color: transparent;
   }
   100% {
-    height: 100px;
-    width: 83px;
+    height: 150px;
+    width: 133px;
     background-color: transparent;
   }
 }
 
-.signUpScreen{
+.startSignUpScreen{
   animation: none;
-  height: 100px;
-  width: 83px;
+  height: 150px;
+  width: 133px;
   background-color: transparent;
-  margin-left: 50px;
-  margin-top: 25px;
 }
 
 .logo {
-  position: relative;
   height: 150px;
   width: 124px;
   opacity: 1;
@@ -325,8 +325,6 @@ a {
   100% {
     height: 100px;
     width: 83px;
-    left: 50px;
-    top: 25px;
   }
 }
 
@@ -402,9 +400,13 @@ a {
 }
 
 @media (max-width: 600px) {
-  .logo {
-    margin-left: -25px !important;
-}
+  .loginScreen {
+    height: 450px;
+  }
+  .signUpScreen {
+    height: 550px;
+  } 
+  
 
   .signInContainer {
     width: 100%;
@@ -412,9 +414,9 @@ a {
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 5%;
-    padding-left: 15px;
-    padding-right: 15px;
+    bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
   .signInField {
     display: flex;
@@ -424,15 +426,6 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-  }
-
-  .loginScreen {
-    height: 600px;
-  }
-
-  .signUpScreenMain {
-    height: 500px;
   }
 
   .inputFields {
@@ -511,15 +504,49 @@ a {
     bottom: -11px;
   }
   .contentContainer {
-    top: -150px;
-    padding-left: 25px;
+/*     top: -150px;
+ */    padding-left: 25px;
     padding-right: 25px;
-   }
+/*     padding-top: 20px;
+ */   }
 }
 
 @media (max-width: 480px) {
-  .logo {
-    height: 75px !important;
+  @keyframes startAnimation {
+    0% {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+    10% {
+      background-color: transparent;
+    }
+    100% {
+      height: 125px;
+      width: 111px;
+      background-color: transparent;
+    }
+  }
+
+  @keyframes startLogo {
+    0% {
+      height: 150px;
+    }
+    100% {
+      height: 75px;
+      width: auto;
+    }
+  }
+  
+  .startSignUpScreen{
+    animation: none;
+    height: 125px;
+    width: 111px;
+    background-color: transparent;
+  }
+
+  .logoSignUpScreen {
+    height: 75px;
     width: auto;
   }
 
@@ -527,6 +554,7 @@ a {
     padding-left: 20px;
     padding-right: 20px;
   }
+ 
 
   .inputContainer {
     width: 100%;
@@ -555,8 +583,7 @@ a {
     display: flex;
     flex-direction: column;
     position: relative;
-    top: -35px;
-  }
+ }
 
   .contentContainer {
     padding-left: 15px;
@@ -570,6 +597,11 @@ a {
   .arrowBack img{
     width: 25px;
     height: 25px;
+  }
+
+  .signInContainer {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 

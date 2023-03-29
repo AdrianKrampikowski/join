@@ -161,6 +161,10 @@ body {
     color: #d1d1d1;
   }
 
+  .userIdForgotPw {
+    display: none;
+  }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -248,7 +252,7 @@ body {
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#sendEmail {
+#sendEmail, #passwordReset,#passwordsNotIdentical  {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 250px; /* Set a default minimum width */
   margin-left: -125px; /* Divide value of min-width by 2 */
@@ -263,8 +267,18 @@ body {
   bottom: 30px; /* 30px from the bottom */
 }
 
+#sendEmail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sendEmail > img {
+  margin-right: 5px;
+}
+
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#sendEmail.show {
+#sendEmail.show, #passwordReset.show, #passwordsNotIdentical.show  {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
