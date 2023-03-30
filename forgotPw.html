@@ -36,17 +36,17 @@
 
               <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
               
-              <form class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
+              <form class="inputContainer" onsubmit="checkForCorrectEmail()" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
                   <div class="inputFieldContainer">
                     <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email" required/>
                     <img src="img/letter.svg" class="img" />
                   </div>
-<!--                     <input name="userId" class="userIdForgotPw" type="number"/>  -->
-                  <button onclick="checkForCorrectEmail()" type="submit" class="loginButton">Send me the email</button>
+                    <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
+                  <button type="submit" class="loginButton">Send me the email</button>
               </form>
           </div>
       </div>
-
+      
     </div>
 
     <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->

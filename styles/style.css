@@ -208,21 +208,21 @@ a {
 .selectColor {
   padding-top: 5px;
   padding-bottom: 5px;
-  font-size: 16px;
-  color: #d1d1d1;
+  font-size: 21px;
 }
 
-.selectColor span {
-  color: white;
+
+.color {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .colorCircle {
-  width: 20px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
 }
-
-
 
 .inputFieldContainer {
   position: relative;

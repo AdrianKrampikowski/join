@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignUp</title>
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/fonts.css">
+    
+    <!-- ============================== CSS FILES ================================= -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fonts.css">
 
+    <!-- ============================== SCRIPTS ================================= -->
     <script src="backend.js"></script>
     <script src="mini_backend.js"></script>
 
@@ -62,49 +65,33 @@
             <div class="inputFieldContainer">
               
               <select class="inputFields selectColor" id="userColor" required>
-                <option value="" disabled selected hidden>Choose your favorite color</option>
-
-                <option value="#ff0000" style="background-color: #ff0000;">
-                  <span>Red</span>
-<!--                   <div class="colorCircle" style="background-color: #ff0000;"></div>
- -->                </option>
-                <option value="#008000" style="background-color: #008000;">
-                  <span>Green</span>
-<!--                   <div class="colorCircle" style="background-color: #008000;"></div>
- -->                </option>
-                <option value="#0000ff" style="background-color: #0000ff;">
-                  <span>Blue</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
-                <option value="#ffff00" style="background-color: #ffff00;">
-                  <span >Yellow</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
-                <option value="#ffa500" style="background-color: #ffa500;">
-                  <span>Orange</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
-                <option value="#800080" style="background-color: #800080;">
-                  <span>Purple</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
-                <option value="#a52a2a" style="background-color: #a52a2a;">
-                  <span>Brown</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
-                <option value="#808080" style="background-color: #808080;">
-                  <span>Grey</span>
-<!--                   <div class="colorCircle" ></div>
- -->                </option>
-
+                <option style="color: #d1d1d1;" value="none" disabled selected hidden>Choose your favorite color</option>
+                <option value="#ff0000" style="color: #ff0000;">
+                  Red
+                </option>
+                <option value="#008000" style="color: #008000;">
+                  Green
+                </option>
+                <option value="#0000ff" style="color: #0000ff;">
+                  Blue
+                </option>
+                <option value="#ffff00" style="color: #ffff00;">
+                  Yellow
+                </option>
+                <option value="#ffa500" style="color: #ffa500;">
+                  Orange
+                </option>
+                <option value="#800080" style="color: #800080;">
+                  Purple
+                </option>
+                <option value="#a52a2a" style="color: #a52a2a;">
+                  Brown
+                </option>
+                <option value="#808080" style="color: #808080;">                  Grey
+                </option>
               </select>
-<!--               <img src="img/lock.svg" class="img" />
- -->            </div>
+
+            </div>
           </div>
 
           <button onclick="addUser()" class="loginButton">Sign up</button>
