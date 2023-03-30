@@ -42,11 +42,6 @@ function setDateToday() {
     document.getElementById("dueDate").setAttribute('min', String(today));
 }
 
-function changeCategoryHeader(name) {
-    document.getElementById('category-header').innerHTML = name;
-    currentCategory = name;
-}
-
 function clearAll() {
     document.getElementById('titleTextfield').value = '';
     document.getElementById('description_textfield').value = '';

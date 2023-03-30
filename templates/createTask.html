@@ -17,27 +17,27 @@
             <label>Category</label>
             <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
                 <div class="sectorTop">
-                    <p>Marketing</p><img src="/img/arrow.svg">
+                    <p id="testCategory">testCategory</p><img src="/img/arrow.svg">
                 </div>
                 <div class="categoryChoices d-none" id="categoryChoices">
-                    <div class="category" onclick="changeCategoryHeader('Marketing')">
-                        <div id="cardTitleMarketing">Marketing </div>
+                    <div class="category">
+                        <div id="marketing">Marketing </div>
                         <div class="circle" style="background: #0038ff;"></div>
                     </div>
-                    <div class="category" onclick="changeCategoryHeader('Media')">
-                        <div id="cardTitleMedia">Media </div>
+                    <div class="category">
+                        <div id="media">Media </div>
                         <div class="circle" style="background: #ffc702;"></div>
                     </div>
-                    <div class="category" onclick="changeCategoryHeader('Backoffice')">
-                        <div id="cardTitleBackoffice">Backoffice </div>
+                    <div class="category">
+                        <div id="backoffice">Backoffice </div>
                         <div class="circle" style="background: #1FD7C1;"></div>
                     </div>
-                    <div class="category" onclick="changeCategoryHeader('Design')">
-                        <div id="cardTitleDesign">Design </div>
+                    <div class="category">
+                        <div id="design">Design </div>
                         <div class="circle" style="background:  #ff7a00;"></div>
                     </div>
-                    <div class="category" onclick="changeCategoryHeader('Sales')">
-                        <div id="cardTitleSales">Sales </div>
+                    <div class="category">
+                        <div id="sales">Sales </div>
                         <div class="circle" style="background: #fc71ff;"></div>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
         <div class="selectionContainer preventSelect">
             <span>Prio</span>
             <div class="prioButtons">
-                <button class="urgent prioButton">Urgent<img src="img/urgentArrow.svg"></button>
-                <button class="medium prioButton">Medium<img src="img/medium.svg"></button>
-                <button class="low prioButton">Low<img src="img/lowArrow.svg"></button>
+                <button class="urgent prioButton" id="urgent" type="button">Urgent<img id="imgUrgent" src="img/urgentArrow.svg"></button>
+                <button class="medium prioButton" id="medium" type="button">Medium<img id="imgMedium" src="img/medium.svg"></button>
+                <button class="low prioButton" id="low" type="button">Low<img id="imgLow" src="img/lowArrow.svg"></button>
             </div>
         </div>
 

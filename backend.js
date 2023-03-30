@@ -64,8 +64,8 @@ function createTask() {
     let category = document.getElementById('categoryChoices');
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
-    // let priority = selectedPriority;
-    let taskData = { title: title.value, description: description.value, category: category.value, assignTo: assignTo, dueDate: dueDate.value };
+    let priorityValue = priority;
+    let taskData = { title: title.value, description: description.value, category: category.value, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
     // tasks.push(taskData);
     // saveTasks();
     console.log("taskdata", taskData);
@@ -108,6 +108,8 @@ async function saveTasks() {
 selectedValues = [];
 setTimeout(() => {
     saveSelectedUsers();
+    saveSelectedPriority();
+    saveSelectedCategory();
 }, 1500);
 
 // Add an event listener to the checkboxes to update the selectedValues array
@@ -126,6 +128,56 @@ function saveSelectedUsers() {
                 }
             }
             console.log(selectedValues); // Print the selected values to the console
+        });
+    });
+}
+let priority = "";
+function saveSelectedPriority() {
+    Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
+        button.addEventListener('click', (event) => {
+            priority = event.target.id;
+            console.log("event", priority);
+            if(priority == "urgent"){
+                document.getElementById("urgent").style.background = "#FF3D00";
+                document.getElementById("medium").style.background = "#FFFFFF";
+                document.getElementById("low").style.background = "#FFFFFF";
+
+                document.getElementById("urgent").style.color = "#FFFFFF";
+                document.getElementById("medium").style.color = "#000000";
+                document.getElementById("low").style.color = "#000000";
+                
+                document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
+                document.getElementById("imgMedium").style.fill = "#FF3D00";
+                document.getElementById("imgLow").style.fill = "#FF3D00";
+            }else if(priority == "medium"){
+                document.getElementById("urgent").style.background = "#FFFFFF";
+                document.getElementById("medium").style.background = "#FFA800";
+                document.getElementById("low").style.background = "#FFFFFF";
+
+                document.getElementById("urgent").style.color = "#000000";
+                document.getElementById("medium").style.color = "#FFFFFF";
+                document.getElementById("low").style.color = "#000000";
+            }else if(priority == "low"){
+                document.getElementById("urgent").style.background = "#FFFFFF";
+                document.getElementById("medium").style.background = "#FFFFFF";
+                document.getElementById("low").style.background = "#7AE229";
+
+                document.getElementById("urgent").style.color = "#000000";
+                document.getElementById("medium").style.color = "#000000";
+                document.getElementById("low").style.color = "#FFFFFF";
+            }
+        });
+    });
+}
+let categoryValue = "";
+function saveSelectedCategory() {
+    Array.from(document.getElementsByClassName("category")).forEach((item) => {
+        item.addEventListener('click', (event) => {
+            categoryValue = event.target.id;
+            console.log("event", categoryValue);
+            document.getElementById("testCategory").innerHTML = `
+                ${categoryValue}
+            `;
         });
     });
 }
