@@ -3,12 +3,12 @@
 <div class="mainContainer">
     <form onsubmit="createTask();return false">
 
-        <div class="addTaskCaptionAndInput">
+        <div class="selectionContainer preventSelect">
             <span>Title</span>
             <input placeholder="Enter a title" id="title">
         </div>
 
-        <div class="addTaskCaptionAndInput">
+        <div class="selectionContainer preventSelect">
             <span>Description</span>
             <input placeholder="Enter a Description" id="description">
         </div>
@@ -17,27 +17,27 @@
             <label>Category</label>
             <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
                 <div class="sectorTop">
-                    <p id="category-header">Marketing</p><img src="/img/Vector 2.png">
+                    <p>Marketing</p><img src="/img/arrow.svg">
                 </div>
-                <div class="category-choices d-none" id="categoryChoices">
+                <div class="categoryChoices d-none" id="categoryChoices">
                     <div class="category" onclick="changeCategoryHeader('Marketing')">
-                        <div id="marketing">Marketing </div>
+                        <div id="cardTitleMarketing">Marketing </div>
                         <div class="circle" style="background: #0038ff;"></div>
                     </div>
                     <div class="category" onclick="changeCategoryHeader('Media')">
-                        <div>Media </div>
+                        <div id="cardTitleMedia">Media </div>
                         <div class="circle" style="background: #ffc702;"></div>
                     </div>
                     <div class="category" onclick="changeCategoryHeader('Backoffice')">
-                        <div>Backoffice </div>
+                        <div id="cardTitleBackoffice">Backoffice </div>
                         <div class="circle" style="background: #1FD7C1;"></div>
                     </div>
                     <div class="category" onclick="changeCategoryHeader('Design')">
-                        <div>Design </div>
+                        <div id="cardTitleDesign">Design </div>
                         <div class="circle" style="background:  #ff7a00;"></div>
                     </div>
                     <div class="category" onclick="changeCategoryHeader('Sales')">
-                        <div>Sales </div>
+                        <div id="cardTitleSales">Sales </div>
                         <div class="circle" style="background: #fc71ff;"></div>
                     </div>
                 </div>
@@ -67,20 +67,24 @@
             <option value="" hidden selected>Select contact to assign</option>
         </select> -->
 
-        <div class="addTaskCaptionAndInput">
+        <div class="selectionContainer preventSelect">
             <span>Due date</span>
             <input class="date" type="date" id="dueDate">
         </div>
 
-        <div class="addTaskCaptionAndInput">
+        <div class="selectionContainer preventSelect">
             <span>Prio</span>
-            <button class="urgent prioButton">Urgent</button>
-            <button class="medium prioButton">Medium</button>
-            <button class="low prioButton">Low</button>
+            <div class="prioButtons">
+                <button class="urgent prioButton">Urgent<img src="img/urgentArrow.svg"></button>
+                <button class="medium prioButton">Medium<img src="img/medium.svg"></button>
+                <button class="low prioButton">Low<img src="img/lowArrow.svg"></button>
+            </div>
         </div>
 
-        <button>Clear</button>
-        <button type="submit">Create Task</button>
+        <div class="clearAndCreateButton">
+            <button class="clearButton">Clear</button>
+            <button class="createTaskButton" type="submit">Create Task</button>
+        </div>
 
         <!-- <div class="addTaskCaptionAndInput">
             <span>Assigned to</span>

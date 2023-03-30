@@ -41,3 +41,21 @@ function setDateToday() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById("dueDate").setAttribute('min', String(today));
 }
+
+function changeCategoryHeader(name) {
+    document.getElementById('category-header').innerHTML = name;
+    currentCategory = name;
+}
+
+function clearAll() {
+    document.getElementById('titleTextfield').value = '';
+    document.getElementById('description_textfield').value = '';
+    document.getElementById('categoryHeader').innerHTML = 'Select your Category';
+    for (let i = 0; i < contactsAddTask.length; i++) {
+        if (document.getElementById('assigned-to-' + i).checked) {
+            document.getElementById('assigned-to-' + i).checked = false;
+        }
+    }
+    document.getElementById('date').value = '';
+    document.getElementById('subtask-list').innerHTML = '';
+}

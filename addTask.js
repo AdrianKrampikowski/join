@@ -145,10 +145,10 @@ function openDropdown(id) {
  * Changes the text in the category header.
  * @param {string} name - The new category name.
  */
-function changeCategoryHeader(name) {
-    document.getElementById('category-header').innerHTML = name;
-    currentCategory = name;
-}
+// function changeCategoryHeader(name) {
+//     document.getElementById('category-header').innerHTML = name;
+//     currentCategory = name;
+// }
 
 /**
  * Changes the subtask icons to the "clear" and "add" icons when the subtask input field is clicked.
@@ -249,11 +249,11 @@ function fillTheTasks(id) {
         priotity_medium = document.getElementById('mediumBtn').checked = true;
         priotity_low = document.getElementById('lowBtn').checked = false;
     }
-    changeColor();
-    document.getElementById('title_textfield').value = title;
-    document.getElementById('description_textfield').value = text;
-    document.getElementById('category-header').innerHTML = category;
-    document.getElementById('date').value = date;
+    // changeColor();
+    // document.getElementById('title_textfield').value = title;
+    // document.getElementById('description_textfield').value = text;
+    // document.getElementById('category-header').innerHTML = category;
+    // document.getElementById('date').value = date;
 
     for (let j = 0; j < tasks[id]['users'].length; j++) {
         const user = tasks[id]['users'][j];

@@ -36,6 +36,10 @@ select::-ms-expand {
   /* Standardpfeil im IE 10 und 11 entfernen */
 }
 
+button {
+    border: none;
+}
+
 .selectionContainer {
   display: flex;
   flex-direction: column;
@@ -85,10 +89,85 @@ select::-ms-expand {
   background-color: lightgray;
 }
 
+.circle {
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  margin-left: 15px;
+  border: white;
+}
+
 .assignedToChoices {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
   height: 200px;
   overflow-y: scroll;
+}
+
+.prioButtons {
+  display: flex;
+}
+
+.prioButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prioButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 136px;
+  height: 51px;
+
+  /* white */
+  background: #ffffff;
+
+
+  /* nuevo */
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.clearAndCreateButton {
+    display: flex;
+}
+
+.clearButton {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 136px;
+  height: 61px;
+
+  /* Version 2/ main color  */
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+}
+
+.createTaskButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 177px;
+  height: 61px;
+
+  background: #2a3647;
+  border-radius: 10px;
+
+  color: white;
 }
