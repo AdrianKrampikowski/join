@@ -58,118 +58,161 @@
                     <img src="/img/picture.svg" class="topNavBarRightImgPicture">
                 </div>
             </div>
-           
-        <!--RightContent-->
 
-        <div class="main-container">
-            <div class="title-container">
-                <div class="headline-mobile d-none">Kanban Project Management Tool</div>
-                <h1>Add Task</h1>
-            </div>
-            <form onsubmit="addTask();return false">
-                <div class="content-container">
-                    <div class="left-container">
-                        <div class="selection-container">
-                            <label>Title</label>
-                            <input placeholder="Enter a title" id="titleTextfield" required="">
-                        </div>
-                        <div class="selection-container">
-                            <label>Description</label>
-                            <textarea placeholder="Enter a description" id="description_textfield" required=""></textarea>
-                        </div>
-                        <div class="selection-container prevent-select">
-                            <label>Category</label>
-                            <div class="select-wrapper" onclick="openDropdown('category-choices')">
-                                <div class="sector_top">
-                                    <p id="category-header">Marketing</p><img src="/img/Vector 2.png">
-                                </div>
-                                <div class="category-choices d-none" id="category-choices">
-                                    <div class="category" onclick="changeCategoryHeader('Marketing')">
-                                        <div id="marketing">Marketing </div>
-                                        <div class="circle" style="background: #0038ff;"></div>
-                                    </div>
-                                    <div class="category" onclick="changeCategoryHeader('Media')">
-                                        <div>Media </div>
-                                        <div class="circle" style="background: #ffc702;"></div>
-                                    </div>
-                                    <div class="category" onclick="changeCategoryHeader('Backoffice')">
-                                        <div>Backoffice </div>
-                                        <div class="circle" style="background: #1FD7C1;"></div>
-                                    </div>
-                                    <div class="category" onclick="changeCategoryHeader('Design')">
-                                        <div>Design </div>
-                                        <div class="circle" style="background:  #ff7a00;"></div>
-                                    </div>
-                                    <div class="category" onclick="changeCategoryHeader('Sales')">
-                                        <div>Sales </div>
-                                        <div class="circle" style="background: #fc71ff;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="selection-container prevent-select">
-                            <label>Assigned To</label>
-                            <div class="select-wrapper assigned-to-wrapper">
-                                <div class="sector_top" onclick="openDropdown('assigned-to-choices')">
-                                    <p id="assigned-to-header">Select your Members</p><img src="/img/Vector 2.png">
-                                </div>
-                                <div class="assigned-to-choices d-none" id="assigned-to-choices"><div class="assigned-to-line"><label for="assigned-to-0" id="assigned_name0">Julia R</label><input type="checkbox" id="assigned-to-0" value="JA"></div><div class="assigned-to-line"><label for="assigned-to-1" id="assigned_name1">Leandro F</label><input type="checkbox" id="assigned-to-1" value="RB"></div><div class="assigned-to-line"><label for="assigned-to-2" id="assigned_name2">Jimmy E</label><input type="checkbox" id="assigned-to-2" value="WB"></div><div class="assigned-to-line"><label for="assigned-to-3" id="assigned_name3">Fabio C</label><input type="checkbox" id="assigned-to-3" value="FK"></div><div class="assigned-to-line"><label for="assigned-to-4" id="assigned_name4">Sebastian D</label><input type="checkbox" id="assigned-to-4" value="SY"></div><div class="assigned-to-line"><label for="assigned-to-5" id="assigned_name5">Brandy D</label><input type="checkbox" id="assigned-to-5" value="OZ"></div><div class="assigned-to-line"><label for="assigned-to-6" id="assigned_name6">Romeo T</label><input type="checkbox" id="assigned-to-6" value="RT"></div><div class="assigned-to-line"><label for="assigned-to-7" id="assigned_name7">Sierra Lima</label><input type="checkbox" id="assigned-to-7" value="SL"></div><div class="assigned-to-line"><label for="assigned-to-8" id="assigned_name8">Victoria Charles</label><input type="checkbox" id="assigned-to-8" value="VC"></div><div class="assigned-to-line"><label for="assigned-to-9" id="assigned_name9">Julien Z</label><input type="checkbox" id="assigned-to-9" value="JZ"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle-gap"></div>
-                    <div class="right-container">
-                        <div class="features-container">
-                            <label for="date">Due Date</label>
-                            <input class="date" type="date" id="date" name="date" required="" min="2023-03-25">
-                        </div>
-                        <div class="features-container">
-                            <label>Prio</label>
-                            <div onchange="changeColor(); return false" class="prio-btn-container">
-    
-                                <input type="radio" class="checkbox_urgen" id="urgentBtn" name="radio">
-                                <label for="urgentBtn" class="prio-btn prio-urgent urgentSection" id="urgentSection">
-                                    Urgent<img id="prioUrgentWhite" src="/img/Prio-urgent.png">
-                                </label>
-                                <input type="radio" class="checkbox_medium" id="mediumBtn" name="radio">
-                                <label for="mediumBtn" class="prio-btn prio-urgent mediumSection" id="mediumSection">
-                                    Medium<img id="prioUrgentWhite" src="/img/Prio-medium.png">
-                                </label>
-                                <input type="radio" class="checkbox_low" id="lowBtn" name="radio" checked="">
-                                <label for="lowBtn" class="prio-btn prio-urgent lowSection" id="lowSection">
-                                    Low<img id="prioUrgentWhite" src="/img/Prio-low-white.png">
-                                </label>
-                            </div>
-    
-    
-    
-                            <div class="features-container">
-                                <label>Subtasks</label>
-                                <div class="subtask-container">
-                                    <input class="subtask-input" onclick="inputChangeSubIcons()" placeholder="Add new subtask" id="subtask">
-                                    <img id="plusSubtaskImg" class="plus-icon" src="/img/plus-icon.png" onclick="changeSubIcon()">
-                                    <div class="subtask-img-container">
-                                    <img id="clearSubtaskImg" src="" onclick="clearSubtask()" class="subtask-icons d-none">
-                                    <div class="gap-img-subtask"></div>
-                                    <img id="addSubtaskImg" src="/img/questionmark.svg" onclick="addSubtask()" class="subtask-icons d-none">
-                                    </div>
-                                </div>
-                                <div>
-                                    <ul id="subtask-list">
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="submit-and-clear">
-                            <div class="btn-clear" onclick="clearAll()">Clear<img class="clear-img" src="/img/iconoir_cancel.svg"></div>
-                            <div><button class="btn-createTask" onclick="createTask()">Create Task<img src="/img/akar-icons_check.svg"></button></div>
-                        </div>
-                        <button class="add-task-mobile d-none"><img src="/img/add_task_btn_mob.svg" alt="Create task button"></button>
-                    </div>
+            <!--RightContent-->
+
+            <div class="main-container">
+                <div class="title-container">
+                    <div class="headline-mobile d-none">Kanban Project Management Tool</div>
+                    <h1>Add Task</h1>
                 </div>
-            </form>
-        </div>
-           
+                <form onsubmit="addTask();return false">
+                    <div class="content-container">
+                        <div class="left-container">
+                            <div class="selection-container">
+                                <label>Title</label>
+                                <input placeholder="Enter a title" id="titleTextfield" required="">
+                            </div>
+                            <div class="selection-container">
+                                <label>Description</label>
+                                <textarea placeholder="Enter a description" id="description_textfield"
+                                    required=""></textarea>
+                            </div>
+                            <div class="selection-container prevent-select">
+                                <label>Category</label>
+                                <div class="select-wrapper" onclick="openDropdown('category-choices')">
+                                    <div class="sector_top">
+                                        <p id="category-header">Marketing</p><img src="/img/Vector 2.png">
+                                    </div>
+                                    <div class="category-choices d-none" id="category-choices">
+                                        <div class="category" onclick="changeCategoryHeader('Marketing')">
+                                            <div id="marketing">Marketing </div>
+                                            <div class="circle" style="background: #0038ff;"></div>
+                                        </div>
+                                        <div class="category" onclick="changeCategoryHeader('Media')">
+                                            <div>Media </div>
+                                            <div class="circle" style="background: #ffc702;"></div>
+                                        </div>
+                                        <div class="category" onclick="changeCategoryHeader('Backoffice')">
+                                            <div>Backoffice </div>
+                                            <div class="circle" style="background: #1FD7C1;"></div>
+                                        </div>
+                                        <div class="category" onclick="changeCategoryHeader('Design')">
+                                            <div>Design </div>
+                                            <div class="circle" style="background:  #ff7a00;"></div>
+                                        </div>
+                                        <div class="category" onclick="changeCategoryHeader('Sales')">
+                                            <div>Sales </div>
+                                            <div class="circle" style="background: #fc71ff;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selection-container prevent-select">
+                                <label>Assigned To</label>
+                                <div class="select-wrapper assigned-to-wrapper">
+                                    <div class="sector_top" onclick="openDropdown('assigned-to-choices')">
+                                        <p id="assigned-to-header">Select your Members</p><img src="/img/Vector 2.png">
+                                    </div>
+
+                                    <div class="assigned-to-choices d-none" id="assigned-to-choices">
+                                        <div class="assigned-to-line"><label for="assigned-to-0"
+                                                id="assigned_name0">Julia R</label><input type="checkbox"
+                                                id="assigned-to-0" value="JA"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-1"
+                                                id="assigned_name1">Leandro F</label><input type="checkbox"
+                                                id="assigned-to-1" value="RB"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-2"
+                                                id="assigned_name2">Jimmy E</label><input type="checkbox"
+                                                id="assigned-to-2" value="WB"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-3"
+                                                id="assigned_name3">Fabio C</label><input type="checkbox"
+                                                id="assigned-to-3" value="FK"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-4"
+                                                id="assigned_name4">Sebastian D</label><input type="checkbox"
+                                                id="assigned-to-4" value="SY"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-5"
+                                                id="assigned_name5">Brandy D</label><input type="checkbox"
+                                                id="assigned-to-5" value="OZ"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-6"
+                                                id="assigned_name6">Romeo T</label><input type="checkbox"
+                                                id="assigned-to-6" value="RT"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-7"
+                                                id="assigned_name7">Sierra Lima</label><input type="checkbox"
+                                                id="assigned-to-7" value="SL"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-8"
+                                                id="assigned_name8">Victoria Charles</label><input type="checkbox"
+                                                id="assigned-to-8" value="VC"></div>
+                                        <div class="assigned-to-line"><label for="assigned-to-9"
+                                                id="assigned_name9">Julien Z</label><input type="checkbox"
+                                                id="assigned-to-9" value="JZ"></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle-gap"></div>
+                        <div class="right-container">
+                            <div class="features-container">
+                                <label for="date">Due Date</label>
+                                <input class="date" type="date" id="date" name="date" required="" min="2023-03-25">
+                            </div>
+                            <div class="features-container">
+                                <label>Prio</label>
+                                <div onchange="changeColor(); return false" class="prio-btn-container">
+
+                                    <input type="radio" class="checkbox_urgen" id="urgentBtn" name="radio">
+                                    <label for="urgentBtn" class="prio-btn prio-urgent urgentSection"
+                                        id="urgentSection">
+                                        Urgent<img id="prioUrgentWhite" src="/img/Prio-urgent.png">
+                                    </label>
+                                    <input type="radio" class="checkbox_medium" id="mediumBtn" name="radio">
+                                    <label for="mediumBtn" class="prio-btn prio-urgent mediumSection"
+                                        id="mediumSection">
+                                        Medium<img id="prioUrgentWhite" src="/img/Prio-medium.png">
+                                    </label>
+                                    <input type="radio" class="checkbox_low" id="lowBtn" name="radio" checked="">
+                                    <label for="lowBtn" class="prio-btn prio-urgent lowSection" id="lowSection">
+                                        Low<img id="prioUrgentWhite" src="/img/Prio-low-white.png">
+                                    </label>
+                                </div>
+
+
+
+                                <div class="features-container">
+                                    <label>Subtasks</label>
+                                    <div class="subtask-container">
+                                        <input class="subtask-input" onclick="inputChangeSubIcons()"
+                                            placeholder="Add new subtask" id="subtask">
+                                        <img id="plusSubtaskImg" class="plus-icon" src="/img/plus-icon.png"
+                                            onclick="changeSubIcon()">
+                                        <div class="subtask-img-container">
+                                            <img id="clearSubtaskImg" src="" onclick="clearSubtask()"
+                                                class="subtask-icons d-none">
+                                            <div class="gap-img-subtask"></div>
+                                            <img id="addSubtaskImg" src="/img/questionmark.svg" onclick="addSubtask()"
+                                                class="subtask-icons d-none">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul id="subtask-list">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-and-clear">
+                                <div class="btn-clear" onclick="clearAll()">Clear<img class="clear-img"
+                                        src="/img/iconoir_cancel.svg"></div>
+                                <div><button class="btn-createTask" onclick="createTask()">Create Task<img
+                                            src="/img/akar-icons_check.svg"></button></div>
+                            </div>
+                            <button class="add-task-mobile d-none"><img src="/img/add_task_btn_mob.svg"
+                                    alt="Create task button"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
 
         </div>
 

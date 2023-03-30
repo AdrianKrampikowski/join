@@ -1,0 +1,78 @@
+<div clas="addTaskHeadline"></div>
+
+<div class="mainContainer">
+    <form onsubmit="createTask();return false">
+
+        <div class="addTaskCaptionAndInput">
+            <span>Title</span>
+            <input placeholder="Enter a title" id="title">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Description</span>
+            <input placeholder="Enter a Description" id="description">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Category</span>
+            <select id="categoryChoices">
+                <option value="toDo">to do</option>
+                <option value="inProgress">in Progress</option>
+                <option value="awaitingFeedback">awaiting Feedback</option>
+                <option value="done">done</option>
+            </select>
+        </div>
+
+        <div class="selection-container prevent-select">
+            <label>Assigned To</label>
+            <div class="select-wrapper assigned-to-wrapper">
+                <div class="sector_top" onclick="openDropdown('assignedToChoices')">
+                    <p id="assigned-to-header">Select your Members</p><img src="/img/Vector 2.png">
+                </div>
+
+                <div class="assigned-to-choices d-none" id="assignedToChoices">
+                </div>
+
+            </div>
+        </div>
+        <!-- <select id="assignedToUsers" size="3" multiple>
+            <option value="" hidden selected>Select contact to assign</option>
+        </select> -->
+
+        <div class="addTaskCaptionAndInput">
+            <span>Due date</span>
+            <input class="date" type="date" id="dueDate">
+        </div>
+
+        <div class="addTaskCaptionAndInput">
+            <span>Prio</span>
+            <button class="urgent prioButton">Urgent</button>
+            <button class="medium prioButton">Medium</button>
+            <button class="low prioButton">Low</button>
+        </div>
+
+        <button>Clear</button>
+        <button type="submit">Create Task</button>
+
+        <!-- <div class="addTaskCaptionAndInput">
+            <span>Assigned to</span>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="assignedToDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Select contact(s) to assign
+                </button>
+                <div class="dropdown-menu" aria-labelledby="assignedToDropdown">
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="userSearchInput" placeholder="Search users">
+                        </div>
+                        <div id="userCheckboxes"></div>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+
+
+
+    </form>
+</div>
