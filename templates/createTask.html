@@ -13,7 +13,37 @@
             <input placeholder="Enter a Description" id="description">
         </div>
 
-        <div class="addTaskCaptionAndInput">
+        <div class="selectionContainer preventSelect">
+            <label>Category</label>
+            <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
+                <div class="sectorTop">
+                    <p id="category-header">Marketing</p><img src="/img/Vector 2.png">
+                </div>
+                <div class="category-choices d-none" id="categoryChoices">
+                    <div class="category" onclick="changeCategoryHeader('Marketing')">
+                        <div id="marketing">Marketing </div>
+                        <div class="circle" style="background: #0038ff;"></div>
+                    </div>
+                    <div class="category" onclick="changeCategoryHeader('Media')">
+                        <div>Media </div>
+                        <div class="circle" style="background: #ffc702;"></div>
+                    </div>
+                    <div class="category" onclick="changeCategoryHeader('Backoffice')">
+                        <div>Backoffice </div>
+                        <div class="circle" style="background: #1FD7C1;"></div>
+                    </div>
+                    <div class="category" onclick="changeCategoryHeader('Design')">
+                        <div>Design </div>
+                        <div class="circle" style="background:  #ff7a00;"></div>
+                    </div>
+                    <div class="category" onclick="changeCategoryHeader('Sales')">
+                        <div>Sales </div>
+                        <div class="circle" style="background: #fc71ff;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="addTaskCaptionAndInput">
             <span>Category</span>
             <select id="categoryChoices" class="testSelect">
                 <option value="toDo">to do</option>
@@ -21,7 +51,7 @@
                 <option value="awaitingFeedback">awaiting Feedback</option>
                 <option value="done">done</option>
             </select>
-        </div>
+        </div> -->
 
         <div class="selectionContainer preventSelect">
             <label>Assigned To</label>

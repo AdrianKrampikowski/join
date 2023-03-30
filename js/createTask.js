@@ -11,7 +11,7 @@ setTimeout(() => {
     // createDropdownCheckboxes();
     // getSelectedUsers();
     addAssignedToList();
-
+    setDateToday();
 }, 1250);
 
 function addAssignedToList() {
@@ -35,4 +35,9 @@ function openDropdown(id) {
     else if (!document.getElementById(id).classList.contains('d-none')) {
         document.getElementById(id).classList.add('d-none');
     }
+}
+
+function setDateToday() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("dueDate").setAttribute('min', String(today));
 }
