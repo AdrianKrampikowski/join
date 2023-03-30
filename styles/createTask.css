@@ -1,0 +1,69 @@
+input,
+select,
+.selectWrapper {
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 400;
+    padding: 13px 21px;
+    background-color: white;
+    outline: none;
+}
+
+select {
+    appearance: none;
+    background: url(/img/arrow.png) 96% / 3% no-repeat white;
+    cursor: pointer;
+}
+
+textarea {
+    min-height: 119px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 18px 21px;
+    outline: none;
+    resize: vertical;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+select::-ms-expand {
+    display: none;
+    /* Standardpfeil im IE 10 und 11 entfernen */
+}
+
+.selectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preventSelect {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.assignedToWrapper {
+    margin-bottom: 30px;
+}
+
+.sectorTop {
+    display: flex;
+    justify-content: space-between;
+    line-height: 0;
+    align-items: center;
+    font-size: 18px;
+    padding: 5px 20px;
+}
+
+.assignedToChoices {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 200px;
+    overflow-y: scroll;
+}

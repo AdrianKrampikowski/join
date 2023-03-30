@@ -15,7 +15,7 @@
 
         <div class="addTaskCaptionAndInput">
             <span>Category</span>
-            <select id="categoryChoices">
+            <select id="categoryChoices" class="testSelect">
                 <option value="toDo">to do</option>
                 <option value="inProgress">in Progress</option>
                 <option value="awaitingFeedback">awaiting Feedback</option>
@@ -23,16 +23,14 @@
             </select>
         </div>
 
-        <div class="selection-container prevent-select">
+        <div class="selectionContainer preventSelect">
             <label>Assigned To</label>
-            <div class="select-wrapper assigned-to-wrapper">
-                <div class="sector_top" onclick="openDropdown('assignedToChoices')">
-                    <p id="assigned-to-header">Select your Members</p><img src="/img/Vector 2.png">
+            <div class="selectWrapper assignedToWrapper">
+                <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
+                    <p id="assignedToHeader">Select your Members</p><img src="/img/Vector 2.png">
                 </div>
-
-                <div class="assigned-to-choices d-none" id="assignedToChoices">
+                <div class="assignedToChoices d-none" id="assignedToChoices">
                 </div>
-
             </div>
         </div>
         <!-- <select id="assignedToUsers" size="3" multiple>
