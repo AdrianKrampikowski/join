@@ -61,45 +61,16 @@ function createTask() {
     // generateUserId();
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('categoryChoices');
+    let category = categoryValue;
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = { title: title.value, description: description.value, category: category.value, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
-    // tasks.push(taskData);
-    // saveTasks();
-    console.log("taskdata", taskData);
-
-    // let surname = document.getElementById('surname');
-    // let email = document.getElementById('email');
-    // let password = document.getElementById('password');
-    // let color = document.getElementById('color');
-    // let userId = id;
-
-    // for (let i = 0; i < users.length; i++) {
-    //     if(users[i]['userid'].includes === id) {
-    //         generateUserId();
-    //     } 
-    // }
-
-    // let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId};
-    // let user = users.find(u => u.email == email.value && u.password == password.value);
-
-    // if(user){
-    //     alreadySignedUpPupup();
-    //     name.value = '';
-    //     surname.value = '';
-    //     email.value = '';
-    //     password.value ='';
-    // } else {
-    //     users.push(userData);
-    //     save();
-    //     successfullySignedUpPopup();
-
-    //     setInterval(forwardToLogin, 1200);
-    // }
+    let taskData = { title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    tasks.push(taskData);
+    saveTasks();
 }
 async function saveTasks() {
+    debugger
     let tasksAsString = JSON.stringify(tasks);
     await backend.setItem('tasks', tasksAsString);
 }
@@ -108,7 +79,7 @@ async function saveTasks() {
 selectedValues = [];
 setTimeout(() => {
     saveSelectedUsers();
-    // saveSelectedPriority();
+    saveSelectedPriority();
     saveSelectedCategory();
 }, 1500);
 
@@ -131,44 +102,15 @@ function saveSelectedUsers() {
         });
     });
 }
-// let priority = "";
-// function saveSelectedPriority() {
-//     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
-//         button.addEventListener('click', (event) => {
-//             priority = event.target.id;
-//             console.log("event", priority);
-//             if (priority == "urgent") {
-//                 document.getElementById("urgent").style.background = "#FF3D00";
-//                 document.getElementById("medium").style.background = "#FFFFFF";
-//                 document.getElementById("low").style.background = "#FFFFFF";
-
-//                 document.getElementById("urgent").style.color = "#FFFFFF";
-//                 document.getElementById("medium").style.color = "#000000";
-//                 document.getElementById("low").style.color = "#000000";
-
-//                 document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
-//                 document.getElementById("imgMedium").style.fill = "#FF3D00";
-//                 document.getElementById("imgLow").style.fill = "#FF3D00";
-//             } else if (priority == "medium") {
-//                 document.getElementById("urgent").style.background = "#FFFFFF";
-//                 document.getElementById("medium").style.background = "#FFA800";
-//                 document.getElementById("low").style.background = "#FFFFFF";
-
-//                 document.getElementById("urgent").style.color = "#000000";
-//                 document.getElementById("medium").style.color = "#FFFFFF";
-//                 document.getElementById("low").style.color = "#000000";
-//             } else if (priority == "low") {
-//                 document.getElementById("urgent").style.background = "#FFFFFF";
-//                 document.getElementById("medium").style.background = "#FFFFFF";
-//                 document.getElementById("low").style.background = "#7AE229";
-
-//                 document.getElementById("urgent").style.color = "#000000";
-//                 document.getElementById("medium").style.color = "#000000";
-//                 document.getElementById("low").style.color = "#FFFFFF";
-//             }
-//         });
-//     });
-// }
+let priority = "";
+function saveSelectedPriority() {
+    Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
+        button.addEventListener('click', (event) => {
+            priority = event.target.id;
+            console.log("Prio", priority);
+        });
+    });
+}
 let black = "#000000";
 let white = "#FFFFFF";
 let orange = "#FF3D00";
@@ -217,7 +159,6 @@ function saveSelectedCategory() {
                 if (newCategoryValue !== categoryValue) {
                     previousCategoryValue = categoryValue;
                     categoryValue = newCategoryValue;
-                    console.log("event", categoryValue);
                     document.getElementById("testCategory").innerHTML = `
                     ${upperCaseValue}
                 `;
