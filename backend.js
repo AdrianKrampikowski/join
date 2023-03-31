@@ -108,7 +108,7 @@ async function saveTasks() {
 selectedValues = [];
 setTimeout(() => {
     saveSelectedUsers();
-    saveSelectedPriority();
+    // saveSelectedPriority();
     saveSelectedCategory();
 }, 1500);
 
@@ -131,53 +131,104 @@ function saveSelectedUsers() {
         });
     });
 }
-let priority = "";
-function saveSelectedPriority() {
-    Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
-        button.addEventListener('click', (event) => {
-            priority = event.target.id;
-            console.log("event", priority);
-            if(priority == "urgent"){
-                document.getElementById("urgent").style.background = "#FF3D00";
-                document.getElementById("medium").style.background = "#FFFFFF";
-                document.getElementById("low").style.background = "#FFFFFF";
+// let priority = "";
+// function saveSelectedPriority() {
+//     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
+//         button.addEventListener('click', (event) => {
+//             priority = event.target.id;
+//             console.log("event", priority);
+//             if (priority == "urgent") {
+//                 document.getElementById("urgent").style.background = "#FF3D00";
+//                 document.getElementById("medium").style.background = "#FFFFFF";
+//                 document.getElementById("low").style.background = "#FFFFFF";
 
-                document.getElementById("urgent").style.color = "#FFFFFF";
-                document.getElementById("medium").style.color = "#000000";
-                document.getElementById("low").style.color = "#000000";
-                
-                document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
-                document.getElementById("imgMedium").style.fill = "#FF3D00";
-                document.getElementById("imgLow").style.fill = "#FF3D00";
-            }else if(priority == "medium"){
-                document.getElementById("urgent").style.background = "#FFFFFF";
-                document.getElementById("medium").style.background = "#FFA800";
-                document.getElementById("low").style.background = "#FFFFFF";
+//                 document.getElementById("urgent").style.color = "#FFFFFF";
+//                 document.getElementById("medium").style.color = "#000000";
+//                 document.getElementById("low").style.color = "#000000";
 
-                document.getElementById("urgent").style.color = "#000000";
-                document.getElementById("medium").style.color = "#FFFFFF";
-                document.getElementById("low").style.color = "#000000";
-            }else if(priority == "low"){
-                document.getElementById("urgent").style.background = "#FFFFFF";
-                document.getElementById("medium").style.background = "#FFFFFF";
-                document.getElementById("low").style.background = "#7AE229";
+//                 document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
+//                 document.getElementById("imgMedium").style.fill = "#FF3D00";
+//                 document.getElementById("imgLow").style.fill = "#FF3D00";
+//             } else if (priority == "medium") {
+//                 document.getElementById("urgent").style.background = "#FFFFFF";
+//                 document.getElementById("medium").style.background = "#FFA800";
+//                 document.getElementById("low").style.background = "#FFFFFF";
 
-                document.getElementById("urgent").style.color = "#000000";
-                document.getElementById("medium").style.color = "#000000";
-                document.getElementById("low").style.color = "#FFFFFF";
-            }
-        });
-    });
+//                 document.getElementById("urgent").style.color = "#000000";
+//                 document.getElementById("medium").style.color = "#FFFFFF";
+//                 document.getElementById("low").style.color = "#000000";
+//             } else if (priority == "low") {
+//                 document.getElementById("urgent").style.background = "#FFFFFF";
+//                 document.getElementById("medium").style.background = "#FFFFFF";
+//                 document.getElementById("low").style.background = "#7AE229";
+
+//                 document.getElementById("urgent").style.color = "#000000";
+//                 document.getElementById("medium").style.color = "#000000";
+//                 document.getElementById("low").style.color = "#FFFFFF";
+//             }
+//         });
+//     });
+// }
+let black = "#000000";
+let white = "#FFFFFF";
+let orange = "#FF3D00";
+let lightorange = "#FFA800";
+let green = "#7AE229";
+function selectUrgent() {
+    document.getElementById("urgent").style.background = orange;
+    document.getElementById("medium").style.background = white;
+    document.getElementById("low").style.background = white;
+
+    document.getElementById("urgent").style.color = white;
+    document.getElementById("medium").style.color = black;
+    document.getElementById("low").style.color = black;
+
+    document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
+    document.getElementById("imgMedium").style.fill = orange;
+    document.getElementById("imgLow").style.fill = orange;
 }
+function selectMedium() {
+    document.getElementById("urgent").style.background = white;
+    document.getElementById("medium").style.background = lightorange;
+    document.getElementById("low").style.background = white;
+
+    document.getElementById("urgent").style.color = black;
+    document.getElementById("medium").style.color = white;
+    document.getElementById("low").style.color = black;
+}
+function selectLow() {
+    document.getElementById("urgent").style.background = white;
+    document.getElementById("medium").style.background = white;
+    document.getElementById("low").style.background = green;
+
+    document.getElementById("urgent").style.color = black;
+    document.getElementById("medium").style.color = black;
+    document.getElementById("low").style.color = white;
+}
+
 let categoryValue = "";
+let previousCategoryValue = "";
 function saveSelectedCategory() {
     Array.from(document.getElementsByClassName("category")).forEach((item) => {
         item.addEventListener('click', (event) => {
-            categoryValue = event.target.id;
-            console.log("event", categoryValue);
-            document.getElementById("testCategory").innerHTML = `
-                ${categoryValue}
-            `;
+            const newCategoryValue = event.target.id;
+            const upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
+            if (event.target.id) {
+                if (newCategoryValue !== categoryValue) {
+                    previousCategoryValue = categoryValue;
+                    categoryValue = newCategoryValue;
+                    console.log("event", categoryValue);
+                    document.getElementById("testCategory").innerHTML = `
+                    ${upperCaseValue}
+                `;
+                    let parentDiv = document.getElementById(`${categoryValue}`).parentNode;
+                    parentDiv.style.display = "none";
+                    if (previousCategoryValue) {
+                        let restoredParentDiv = document.getElementById(`${previousCategoryValue}`).parentNode;
+                        restoredParentDiv.style.display = "flex";
+                    }
+                }
+            }
         });
     });
 }
