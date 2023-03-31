@@ -20,6 +20,12 @@ function generateUserId() {
     id = Math.floor((Math.random() * 1000000) + 1);
 }
 
+function generateTaskId() {
+    id = tasks.length++;
+    return id
+}
+
+
 function addUser() {
     generateUserId();
     let name = document.getElementById('name');
@@ -58,19 +64,21 @@ function addUser() {
 
 // ToDoStart
 function createTask() {
-    // generateUserId();
+    let id = generateTaskId();
+    let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let category = categoryValue;
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = { title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
-    tasks.push(taskData);
-    saveTasks();
+    let taskData = {id: id, statusCategory: statusCategory, title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    // tasks.push(taskData);
+    // saveTasks();
+    console.log("Tasks", taskData);
+    // window.location.href = 'index.html';
 }
 async function saveTasks() {
-    debugger
     let tasksAsString = JSON.stringify(tasks);
     await backend.setItem('tasks', tasksAsString);
 }

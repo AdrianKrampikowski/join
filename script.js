@@ -11,43 +11,49 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    updateHTML();
+    setTimeout(() => {
+        testPushtoDo();
+        setTimeout(() => {
+            updateHTML();
+        }, 500);
+    }, 1500);
 
 }
 
-let toDos = [{
-    "id": 0,
-    "title": "Design",
-    "headline": "Website redesign",
-    "description": "Modify the contents of the main website...",
-    "numerator": "1",
-    "denominator": "2",
-    "category": "toDo"
-}, {
-    "id": 1,
-    "title": "Sales",
-    "headline": "Call potential clients",
-    "description": "Make the product presen-tation to prospective buyers",
-    "numerator": "1",
-    "denominator": "1",
-    "category": "inProgress"
-}, {
-    "id": 2,
-    "title": "Backoffice",
-    "headline": "Accounting invoices",
-    "description": "Write open invoices for customer",
-    "numerator": "1",
-    "denominator": "3",
-    "category": "awaitingFeedback"
-}, {
-    "id": 3,
-    "title": "Marketing",
-    "headline": "Social media strategy",
-    "description": "Develop an ad campaign for brand positioning",
-    "numerator": "1",
-    "denominator": "5",
-    "category": "done"
-}];
+let toDos = [];
+// {
+//     "id": 0,
+//     "title": "Design",
+//     "headline": "Website redesign",
+//     "description": "Modify the contents of the main website...",
+//     "numerator": "1",
+//     "denominator": "2",
+//     "category": "toDo"
+// }, {
+//     "id": 1,
+//     "title": "Sales",
+//     "headline": "Call potential clients",
+//     "description": "Make the product presen-tation to prospective buyers",
+//     "numerator": "1",
+//     "denominator": "1",
+//     "category": "inProgress"
+// }, {
+//     "id": 2,
+//     "title": "Backoffice",
+//     "headline": "Accounting invoices",
+//     "description": "Write open invoices for customer",
+//     "numerator": "1",
+//     "denominator": "3",
+//     "category": "awaitingFeedback"
+// }, {
+//     "id": 3,
+//     "title": "Marketing",
+//     "headline": "Social media strategy",
+//     "description": "Develop an ad campaign for brand positioning",
+//     "numerator": "1",
+//     "denominator": "5",
+//     "category": "done"
+// }
 
 let allTasks = [];
 
@@ -74,30 +80,31 @@ let allUsers = [];
 
 let currentDraggedElement;
 showAllContacts();
+
 function updateHTML() {
 
-    let toDo = toDos.filter(t => t["category"] == "toDo");
+    let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element);
     }
 
-    let inProgress = toDos.filter(t => t["category"] == "inProgress");
+    let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
     document.getElementById("inProgress").innerHTML = ``;
     for (let i = 0; i < inProgress.length; i++) {
         let element = inProgress[i];
         document.getElementById("inProgress").innerHTML += generateToDoHTML(element);
     }
 
-    let awaitingFeedback = toDos.filter(t => t["category"] == "awaitingFeedback");
+    let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
     document.getElementById("awaitingFeedback").innerHTML = ``;
     for (let i = 0; i < awaitingFeedback.length; i++) {
         let element = awaitingFeedback[i];
         document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element);
     }
 
-    let done = toDos.filter(t => t["category"] == "done");
+    let done = toDos.filter(t => t["statusCategory"] == "done");
     document.getElementById("done").innerHTML = ``;
     for (let i = 0; i < done.length; i++) {
         let element = done[i];
@@ -108,6 +115,11 @@ function updateHTML() {
         calculateProgressbar(i);
     }
     createBubbles();
+}
+
+function testPushtoDo() {
+    toDos = tasks;
+    console.log("toDo", toDos);
 }
 
 function generateToDoHTML(element) {
@@ -268,7 +280,7 @@ async function showAllContacts() {
 
             let tasks = JSON.parse(data.tasks);
             let test = tasks[0]["title"];
-            console.log("test",test);
+            console.log("test", test);
         })
 }
 
@@ -326,7 +338,7 @@ function doneCounter() {
     `;
 }
 
-function deadlineDate(){
+function deadlineDate() {
     // Fehlt von AddTask
 }
 
