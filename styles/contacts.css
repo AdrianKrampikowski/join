@@ -7,10 +7,6 @@ body {
     margin: 0  ;
 }
 
-.d-none {
-    display: none;
-}
-
 .contactsMainContainer {
      position: relative;
     display: flex;
@@ -20,13 +16,14 @@ body {
 
 .contactsBar {
    width: 453px;
-   height: 100%;
+   height: calc(100vh - 90px);
    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08); 
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: flex-start;
    padding: 1rem;
+   overflow: hidden;
 }
 
 .contactList {
@@ -34,10 +31,11 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    height: 100%;
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    overflow: auto;
+     overflow: auto;
     padding-right: 1.5rem;
 }
 
@@ -48,9 +46,9 @@ body {
     scrollbar-gutter: stable;
 }
 
-.contactList::-webkit-scrollbar-track {
+/* .contactList::-webkit-scrollbar-track {
     background-color: white;
-}
+} */
 
 .contactList::-webkit-scrollbar-thumb {
     background-color: #A8A8A8;
@@ -149,14 +147,15 @@ body {
     cursor: pointer;
     width: 100%;
     border-radius: 10px;
-    padding: 15px 25px 15px 25px;
+    padding: 15px 25px 15px 2px;
+    cursor: pointer;
 }
 
-.contact:hover {
+/* .contact:hover {
     background-color: #2A3647;
     color: white;
 }
-
+ */
 .contact > div:first-of-type {
     display: flex;
     justify-content: center;
@@ -207,15 +206,8 @@ body {
     align-items: flex-start;
     padding-left: 4rem;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 90px);
     background-color: #F5F5F5;
-}
-
-.contactsContainerMobile {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
 }
 
 .contactsContentHeader {
@@ -223,7 +215,7 @@ body {
     justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
-    height: 300px;
+    height: 150px;
     width: 100%;
 }
 
@@ -242,6 +234,13 @@ body {
     background-color: rgba(41, 171, 226, 1);
     height: 59px;
     width: 3px;
+}
+
+.contactsVline2 {
+    display: none;
+    background-color: rgba(41, 171, 226, 1);
+    height: 3px;
+    width: 59px;
 }
 
 .contactsContentHeader > div:last-of-type {
@@ -680,13 +679,13 @@ body {
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #contactCreated, #contactChangesSaved, #inputRequired {
     visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
+    min-width: 280px; /* Set a default minimum width */
+    margin-left: -140px; /* Divide value of min-width by 2 */
     background-color: #2A3647; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 10px; /* Rounded borders */
-    padding: 16px; /* Padding */
+    padding: 16px 8px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 10; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
@@ -759,12 +758,23 @@ body {
     }
 
     .contactsContentHeader {
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
         height: 160px;
         margin-top: 1.5rem;
         margin-bottom: 50px;
     }
+
+    .contactsVline {
+        display: none;
+    }
+
+    .contactsVline2 {
+        display: block;
+        margin-top: 5px;
+    }
+
     .contactDetails > div:first-of-type > div:first-of-type {
         margin-right: 40px;
     }
@@ -793,7 +803,7 @@ body {
         width: 100%;
         padding-top: 100px;
     }
-    #contactsContainer {
+    .contactsContainer {
         display: none;
         position: relative;
         top: 0;
@@ -814,7 +824,7 @@ body {
 
 @media (max-width: 830px) {
     .addContactContainer {
-        height: 900px;
+        height: 800px;
         width: 500px;
         flex-direction: column;
         position: absolute;
@@ -838,12 +848,15 @@ body {
 
     }
     .contactImg {
+        width: 100%;
         position: relative;
-        top: -50px;
+        top: -60px;
     }
 
     .contactInfo {
+        position: relative;
         padding: 0;
+        top: -40px;
     }
 
     .contactInfo > div:last-of-type {
@@ -855,12 +868,12 @@ body {
     }
 
     .contactInfo > div:first-of-type > div {
-        position: relative;
-        top: 1.5rem;
-        right: 1.5rem;
-        background-color: white;
+        display: none;
     }
 
+    .buttons {
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 720px) {
@@ -877,3 +890,92 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+    .addContactContainer {
+        width: 90%;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .contactsMainContainer {
+        height: 850px;
+
+    }
+
+    .contactsBar {
+        padding-bottom: 0;
+        height: 850px;
+    }
+
+    .contactsContainer {
+        height: 100%;
+    }
+
+    .addContactLeftSide h1 {
+        font-size: 50px;
+    }
+
+    .addContactLeftSide span {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 430px) {
+    .addContactLeftSide {
+        padding-top: 23px;
+    }
+
+    .addContactLeftSide h1 {
+        font-size: 40px;
+    }
+
+    .contactInfo {
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .inputContainer {
+        width: 100%;
+    }
+
+/*      .cancleButton{
+        width: 100px;
+    }
+
+    .createContact{
+        width: 150pxs;
+    } */
+
+    .cancleButton, .createContact, .inputFields, ::placeholder {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 330px) {
+    .contactInfo {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+
+
+
+/* ====================== CLASSES ADD/REMOVE ======================== */
+.d-none {
+    display: none;
+}
+
+.activeContact {
+    background-color: #2A3647 !important;
+}
+
+.contactsContainerMobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+/*     z-index: 3;
+ */}

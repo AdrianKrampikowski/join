@@ -143,8 +143,9 @@
             newSurname.value = '';
             newEmail.value = '';
             newPhone.value = '';
-            renderContacts();
+            renderLetters();
             showContactCreatedPupup();
+            document.getElementById('addContactBackground').style.display = 'none';
         }
     }
 
@@ -156,6 +157,8 @@
     }
 
     function openContactInfo(c) {
+        activeContact(c);
+
         let contactInformation = document.getElementById('contactDetails');
         contactInformation.innerHTML = '';
 
@@ -168,12 +171,30 @@
         getFirstLetter(c);
 
         contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone);
-        document.getElementById('contactIconBig' + i).style.backgroundColor = contactInfoBgColor;
+        document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
 
         if (window.innerWidth < 950) {
             document.getElementById('contactsBar').classList.add('d-none');
             document.getElementById('contactsContainer').classList.add('contactsContainerMobile');
-        } 
+            document.getElementById('newContactButton').classList.add('d-none');
+
+        }
+    }
+
+    function activeContact(c) {
+        let currentElement = document.getElementById('contactID' + c);
+        let allElements = document.querySelectorAll('.contact');
+
+        allElements.forEach((element) => {
+            element.style.backgroundColor = '#F5F5F5';
+            element.style.color = 'black';
+            // element.classList.remove('.activeContact');
+        })
+            currentElement.style.backgroundColor = '#2A3647';
+            currentElement.style.color = 'white';
+
+            // currentElement.classList.add('.activeContact');
+
     }
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {

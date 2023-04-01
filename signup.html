@@ -7,20 +7,21 @@
     <title>SignUp</title>
     
     <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/fonts.css">
 
     <!-- ============================== SCRIPTS ================================= -->
     <script src="backend.js"></script>
     <script src="mini_backend.js"></script>
 
   </head>
+
   <body onload="init()">
     <div class="mainContainer">
 
       <div class="header">
         <div class="startScreen startSignUpScreen">
-          <img id="startScreenLogo" class="logo logoSignUpScreen" src="img/blacklogo.svg"  />
+          <img id="startScreenLogo" class="logo logoSignUpScreen" src="img/blacklogo.svg"/>
         </div>
       </div>
 
@@ -31,7 +32,10 @@
             <img src="./img/arrowLeft.svg">
           </div>
 
-          <h1 class="loginHeading">Sign up</h1>
+          <div class="loginHeading">
+            <h1>Sign up</h1>
+            <div class="blueLigne"></div>
+          </div>
 
           <div class="inputContainer">
             <div class="inputFieldContainer">
@@ -63,7 +67,6 @@
 
           <div class="inputContainer">
             <div class="inputFieldContainer">
-              
               <select class="inputFields selectColor" id="userColor" required>
                 <option style="color: #d1d1d1;" value="none" disabled selected hidden>Choose your favorite color</option>
                 <option value="#ff0000" style="color: #ff0000;">
@@ -87,10 +90,10 @@
                 <option value="#a52a2a" style="color: #a52a2a;">
                   Brown
                 </option>
-                <option value="#808080" style="color: #808080;">                  Grey
+                <option value="#808080" style="color: #808080;">
+                  Grey
                 </option>
               </select>
-
             </div>
           </div>
 
@@ -100,11 +103,13 @@
       </div>
     </div>
 
-    <!-- ================================== SNACKBAR ALREADY SIGNE UP ======================================= -->
-    <div id="alreadySignedUp">You have already signed up, go back to login</div>
 
-    <!-- ================================== SNACKBAR SUCCESSFULLY SIGNED UP ======================================= -->
-    <div id="successfullySignedUp">You have successfully signed up!</div>
+
+<!-- ================================== SNACKBAR ALREADY SIGNE UP ======================================= -->
+<div id="alreadySignedUp">You have already signed up, go back to login</div>
+
+<!-- ================================== SNACKBAR SUCCESSFULLY SIGNED UP ======================================= -->
+<div id="successfullySignedUp">You have successfully signed up!</div>
 
   </body>
 </html>

@@ -7,12 +7,11 @@
     <title>Forgot Password</title>
 
     <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="forgotPw.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/forgotPw.css">
 
     <!-- ============================== SCRIPTS ================================= -->
-    <script src="backend.js"></script>
-    <script src="mini_backend.js"></script>
+    <script src="./Backend/backend.js"></script>
 
   </head>
   <body>
@@ -26,31 +25,39 @@
 
       <div class="contentContainer">
           <div class="loginScreen">
+
               <div class="arrowBack" onclick="backToLoginScreen()">
                 <img src="./img/arrowLeft.svg">
-              </div>              
+              </div>       
+                     
               <div class="loginHeading">
                 <h1>I forgot my password</h1>
-                <div></div>
+                <div class="blueLigne"></div>
               </div>
 
               <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
               
-              <form class="inputContainer" onsubmit="checkForCorrectEmail()" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
+<!--               action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php"
+ -->
+
+              <form id="forgotPwForm" class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
                   <div class="inputFieldContainer">
                     <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email" required/>
                     <img src="img/letter.svg" class="img" />
                   </div>
                     <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
-                  <button type="submit" class="loginButton">Send me the email</button>
+                  <button type="submit" onclick="checkForCorrectEmail()" class="loginButton">Send me the email</button>
               </form>
           </div>
       </div>
       
     </div>
 
-    <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
-    <div id="sendEmail"><img src="./img/emailSent.svg"> An E-Mail has been sent to you</div>
+      <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
+      <div id="sendEmail"><img src="./img/emailSent.svg">An E-Mail has been sent to you</div>
+
+      <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
+      <div id="noEmailInsertedPopup">Please insert you E-Mail</div>
 
   </body>
 </html>

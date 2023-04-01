@@ -6,20 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join</title>
-<<<<<<< HEAD
 
   <!-- ============================== CSS FILES ================================= -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="fonts.css">
-
-  <!-- ============================== SCRIPTS ================================= -->
-=======
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/fonts.css">
-  <script src="script.js"></script>
-  <script src="addTask.js"></script>
-  <script src="../js/createTask.js"></script>
->>>>>>> 5849e53fba442f66cf7c1c4993786e01754304a0
+
+  <!-- ============================== SCRIPTS ================================= -->
   <script src="backend.js"></script>
   <script src="mini_backend.js"></script>
 
@@ -46,21 +38,25 @@
 
     <div class="contentContainer">
       <div class="loginScreen">
-        <h1 class="loginHeading">Log in</h1>
 
-          <div class="inputContainer">
-            <div class="inputFieldContainer">
-              <input id="emailLog" class="inputFields" type="email" placeholder="Email" required />
-              <img src="img/letter.svg" class="img" />
-            </div>
+        <div class="loginHeading">
+          <h1>Log in</h1>
+          <div class="blueLigne"></div>
+        </div>
+
+        <div class="inputContainer">
+          <div class="inputFieldContainer">
+            <input id="emailLog" class="inputFields" type="email" placeholder="Email" required />
+            <img src="img/letter.svg" class="img" />
           </div>
-  
-          <div class="inputContainer">
-            <div class="inputFieldContainer">
-              <input id="passwordLog" class="inputFields" type="password" placeholder="Password" required />
-              <img src="img/lock.svg" class="img" />
-            </div>
+        </div>
+
+        <div class="inputContainer">
+          <div class="inputFieldContainer">
+            <input id="passwordLog" class="inputFields" type="password" placeholder="Password" required />
+            <img src="img/lock.svg" class="img" />
           </div>
+        </div>
 
         <div class="rememberOrForgetFields">
           <div class="checkboxContainer">
@@ -71,9 +67,7 @@
         </div>  
 
         <div class="loginAndWhiteButton">
-          <!-- <a href="/summery.html"> -->
             <button onclick="login()" class="loginButton">Log in</button>
-          <!-- </a> -->
           <a>
             <button onclick="guestLogin()" class="whiteButton">Guest Log in</button>
           </a>
