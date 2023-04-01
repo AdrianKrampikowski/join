@@ -33,7 +33,7 @@ a {
 .mainContainer {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   display: flex;
 }
 
@@ -46,6 +46,7 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  z-index: 2;
 }
 
 .sideNavBarList {
@@ -84,6 +85,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 }
 
 /* .placeholderBottom {

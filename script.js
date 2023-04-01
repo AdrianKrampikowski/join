@@ -11,43 +11,48 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    updateHTML();
-
+    setTimeout(() => {
+        pushArrayToDo();
+        setTimeout(() => {
+            updateHTML();
+        }, 500);
+    }, 1500);
 }
 
-let toDos = [{
-    "id": 0,
-    "title": "Design",
-    "headline": "Website redesign",
-    "description": "Modify the contents of the main website...",
-    "numerator": "1",
-    "denominator": "2",
-    "category": "toDo"
-}, {
-    "id": 1,
-    "title": "Sales",
-    "headline": "Call potential clients",
-    "description": "Make the product presen-tation to prospective buyers",
-    "numerator": "1",
-    "denominator": "1",
-    "category": "inProgress"
-}, {
-    "id": 2,
-    "title": "Backoffice",
-    "headline": "Accounting invoices",
-    "description": "Write open invoices for customer",
-    "numerator": "1",
-    "denominator": "3",
-    "category": "awaitingFeedback"
-}, {
-    "id": 3,
-    "title": "Marketing",
-    "headline": "Social media strategy",
-    "description": "Develop an ad campaign for brand positioning",
-    "numerator": "1",
-    "denominator": "5",
-    "category": "done"
-}];
+let toDos = [];
+// {
+//     "id": 0,
+//     "title": "Design",
+//     "headline": "Website redesign",
+//     "description": "Modify the contents of the main website...",
+//     "numerator": "1",
+//     "denominator": "2",
+//     "category": "toDo"
+// }, {
+//     "id": 1,
+//     "title": "Sales",
+//     "headline": "Call potential clients",
+//     "description": "Make the product presen-tation to prospective buyers",
+//     "numerator": "1",
+//     "denominator": "1",
+//     "category": "inProgress"
+// }, {
+//     "id": 2,
+//     "title": "Backoffice",
+//     "headline": "Accounting invoices",
+//     "description": "Write open invoices for customer",
+//     "numerator": "1",
+//     "denominator": "3",
+//     "category": "awaitingFeedback"
+// }, {
+//     "id": 3,
+//     "title": "Marketing",
+//     "headline": "Social media strategy",
+//     "description": "Develop an ad campaign for brand positioning",
+//     "numerator": "1",
+//     "denominator": "5",
+//     "category": "done"
+// }
 
 let allTasks = [];
 
@@ -74,30 +79,31 @@ let allUsers = [];
 
 let currentDraggedElement;
 showAllContacts();
+
 function updateHTML() {
 
-    let toDo = toDos.filter(t => t["category"] == "toDo");
+    let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element);
     }
 
-    let inProgress = toDos.filter(t => t["category"] == "inProgress");
+    let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
     document.getElementById("inProgress").innerHTML = ``;
     for (let i = 0; i < inProgress.length; i++) {
         let element = inProgress[i];
         document.getElementById("inProgress").innerHTML += generateToDoHTML(element);
     }
 
-    let awaitingFeedback = toDos.filter(t => t["category"] == "awaitingFeedback");
+    let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
     document.getElementById("awaitingFeedback").innerHTML = ``;
     for (let i = 0; i < awaitingFeedback.length; i++) {
         let element = awaitingFeedback[i];
         document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element);
     }
 
-    let done = toDos.filter(t => t["category"] == "done");
+    let done = toDos.filter(t => t["statusCategory"] == "done");
     document.getElementById("done").innerHTML = ``;
     for (let i = 0; i < done.length; i++) {
         let element = done[i];
@@ -110,48 +116,48 @@ function updateHTML() {
     createBubbles();
 }
 
+function pushArrayToDo() {
+    toDos = tasks;
+    console.log("toDo", toDos);
+}
+
 function generateToDoHTML(element) {
-    return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
-
-            <div class="boardContainerTop">
-                ${element["title"]}
-            </div>
-
-            <div class="boardContainerHeadline">
-                <h2>${element["headline"]}</h2>
-            </div>
-
-            <div class="boardContainerDescripton">
-                <span>${element["description"]}</span>
-            </div>
-
+    let progressBarHTML = '';
+    if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
+        progressBarHTML = `
             <div class="boardContainerProgress">
                 <div class="progress">
                     <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
                     </div>
                 </div>
-            <div class="progressInNumbers">
-                ${element["numerator"]}
-                /
-                ${element["denominator"]}
-                Done
-            </div>
-            </div>
-
-                <div class="boardContainerUserBubbles">
-                    <div class="userBubble" id="userBubble${element["id"]}">
-                    </div>
-
-                    <div>
-                        <img src="img/greenArrow.svg">
-                    </div>
-
+                <div class="progressInNumbers">
+                    ${element["numerator"]} / ${element["denominator"]} Done
                 </div>
-
-        </div>
+            </div>
         `;
+    }
+
+    return `
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['taskId']})">
+            <div class="boardContainerTop">
+                ${element["category"]}
+            </div>
+            <div class="boardContainerHeadline">
+                <h2>${element["title"]}</h2>
+            </div>
+            <div class="boardContainerDescripton">
+                <span>${element["description"]}</span>
+            </div>
+            ${progressBarHTML}
+            <div class="boardContainerUserBubbles">
+                <div class="userBubble" id="userBubble${element["id"]}"></div>
+                <div>
+                    <img class="priorityImg" src="img/${element["priorityValue"]}.svg">
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 
@@ -223,13 +229,13 @@ function generateRandomColor() {
 }
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
-function startDragging(id) {
-    currentDraggedElement = id;
+function startDragging(taskId) {
+    currentDraggedElement = taskId;
 }
 
 
-function moveTo(category) {
-    toDos[currentDraggedElement]['category'] = category;
+function moveTo(statusCategory) {
+    toDos[currentDraggedElement]['statusCategory'] = statusCategory;
     updateHTML();
 }
 
@@ -268,7 +274,7 @@ async function showAllContacts() {
 
             let tasks = JSON.parse(data.tasks);
             let test = tasks[0]["title"];
-            console.log("test",test);
+            console.log("test", test);
         })
 }
 
@@ -291,7 +297,7 @@ function taskCounter() {
 }
 
 function awaitingFeedbackCounter() {
-    let awaitingFeedbackCounter = toDos.filter(t => t["category"] == "awaitingFeedback");
+    let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
     awaitingFeedbackCounter = awaitingFeedbackCounter.length;
     document.getElementById("awaitingFeedbackCounter").innerHTML = `
     ${awaitingFeedbackCounter}
@@ -299,7 +305,7 @@ function awaitingFeedbackCounter() {
 }
 
 function inProgressCounter() {
-    let inProgressCounter = toDos.filter(t => t["category"] == "inProgress");
+    let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
     document.getElementById("inProgressCounter").innerHTML = `
     ${inProgressCounter}
@@ -311,7 +317,7 @@ function urgenCounter() {
 }
 
 function todoCounter() {
-    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
+    let toDoCounter = toDos.filter(t => t["statusCategory"] == "toDo");
     toDoCounter = toDoCounter.length;
     document.getElementById("todoCounter").innerHTML = `
     ${toDoCounter}
@@ -319,14 +325,14 @@ function todoCounter() {
 }
 
 function doneCounter() {
-    let doneCounter = toDos.filter(t => t["category"] == "done");
+    let doneCounter = toDos.filter(t => t["statusCategory"] == "done");
     doneCounter = doneCounter.length;
     document.getElementById("doneCounter").innerHTML = `
     ${doneCounter}
     `;
 }
 
-function deadlineDate(){
+function deadlineDate() {
     // Fehlt von AddTask
 }
 

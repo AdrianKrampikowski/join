@@ -2,6 +2,11 @@ let users = [];
 let tasks = [];
 
 let id;
+let taskId;
+
+function shoutTest() {
+    console.log("shoutTest");
+}
 
 // Immer als erste Funktion ausführen!
 async function init() {
@@ -19,6 +24,12 @@ async function init() {
 function generateUserId() {
     id = Math.floor((Math.random() * 1000000) + 1);
 }
+
+function generateTaskId() {
+    taskId = Math.floor((Math.random() * 1000000) + 1);
+    return taskId;
+}
+
 
 function addUser() {
     generateUserId();
@@ -58,46 +69,19 @@ function addUser() {
 
 // ToDoStart
 function createTask() {
-    // generateUserId();
+    let taskId = generateTaskId();
+    let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('categoryChoices');
+    let category = categoryValue;
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
-    // let priority = selectedPriority;
-    let taskData = { title: title.value, description: description.value, category: category.value, assignTo: assignTo, dueDate: dueDate.value };
-    // tasks.push(taskData);
-    // saveTasks();
-    console.log("taskdata", taskData);
-
-    // let surname = document.getElementById('surname');
-    // let email = document.getElementById('email');
-    // let password = document.getElementById('password');
-    // let color = document.getElementById('color');
-    // let userId = id;
-
-    // for (let i = 0; i < users.length; i++) {
-    //     if(users[i]['userid'].includes === id) {
-    //         generateUserId();
-    //     } 
-    // }
-
-    // let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId};
-    // let user = users.find(u => u.email == email.value && u.password == password.value);
-
-    // if(user){
-    //     alreadySignedUpPupup();
-    //     name.value = '';
-    //     surname.value = '';
-    //     email.value = '';
-    //     password.value ='';
-    // } else {
-    //     users.push(userData);
-    //     save();
-    //     successfullySignedUpPopup();
-
-    //     setInterval(forwardToLogin, 1200);
-    // }
+    let priorityValue = priority;
+    let taskData = {taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    tasks.push(taskData);
+    saveTasks();
+    console.log("Tasks", taskData);
+    // window.location.href = 'index.html';
 }
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
@@ -108,6 +92,8 @@ async function saveTasks() {
 selectedValues = [];
 setTimeout(() => {
     saveSelectedUsers();
+    saveSelectedPriority();
+    saveSelectedCategory();
 }, 1500);
 
 // Add an event listener to the checkboxes to update the selectedValues array
@@ -126,6 +112,77 @@ function saveSelectedUsers() {
                 }
             }
             console.log(selectedValues); // Print the selected values to the console
+        });
+    });
+}
+let priority = "";
+function saveSelectedPriority() {
+    Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
+        button.addEventListener('click', (event) => {
+            priority = event.target.id;
+            console.log("Prio", priority);
+        });
+    });
+}
+let black = "#000000";
+let white = "#FFFFFF";
+let orange = "#FF3D00";
+let lightorange = "#FFA800";
+let green = "#7AE229";
+function selectUrgent() {
+    document.getElementById("urgent").style.background = orange;
+    document.getElementById("medium").style.background = white;
+    document.getElementById("low").style.background = white;
+
+    document.getElementById("urgent").style.color = white;
+    document.getElementById("medium").style.color = black;
+    document.getElementById("low").style.color = black;
+
+    document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
+    document.getElementById("imgMedium").style.fill = orange;
+    document.getElementById("imgLow").style.fill = orange;
+}
+function selectMedium() {
+    document.getElementById("urgent").style.background = white;
+    document.getElementById("medium").style.background = lightorange;
+    document.getElementById("low").style.background = white;
+
+    document.getElementById("urgent").style.color = black;
+    document.getElementById("medium").style.color = white;
+    document.getElementById("low").style.color = black;
+}
+function selectLow() {
+    document.getElementById("urgent").style.background = white;
+    document.getElementById("medium").style.background = white;
+    document.getElementById("low").style.background = green;
+
+    document.getElementById("urgent").style.color = black;
+    document.getElementById("medium").style.color = black;
+    document.getElementById("low").style.color = white;
+}
+
+let categoryValue = "";
+let previousCategoryValue = "";
+function saveSelectedCategory() {
+    Array.from(document.getElementsByClassName("category")).forEach((item) => {
+        item.addEventListener('click', (event) => {
+            const newCategoryValue = event.target.id;
+            const upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
+            if (event.target.id) {
+                if (newCategoryValue !== categoryValue) {
+                    previousCategoryValue = categoryValue;
+                    categoryValue = newCategoryValue;
+                    document.getElementById("selectCategory").innerHTML = `
+                    ${upperCaseValue}
+                `;
+                    let parentDiv = document.getElementById(`${categoryValue}`).parentNode;
+                    parentDiv.style.display = "none";
+                    if (previousCategoryValue) {
+                        let restoredParentDiv = document.getElementById(`${previousCategoryValue}`).parentNode;
+                        restoredParentDiv.style.display = "flex";
+                    }
+                }
+            }
         });
     });
 }

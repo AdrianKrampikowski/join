@@ -557,6 +557,9 @@ fieldset {
     align-items: center;
     padding: 7px 20px;
 }
+.category:hover {
+    background-color: lightgray;
+}
 
 .assigned-to {
     display: flex;
@@ -564,9 +567,7 @@ fieldset {
     padding: 7px 20px;
 }
 
-.category:hover {
-    background-color: lightgray;
-}
+
 
 .prevent-select {
     -webkit-user-select: none;

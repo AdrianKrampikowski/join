@@ -1,0 +1,180 @@
+.d-none {
+  display: none !important;
+}
+
+input,
+select,
+.selectWrapper {
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 400;
+  padding: 13px 21px;
+  background-color: white;
+  outline: none;
+}
+
+select {
+  appearance: none;
+  background: url(/img/arrow.svg) 96% / 3% no-repeat white;
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 119px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  padding: 18px 21px;
+  outline: none;
+  resize: vertical;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+select::-ms-expand {
+  display: none;
+  /* Standardpfeil im IE 10 und 11 entfernen */
+}
+
+button {
+  border: none;
+}
+
+.selectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preventSelect {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+
+.assignedToWrapper {
+  margin-bottom: 30px;
+}
+
+.sectorTop {
+  display: flex;
+  justify-content: space-between;
+  line-height: 0;
+  align-items: center;
+  font-size: 18px;
+  padding: 5px 20px;
+}
+
+.selectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categoryChoices {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  padding: 7px 20px;
+}
+.category:hover {
+  background-color: lightgray;
+}
+
+.circle {
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  margin-left: 15px;
+  border: white;
+}
+
+.assignedToChoices {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.prioButtons {
+  display: flex;
+}
+
+.prioButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prioButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 136px;
+  height: 51px;
+
+  /* white */
+  background: #ffffff;
+
+  /* nuevo */
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.prioButton:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  width: 150px;
+  height: 60px;
+}
+
+.clearAndCreateButton {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.clearButton {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 136px;
+  height: 61px;
+
+  /* Version 2/ main color  */
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+}
+
+.createTaskButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 177px;
+  height: 61px;
+
+  background: #2a3647;
+  border-radius: 10px;
+
+  color: white;
+}

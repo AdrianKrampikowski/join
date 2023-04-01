@@ -289,7 +289,7 @@
             contacts[i]['phone'] = editPhone.value;
 
             saveContacts();
-            renderContacts();
+            renderLetters();
             contactChangesSavedPupup();
             editContactPopUp.style.display = 'none';
         }

@@ -11,7 +11,7 @@ setTimeout(() => {
     // createDropdownCheckboxes();
     // getSelectedUsers();
     addAssignedToList();
-
+    setDateToday();
 }, 1250);
 
 function addAssignedToList() {
@@ -35,4 +35,22 @@ function openDropdown(id) {
     else if (!document.getElementById(id).classList.contains('d-none')) {
         document.getElementById(id).classList.add('d-none');
     }
+}
+
+function setDateToday() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("dueDate").setAttribute('min', String(today));
+}
+
+function clearAll() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('selectCategory').innerHTML = 'Select your Category';
+    // for (let i = 0; i < contactsAddTask.length; i++) {
+    //     if (document.getElementById('assigned-to-' + i).checked) {
+    //         document.getElementById('assigned-to-' + i).checked = false;
+    //     }
+    // }
+    document.getElementById('dueDate').value = '';
+    // document.getElementById('subtask-list').innerHTML = '';
 }
