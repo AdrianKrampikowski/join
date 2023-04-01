@@ -51,16 +51,32 @@ a {
 
 .sideNavBarList {
   color: white;
-  gap: 5px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.sideNavBarList > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  cursor: pointer;
+}
+
+.sideNavBarList > div:hover {
+  background-color: #091931;
 }
 
 .sideNavBarTask {
   display: flex;
   align-items: center;
-  gap: 5px;
+  width: 150px;
+  gap: 25px;
 }
 
 .sideNavBarTask span {
@@ -68,6 +84,8 @@ a {
 }
 
 .sideNavBarLegalNotice {
+  position: absolute;
+  bottom: 30px;
   margin: 50px 0px 25px 0px;
 }
 
@@ -87,6 +105,30 @@ a {
   align-items: center;
   z-index: 2;
 }
+
+.topNavBarRightImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.topNavBarRightImgQuestionmark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.topNavBarRightImgPicture {
+  cursor: pointer;
+}
+
+.topNavBarRightImgPicture:hover {
+  scale: 1.05;
+
+}
+
 
 /* .placeholderBottom {
   height: calc(100% - 89px);
@@ -168,6 +210,7 @@ a {
   }
   .sideNavBarList {
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     flex-direction: initial;
     padding: 0px 12px;
