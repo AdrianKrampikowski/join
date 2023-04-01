@@ -12,12 +12,11 @@ async function includeHTML() {
         }
     }
     setTimeout(() => {
-        testPushtoDo();
+        pushArrayToDo();
         setTimeout(() => {
             updateHTML();
         }, 500);
     }, 1500);
-
 }
 
 let toDos = [];
@@ -117,53 +116,48 @@ function updateHTML() {
     createBubbles();
 }
 
-function testPushtoDo() {
+function pushArrayToDo() {
     toDos = tasks;
     console.log("toDo", toDos);
 }
 
 function generateToDoHTML(element) {
-    return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
-
-            <div class="boardContainerTop">
-                ${element["title"]}
-            </div>
-
-            <div class="boardContainerHeadline">
-                <h2>${element["headline"]}</h2>
-            </div>
-
-            <div class="boardContainerDescripton">
-                <span>${element["description"]}</span>
-            </div>
-
+    let progressBarHTML = '';
+    if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
+        progressBarHTML = `
             <div class="boardContainerProgress">
                 <div class="progress">
                     <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
                     </div>
                 </div>
-            <div class="progressInNumbers">
-                ${element["numerator"]}
-                /
-                ${element["denominator"]}
-                Done
-            </div>
-            </div>
-
-                <div class="boardContainerUserBubbles">
-                    <div class="userBubble" id="userBubble${element["id"]}">
-                    </div>
-
-                    <div>
-                        <img src="img/greenArrow.svg">
-                    </div>
-
+                <div class="progressInNumbers">
+                    ${element["numerator"]} / ${element["denominator"]} Done
                 </div>
-
-        </div>
+            </div>
         `;
+    }
+
+    return `
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
+            <div class="boardContainerTop">
+                ${element["category"]}
+            </div>
+            <div class="boardContainerHeadline">
+                <h2>${element["title"]}</h2>
+            </div>
+            <div class="boardContainerDescripton">
+                <span>${element["description"]}</span>
+            </div>
+            ${progressBarHTML}
+            <div class="boardContainerUserBubbles">
+                <div class="userBubble" id="userBubble${element["id"]}"></div>
+                <div>
+                    <img src="img/greenArrow.svg">
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 
@@ -240,8 +234,8 @@ function startDragging(id) {
 }
 
 
-function moveTo(category) {
-    toDos[currentDraggedElement]['category'] = category;
+function moveTo(statusCategory) {
+    toDos[currentDraggedElement]['statusCategory'] = statusCategory;
     updateHTML();
 }
 
@@ -303,7 +297,7 @@ function taskCounter() {
 }
 
 function awaitingFeedbackCounter() {
-    let awaitingFeedbackCounter = toDos.filter(t => t["category"] == "awaitingFeedback");
+    let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
     awaitingFeedbackCounter = awaitingFeedbackCounter.length;
     document.getElementById("awaitingFeedbackCounter").innerHTML = `
     ${awaitingFeedbackCounter}
@@ -311,7 +305,7 @@ function awaitingFeedbackCounter() {
 }
 
 function inProgressCounter() {
-    let inProgressCounter = toDos.filter(t => t["category"] == "inProgress");
+    let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
     document.getElementById("inProgressCounter").innerHTML = `
     ${inProgressCounter}
@@ -323,7 +317,7 @@ function urgenCounter() {
 }
 
 function todoCounter() {
-    let toDoCounter = toDos.filter(t => t["category"] == "toDo");
+    let toDoCounter = toDos.filter(t => t["statusCategory"] == "toDo");
     toDoCounter = toDoCounter.length;
     document.getElementById("todoCounter").innerHTML = `
     ${toDoCounter}
@@ -331,7 +325,7 @@ function todoCounter() {
 }
 
 function doneCounter() {
-    let doneCounter = toDos.filter(t => t["category"] == "done");
+    let doneCounter = toDos.filter(t => t["statusCategory"] == "done");
     doneCounter = doneCounter.length;
     document.getElementById("doneCounter").innerHTML = `
     ${doneCounter}
