@@ -4,6 +4,10 @@ let tasks = [];
 let id;
 let taskId;
 
+function shoutTest() {
+    console.log("shoutTest");
+}
+
 // Immer als erste Funktion ausführen!
 async function init() {
     setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
