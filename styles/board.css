@@ -1,15 +1,15 @@
 /* ================================ BOARD MAIN ================================ */
 .placeholderBoard {
-    height: 100%;
-    padding: 0 1.5rem 1.5rem 1.5rem;
-}  
+  height: 100%;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
 
 .placeholderBoardTop {
-    width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* .placeholderBoardTopLeft {
@@ -17,9 +17,9 @@
 } */
 
 .placeholderBoardTopRight {
-    display: flex;
-    align-items: center;
-    gap: 35px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
 }
 
 /* .findTaskInputField {
@@ -36,449 +36,447 @@
 } */
 
 .inputFields {
-    box-sizing: border-box;
-    /* gap: 10px; */
-    padding: 10px;
-    width: 251px;
-    height: 51px;
-    background: #ffffff;
-    border: 1px solid #d1d1d1;
-    border-radius: 10px;
+  box-sizing: border-box;
+  /* gap: 10px; */
+  padding: 10px;
+  width: 251px;
+  height: 51px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
 }
 
 ::placeholder {
-    width: 100px;
-    height: 25px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-    color: #d1d1d1;
+  width: 100px;
+  height: 25px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
+  color: #d1d1d1;
 }
 
 .inputContainer {
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .inputContainer img {
-    width: 20px;
-    height: 18px;
+  width: 20px;
+  height: 18px;
 }
-  
+
 .inputFieldContainer {
-    position: relative;
+  position: relative;
 }
 
 .inputFieldContainer img {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
 }
 
 .img {
-    right: 22px !important;
+  right: 22px !important;
 }
 
 .inputFieldContainer .inputFieldVerticalLine {
-    position: absolute;
-    top: 20%;
-    left: 75%;
-    width: 0px;
-    height: 31px;
-    border: 1px solid #d1d1d1;
-  }
-  
-  /* .inputFieldVerticalLine {
+  position: absolute;
+  top: 20%;
+  left: 75%;
+  width: 0px;
+  height: 31px;
+  border: 1px solid #d1d1d1;
+}
+
+/* .inputFieldVerticalLine {
     position: absolute;
     width: 0px;
     height: 31px;
     border: 1px solid #d1d1d1;
   } */
 
-  .addTaskButton {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 10px;
-    gap: 10px;
-  
-    width: 137px;
-    height: 51px;
-  
-    background: #2a3647;
-    border: 1px solid #2a3647;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
 .addTaskButton {
-    font-weight: 700;
-    font-size: 21px;
-    color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+
+  width: 137px;
+  height: 51px;
+
+  background: #2a3647;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
+.addTaskButton {
+  font-weight: 700;
+  font-size: 21px;
+  color: #ffffff;
+}
 
 .placeholderBoardBottom {
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1 ;
-    gap: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 26px;
 }
 
 .boardParts {
-    width: 380px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 1rem;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 1rem;
 }
 
 .boardTask {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0px 20px;
-    font-weight: 700;
-    font-size: 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 20px;
+  font-weight: 700;
+  font-size: 21px;
 }
 
 .boardTask > div:last-of-type {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-  
+
 .boardTask img {
-    width: 22px;
-    height: 22px;
-    color: #2A3647;
+  width: 22px;
+  height: 22px;
+  color: #2a3647;
 }
-  
+
 .boardContainer {
-    /* height: 100%; */
-    border-radius: 30px;
-    padding: 18px 20.5px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-    cursor: pointer;
-    /* border: 1px solid black; */
+  /* height: 100%; */
+  border-radius: 30px;
+  padding: 18px 20.5px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  /* border: 1px solid black; */
 }
-  
+
 .boardContainerTop {
-    width: 103px;
-    height: 27px;
-    background-color: #ff7a00;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  width: 103px;
+  height: 27px;
+  background-color: #ff7a00;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 .boardContainerHeadline h2 {
-    font-weight: 700;
-    font-size: 16px;
+  font-weight: 700;
+  font-size: 16px;
 }
-  
+
 .boardContainerDescripton span {
-    font-weight: 400;
-    font-size: 16px;
-    color: #a8a8a8;
+  font-weight: 400;
+  font-size: 16px;
+  color: #a8a8a8;
 }
-  
+
 .boardContainerProgress {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
 }
 
 .progress {
-    height: 5px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-  
-    width: 50%;
-    border: 1px solid purple;
-}
-  
-.progressBar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 50%;
-    transition: width 0.5s ease-in-out;
-}
-  
-.progressInNumbers {
-    display: flex;
-}
-  
-.boardContainerUserBubbles {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-  
-.userBubble {
-    display: flex;
-    position: relative;
+  height: 5px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+
+  width: 50%;
+  border: 1px solid purple;
 }
 
+.progressBar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 50%;
+  transition: width 0.5s ease-in-out;
+}
+
+.progressInNumbers {
+  display: flex;
+}
+
+.boardContainerUserBubbles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userBubble {
+  display: flex;
+  position: relative;
+}
 
 .userBubbleOne {
-    width: 35px;
-    height: 35px;
-    border-radius: 100%;
-    background-color: #0190e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border: 1px solid white;
-    font-size: 12px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #0190e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
 }
-  
+
 .userBubbleTwo {
-    position: absolute;
-    left: 27px;
-    width: 35px;
-    height: 35px;
-    border-radius: 100%;
-    background-color: #ee00d6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border: 1px solid white;
-    font-size: 12px;
+  position: absolute;
+  left: 27px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #ee00d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
 }
-  
+
 .userBubbleConcatenation {
-    position: absolute;
-    left: 54px;
-    width: 35px;
-    height: 35px;
-    border-radius: 100%;
-    background-color: #2a3647;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border: 1px solid white;
-    font-size: 12px;
+  position: absolute;
+  left: 54px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  font-size: 12px;
 }
 
 /* ================================ OPEN TASK ================================ */
 .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F5F5F5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
 }
 
 .openTaskContainer {
-    position: relative;
-    max-width: 623px;
-/*         height: 824px;
-*/        border-radius: 30px;
+  position: relative;
+  max-width: 623px;
+  /*         height: 824px;
+*/
+  border-radius: 30px;
 }
 
 .openTask {
-/*         position: relative;
+  /*         position: relative;
     top: 0;
     left: 0;
-*/        display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #FFFFFF;
-    padding: 50px;
-    gap: 25px;
-    border-radius: 30px;
-
+*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 50px;
+  gap: 25px;
+  border-radius: 30px;
 }
 
 .openTaskTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .openTaskTop > div:first-of-type {
-    width: 142px;
-    height: 40px;
-    border-radius: 8px;
-    padding: 4px 37px;
-    gap: 10px;
-    background-color: #FC71FF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 142px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 4px 37px;
+  gap: 10px;
+  background-color: #fc71ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .openTaskTop > div:first-of-type > span {
-    font-size: 27px;
-    color: white;
+  font-size: 27px;
+  color: white;
 }
 
 .openTaskTop > div:last-of-type {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .openTaskTop img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .openTaskTop img:hover {
-    box-shadow: 0 0 2px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .openTaskHeader > h1 {
-    font-size: 61px;    
-    color: #2A3647;
-    margin-bottom: 1rem;
+  font-size: 61px;
+  color: #2a3647;
+  margin-bottom: 1rem;
 }
 
 .openTaskMain {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .openTaskMain > div {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
-
-
-.openTaskMain > div > div:first-of-type{
-    font-weight: bold;
-    font-size: 21px;
-    width: 200px;
+.openTaskMain > div > div:first-of-type {
+  font-weight: bold;
+  font-size: 21px;
+  width: 200px;
 }
 
-.openTaskDate, .openTaskPriority {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.openTaskDate,
+.openTaskPriority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .openTaskAssigned > div:first-of-type {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .openTaskAssigned > div:last-of-type {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .openTaskAssigned > div:last-of-type > div {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .openTaskAssignedPerson {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
 .openTaskAssignedPerson > div:first-of-type {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #9327FF;
-    margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #9327ff;
+  margin-right: 1rem;
 }
 
 .openTaskAssignedPerson > span {
-    color: white;
+  color: white;
 }
 
 .openTaskEditButton {
-    position: absolute;
-    right: 50px;
-    bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 57px;
-    height: 57px;
-    border-radius: 10px;
-    background-color: #2A3647;
-    cursor: pointer;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 10px;
+  background-color: #2a3647;
+  cursor: pointer;
 }
 
+.priorityImg {
+  width: 17px;
+  height: 12px;
+}
 
 /* ================================ RESPONSIVENESS ================================ */
 
 @media (max-width: 880px) {
-    .inputFields {
-      width: 200px;
-      height: 40px;
-    }
-  
-    .inputFieldContainer .inputFieldVerticalLine {
-      height: 25px;
-    }
-  
-    .img {
-      right: 16px !important;
-    }
-  
-    .addTaskButton {
-      font-size: 16px;
-      padding: 15px 8px;
-      width: 110px;
-      height: 40px;
-    }
-  }
-  
-  @media (max-width: 880px) {
-    .boardParts {
-      width: 100%;
-    }
+  .inputFields {
+    width: 200px;
+    height: 40px;
   }
 
-  @media (max-width: 720px) {
-    .openTaskContainer {
-        width: 80%;
-    }
+  .inputFieldContainer .inputFieldVerticalLine {
+    height: 25px;
+  }
+
+  .img {
+    right: 16px !important;
+  }
+
+  .addTaskButton {
+    font-size: 16px;
+    padding: 15px 8px;
+    width: 110px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 880px) {
+  .boardParts {
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .openTaskContainer {
+    width: 80%;
+  }
 }
 
 @media (max-width: 480px) {
-    .openTaskContainer {
-        width: 100%;
-        height: 100%;
-    }
+  .openTaskContainer {
+    width: 100%;
+    height: 100%;
+  }
 }
-
-  

@@ -153,7 +153,7 @@ function generateToDoHTML(element) {
             <div class="boardContainerUserBubbles">
                 <div class="userBubble" id="userBubble${element["id"]}"></div>
                 <div>
-                    <img src="img/greenArrow.svg">
+                    <img class="priorityImg" src="img/${element["priorityValue"]}.svg">
                 </div>
             </div>
         </div>

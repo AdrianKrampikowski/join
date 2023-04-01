@@ -17,7 +17,7 @@
             <label>Category</label>
             <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
                 <div class="sectorTop">
-                    <p id="testCategory">Select your Category</p><img src="/img/arrow.svg">
+                    <p id="selectCategory">Select your Category</p><img src="/img/arrow.svg">
                 </div>
                 <div class="categoryChoices d-none" id="categoryChoices">
                     <div class="category">
@@ -82,7 +82,7 @@
         </div>
 
         <div class="clearAndCreateButton">
-            <button class="clearButton">Clear</button>
+            <button class="clearButton" onclick="clearAll()">Clear</button>
             <button class="createTaskButton" type="submit">Create Task</button>
         </div>
 

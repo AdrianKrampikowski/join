@@ -2,6 +2,7 @@ let users = [];
 let tasks = [];
 
 let id;
+let taskId;
 
 // Immer als erste Funktion ausführen!
 async function init() {
@@ -21,8 +22,8 @@ function generateUserId() {
 }
 
 function generateTaskId() {
-    id = tasks.length++;
-    return id
+    taskId = Math.floor((Math.random() * 1000000) + 1);
+    return taskId;
 }
 
 
@@ -64,7 +65,7 @@ function addUser() {
 
 // ToDoStart
 function createTask() {
-    let id = generateTaskId();
+    let taskId = generateTaskId();
     let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -72,9 +73,9 @@ function createTask() {
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = {id: id, statusCategory: statusCategory, title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
-    // tasks.push(taskData);
-    // saveTasks();
+    let taskData = {taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    tasks.push(taskData);
+    saveTasks();
     console.log("Tasks", taskData);
     // window.location.href = 'index.html';
 }
@@ -167,7 +168,7 @@ function saveSelectedCategory() {
                 if (newCategoryValue !== categoryValue) {
                     previousCategoryValue = categoryValue;
                     categoryValue = newCategoryValue;
-                    document.getElementById("testCategory").innerHTML = `
+                    document.getElementById("selectCategory").innerHTML = `
                     ${upperCaseValue}
                 `;
                     let parentDiv = document.getElementById(`${categoryValue}`).parentNode;

@@ -43,14 +43,14 @@ function setDateToday() {
 }
 
 function clearAll() {
-    document.getElementById('titleTextfield').value = '';
-    document.getElementById('description_textfield').value = '';
-    document.getElementById('categoryHeader').innerHTML = 'Select your Category';
-    for (let i = 0; i < contactsAddTask.length; i++) {
-        if (document.getElementById('assigned-to-' + i).checked) {
-            document.getElementById('assigned-to-' + i).checked = false;
-        }
-    }
-    document.getElementById('date').value = '';
-    document.getElementById('subtask-list').innerHTML = '';
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('selectCategory').innerHTML = 'Select your Category';
+    // for (let i = 0; i < contactsAddTask.length; i++) {
+    //     if (document.getElementById('assigned-to-' + i).checked) {
+    //         document.getElementById('assigned-to-' + i).checked = false;
+    //     }
+    // }
+    document.getElementById('dueDate').value = '';
+    // document.getElementById('subtask-list').innerHTML = '';
 }
