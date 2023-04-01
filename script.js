@@ -139,7 +139,7 @@ function generateToDoHTML(element) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['id']})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['taskId']})">
             <div class="boardContainerTop">
                 ${element["category"]}
             </div>
@@ -229,8 +229,8 @@ function generateRandomColor() {
 }
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
-function startDragging(id) {
-    currentDraggedElement = id;
+function startDragging(taskId) {
+    currentDraggedElement = taskId;
 }
 
 
