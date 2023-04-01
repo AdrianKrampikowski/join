@@ -24,6 +24,7 @@ let userChar = [];
 let allUsers = [];
 
 let currentDraggedElement;
+
 // {
 //     "id": 0,
 //     "title": "Design",
@@ -31,7 +32,7 @@ let currentDraggedElement;
 //     "description": "Modify the contents of the main website...",
 //     "numerator": "1",
 //     "denominator": "2",
-//     "category": "toDo"
+//     "statusCategory": "toDo"
 // }, {
 //     "id": 1,
 //     "title": "Sales",
@@ -39,7 +40,7 @@ let currentDraggedElement;
 //     "description": "Make the product presen-tation to prospective buyers",
 //     "numerator": "1",
 //     "denominator": "1",
-//     "category": "inProgress"
+//     "statusCategory": "inProgress"
 // }, {
 //     "id": 2,
 //     "title": "Backoffice",
@@ -47,7 +48,7 @@ let currentDraggedElement;
 //     "description": "Write open invoices for customer",
 //     "numerator": "1",
 //     "denominator": "3",
-//     "category": "awaitingFeedback"
+//     "statusCategory": "awaitingFeedback"
 // }, {
 //     "id": 3,
 //     "title": "Marketing",
@@ -55,7 +56,7 @@ let currentDraggedElement;
 //     "description": "Develop an ad campaign for brand positioning",
 //     "numerator": "1",
 //     "denominator": "5",
-//     "category": "done"
+//     "statusCategory": "done"
 // }
 
 // let newUsers = [{
@@ -117,7 +118,6 @@ function updateHTML() {
 
 function pushArrayToDo() {
     toDos = tasks;
-    console.log("toDo", toDos);
 }
 
 function generateToDoHTML(element) {
@@ -138,7 +138,7 @@ function generateToDoHTML(element) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element['taskId']})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
             <div class="boardContainerTop">
                 ${element["category"]}
             </div>
@@ -207,7 +207,7 @@ function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
     x = x * 100;
     let progressBarElements = document.getElementsByClassName("progressBar");
-    progressBarElements[index].style.width = x + "%";
+    // progressBarElements[index].style.width = x + "%";
 }
 
 function changeColorBubble() {
@@ -228,13 +228,21 @@ function generateRandomColor() {
 }
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
-function startDragging(taskId) {
-    currentDraggedElement = taskId;
+function startDragging(id) {
+    currentDraggedElement = toDos.findIndex(obj => obj.taskId === id);
+    
 }
 
 function moveTo(statusCategory) {
-    toDos[currentDraggedElement]['statusCategory'] = statusCategory;
+    toDos[currentDraggedElement]["statusCategory"] = statusCategory;
+    updateTasks();
     updateHTML();
+}
+
+async function updateTasks() {
+    let tasksAsString = JSON.stringify(toDos);
+    console.log("tasksAsString", tasksAsString);
+    await backend.setItem('tasks', tasksAsString);
 }
 
 function allowDrop(ev) {
@@ -269,8 +277,6 @@ async function showAllContacts() {
             }
 
             let tasks = JSON.parse(data.tasks);
-            let test = tasks[0]["title"];
-            console.log("test", test);
         })
 }
 
@@ -287,9 +293,9 @@ setTimeout(() => {
 
 function taskCounter() {
     let taskCounter = toDos.length;
-    document.getElementById("taskCounter").innerHTML = `
-    ${taskCounter}
-    `;
+    // document.getElementById("taskCounter").innerHTML = `
+    // ${taskCounter}
+    // `;
 }
 
 function awaitingFeedbackCounter() {
