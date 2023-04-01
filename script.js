@@ -18,8 +18,12 @@ async function includeHTML() {
         }, 500);
     }, 1500);
 }
-
+let allTasks = [];
 let toDos = [];
+let userChar = [];
+let allUsers = [];
+
+let currentDraggedElement;
 // {
 //     "id": 0,
 //     "title": "Design",
@@ -54,8 +58,6 @@ let toDos = [];
 //     "category": "done"
 // }
 
-let allTasks = [];
-
 // let newUsers = [{
 //     "id": 0,
 //     "name": "Adrian",
@@ -74,10 +76,7 @@ let allTasks = [];
 //     "surname": "test"
 // }];
 
-let userChar = [];
-let allUsers = [];
 
-let currentDraggedElement;
 showAllContacts();
 
 function updateHTML() {
@@ -233,17 +232,14 @@ function startDragging(taskId) {
     currentDraggedElement = taskId;
 }
 
-
 function moveTo(statusCategory) {
     toDos[currentDraggedElement]['statusCategory'] = statusCategory;
     updateHTML();
 }
 
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 let startWithLetter = [];
 async function showAllContacts() {
