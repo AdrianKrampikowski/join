@@ -169,6 +169,14 @@ function getFirstLetter(i) {
 }
 
 function createBubbles() {
+    console.log(toDos.findIndex(obj => obj.taskId === id)); 
+    let testArray = [];
+    toDos.forEach((x) => {
+        if(x.taskId == "" && x.statusCategory == ""){
+            testArray.push(x);
+        }
+
+    })
     if (allUsers.length > 3) {
         let Counter = allUsers.length
         for (let j = 0; j < toDos.length; j++) {

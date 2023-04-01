@@ -73,7 +73,7 @@ function createTask() {
     let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = categoryValue;
+    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);;
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
@@ -166,8 +166,8 @@ let previousCategoryValue = "";
 function saveSelectedCategory() {
     Array.from(document.getElementsByClassName("category")).forEach((item) => {
         item.addEventListener('click', (event) => {
-            const newCategoryValue = event.target.id;
-            const upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
+            let newCategoryValue = event.target.id;
+            let upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
             if (event.target.id) {
                 if (newCategoryValue !== categoryValue) {
                     previousCategoryValue = categoryValue;
