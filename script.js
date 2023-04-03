@@ -86,28 +86,28 @@ function updateHTML() {
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
-        document.getElementById("toDoCard").innerHTML += generateToDoHTML(element);
+        document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
     }
 
     let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
     document.getElementById("inProgress").innerHTML = ``;
     for (let i = 0; i < inProgress.length; i++) {
         let element = inProgress[i];
-        document.getElementById("inProgress").innerHTML += generateToDoHTML(element);
+        document.getElementById("inProgress").innerHTML += generateToDoHTML(element, i);
     }
 
     let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
     document.getElementById("awaitingFeedback").innerHTML = ``;
     for (let i = 0; i < awaitingFeedback.length; i++) {
         let element = awaitingFeedback[i];
-        document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element);
+        document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, i);
     }
 
     let done = toDos.filter(t => t["statusCategory"] == "done");
     document.getElementById("done").innerHTML = ``;
     for (let i = 0; i < done.length; i++) {
         let element = done[i];
-        document.getElementById("done").innerHTML += generateToDoHTML(element);
+        document.getElementById("done").innerHTML += generateToDoHTML(element, i);
     }
 
     for (let i = 0; i < toDos.length; i++) {
@@ -120,7 +120,7 @@ function pushArrayToDo() {
     toDos = tasks;
 }
 
-function generateToDoHTML(element) {
+function generateToDoHTML(element, i) {
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
         progressBarHTML = `
@@ -150,7 +150,7 @@ function generateToDoHTML(element) {
             </div>
             ${progressBarHTML}
             <div class="boardContainerUserBubbles">
-                <div class="userBubble" id="userBubble${element["id"]}"></div>
+                <div class="userBubble" id="userBubble${i}"></div>
                 <div>
                     <img class="priorityImg" src="img/${element["priorityValue"]}.svg">
                 </div>
@@ -169,16 +169,27 @@ function getFirstLetter(i) {
 }
 
 function createBubbles() {
-    console.log(toDos.findIndex(obj => obj.taskId === id)); 
+    let testIndex = toDos.findIndex(obj => obj.id === taskId);
+    // console.log(toDos.findIndex(obj => obj.taskId === id));
     let testArray = [];
+
     toDos.forEach((x) => {
-        if(x.taskId == "" && x.statusCategory == ""){
-            testArray.push(x);
-        }
+        // debugger
+        let testValue;
+        x.assignTo.forEach((data) => {
+            if (allUsers.findIndex(obj => obj.userid == data)) {
+                debugger
+                testValue = data;
+                return;
+            }
+        })
+        x.id = testValue;
+        testArray.push(x)
+        console.log("testArray", testArray);
 
     })
-    if (allUsers.length > 3) {
-        let Counter = allUsers.length
+    if (testArray[testIndex].assignTo.length > 3) {
+        let Counter = testArray[testIndex].assignTo.length
         for (let j = 0; j < toDos.length; j++) {
             for (let i = 0; i < 2; i++) {
                 let name = getFirstLetter(i)
@@ -189,7 +200,7 @@ function createBubbles() {
                 userBubbleOne.style.backgroundColor = changeColorBubble();
             }
         }
-        for (let j = 0; j < toDos.length; j++) {
+        for (let j = 0; j < testArray[0].assignTo.length; j++) {
             let remainingCount = Counter - 2;
             document.getElementById(`userBubble${[j]}`).innerHTML += `
                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
@@ -198,8 +209,9 @@ function createBubbles() {
             userBubbleOne.style.backgroundColor = "black";
         }
     } else {
+        
         for (let j = 0; j < toDos.length; j++) {
-            for (let i = 0; i < allUsers.length; i++) {
+            for (let i = 0; i < testArray[testIndex].assignTo.length; i++) {
                 let name = getFirstLetter(i)
                 document.getElementById(`userBubble${[j]}`).innerHTML += `
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
@@ -238,7 +250,7 @@ function generateRandomColor() {
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
     currentDraggedElement = toDos.findIndex(obj => obj.taskId === id);
-    
+
 }
 
 function moveTo(statusCategory) {
