@@ -129,7 +129,6 @@ a {
 
 }
 
-
 /* .placeholderBottom {
   height: calc(100% - 89px);
 } */
@@ -184,9 +183,7 @@ a {
   /* .placeholderBottom {
     height: calc(100vh - 169px);
   } */
-  .sideNavBar {
-    width: 100%;
-  }
+
   .sideNavBarLogo {
     top: 20px;
     left: 25px;
@@ -206,26 +203,32 @@ a {
     /* top: calc(100% - 80px); */
     align-items: center;
     flex-direction: initial;
-    justify-content: space-around;
-  }
+/*     justify-content: space-around;
+ */  }
   .sideNavBarList {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+/*     justify-content: space-evenly;
+ */    justify-content: space-around;
+
     flex-direction: initial;
     padding: 0px 12px;
     width: 100%;
   }
-  .sideNavBarTask {
+
+   .sideNavBarTask {
     /* display: flex; */
     flex-direction: column;
     /* justify-content: center;
     align-items: center; */
+    gap: 10px;
+    width: auto;
   }
   /* .sideNavBarTask span {
     color: white;
   } */
+
   .sideNavBarLegalNotice {
-    display: none;
+    display: none !important;
   }
 }

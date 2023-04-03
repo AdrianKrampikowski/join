@@ -177,7 +177,6 @@
             document.getElementById('contactsBar').classList.add('d-none');
             document.getElementById('contactsContainer').classList.add('contactsContainerMobile');
             document.getElementById('newContactButton').classList.add('d-none');
-
         }
     }
 
@@ -194,7 +193,6 @@
             currentElement.style.color = 'white';
 
             // currentElement.classList.add('.activeContact');
-
     }
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
@@ -298,6 +296,11 @@
             contacts.splice(i, 1);
             saveContacts();
             renderContacts();
+        }
+
+        function backToContactsList() {
+            document.getElementById('contactsBar').classList.remove('d-none');
+            document.getElementById('contactsContainer').classList.remove('contactsContainerMobile');
         }
 
         /* ================================== SNACKBAR =======================================*/
