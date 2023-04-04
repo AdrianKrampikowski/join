@@ -82,77 +82,110 @@ showAllContacts();
 
 function updateHTML() {
 
-    let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
-    document.getElementById("toDoCard").innerHTML = ``;
-    for (let i = 0; i < toDo.length; i++) {
-        let element = toDo[i];
-        document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
-    }
+    for (let index = 0; index < toDos.length; index++) {
+        // debugger
 
-    let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
-    document.getElementById("inProgress").innerHTML = ``;
-    for (let i = 0; i < inProgress.length; i++) {
-        let element = inProgress[i];
-        document.getElementById("inProgress").innerHTML += generateToDoHTML(element, i);
-    }
+        let category = toDos[index]['statusCategory'];
 
-    let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
-    document.getElementById("awaitingFeedback").innerHTML = ``;
-    for (let i = 0; i < awaitingFeedback.length; i++) {
-        let element = awaitingFeedback[i];
-        document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, i);
-    }
+        // document.getElementById("toDoCard").innerHTML = ``;
+        // document.getElementById("inProgress").innerHTML = ``;
+        // document.getElementById("awaitingFeedback").innerHTML = ``;
+        // document.getElementById("done").innerHTML = ``;
 
-    let done = toDos.filter(t => t["statusCategory"] == "done");
-    document.getElementById("done").innerHTML = ``;
-    for (let i = 0; i < done.length; i++) {
-        let element = done[i];
-        document.getElementById("done").innerHTML += generateToDoHTML(element, i);
-    }
+        if (category == 'toDo') {
+            document.getElementById("toDoCard").innerHTML += generateToDoHTML(index);
 
-    for (let i = 0; i < toDos.length; i++) {
-        calculateProgressbar(i);
+        } else if (category == 'inProgress') {
+            document.getElementById("inProgress").innerHTML += generateToDoHTML(index);
+
+        } else if (category == 'awaitingFeedback') {
+            document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(index);
+
+        } else if (category == 'done') {
+            document.getElementById("done").innerHTML += generateToDoHTML(index);
+        }
+
+        calculateProgressbar(index);
+        createBubbles(index);
     }
-    createBubbles();
 }
 
+// function updateHTML() {
+//     for (let index = 0; index < toDos.length; index++) {
+//         console.log("taskID", toDos[index]["taskId"]);
+//         let taskId = toDos[index]["taskId"];
+
+//         let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
+//         document.getElementById("toDoCard").innerHTML = ``;
+//         for (let i = 0; i < toDo.length; i++) {
+//             let element = toDo[i];
+//             document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, taskId);
+//         }
+
+//         let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
+//         document.getElementById("inProgress").innerHTML = ``;
+//         for (let i = 0; i < inProgress.length; i++) {
+//             let element = inProgress[i];
+//             document.getElementById("inProgress").innerHTML += generateToDoHTML(element, taskId);
+//         }
+
+//         let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
+//         document.getElementById("awaitingFeedback").innerHTML = ``;
+//         for (let i = 0; i < awaitingFeedback.length; i++) {
+//             let element = awaitingFeedback[i];
+//             document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, taskId);
+//         }
+
+//         let done = toDos.filter(t => t["statusCategory"] == "done");
+//         document.getElementById("done").innerHTML = ``;
+//         for (let i = 0; i < done.length; i++) {
+//             let element = done[i];
+//             document.getElementById("done").innerHTML += generateToDoHTML(element, taskId);
+//         }
+
+//         for (let i = 0; i < toDos.length; i++) {
+//             calculateProgressbar(i);
+//         }
+//         createBubbles(index, taskId);   
+//     }
+// }
 function pushArrayToDo() {
     toDos = tasks;
 }
 
-function generateToDoHTML(element, i) {
+function generateToDoHTML(index) {
     let progressBarHTML = '';
-    if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
-        progressBarHTML = `
-            <div class="boardContainerProgress">
-                <div class="progress">
-                    <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                    </div>
-                </div>
-                <div class="progressInNumbers">
-                    ${element["numerator"]} / ${element["denominator"]} Done
-                </div>
-            </div>
-        `;
-    }
+    // if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
+    //     progressBarHTML = `
+    //         <div class="boardContainerProgress">
+    //             <div class="progress">
+    //                 <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+    //                     aria-valuemax="100">
+    //                 </div>
+    //             </div>
+    //             <div class="progressInNumbers">
+    //                 ${element["numerator"]} / ${element["denominator"]} Done
+    //             </div>
+    //         </div>
+    //     `;
+    // }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${toDos[index]["taskId"]})">
             <div class="boardContainerTop">
-                ${element["category"]}
+                ${toDos[index]["category"]}
             </div>
             <div class="boardContainerHeadline">
-                <h2>${element["title"]}</h2>
+                <h2>${toDos[index]["title"]}</h2>
             </div>
             <div class="boardContainerDescripton">
-                <span>${element["description"]}</span>
+                <span>${toDos[index]["description"]}</span>
             </div>
             ${progressBarHTML}
             <div class="boardContainerUserBubbles">
-                <div class="userBubble" id="userBubble${i}"></div>
+                <div class="userBubble" id="userBubble${index}"></div>
                 <div>
-                    <img class="priorityImg" src="img/${element["priorityValue"]}.svg">
+                    <img class="priorityImg" src="img/${toDos[index]["priorityValue"]}.svg">
                 </div>
             </div>
         </div>
@@ -160,68 +193,86 @@ function generateToDoHTML(element, i) {
 }
 
 
-function getFirstLetter(i) {
-    if (i < allUsers.length) {
-        let x = allUsers[i];
+function getFirstLetter(index, i) {
+    // debugger
+    if (i < toDos[index]["assignTo"].length) {
+        let x = toDos[index]["assignTo"][i];
         x = x.split(' ').map(word => word.charAt(0)).join('');
         return x;
     }
 }
 
-function createBubbles() {
-    let testIndex = toDos.findIndex(obj => obj.id === taskId);
-    // console.log(toDos.findIndex(obj => obj.taskId === id));
-    let testArray = [];
-
-    toDos.forEach((x) => {
-        // debugger
-        let testValue;
-        x.assignTo.forEach((data) => {
-            if (allUsers.findIndex(obj => obj.userid == data)) {
-                debugger
-                testValue = data;
-                return;
-            }
-        })
-        x.id = testValue;
-        testArray.push(x)
-        console.log("testArray", testArray);
-
-    })
-    if (testArray[testIndex].assignTo.length > 3) {
-        let Counter = testArray[testIndex].assignTo.length
-        for (let j = 0; j < toDos.length; j++) {
-            for (let i = 0; i < 2; i++) {
-                let name = getFirstLetter(i)
-                document.getElementById(`userBubble${[j]}`).innerHTML += `
-                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+function createBubbles(index) {
+    // for (let j = 0; j < toDos.length; j++) {
+    if (toDos[index]["assignTo"].length < 3) {
+        for (let i = 0; i < toDos[index]["assignTo"].length; i++) {
+            // debugger
+            let name = getFirstLetter(index, i);
+            document.getElementById(`userBubble${[index]}`).innerHTML += `
+                    <div class="userBubbleOne" id="userBubbleOne${[index]}${[i]}">${name}</div>
                     `;
-                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                userBubbleOne.style.backgroundColor = changeColorBubble();
-            }
-        }
-        for (let j = 0; j < testArray[0].assignTo.length; j++) {
-            let remainingCount = Counter - 2;
-            document.getElementById(`userBubble${[j]}`).innerHTML += `
-                <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
-                `;
-            let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
-            userBubbleOne.style.backgroundColor = "black";
-        }
-    } else {
-        
-        for (let j = 0; j < toDos.length; j++) {
-            for (let i = 0; i < testArray[testIndex].assignTo.length; i++) {
-                let name = getFirstLetter(i)
-                document.getElementById(`userBubble${[j]}`).innerHTML += `
-                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
-                    `;
-                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                userBubbleOne.style.backgroundColor = changeColorBubble();
-            }
+            let userBubbleOne = document.getElementById(`userBubbleOne${[index]}${[i]}`);
+            userBubbleOne.style.backgroundColor = changeColorBubble();
         }
     }
+    // }
 }
+
+// function createBubbles2() {
+//     let testIndex = toDos.findIndex(obj => obj.assignTo === taskId);
+//     console.log("testIndex", obj);
+//     // console.log(toDos.findIndex(obj => obj.taskId === id));
+//     let testArray = [];
+
+//     toDos.forEach((x) => {
+//         // debugger
+//         let testValue;
+//         x.assignTo.forEach((data) => {
+//             if (allUsers.findIndex(obj => obj.userid == data)) {
+//                 // debugger
+//                 testValue = data;
+//                 return;
+//             }
+//         })
+//         x.id = testValue;
+//         testArray.push(x)
+
+
+//     })
+//     if (testArray[testIndex].assignTo.length > 3) {
+//         let Counter = testArray[testIndex].assignTo.length
+//         for (let j = 0; j < toDos.length; j++) {
+//             for (let i = 0; i < 2; i++) {
+//                 let name = getFirstLetter(i)
+//                 document.getElementById(`userBubble${[j]}`).innerHTML += `
+//                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+//                     `;
+//                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+//                 userBubbleOne.style.backgroundColor = changeColorBubble();
+//             }
+//         }
+//         for (let j = 0; j < testArray[0].assignTo.length; j++) {
+//             let remainingCount = Counter - 2;
+//             document.getElementById(`userBubble${[j]}`).innerHTML += `
+//                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
+//                 `;
+//             let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
+//             userBubbleOne.style.backgroundColor = "black";
+//         }
+//     } else {
+
+//         for (let j = 0; j < toDos.length; j++) {
+//             for (let i = 0; i < testArray[testIndex].assignTo.length; i++) {
+//                 let name = getFirstLetter(i)
+//                 document.getElementById(`userBubble${[j]}`).innerHTML += `
+//                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+//                     `;
+//                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+//                 userBubbleOne.style.backgroundColor = changeColorBubble();
+//             }
+//         }
+//     }
+// }
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
