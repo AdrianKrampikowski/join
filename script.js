@@ -484,30 +484,21 @@ function logout() {
 
 
 function searchFunction() {
-    const originalToDos = toDos;
-    const input = document.getElementById('searchValue');
+    let originalToDos = toDos;
+    let input = document.getElementById('searchValue');
     input.addEventListener('input', debounce(function (event) {
-
-        const selectedValue = event.target.value.trim();
-        console.log("selectedValue", selectedValue);
-
+        let selectedValue = event.target.value.trim();
         let newArray;
-
-        // If the search input is empty, restore the original to-do list
         if (selectedValue === '') {
             newArray = [...originalToDos];
             toDos = originalToDos;
         } else {
-            // Filter the to-do list based on the search input
             newArray = toDos.filter(item => {
-                // debugger
                 if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
                     return item;
                 }
             });
             if (newArray.length === 0 || selectedValue.length > 0) {
-                // If the search input is not empty but there are no results that match the search value,
-                // restore the original to-do list
                 newArray = originalToDos.filter(item => {
                     if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
                         return item;
@@ -515,10 +506,6 @@ function searchFunction() {
                 });
             }
         }
-
-        console.log("newArray", newArray);
-
-        // Update the to-dos array and the HTML
         toDos = newArray;
         updateHTML();
         if (toDos.length > 0) {
