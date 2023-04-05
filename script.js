@@ -105,10 +105,9 @@ showAllContacts();
 //         createBubbles(index);
 //     }
 // }
-
 function updateHTML() {
-    debugger
     if (toDos.length > 0) {
+
         for (let index = 0; index < toDos.length; index++) {
             let taskId = toDos[index]["taskId"];
 
@@ -151,6 +150,7 @@ function pushArrayToDo() {
 }
 
 function generateToDoHTML(element, index) {
+
     let progressBarHTML = '';
     // if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
     //     progressBarHTML = `
@@ -188,7 +188,6 @@ function generateToDoHTML(element, index) {
         </div>
     `;
 }
-
 
 function getFirstLetter(index, i) {
     if (i < toDos[index]["assignTo"].length) {
@@ -488,7 +487,7 @@ function searchFunction() {
     const originalToDos = toDos;
     const input = document.getElementById('searchValue');
     input.addEventListener('input', debounce(function (event) {
-        // debugger
+
         const selectedValue = event.target.value.trim();
         console.log("selectedValue", selectedValue);
 
@@ -506,8 +505,14 @@ function searchFunction() {
                     return item;
                 }
             });
-            if (newArray.length == 0) {
-                newArray = [];
+            if (newArray.length === 0 || selectedValue.length > 0) {
+                // If the search input is not empty but there are no results that match the search value,
+                // restore the original to-do list
+                newArray = originalToDos.filter(item => {
+                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                        return item;
+                    }
+                });
             }
         }
 
@@ -516,6 +521,15 @@ function searchFunction() {
         // Update the to-dos array and the HTML
         toDos = newArray;
         updateHTML();
+        if (toDos.length > 0) {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "block";
+            });
+        } else {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "none";
+            });
+        }
     }, 100));
 }
 
