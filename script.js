@@ -17,7 +17,7 @@ async function includeHTML() {
             updateHTML();
             searchFunction();
         }, 500);
-    }, 1500);
+    }, 1250);
 }
 let allTasks = [];
 let toDos = [];
@@ -372,6 +372,8 @@ setTimeout(() => {
     taskCounter();
     inProgressCounter();
     awaitingFeedbackCounter();
+    urgentCounter();
+    deadlineDate();
     todoCounter();
     doneCounter();
 
@@ -379,13 +381,13 @@ setTimeout(() => {
     displayUserName();
 
 
-}, 100);
+}, 1300);
 
 function taskCounter() {
     let taskCounter = toDos.length;
-    // document.getElementById("taskCounter").innerHTML = `
-    // ${taskCounter}
-    // `;
+    document.getElementById("taskCounter").innerHTML = `
+    ${taskCounter}
+    `;
 }
 
 function awaitingFeedbackCounter() {
@@ -404,8 +406,12 @@ function inProgressCounter() {
     `;
 }
 
-function urgenCounter() {
-    // Fehlt noch
+function urgentCounter() {
+    let urgentCounter = toDos.filter(t => t["priorityValue"] == "urgent");
+    urgentCounter = urgentCounter.length;
+    document.getElementById("urgentCounter").innerHTML = `
+    ${urgentCounter}
+    `;
 }
 
 function todoCounter() {
@@ -425,8 +431,37 @@ function doneCounter() {
 }
 
 function deadlineDate() {
-    // Fehlt von AddTask
+    let sortedDueDate = toDos
+        .filter((t) => t.dueDate)
+        .map((t) => t.dueDate);
+    if (sortedDueDate.length === 0) {
+        console.log("No valid due dates found.");
+        return;
+    }
+    let currentDate = new Date();
+    let closestDate = sortedDueDate[0];
+    let closestDiff = Math.abs(sortedDueDate[0] - currentDate);
+    for (let i = 1; i < sortedDueDate.length; i++) {
+        let diff = Math.abs(sortedDueDate[i] - currentDate);
+        if (diff < closestDiff) {
+            closestDate = sortedDueDate[i];
+            closestDiff = diff;
+        }
+    }
+    if (!(closestDate instanceof Date && !isNaN(closestDate))) {
+        console.log("Invalid date:", closestDate);
+        return;
+    }
+    let options = { month: "long", day: "2-digit", year: "numeric" };
+    let closestDateString = closestDate.toLocaleString("en-US", options);
+    closestDateString = closestDateString.split(' ').slice(1).join('-');
+    console.log("closestDateString", closestDateString);
+
 }
+
+
+// "en-US", 
+
 
 function greeting() {
     let currentdate = new Date();
