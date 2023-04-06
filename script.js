@@ -431,33 +431,24 @@ function doneCounter() {
 }
 
 function deadlineDate() {
-    let sortedDueDate = toDos
-        .filter((t) => t.dueDate)
-        .map((t) => t.dueDate);
+    const sortedDueDate = toDos
+      .filter((t) => t.dueDate)
+      .map((t) => new Date(t.dueDate))
+      .filter((d) => !isNaN(d.getTime()))
+      .sort((a, b) => a.getTime() - b.getTime());
+  
     if (sortedDueDate.length === 0) {
-        console.log("No valid due dates found.");
-        return;
+      console.log("No valid due dates found.");
+      return;
     }
-    let currentDate = new Date();
-    let closestDate = sortedDueDate[0];
-    let closestDiff = Math.abs(sortedDueDate[0] - currentDate);
-    for (let i = 1; i < sortedDueDate.length; i++) {
-        let diff = Math.abs(sortedDueDate[i] - currentDate);
-        if (diff < closestDiff) {
-            closestDate = sortedDueDate[i];
-            closestDiff = diff;
-        }
-    }
-    if (!(closestDate instanceof Date && !isNaN(closestDate))) {
-        console.log("Invalid date:", closestDate);
-        return;
-    }
-    let options = { month: "long", day: "2-digit", year: "numeric" };
-    let closestDateString = closestDate.toLocaleString("de-DE", options);
-    closestDateString = closestDateString.split(' ').slice(1).join('-');
+  
+    const currentDate = new Date();
+    const closestDate = sortedDueDate.reduce((a, b) => Math.abs(b - currentDate) < Math.abs(a - currentDate) ? b : a);
+    const closestDateString = closestDate.toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
+    
     console.log("closestDateString", closestDateString);
-    document.getElementById("deadlineDate").innerHTML = `${closestDateString}`;
-}
+    document.getElementById("testdeadlineDate").innerHTML = closestDateString;
+  }  
 
 
 // "en-US", 
