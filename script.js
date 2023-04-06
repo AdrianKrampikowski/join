@@ -381,7 +381,7 @@ setTimeout(() => {
     displayUserName();
 
 
-}, 1300);
+}, 1500);
 
 function taskCounter() {
     let taskCounter = toDos.length;
@@ -453,10 +453,10 @@ function deadlineDate() {
         return;
     }
     let options = { month: "long", day: "2-digit", year: "numeric" };
-    let closestDateString = closestDate.toLocaleString("en-US", options);
+    let closestDateString = closestDate.toLocaleString("de-DE", options);
     closestDateString = closestDateString.split(' ').slice(1).join('-');
     console.log("closestDateString", closestDateString);
-
+    document.getElementById("deadlineDate").innerHTML = `${closestDateString}`;
 }
 
 
