@@ -89,7 +89,6 @@ function pushArrayToDo() {
 
 
 function generateToDoHTML(element, index) {
-
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
         progressBarHTML = `
