@@ -99,7 +99,7 @@ a {
   top: 0px;
   height: 89px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px 36px 20px 116px;
+  padding: 1rem 2rem 1rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,6 +121,8 @@ a {
 }
 
 .topNavBarRightImgPicture {
+  border-radius: 50%;
+  border: 3px solid  white;
   cursor: pointer;
 }
 
@@ -129,15 +131,15 @@ a {
 
 }
 
-/* .placeholderBottom {
-  height: calc(100% - 89px);
-} */
+ .placeholderBottom {
+  height: 100%;
+} 
 
-.placeholderRightLeft {
+/* .placeholderLeft {
   position: relative;
   left: 0px;
   height: calc(100% - 89px);
-}
+} */
 
 /* Logo TopLeftCorner */
 .sideNavBarLogo {
@@ -169,20 +171,41 @@ a {
   margin-bottom: 25px;
 }
 
+@media (max-width: 950px) {
+  .placeholderTop {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+.topNavBarLeftText {
+  display: none;
+}
+
+.placeholderTop {
+  width: 100%;
+  justify-content: flex-end;
+}
+}
+
 @media (max-width: 480px) {
   .mainContainer {
     flex-direction: column-reverse;
   }
+
   .placeholderRight {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
   }
-  .placeholderTop {
-    width: 100%;
-    padding-left: 25px;
-  }
-  /* .placeholderBottom {
+
+  .placeholderBottom {
     height: calc(100vh - 169px);
-  } */
+  }
 
   .sideNavBarLogo {
     top: 20px;
@@ -212,7 +235,7 @@ a {
  */    justify-content: space-around;
 
     flex-direction: initial;
-    padding: 0px 12px;
+    padding: 12px;
     width: 100%;
   }
 
@@ -224,11 +247,23 @@ a {
     gap: 10px;
     width: auto;
   }
-  /* .sideNavBarTask span {
-    color: white;
-  } */
+
+  .sideNavBarTask img {
+    width: 22px;
+    height: 22px;
+  }
+  
+   .sideNavBarTask span {
+    font-size: 14px;
+  }
 
   .sideNavBarLegalNotice {
     display: none !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .sideNavBarTask span {
+    display: none;  
   }
 }

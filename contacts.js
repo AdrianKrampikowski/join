@@ -159,7 +159,7 @@
     function openContactInfo(c) {
         activeContact(c);
 
-        let contactInformation = document.getElementById('contactDetails');
+        let contactInformation = document.getElementById('contactsContent');
         contactInformation.innerHTML = '';
 
         let contactInfoName = contacts[c]['name'];
@@ -197,6 +197,7 @@
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
         return `
+            <div class="contactDetails" id="contactDetails">
                 <div>
                     <div>
                         <div id="contactIconBig${c}" class="contactIconBig">
@@ -239,15 +240,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-
-                    <div class="deleteContact">
-                        <div onclick="deleteContact(${c})">
-                            <span>Delete contact</span>
-                            <img src="../img/delete.svg">
-                        </div>
+                <div class="deleteContact">
+                    <div onclick="deleteContact(${c})">
+                        <span>Delete contact</span>
+                        <img src="../img/delete.svg">
                     </div>
                 </div>
+            </div>
         `;
         }
 
