@@ -2,7 +2,7 @@
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
+        let element = includeElements[i];
         file = element.getAttribute("w3-include-html"); // "includes/header.html"
         let resp = await fetch(file);
         if (resp.ok) {
@@ -11,6 +11,7 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    showAllContacts();
     setTimeout(() => {
         pushArrayToDo();
         setTimeout(() => {
@@ -19,6 +20,19 @@ async function includeHTML() {
         }, 500);
     }, 1250);
 }
+
+setTimeout(() => {
+    taskCounter();
+    inProgressCounter();
+    awaitingFeedbackCounter();
+    urgentCounter();
+    deadlineDate();
+    todoCounter();
+    doneCounter();
+    greeting();
+    displayUserName();
+}, 1500);
+
 let allTasks = [];
 let toDos = [];
 let userChar = [];
@@ -26,85 +40,7 @@ let allUsers = [];
 
 let currentDraggedElement;
 
-// {
-//     "id": 0,
-//     "title": "Design",
-//     "headline": "Website redesign",
-//     "description": "Modify the contents of the main website...",
-//     "numerator": "1",
-//     "denominator": "2",
-//     "statusCategory": "toDo"
-// }, {
-//     "id": 1,
-//     "title": "Sales",
-//     "headline": "Call potential clients",
-//     "description": "Make the product presen-tation to prospective buyers",
-//     "numerator": "1",
-//     "denominator": "1",
-//     "statusCategory": "inProgress"
-// }, {
-//     "id": 2,
-//     "title": "Backoffice",
-//     "headline": "Accounting invoices",
-//     "description": "Write open invoices for customer",
-//     "numerator": "1",
-//     "denominator": "3",
-//     "statusCategory": "awaitingFeedback"
-// }, {
-//     "id": 3,
-//     "title": "Marketing",
-//     "headline": "Social media strategy",
-//     "description": "Develop an ad campaign for brand positioning",
-//     "numerator": "1",
-//     "denominator": "5",
-//     "statusCategory": "done"
-// }
 
-// let newUsers = [{
-//     "id": 0,
-//     "name": "Adrian",
-//     "surname": "Krampikowski"
-// }, {
-//     "id": 1,
-//     "name": "Tobias",
-//     "surname": "Odermatt"
-// }, {
-//     "id": 2,
-//     "name": "Fausto",
-//     "surname": "Oliveira"
-// }, {
-//     "id": 3,
-//     "name": "test",
-//     "surname": "test"
-// }];
-
-
-showAllContacts();
-
-// function updateHTML() {
-//     for (let index = 0; index < toDos.length; index++) {
-//         let category = toDos[index]['statusCategory'];
-// document.getElementById("toDoCard").innerHTML = ``;
-// document.getElementById("inProgress").innerHTML = ``;
-// document.getElementById("awaitingFeedback").innerHTML = ``;
-// document.getElementById("done").innerHTML = ``;
-//         if (category == 'toDo') {
-//             document.getElementById("toDoCard").innerHTML += generateToDoHTML(index);
-
-//         } else if (category == 'inProgress') {
-//             document.getElementById("inProgress").innerHTML += generateToDoHTML(index);
-
-//         } else if (category == 'awaitingFeedback') {
-//             document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(index);
-
-//         } else if (category == 'done') {
-//             document.getElementById("done").innerHTML += generateToDoHTML(index);
-//         }
-
-//         calculateProgressbar(index);
-//         createBubbles(index);
-//     }
-// }
 function updateHTML() {
     if (toDos.length > 0) {
 
@@ -145,27 +81,30 @@ function updateHTML() {
         createBubbles();
     }
 }
+
+
 function pushArrayToDo() {
     toDos = tasks;
 }
 
+
 function generateToDoHTML(element, index) {
 
     let progressBarHTML = '';
-    // if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
-    //     progressBarHTML = `
-    //         <div class="boardContainerProgress">
-    //             <div class="progress">
-    //                 <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-    //                     aria-valuemax="100">
-    //                 </div>
-    //             </div>
-    //             <div class="progressInNumbers">
-    //                 ${element["numerator"]} / ${element["denominator"]} Done
-    //             </div>
-    //         </div>
-    //     `;
-    // }
+    if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
+        progressBarHTML = `
+            <div class="boardContainerProgress">
+                <div class="progress">
+                    <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                    </div>
+                </div>
+                <div class="progressInNumbers">
+                    ${element["numerator"]} / ${element["denominator"]} Done
+                </div>
+            </div>
+        `;
+    }
 
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
@@ -189,6 +128,7 @@ function generateToDoHTML(element, index) {
     `;
 }
 
+
 function getFirstLetter(index, i) {
     if (i < toDos[index]["assignTo"].length) {
         let y = toDos[index]["assignTo"][i];
@@ -201,6 +141,7 @@ function getFirstLetter(index, i) {
         return x;
     }
 }
+
 
 function createBubbles() {
     for (let j = 0; j < toDos.length; j++) {
@@ -235,61 +176,7 @@ function createBubbles() {
         }
     }
 }
-// function createBubbles() {
-//     let testIndex = toDos.findIndex(obj => obj.assignTo === taskId);
-//     console.log("testIndex", obj);
-//     // console.log(toDos.findIndex(obj => obj.taskId === id));
-//     let testArray = [];
 
-//     toDos.forEach((x) => {
-//         // debugger
-//         let testValue;
-//         x.assignTo.forEach((data) => {
-//             if (allUsers.findIndex(obj => obj.userid == data)) {
-//                 // debugger
-//                 testValue = data;
-//                 return;
-//             }
-//         })
-//         x.id = testValue;
-//         testArray.push(x)
-
-
-//     })
-//     if (testArray[testIndex].assignTo.length > 3) {
-//         let Counter = testArray[testIndex].assignTo.length
-//         for (let j = 0; j < toDos.length; j++) {
-//             for (let i = 0; i < 2; i++) {
-//                 let name = getFirstLetter(i)
-//                 document.getElementById(`userBubble${[j]}`).innerHTML += `
-//                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
-//                     `;
-//                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-//                 userBubbleOne.style.backgroundColor = changeColorBubble();
-//             }
-//         }
-//         for (let j = 0; j < testArray[0].assignTo.length; j++) {
-//             let remainingCount = Counter - 2;
-//             document.getElementById(`userBubble${[j]}`).innerHTML += `
-//                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
-//                 `;
-//             let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
-//             userBubbleOne.style.backgroundColor = "black";
-//         }
-//     } else {
-
-//         for (let j = 0; j < toDos.length; j++) {
-//             for (let i = 0; i < testArray[testIndex].assignTo.length; i++) {
-//                 let name = getFirstLetter(i)
-//                 document.getElementById(`userBubble${[j]}`).innerHTML += `
-//                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
-//                     `;
-//                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-//                 userBubbleOne.style.backgroundColor = changeColorBubble();
-//             }
-//         }
-//     }
-// }
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -297,6 +184,7 @@ function calculateProgressbar(index) {
     let progressBarElements = document.getElementsByClassName("progressBar");
     // progressBarElements[index].style.width = x + "%";
 }
+
 
 function changeColorBubble() {
     let colors = [];
@@ -308,12 +196,14 @@ function changeColorBubble() {
     return colors[randomColor];
 }
 
+
 function generateRandomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
 }
+
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
@@ -329,13 +219,13 @@ function moveTo(statusCategory) {
 
 async function updateTasks() {
     let tasksAsString = JSON.stringify(toDos);
-    // console.log("tasksAsString", tasksAsString);
     await backend.setItem('tasks', tasksAsString);
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 
 let startWithLetter = [];
 async function showAllContacts() {
@@ -350,7 +240,6 @@ async function showAllContacts() {
                 allUsers.push(contactMemory);
                 allUsers.sort();
             }
-
             for (let i = 65; i < 90; i++) {
                 let contacts = allUsers
                     .filter(function (contact) {
@@ -363,25 +252,10 @@ async function showAllContacts() {
                     startWithLetter.push(contacts);
                 }
             }
-
             let tasks = JSON.parse(data.tasks);
         })
 }
 
-setTimeout(() => {
-    taskCounter();
-    inProgressCounter();
-    awaitingFeedbackCounter();
-    urgentCounter();
-    deadlineDate();
-    todoCounter();
-    doneCounter();
-
-    greeting();
-    displayUserName();
-
-
-}, 1500);
 
 function taskCounter() {
     let taskCounter = toDos.length;
@@ -389,6 +263,7 @@ function taskCounter() {
     ${taskCounter}
     `;
 }
+
 
 function awaitingFeedbackCounter() {
     let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
@@ -398,6 +273,7 @@ function awaitingFeedbackCounter() {
     `;
 }
 
+
 function inProgressCounter() {
     let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
@@ -405,6 +281,7 @@ function inProgressCounter() {
     ${inProgressCounter}
     `;
 }
+
 
 function urgentCounter() {
     let urgentCounter = toDos.filter(t => t["priorityValue"] == "urgent");
@@ -414,6 +291,7 @@ function urgentCounter() {
     `;
 }
 
+
 function todoCounter() {
     let toDoCounter = toDos.filter(t => t["statusCategory"] == "toDo");
     toDoCounter = toDoCounter.length;
@@ -421,6 +299,7 @@ function todoCounter() {
     ${toDoCounter}
     `;
 }
+
 
 function doneCounter() {
     let doneCounter = toDos.filter(t => t["statusCategory"] == "done");
@@ -430,28 +309,25 @@ function doneCounter() {
     `;
 }
 
+
 function deadlineDate() {
-    const sortedDueDate = toDos
-      .filter((t) => t.dueDate)
-      .map((t) => new Date(t.dueDate))
-      .filter((d) => !isNaN(d.getTime()))
-      .sort((a, b) => a.getTime() - b.getTime());
-  
+    let sortedDueDate = toDos
+        .filter((t) => t.dueDate)
+        .map((t) => new Date(t.dueDate))
+        .filter((d) => !isNaN(d.getTime()))
+        .sort((a, b) => a.getTime() - b.getTime());
+
     if (sortedDueDate.length === 0) {
-      console.log("No valid due dates found.");
-      return;
+        console.log("No valid due dates found.");
+        return;
     }
-  
-    const currentDate = new Date();
-    const closestDate = sortedDueDate.reduce((a, b) => Math.abs(b - currentDate) < Math.abs(a - currentDate) ? b : a);
-    const closestDateString = closestDate.toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
-    
-    console.log("closestDateString", closestDateString);
-    document.getElementById("testdeadlineDate").innerHTML = closestDateString;
-  }  
 
+    let currentDate = new Date();
+    let closestDate = sortedDueDate.reduce((a, b) => Math.abs(b - currentDate) < Math.abs(a - currentDate) ? b : a);
+    let closestDateString = closestDate.toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
 
-// "en-US", 
+    document.getElementById("deadlineDate").innerHTML = closestDateString;
+}
 
 
 function greeting() {
@@ -466,6 +342,7 @@ function greeting() {
     `;
 }
 
+
 function displayUserName() {
     let userName = localStorage.getItem("userName");
     let abbreviatedName = abbreviateName(userName, 10);
@@ -474,16 +351,11 @@ function displayUserName() {
     `;
 }
 
+
 function abbreviateName(name, maxLength) {
     if (name.length <= maxLength) {
-        // If the name is already short enough, just return it as is
         return name;
     } else {
-        // Otherwise, abbreviate the name by taking the first letter of each word
-        // and adding an ellipsis at the end
-        // let words = name.split(' ');
-        // let initials = words.map(word => word.charAt(0)).join('');
-        // return initials;
         let words = name.split(' ');
         let firstWord = words[0];
         let secondWordInitial = words[1].charAt(0);
@@ -496,17 +368,6 @@ function logout() {
     localStorage.removeItem("userName");
     window.location.href = 'index.html';
 }
-
-// function searchFunction(input) {
-//     let searchValue = input.target.value;
-//     let newArray = toDos.filter(item => {
-//         if (item.description == searchValue || item.title == searchValue) {
-//             return item;
-//         }
-//     });
-//     console.log("newArray", newArray);
-// }
-// Define a copy of the original to-do list
 
 
 function searchFunction() {
@@ -546,6 +407,7 @@ function searchFunction() {
     }, 100));
 }
 
+
 function debounce(func, delay) {
     let timeoutId;
     return function (...args) {
@@ -555,16 +417,3 @@ function debounce(func, delay) {
         }, delay);
     };
 }
-
-
-// function conlogAllContacts() {
-//     let startWithLetter = [];
-//     for (let i = 65; i < 90; i++) {
-//         for (let j = 0; j < allContacts.length; j++) {
-//             if (allContacts[j].charAt[0].toUpperCase() === String.fromCharCode(i)) {
-//                 startWithLetter.push(allContacts[j]);
-//             }
-//         }
-//     }
-//     console.log(startWithLetter);
-// }
