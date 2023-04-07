@@ -145,6 +145,7 @@ body {
         display: none;
     }
     
+    
     .placeholderBottom {
       height: calc(100vh - 169px);
     }
@@ -706,9 +707,12 @@ fieldset {
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 560px) {
     .main-container {
         margin-right: 0;
+    }
+    .selection-container{
+        width: 91%;
     }
     .title-container {
         width: unset;
@@ -718,5 +722,12 @@ fieldset {
     }
     .right-container {
         width: unset;
+    }
+    .title-container{
+        display: none;
+    }
+    .add-task-mobile{
+        width: 85px;
+        display: block;
     }
 }
