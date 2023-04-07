@@ -132,8 +132,7 @@ body {
     .placeholderTop {
       width: 100%;
       padding-left: 25px;
-      display: none;
-      
+    
     }
     .topNavBarLeftText{
         display: none;
@@ -705,7 +704,9 @@ fieldset {
     .left-container {
         margin-bottom: -50px;
     }
+   
 }
+
 
 @media(max-width: 560px) {
     .main-container {
@@ -727,7 +728,10 @@ fieldset {
         display: none;
     }
     .add-task-mobile{
-        width: 85px;
-        display: block;
+        
+       
     }
+   .img{
+    width: 85px;
+   }
 }
