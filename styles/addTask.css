@@ -135,6 +135,15 @@ body {
       display: none;
       
     }
+    .topNavBarLeftText{
+        display: none;
+    }
+    .topNavBarRightImgQuestionmark{
+        display: none;
+    }
+    .topNavBarRightImgPicture{
+        display: none;
+    }
     
     .placeholderBottom {
       height: calc(100vh - 169px);
