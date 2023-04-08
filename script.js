@@ -44,7 +44,6 @@ let currentDraggedElement;
 function updateHTML() {
     if (toDos.length > 0) {
 
-<<<<<<< HEAD
     for (let index = 0; index < toDos.length; index++) {
         
         let category = toDos[index]['statusCategory'];
@@ -84,10 +83,6 @@ function updateHTML() {
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
     } */
 
-=======
-        for (let index = 0; index < toDos.length; index++) {
-            let taskId = toDos[index]["taskId"];
->>>>>>> 81bfc572bed6b4a0992b8dd45d041d2383c0dfe3
             let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
             for (let i = 0; i < toDo.length; i++) {
@@ -120,13 +115,7 @@ function updateHTML() {
             calculateProgressbar(i);
         }
         createBubbles();
-<<<<<<< HEAD
     
-=======
-    }
-}
-
->>>>>>> 81bfc572bed6b4a0992b8dd45d041d2383c0dfe3
 
 function pushArrayToDo() {
     toDos = tasks;

@@ -188,12 +188,9 @@
         allElements.forEach((element) => {
             element.style.backgroundColor = '#F5F5F5';
             element.style.color = 'black';
-            // element.classList.remove('.activeContact');
         })
             currentElement.style.backgroundColor = '#2A3647';
             currentElement.style.color = 'white';
-
-            // currentElement.classList.add('.activeContact');
     }
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
