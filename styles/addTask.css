@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     width: 100%;
     font-family: 'Inter', sans-serif;
@@ -17,7 +17,7 @@ body {
 li {
     text-decoration: none;
     list-style: none;
-    /*color: #f6f7f8;*/
+    /*color: #f6f7f8;
     display: flex;
     gap: 18px;
     justify-content: flex-start;
@@ -97,7 +97,7 @@ a {
     height: calc(100% - 89px);
 }
 
-/* Logo TopLeftCorner */
+/* Logo TopLeftCorner
 .sideNavBarLogo {
     position: absolute;
     top: 66px;
@@ -116,7 +116,7 @@ a {
     display: none;
 }
 
-/* SideBar */
+/* SideBar
 .svg {
     width: 25px;
     height: 25px;
@@ -236,7 +236,6 @@ textarea {
 
 select::-ms-expand {
     display: none;
-    /* Standardpfeil im IE 10 und 11 entfernen */
 }
 
 .middle-gap {
@@ -516,11 +515,11 @@ fieldset {
 
 .prevent-select {
     -webkit-user-select: none;
-    /* Safari */
+
     -ms-user-select: none;
-    /* IE 10 and IE 11 */
+
     user-select: none;
-    /* Standard syntax */
+
 }
 
 .assigned-to-line {
@@ -531,4 +530,4 @@ fieldset {
 
 .assigned-to-wrapper {
     margin-bottom: 30px;
-}
+} */

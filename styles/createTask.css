@@ -40,6 +40,29 @@ button {
   border: none;
 }
 
+span {
+  font-weight: 400;
+  font-size: 21px;
+}
+
+.addTaskMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addTaskContainer {
+  display: flex;
+}
+
+.addTaskLeftandRightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 25px;
+  margin-top: 42px;
+}
+
 .selectionContainer {
   display: flex;
   flex-direction: column;
@@ -103,6 +126,19 @@ button {
   margin-top: 20px;
   height: 200px;
   overflow-y: scroll;
+}
+
+.middleGap {
+  display: flex;
+  border-left: 1px solid #d1d1d1;
+  height: 551px;
+  margin: 56px;
+}
+
+.dueDateAndClearCreateButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .prioButtons {
@@ -177,4 +213,13 @@ button {
   border-radius: 10px;
 
   color: white;
+}
+
+@media (max-width: 1100px) {
+  .middleGap {
+    display: none;
+  }
+  .addTaskContainer {
+    flex-direction: column;
+  }
 }
