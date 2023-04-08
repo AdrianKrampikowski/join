@@ -413,3 +413,29 @@ function debounce(func, delay) {
         }, delay);
     };
 }
+
+function displayMainSummaryPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "block";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+function displayMainBoardPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "block";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+function displayMainAddTaskPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "block";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+function displayMainContacsPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "block";
+}
+

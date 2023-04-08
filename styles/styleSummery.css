@@ -30,6 +30,22 @@ a {
   text-decoration: none;
 }
 
+.mainBoardContainerDisplay {
+  display: none;
+}
+
+.mainSummaryContainerDisplay {
+  display: block;
+}
+
+.mainAddTaskContainerDisplay {
+  display: none;
+}
+
+.mainContactsContainerDisplay {
+  display: none;
+}
+
 .mainContainer {
   width: 100vw;
   height: 100vh;
@@ -113,12 +129,12 @@ a {
   gap: 10px;
 }
 
-.topNavBarRightImgQuestionmark {
+/* .topNavBarRightImgQuestionmark {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
+} */
 
 .topNavBarRightImgPicture {
   border-radius: 50%;

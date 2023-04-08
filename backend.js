@@ -229,12 +229,12 @@ function login() {
 function guestLogin() {
     let userName = "Guest";
     localStorage.setItem('userName', userName);
-    window.location.href = 'summery.html';
+    window.location.href = 'join.html';
 }
 
 function forwardToSummery(userId) {
     // Weiterleitung zur Loginseite
-    window.location.href = 'summery.html?id=' + userId;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+    window.location.href = 'join.html?id=' + userId;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
 }
 
 function userColor(userColor){
