@@ -159,7 +159,7 @@
     function openContactInfo(c) {
         activeContact(c);
 
-        let contactInformation = document.getElementById('contactDetails');
+        let contactInformation = document.getElementById('contactsContent');
         contactInformation.innerHTML = '';
 
         let contactInfoName = contacts[c]['name'];
@@ -172,6 +172,7 @@
 
         contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone);
         document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
+        document.getElementById('contactDetails' + c).style.animation = 'flying 225ms ease-in-out';
 
         if (window.innerWidth < 950) {
             document.getElementById('contactsBar').classList.add('d-none');
@@ -197,6 +198,7 @@
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
         return `
+            <div class="contactDetails" id="contactDetails${c}">
                 <div>
                     <div>
                         <div id="contactIconBig${c}" class="contactIconBig">
@@ -210,7 +212,7 @@
                                 <span>${contactInfoSurname}</span>
                             </div>
                         </div>
-                        <div class="addTask">
+                        <div onclick="addTaskViaContact(${c})" class="addTask">
                             <img src="../img/plus.svg"><span>Add Task</span>
                         </div>
                     </div>
@@ -239,16 +241,21 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="deleteContact">
-                        <div onclick="deleteContact(${c})">
-                            <span>Delete contact</span>
-                            <img src="../img/delete.svg">
-                        </div>
-                    </div>
                 </div>
+            </div>
+
+            <div class="deleteContact">
+                <div onclick="deleteContact(${c})">
+                    <span>Delete contact</span>
+                    <img src="../img/delete.svg">
+                </div>
+            </div>
+
         `;
+        }
+
+        function addTaskViaContact(c) {
+            document.getElementById('addTask-contacts-container').style.display = 'flex';
         }
 
         function editContact(i) {
@@ -267,7 +274,7 @@
                 <button class="createContact" onclick="saveChanges(${i})">  
                     <span>Save</span>
                 </button>
-        `;
+                `;
 
             getFirstLetter(i);
 
@@ -275,8 +282,7 @@
             <div id="contactImgBg${i}" class="contactImgBg">
                 <span>${firstLetters}</span>
             </div>
-        `;
-
+            `;
             document.getElementById('contactImgBg' + i).style.backgroundColor = contactInfoBgColor;
         }
 
@@ -301,6 +307,8 @@
         function backToContactsList() {
             document.getElementById('contactsBar').classList.remove('d-none');
             document.getElementById('contactsContainer').classList.remove('contactsContainerMobile');
+            document.getElementById('newContactButton').classList.remove('d-none');
+
         }
 
         /* ================================== SNACKBAR =======================================*/

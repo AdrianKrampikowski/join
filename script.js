@@ -46,7 +46,6 @@ function updateHTML() {
 
         for (let index = 0; index < toDos.length; index++) {
             let taskId = toDos[index]["taskId"];
-
             let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
             for (let i = 0; i < toDo.length; i++) {

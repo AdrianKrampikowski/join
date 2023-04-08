@@ -7,14 +7,15 @@
     <title>Forgot Password</title>
 
     <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/forgotPw.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/forgotPw.css">
 
     <!-- ============================== SCRIPTS ================================= -->
-    <script src="./Backend/backend.js"></script>
+    <script src="../Backend/backend.js"></script>
+    <script src="../mini_backend.js"></script>
 
   </head>
-  <body>
+  <body onload="init()">
     <div class="mainContainer">
 
       <div class="header">
@@ -39,13 +40,13 @@
               
 <!--           action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" -->
 
-              <form id="forgotPwForm" class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
+              <form id="forgotPwForm" class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" onsubmit="return(checkForCorrectEmail())" method="post">
                   <div class="inputFieldContainer">
-                    <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email" required/>
+                    <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email"/>
                     <img src="img/letter.svg" class="img" />
                   </div>
                     <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
-                  <button id="submitButton" type="submit" onclick="checkForCorrectEmail()" class="loginButton">Send me the email</button>
+                  <button id="submitButton" type="submit" class="loginButton">Send me the email</button>
               </form>
           </div>
       </div>

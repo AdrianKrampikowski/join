@@ -8,15 +8,14 @@ body {
 }
 
 .contactsMainContainer {
-    position: relative;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 89px);
 }
 
 .contactsBar {
    width: 453px;
-   height: calc(100vh - 90px);
+   height: inherit;
    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08); 
    display: flex;
    flex-direction: column;
@@ -98,7 +97,6 @@ body {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    padding-right: 1.5rem;
 }
 
 .letter {
@@ -204,12 +202,12 @@ body {
 .contactsContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    padding: 1.5rem;
     padding-left: 4rem;
-    padding-top: 1.5rem;
     width: 100%;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 89px);
     background-color: #F5F5F5;
     z-index: 0;
 }
@@ -225,19 +223,20 @@ body {
     cursor: pointer;
 }
 
-
 .contactsContentHeader {
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
     align-items: center;
-    height: 150px;
+    align-items: center;
     width: 100%;
+}
+
+.contactsTopNavBarText {
+    display: none;
 }
 
 .contactsContentHeader > div {
     margin-right: 50px;
-
 }
 
 .contactsContentHeader h1 {
@@ -266,16 +265,19 @@ body {
 }
 
 .contactsContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
-    padding-bottom: 2rem;
-    padding-right: 1.5rem;
 }
 
 .contactDetails {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    justify-content: flex-start;
     gap: 50px;
     width: 100%;
     height: 100%;
@@ -341,9 +343,8 @@ body {
 .contactInformation {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
+    align-items: space-between;
+    justify-content: flex-start;
 }
 
 .contactInformation > div {
@@ -368,6 +369,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 1rem;
 }
 
 .contactInformationHeader > div:first-of-type > span {
@@ -384,7 +386,7 @@ body {
 
 .editContact img, 
 .editContact span {
-    color: #2A3647;
+    color: #29ABE2;
 }
 
 .contactInformationMain {
@@ -424,7 +426,6 @@ body {
     display: flex !important;
     justify-content: flex-end !important;
     align-items: flex-start !important;
-    height: 100% !important;
  }
 
  .deleteContact > div{
@@ -455,7 +456,7 @@ body {
 .newContactButton {
     position: absolute;
     right: 32px;
-    bottom: 32px;
+    bottom: 22px;
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -466,6 +467,7 @@ body {
     gap: 10px;
     background-color: rgba(42, 54, 71, 1);
     cursor: pointer;
+    z-index: 4;
 }
 
 .newContactButton > span {
@@ -738,6 +740,26 @@ body {
     to {bottom: 0; opacity: 0;}
   }
 
+  .addTask-contacts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .main-container-contacts {
+    background-color: white;
+    padding: 2rem;
+    padding-left: 2rem !important;
+    border-radius: 30px;
+  }
 
 /* ================================== RESPONSIVENESS =======================================*/
 @media (max-width: 1235px) {
@@ -778,9 +800,8 @@ body {
         align-items: flex-start;
         gap: 10px;
         height: 160px;
-/*         margin-top: 1.5rem;
- */        margin-bottom: 50px;
-    }
+/*         margin-bottom: 50px;
+ */    }
 
     .contactsVline {
         display: none;
@@ -819,33 +840,42 @@ body {
         width: 100%;
         padding-top: 100px;
     }
+
     .contactsContainer {
-        display: none;
-        position: relative;
-        top: 0;
-        left: 0;
         width: 100%;
-        height: 100%;
-        padding-top: 1.5rem;
         padding-right: 1.5rem;
+        display: none;
     }
 
     .newContactButton {
-        top: 32px;
-        right: 32px;
+        top: 130px;
+        right: 51px;
     }
-    .contactContainer {
-        width: 100%;
-        padding-right: 0;
+
+    .contactsContentHeader {
+        height: 135px;
+    }
+
+    .contactDetails {
+        gap: 20px;
+    }
+
+    .contactInformation > div {
+        gap: 20px;
+        justify-content: flex-start;
     }
 
     .contactsContentHeaderContainer {
         align-items: flex-start;
+        width: 100%;
+        margin-bottom: 50px;
     }
 
     .contactsContentHeaderContainer > div:last-of-type {
         display: block;
     }
+
+
 }
 
 @media (max-width: 830px) {
@@ -914,27 +944,54 @@ body {
         width: 30px;
         height: auto;
     }
+    .contactsTopNavBarText {
+        display: block;
+        margin: 0  ;
+    }
+    .contactsContentHeader {
+        gap: 5px;
+    }
 }
 
 @media (max-width: 600px) {
     .addContactContainer {
         width: 90%;
     }
-    
+
+    .contactIconBig {
+        height: 80px;
+        width: 80px;
+    }
+
+    .name > div > span {
+        font-size: 23px;
+    }
+
+    .contactInformationHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contactsContentHeader h1 {
+        font-size: 35px;
+    }
+    .contactInformationHeader > div:first-of-type {
+        margin-bottom: 1rem;
+    }
+    .editContact img {
+        height: 27px;
+        width: 18px;
+    }
+
+    .contactDetails > div:first-of-type > div:first-of-type {
+        margin-right: 20px;
+    }
+
 }
 
 @media (max-width: 480px) {
-    .contactsMainContainer {
-        height: 850px;
-
-    }
-
     .contactsBar {
         padding-bottom: 0;
-        height: 850px;
-    }
-
-    .contactsContainer {
         height: 100%;
     }
 
@@ -944,6 +1001,14 @@ body {
 
     .addContactLeftSide span {
         font-size: 23px;
+    }
+
+    .contactsMainContainer {
+        height: inherit;
+    }
+
+    .contactsContainer {
+        height: 100%;
     }
 }
 
@@ -987,9 +1052,6 @@ body {
     }
 }
 
-
-
-
 /* ====================== CLASSES ADD/REMOVE ======================== */
 .d-none {
     display: none;
@@ -1000,8 +1062,16 @@ body {
 }
 
 .contactsContainerMobile {
-    display: block;
+    display: flex;
     width: 100%;
-    height: 100%;
-/*     z-index: 3;
- */}
+    z-index: 1;
+}
+
+/* .contactsContainer {
+    height: calc(100vh - 89px);
+} */
+
+@keyframes flying {
+    0% {transform: translateX(200%)};
+    100% {transform: translateX(0%)};
+}
