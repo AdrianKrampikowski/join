@@ -209,7 +209,7 @@
                                 <span>${contactInfoSurname}</span>
                             </div>
                         </div>
-                        <div onclick="addTaskViaContact(${c})" class="addTask">
+                        <div onclick="addTaskViaContact()" class="addTask">
                             <img src="../img/plus.svg"><span>Add Task</span>
                         </div>
                     </div>
@@ -251,8 +251,8 @@
         `;
         }
 
-        function addTaskViaContact(c) {
-            document.getElementById('addTask-contacts-container').style.display = 'flex';
+        function addTaskViaContact() {
+            window.location.href = 'addTask.html';
         }
 
         function editContact(i) {
