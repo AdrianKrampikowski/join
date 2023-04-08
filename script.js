@@ -44,6 +44,7 @@ let currentDraggedElement;
 function updateHTML() {
     if (toDos.length > 0) {
 
+<<<<<<< HEAD
     for (let index = 0; index < toDos.length; index++) {
         
         let category = toDos[index]['statusCategory'];
@@ -83,6 +84,10 @@ function updateHTML() {
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
     } */
 
+=======
+        for (let index = 0; index < toDos.length; index++) {
+            let taskId = toDos[index]["taskId"];
+>>>>>>> 5221276f5f537bd5888d0eac90365bc3aa4ce81f
             let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
             for (let i = 0; i < toDo.length; i++) {
@@ -115,7 +120,13 @@ function updateHTML() {
             calculateProgressbar(i);
         }
         createBubbles();
+<<<<<<< HEAD
     
+=======
+    }
+}
+
+>>>>>>> 5221276f5f537bd5888d0eac90365bc3aa4ce81f
 
 function pushArrayToDo() {
     toDos = tasks;
@@ -447,4 +458,32 @@ function debounce(func, delay) {
             func.apply(this, args);
         }, delay);
     };
+}
+
+function displayMainSummaryPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "block";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+
+function displayMainBoardPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "block";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+
+function displayMainAddTaskPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "block";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+}
+
+function displayMainContacsPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "block";
 }

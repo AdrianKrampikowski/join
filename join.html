@@ -35,13 +35,11 @@
             <div class="placeholderTop">
                 <div class="topNavBarLeftText">Kanban Project Management Tool</div>
                 <div class="topNavBarRightImg">
-                    <div class="topNavBarRightImgQuestionmark">
-                        <a href="help.html">
-                            <img src="img/questionmark.svg" >
-                        </a>
-                    </div>
-                    <img src="img/questionmark.svg" class="topNavBarRightImgQuestionmark">
-                    <img src="img/picture.svg" id="topNavBarRightImgPicture" class="topNavBarRightImgPicture" onclick="showLogoutButton()">
+                    <a href="./templates/help.html">
+                        <img src="img/questionmark.svg" class="topNavBarRightImgQuestionmark">
+                    </a>
+                    <img src="img/picture.svg" id="topNavBarRightImgPicture" class="topNavBarRightImgPicture"
+                        onclick="showLogoutButton()">
                     <div id="logoutButton" class="logoutButton" onclick="backToLoginScreen()">
                         <span>Logout</span>
                     </div>
@@ -50,16 +48,22 @@
             <div class="placeholderBottom">
 
                 <!-- Board -->
-                <!-- <div w3-include-html="templates\board.html"></div> -->
-
+                <div class="mainBoardContainerDisplay" id="mainBoardContainerDisplay">
+                    <div w3-include-html="templates\board.html"></div>
+                </div>
                 <!-- Summary -->
-                <div w3-include-html="templates\summary.html"></div>
-
+                <div class="mainSummaryContainerDisplay" id="mainSummaryContainerDisplay">
+                    <div w3-include-html="templates\summary.html"></div>
+                </div>
                 <!-- addTask -->
-                <!-- <div w3-include-html="templates\createTask.html"></div> -->
+                <div class="mainAddTaskContainerDisplay" id="mainAddTaskContainerDisplay">
+                    <div w3-include-html="templates\createTask.html"></div>
+                </div>
 
-                <!-- TestContact -->
-                <!-- <div w3-include-html="testContact.html"></div> -->
+                <!-- contacts -->
+                <div class="mainContactsContainerDisplay" id="mainContactsContainerDisplay">
+                    <div w3-include-html="templates\contacts.html"></div>
+                </div>
 
                 <!-- <div class="placeholderRightLeft"></div>
                 <div class="placeholderRightRight"></div> -->
