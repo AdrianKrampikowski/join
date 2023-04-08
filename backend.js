@@ -137,6 +137,11 @@ let white = "#FFFFFF";
 let orange = "#FF3D00";
 let lightorange = "#FFA800";
 let green = "#7AE229";
+
+// white: brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%);
+// Orange:brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%);
+// lightOrange: brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%);
+// green: brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%);
 function selectUrgent() {
     document.getElementById("urgent").style.background = orange;
     document.getElementById("medium").style.background = white;
@@ -145,10 +150,10 @@ function selectUrgent() {
     document.getElementById("urgent").style.color = white;
     document.getElementById("medium").style.color = black;
     document.getElementById("low").style.color = black;
-
-    document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
-    document.getElementById("imgMedium").style.fill = orange;
-    document.getElementById("imgLow").style.fill = orange;
+    
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
 function selectMedium() {
     document.getElementById("urgent").style.background = white;
@@ -158,6 +163,10 @@ function selectMedium() {
     document.getElementById("urgent").style.color = black;
     document.getElementById("medium").style.color = white;
     document.getElementById("low").style.color = black;
+
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
 function selectLow() {
     document.getElementById("urgent").style.background = white;
@@ -167,6 +176,10 @@ function selectLow() {
     document.getElementById("urgent").style.color = black;
     document.getElementById("medium").style.color = black;
     document.getElementById("low").style.color = white;
+
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 
 let categoryValue = "";

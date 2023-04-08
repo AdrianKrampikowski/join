@@ -1,4 +1,4 @@
-<div clas="addTaskHeadline"></div>
+<div class="addTaskHeadline"></div>
 
 <div class="mainContainer">
     <form onsubmit="createTask();return false">
@@ -43,15 +43,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="addTaskCaptionAndInput">
-            <span>Category</span>
-            <select id="categoryChoices" class="testSelect">
-                <option value="toDo">to do</option>
-                <option value="inProgress">in Progress</option>
-                <option value="awaitingFeedback">awaiting Feedback</option>
-                <option value="done">done</option>
-            </select>
-        </div> -->
 
         <div class="selectionContainer preventSelect">
             <label>Assigned To</label>
@@ -63,9 +54,6 @@
                 </div>
             </div>
         </div>
-        <!-- <select id="assignedToUsers" size="3" multiple>
-            <option value="" hidden selected>Select contact to assign</option>
-        </select> -->
 
         <div class="selectionContainer preventSelect">
             <span>Due date</span>
@@ -85,26 +73,6 @@
             <button class="clearButton" onclick="clearAll()">Clear</button>
             <button class="createTaskButton" type="submit">Create Task</button>
         </div>
-
-        <!-- <div class="addTaskCaptionAndInput">
-            <span>Assigned to</span>
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="assignedToDropdown" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Select contact(s) to assign
-                </button>
-                <div class="dropdown-menu" aria-labelledby="assignedToDropdown">
-                    <form>
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="userSearchInput" placeholder="Search users">
-                        </div>
-                        <div id="userCheckboxes"></div>
-                    </form>
-                </div>
-            </div>
-        </div> -->
-
-
 
     </form>
 </div>
