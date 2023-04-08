@@ -76,12 +76,12 @@ function updateHTML() {
 
 
 
-    let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
+/*     let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
     document.getElementById("toDoCard").innerHTML = ``;
     for (let i = 0; i < toDo.length; i++) {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
-    }
+    } */
 
             let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
