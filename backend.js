@@ -138,10 +138,6 @@ let orange = "#FF3D00";
 let lightorange = "#FFA800";
 let green = "#7AE229";
 
-// white: brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%);
-// Orange:brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%);
-// lightOrange: brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%);
-// green: brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%);
 function selectUrgent() {
     document.getElementById("urgent").style.background = orange;
     document.getElementById("medium").style.background = white;

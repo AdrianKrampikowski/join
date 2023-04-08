@@ -32,19 +32,10 @@
         <div w3-include-html="templates\sideNavBar.html"></div>
 
         <div class="placeholderRight">
-            <div class="placeholderTop">
-                <div class="topNavBarLeftText">Kanban Project Management Tool</div>
-                <div class="topNavBarRightImg">
-                    <a href="./templates/help.html">
-                        <img src="img/questionmark.svg" class="topNavBarRightImgQuestionmark">
-                    </a>
-                    <img src="img/picture.svg" id="topNavBarRightImgPicture" class="topNavBarRightImgPicture"
-                        onclick="showLogoutButton()">
-                    <div id="logoutButton" class="logoutButton" onclick="backToLoginScreen()">
-                        <span>Logout</span>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Topbar -->
+            <div w3-include-html="templates\topBar.html"></div>
+
             <div class="placeholderBottom">
 
                 <!-- Board -->
