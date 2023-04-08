@@ -241,14 +241,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="deleteContact">
-                    <div onclick="deleteContact(${c})">
-                        <span>Delete contact</span>
-                        <img src="../img/delete.svg">
-                    </div>
+            <div class="deleteContact">
+                <div onclick="deleteContact(${c})">
+                    <span>Delete contact</span>
+                    <img src="../img/delete.svg">
                 </div>
             </div>
+
         `;
         }
 

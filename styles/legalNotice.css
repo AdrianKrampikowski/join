@@ -134,6 +134,7 @@ ul li {
 @media(max-width: 480px) {
     .helpContainer {
         height: 100%;
+        padding: 0;
     }
 
     .innerHelpContainer, .innerLegalNoticeContainer {

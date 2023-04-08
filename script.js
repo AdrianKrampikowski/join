@@ -108,7 +108,6 @@ showAllContacts();
 function updateHTML() {
     if (toDos.length > 0) {
 
-<<<<<<< HEAD
     for (let index = 0; index < toDos.length; index++) {
         
         let category = toDos[index]['statusCategory'];
@@ -147,10 +146,6 @@ function updateHTML() {
         let element = toDo[i];
         document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, i);
     }
-=======
-        for (let index = 0; index < toDos.length; index++) {
-            let taskId = toDos[index]["taskId"];
->>>>>>> 90d4f13138340d5c3fe2eea33349a818bef18ef1
 
             let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
@@ -184,8 +179,8 @@ function updateHTML() {
             calculateProgressbar(i);
         }
         createBubbles();
-    }
-}
+    
+
 function pushArrayToDo() {
     toDos = tasks;
 }
