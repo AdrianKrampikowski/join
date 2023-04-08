@@ -67,7 +67,7 @@ function addUser() {
 }
 
 function backToLoginScreen() {
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
 }
 
 async function save() {
@@ -239,6 +239,16 @@ function forwardToSummery(userId) {
 
 function userColor(userColor){
     document.getElementById('topNavBarRightImgPicture').style.borderColor = userColor;  
+}
+
+function showLogoutButton() {
+    let logoutButton = document.getElementById('logoutButton');
+
+    if (logoutButton.style.display == "none") {
+        logoutButton.style.display = "flex";
+    } else {
+        logoutButton.style.display = "none";
+    }
 }
 
 

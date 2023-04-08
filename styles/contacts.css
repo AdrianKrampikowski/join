@@ -97,7 +97,6 @@ body {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    padding-right: 1.5rem;
 }
 
 .letter {
@@ -227,9 +226,8 @@ body {
 .contactsContentHeader {
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
     align-items: center;
-    height: 150px;
+    align-items: center;
     width: 100%;
 }
 
@@ -239,7 +237,6 @@ body {
 
 .contactsContentHeader > div {
     margin-right: 50px;
-
 }
 
 .contactsContentHeader h1 {
@@ -459,7 +456,7 @@ body {
 .newContactButton {
     position: absolute;
     right: 32px;
-    bottom: 32px;
+    bottom: 22px;
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -470,7 +467,7 @@ body {
     gap: 10px;
     background-color: rgba(42, 54, 71, 1);
     cursor: pointer;
-    z-index: 3;
+    z-index: 4;
 }
 
 .newContactButton > span {
@@ -743,6 +740,26 @@ body {
     to {bottom: 0; opacity: 0;}
   }
 
+  .addTask-contacts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .main-container-contacts {
+    background-color: white;
+    padding: 2rem;
+    padding-left: 2rem !important;
+    border-radius: 30px;
+  }
 
 /* ================================== RESPONSIVENESS =======================================*/
 @media (max-width: 1235px) {
@@ -783,9 +800,8 @@ body {
         align-items: flex-start;
         gap: 10px;
         height: 160px;
-/*         margin-top: 1.5rem;
- */        margin-bottom: 50px;
-    }
+/*         margin-bottom: 50px;
+ */    }
 
     .contactsVline {
         display: none;
@@ -833,11 +849,11 @@ body {
 
     .newContactButton {
         top: 130px;
-        right: 75px;
+        right: 51px;
     }
 
     .contactsContentHeader {
-        height: 110px;
+        height: 135px;
     }
 
     .contactDetails {
@@ -852,11 +868,14 @@ body {
     .contactsContentHeaderContainer {
         align-items: flex-start;
         width: 100%;
+        margin-bottom: 50px;
     }
 
     .contactsContentHeaderContainer > div:last-of-type {
         display: block;
     }
+
+
 }
 
 @media (max-width: 830px) {
@@ -927,7 +946,11 @@ body {
     }
     .contactsTopNavBarText {
         display: block;
-}
+        margin: 0  ;
+    }
+    .contactsContentHeader {
+        gap: 5px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -948,6 +971,10 @@ body {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .contactsContentHeader h1 {
+        font-size: 35px;
+    }
     .contactInformationHeader > div:first-of-type {
         margin-bottom: 1rem;
     }
@@ -959,15 +986,13 @@ body {
     .contactDetails > div:first-of-type > div:first-of-type {
         margin-right: 20px;
     }
-    .contactsTopNavBarText {
-        margin-right: 0;
-    }
 
 }
 
 @media (max-width: 480px) {
     .contactsBar {
         padding-bottom: 0;
+        height: 100%;
     }
 
     .addContactLeftSide h1 {
@@ -976,6 +1001,14 @@ body {
 
     .addContactLeftSide span {
         font-size: 23px;
+    }
+
+    .contactsMainContainer {
+        height: inherit;
+    }
+
+    .contactsContainer {
+        height: 100%;
     }
 }
 
@@ -1019,9 +1052,6 @@ body {
     }
 }
 
-
-
-
 /* ====================== CLASSES ADD/REMOVE ======================== */
 .d-none {
     display: none;
@@ -1032,8 +1062,16 @@ body {
 }
 
 .contactsContainerMobile {
-    display: block;
+    display: flex;
     width: 100%;
-    height: inherit;
-    z-index: 3;
+    z-index: 1;
+}
+
+/* .contactsContainer {
+    height: calc(100vh - 89px);
+} */
+
+@keyframes flying {
+    0% {transform: translateX(200%)};
+    100% {transform: translateX(0%)};
 }
