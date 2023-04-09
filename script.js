@@ -250,7 +250,9 @@ async function showAllContacts() {
                     startWithLetter.push(contacts);
                 }
             }
-            let tasks = JSON.parse(data.tasks);
+            if (data.tasks) {
+                let tasks = JSON.parse(data.tasks);
+            }
         })
 }
 
@@ -419,7 +421,7 @@ function displayMainSummaryPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "none";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";   
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
 }
 
 function displayMainBoardPage() {
@@ -427,7 +429,7 @@ function displayMainBoardPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "block";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";   
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
 }
 
 function displayMainAddTaskPage() {
@@ -448,9 +450,9 @@ function displayMainContacsPage() {
 }
 
 function displayMainLegalNoticePage() {
-document.getElementById("mainSummaryContainerDisplay").style.display = "none";
-document.getElementById("mainBoardContainerDisplay").style.display = "none";
-document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
-document.getElementById("mainContactsContainerDisplay").style.display = "none";
-document.getElementById("mainLegalNoticeContainerDisplay").style.display = "block";
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "block";
 }
