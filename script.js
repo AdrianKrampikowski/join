@@ -422,6 +422,7 @@ function displayMainSummaryPage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
 }
 
 function displayMainBoardPage() {
@@ -430,6 +431,7 @@ function displayMainBoardPage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
 }
 
 function displayMainAddTaskPage() {
@@ -438,6 +440,7 @@ function displayMainAddTaskPage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "block";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
 }
 
 function displayMainContacsPage() {
@@ -446,6 +449,7 @@ function displayMainContacsPage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "block";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
     initContacts();
 }
 
@@ -455,4 +459,14 @@ function displayMainLegalNoticePage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "block";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
+}
+
+function displayMainHelpPage() {
+    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+    document.getElementById("mainBoardContainerDisplay").style.display = "none";
+    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+    document.getElementById("mainContactsContainerDisplay").style.display = "none";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    document.getElementById("mainhelpContainerDisplay").style.display = "block";
 }

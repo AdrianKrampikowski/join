@@ -50,6 +50,10 @@ a {
   display: none;
 }
 
+.mainhelpContainerDisplay {
+  display: none;
+}
+
 
 .mainContainer {
   width: 100vw;
