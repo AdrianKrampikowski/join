@@ -2,7 +2,7 @@
   box-sizing: border-box;
   font-family: "Inter";
   font-style: normal;
-   line-height: 120%;
+  line-height: 120%;
 }
 
 html,
@@ -30,10 +30,26 @@ a {
   text-decoration: none;
 }
 
+.mainBoardContainerDisplay {
+  display: none;
+}
+
+.mainSummaryContainerDisplay {
+  display: block;
+}
+
+.mainAddTaskContainerDisplay {
+  display: none;
+}
+
+.mainContactsContainerDisplay {
+  display: none;
+}
+
 .mainContainer {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   display: flex;
 }
 
@@ -46,20 +62,37 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  z-index: 2;
 }
 
 .sideNavBarList {
   color: white;
-  gap: 5px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.sideNavBarList > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  cursor: pointer;
+}
+
+.sideNavBarList > div:hover {
+  background-color: #091931;
 }
 
 .sideNavBarTask {
   display: flex;
   align-items: center;
-  gap: 5px;
+  width: 150px;
+  gap: 25px;
 }
 
 .sideNavBarTask span {
@@ -67,6 +100,8 @@ a {
 }
 
 .sideNavBarLegalNotice {
+  position: absolute;
+  bottom: 30px;
   margin: 50px 0px 25px 0px;
 }
 
@@ -80,21 +115,67 @@ a {
   top: 0px;
   height: 89px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px 36px 20px 116px;
+  padding: 1rem 2rem 1rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 }
 
-/* .placeholderBottom {
-  height: calc(100% - 89px);
+.topNavBarRightImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* .topNavBarRightImgQuestionmark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 } */
 
-.placeholderRightLeft {
+.topNavBarRightImgPicture {
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+}
+
+.logoutButton {
+  position: absolute;
+  right: 65px;
+  top: 70px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 45px;
+  border-radius: 10px 0 10px 10px;
+  padding: 15px;
+  background-color: rgba(42, 54, 71, 1);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.logoutButton > span {
+  color: white;
+  font-weight: bold;
+}
+
+.topNavBarRightImgPicture:hover {
+  scale: 1.05;
+}
+
+.placeholderBottom {
+  height: 100%;
+}
+
+/* .placeholderLeft {
   position: relative;
   left: 0px;
   height: calc(100% - 89px);
-}
+} */
 
 /* Logo TopLeftCorner */
 .sideNavBarLogo {
@@ -126,22 +207,37 @@ a {
   margin-bottom: 25px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 950px) {
+  .placeholderTop {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .topNavBarLeftText {
+    display: none;
+  }
+
+  .placeholderTop {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   .mainContainer {
     flex-direction: column-reverse;
   }
+
   .placeholderRight {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
   }
-  .placeholderTop {
-    width: 100%;
-    padding-left: 25px;
-  }
-  /* .placeholderBottom {
+  .placeholderBottom {
     height: calc(100vh - 169px);
-  } */
-  .sideNavBar {
-    width: 100%;
   }
   .sideNavBarLogo {
     top: 20px;
@@ -157,30 +253,43 @@ a {
     height: 39px;
   }
   .sideNavBar {
-    height: 80px;
+    height: 100%;
     width: 100%;
-    /* top: calc(100% - 80px); */
-    align-items: center;
-    flex-direction: initial;
-    justify-content: space-around;
+    display: flex;
   }
   .sideNavBarList {
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: initial;
-    padding: 0px 12px;
-    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 12px;
   }
+
   .sideNavBarTask {
     /* display: flex; */
     flex-direction: column;
     /* justify-content: center;
     align-items: center; */
+    gap: 10px;
+    width: auto;
   }
-  /* .sideNavBarTask span {
-    color: white;
-  } */
+
+  .sideNavBarTask img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .sideNavBarTask span {
+    font-size: 14px;
+  }
+
   .sideNavBarLegalNotice {
+    display: none !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .sideNavBarTask span {
     display: none;
   }
 }

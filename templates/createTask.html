@@ -1,110 +1,91 @@
-<div clas="addTaskHeadline"></div>
-
-<div class="mainContainer">
+<div class="addTaskHeadline"></div>
+<div class="addTaskMainContainer">
     <form onsubmit="createTask();return false">
-
-        <div class="selectionContainer preventSelect">
-            <span>Title</span>
-            <input placeholder="Enter a title" id="title">
-        </div>
-
-        <div class="selectionContainer preventSelect">
-            <span>Description</span>
-            <input placeholder="Enter a Description" id="description">
-        </div>
-
-        <div class="selectionContainer preventSelect">
-            <label>Category</label>
-            <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
-                <div class="sectorTop">
-                    <p id="selectCategory">Select your Category</p><img src="/img/arrow.svg">
+        <h1>Add Task</h1>
+        <div class="addTaskContainer">
+            <div class="addTaskLeftandRightContainer">
+                <div class="selectionContainer preventSelect">
+                    <span>Title</span>
+                    <input placeholder="Enter a title" id="title">
                 </div>
-                <div class="categoryChoices d-none" id="categoryChoices">
-                    <div class="category">
-                        <div id="marketing">Marketing </div>
-                        <div class="circle" style="background: #0038ff;"></div>
-                    </div>
-                    <div class="category">
-                        <div id="media">Media </div>
-                        <div class="circle" style="background: #ffc702;"></div>
-                    </div>
-                    <div class="category">
-                        <div id="backoffice">Backoffice </div>
-                        <div class="circle" style="background: #1FD7C1;"></div>
-                    </div>
-                    <div class="category">
-                        <div id="design">Design </div>
-                        <div class="circle" style="background:  #ff7a00;"></div>
-                    </div>
-                    <div class="category">
-                        <div id="sales">Sales </div>
-                        <div class="circle" style="background: #fc71ff;"></div>
-                    </div>
+
+                <div class="selectionContainer preventSelect">
+                    <span>Description</span>
+                    <input placeholder="Enter a Description" id="description">
                 </div>
-            </div>
-        </div>
-        <!-- <div class="addTaskCaptionAndInput">
-            <span>Category</span>
-            <select id="categoryChoices" class="testSelect">
-                <option value="toDo">to do</option>
-                <option value="inProgress">in Progress</option>
-                <option value="awaitingFeedback">awaiting Feedback</option>
-                <option value="done">done</option>
-            </select>
-        </div> -->
 
-        <div class="selectionContainer preventSelect">
-            <label>Assigned To</label>
-            <div class="selectWrapper assignedToWrapper">
-                <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
-                    <p id="assignedToHeader">Select your Members</p><img src="/img/Vector 2.png">
-                </div>
-                <div class="assignedToChoices d-none" id="assignedToChoices">
-                </div>
-            </div>
-        </div>
-        <!-- <select id="assignedToUsers" size="3" multiple>
-            <option value="" hidden selected>Select contact to assign</option>
-        </select> -->
-
-        <div class="selectionContainer preventSelect">
-            <span>Due date</span>
-            <input class="date" type="date" id="dueDate">
-        </div>
-
-        <div class="selectionContainer preventSelect">
-            <span>Prio</span>
-            <div class="prioButtons">
-                <button class="urgent prioButton" id="urgent" type="button" onclick="selectUrgent()">Urgent<img id="imgUrgent" src="img/urgentArrow.svg"></button>
-                <button class="medium prioButton" id="medium" type="button" onclick="selectMedium()">Medium<img id="imgMedium" src="img/medium.svg"></button>
-                <button class="low prioButton" id="low" type="button" onclick="selectLow()">Low<img id="imgLow" src="img/lowArrow.svg"></button>
-            </div>
-        </div>
-
-        <div class="clearAndCreateButton">
-            <button class="clearButton" onclick="clearAll()">Clear</button>
-            <button class="createTaskButton" type="submit">Create Task</button>
-        </div>
-
-        <!-- <div class="addTaskCaptionAndInput">
-            <span>Assigned to</span>
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="assignedToDropdown" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Select contact(s) to assign
-                </button>
-                <div class="dropdown-menu" aria-labelledby="assignedToDropdown">
-                    <form>
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="userSearchInput" placeholder="Search users">
+                <div class="selectionContainer preventSelect">
+                    <span>Category</span>
+                    <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
+                        <div class="sectorTop">
+                            <p id="selectCategory">Select task category</p><img src="/img/arrow.svg">
                         </div>
-                        <div id="userCheckboxes"></div>
-                    </form>
+                        <div class="categoryChoices d-none" id="categoryChoices">
+                            <div class="category">
+                                <div id="marketing">Marketing </div>
+                                <div class="circle" style="background: #0038ff;"></div>
+                            </div>
+                            <div class="category">
+                                <div id="media">Media </div>
+                                <div class="circle" style="background: #ffc702;"></div>
+                            </div>
+                            <div class="category">
+                                <div id="backoffice">Backoffice </div>
+                                <div class="circle" style="background: #1FD7C1;"></div>
+                            </div>
+                            <div class="category">
+                                <div id="design">Design </div>
+                                <div class="circle" style="background:  #ff7a00;"></div>
+                            </div>
+                            <div class="category">
+                                <div id="sales">Sales </div>
+                                <div class="circle" style="background: #fc71ff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selectionContainer preventSelect">
+                    <span>Assigned To</span>
+                    <div class="selectWrapper assignedToWrapper">
+                        <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
+                            <p id="assignedToHeader">Select contacts to assign</p><img src="/img/Vector 2.png">
+                        </div>
+                        <div class="assignedToChoices d-none" id="assignedToChoices">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div> -->
 
+            <div class="middleGap"></div>
 
+            <div class="dueDateAndClearCreateButton">
+                <div class="addTaskLeftandRightContainer">
+                    <div class="selectionContainer preventSelect">
+                        <span>Due date</span>
+                        <input class="date" type="date" id="dueDate">
+                    </div>
 
+                    <div class="selectionContainer preventSelect">
+                        <span>Prio</span>
+                        <div class="prioButtons">
+                            <button class="urgent prioButton" id="urgent" type="button"
+                                onclick="selectUrgent()">Urgent<img id="imgUrgent" src="img/urgentArrow.svg"></button>
+                            <button class="medium prioButton" id="medium" type="button"
+                                onclick="selectMedium()">Medium<img id="imgMedium" src="img/medium.svg"></button>
+                            <button class="low prioButton" id="low" type="button" onclick="selectLow()">Low<img
+                                    id="imgLow" src="img/low.svg"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="clearAndCreateButton">
+                        <button class="clearButton" onclick="clearAll()">Clear</button>
+                        <button class="createTaskButton" type="submit">Create Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>

@@ -4,6 +4,10 @@ let tasks = [];
 let id;
 let taskId;
 
+function shoutTest() {
+    console.log("shoutTest");
+}
+
 // Immer als erste Funktion ausführen!
 async function init() {
     setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
@@ -36,13 +40,16 @@ function addUser() {
     let color = document.getElementById('color');
     let userId = id;
 
+    let userColor = document.getElementById('userColor');
+    let userColorValue = userColor.options[userColor.selectedIndex].value;
+
     for (let i = 0; i < users.length; i++) {
-        if (users[i]['userid'].includes === id) {
+        if(users[i]['userid'].includes === id) {
             generateUserId();
-        }
+        } 
     }
 
-    let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, color: color.value, userid: userId };
+    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: userColorValue, userid: userId};
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -55,12 +62,17 @@ function addUser() {
         users.push(userData);
         save();
         successfullySignedUpPopup();
-
-        setInterval(forwardToLogin, 1200);
+        setInterval(backToLoginScreen, 1200);
     }
+}
 
-    //    let urlParams = new URLSearchParams(window.location.search);     // query paramter von einem query string (window.location.search) von der URL auslesen
-    //    let idMsg = urlParams.get('id');
+function backToLoginScreen() {
+    window.location.href = '../index.html';
+}
+
+async function save() {
+    let usersAsString = JSON.stringify(users);
+    await backend.setItem('users', usersAsString);
 }
 
 // ToDoStart
@@ -69,7 +81,7 @@ function createTask() {
     let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = categoryValue;
+    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);;
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
@@ -125,6 +137,7 @@ let white = "#FFFFFF";
 let orange = "#FF3D00";
 let lightorange = "#FFA800";
 let green = "#7AE229";
+
 function selectUrgent() {
     document.getElementById("urgent").style.background = orange;
     document.getElementById("medium").style.background = white;
@@ -133,10 +146,10 @@ function selectUrgent() {
     document.getElementById("urgent").style.color = white;
     document.getElementById("medium").style.color = black;
     document.getElementById("low").style.color = black;
-
-    document.getElementById("imgUrgent").style.filter = "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
-    document.getElementById("imgMedium").style.fill = orange;
-    document.getElementById("imgLow").style.fill = orange;
+    
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
 function selectMedium() {
     document.getElementById("urgent").style.background = white;
@@ -146,6 +159,10 @@ function selectMedium() {
     document.getElementById("urgent").style.color = black;
     document.getElementById("medium").style.color = white;
     document.getElementById("low").style.color = black;
+
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
 function selectLow() {
     document.getElementById("urgent").style.background = white;
@@ -155,6 +172,10 @@ function selectLow() {
     document.getElementById("urgent").style.color = black;
     document.getElementById("medium").style.color = black;
     document.getElementById("low").style.color = white;
+
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 
 let categoryValue = "";
@@ -162,8 +183,8 @@ let previousCategoryValue = "";
 function saveSelectedCategory() {
     Array.from(document.getElementsByClassName("category")).forEach((item) => {
         item.addEventListener('click', (event) => {
-            const newCategoryValue = event.target.id;
-            const upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
+            let newCategoryValue = event.target.id;
+            let upperCaseValue = newCategoryValue.charAt(0).toUpperCase() + newCategoryValue.slice(1);
             if (event.target.id) {
                 if (newCategoryValue !== categoryValue) {
                     previousCategoryValue = categoryValue;
@@ -185,35 +206,28 @@ function saveSelectedCategory() {
 
 //ToDoEnd
 
-function forwardToLogin() {
-    // Weiterleitung zur Loginseite
-    window.location.href = 'index.html?id=' + id;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
-
-}
-
-async function save() {
-    let usersAsString = JSON.stringify(users);
-    await backend.setItem('users', usersAsString);
-}
-
-function backToLoginScreen() {
-    window.location.href = 'index.html';
-}
-
 // ================================================ LOGIN ==========================================================
 function login() {
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
-
+    
     let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
     let existingUser = users.find(u => u.email == emailLog.value);
-
-    if (user) {
-        let urlParams = new URLSearchParams(window.location.search); // query paramter von einem query string (window.location.search) von der URL auslesen
-        let userId = urlParams.get('id');
+    
+    if(user) {
+        //********************************** */
         let userName = user.name;
         localStorage.setItem('userName', userName);
-        window.location.href = 'summery.html?id=' + userId;          // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+        //********************************** */
+
+        let currentUser = users.indexOf(existingUser);
+
+        let userId = users[currentUser]['userid'];
+        let userColor = users[currentUser]['color'];
+
+        forwardToSummery(userId);
+        userColor(userColor);
+
     } else if (existingUser) {
         pwEmailIncorrectPopup();
     } else {
@@ -224,7 +238,26 @@ function login() {
 function guestLogin() {
     let userName = "Guest";
     localStorage.setItem('userName', userName);
-    window.location.href = 'summery.html';
+    window.location.href = 'join.html';
+}
+
+function forwardToSummery(userId) {
+    // Weiterleitung zur Loginseite
+    window.location.href = 'join.html?id=' + userId;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
+}
+
+function userColor(userColor){
+    document.getElementById('topNavBarRightImgPicture').style.borderColor = userColor;  
+}
+
+function showLogoutButton() {
+    let logoutButton = document.getElementById('logoutButton');
+
+    if (logoutButton.style.display == "none") {
+        logoutButton.style.display = "flex";
+    } else {
+        logoutButton.style.display = "none";
+    }
 }
 
 
@@ -261,43 +294,161 @@ function guestLogin() {
 function alreadySignedUpPupup() {
     // Get the snackbar DIV
     var x = document.getElementById("alreadySignedUp");
-
+  
     // Add the "show" class to DIV
     x.className = "show";
-
+  
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function successfullySignedUpPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("successfullySignedUp");
-
+  
     // Add the "show" class to DIV
     x.className = "show";
-
+  
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function userDoesNotExistPopup() {
+  function userDoesNotExistPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("userDoesNotExist");
-
+  
     // Add the "show" class to DIV
     x.className = "show";
-
+  
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function pwEmailIncorrectPopup() {
+  function pwEmailIncorrectPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("pwEmailIncorrect");
-
+  
     // Add the "show" class to DIV
     x.className = "show";
-
+  
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+  function noEmailInsertedPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("noEmailInsertedPopup");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function sendEmailPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("sendEmail");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+  function passwordResetPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("passwordReset");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function passwordsNotIdentical() {
+    // Get the snackbar DIV
+    var x = document.getElementById("passwordsNotIdentical");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+/* ======================================================================================*/
+
+async function saveContacts() {
+    let contactsAsString = JSON.stringify(contacts);
+    await backend.setItem('contacts', contactsAsString);
+}
+
+function checkForCorrectEmail() {
+
+    let sendEmailToResetPw = document.getElementById('sendEmailToResetPw');  
+    let emails = users[i]['email'];
+
+    for (let i = 0; i < emails.length; i++) {
+        let existingEmail = emails.find(u => u.email == sendEmailToResetPw.value);
+
+
+        
+    }
+
+    if(sendEmailToResetPw.value == '') {
+        noEmailInsertedPopup();
+        return false;
+    } 
+    
+    if(!existingEmail) {
+        userDoesNotExistPopup();  
+        return false;
+    }
+
+    setInterval(sendEmailPopup, 1200);
+    return(true);
+} 
+
+function resetPassword() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let userEmail = urlParams.get('email');
+    let newPassword = document.getElementById('newPassword');
+    let confirmPassword = document.getElementById('confirmPassword');
+
+    let existingEmail = users.find(u => u.email == userEmail)
+    let currentUser = users.indexOf(existingEmail);
+
+    if (newPassword.value == confirmPassword.value) {
+        if (existingEmail) {
+            users[currentUser]['password'] = confirmPassword.value;
+            save();
+            passwordReset();
+
+            setInterval(backToLoginScreen, 1200);
+        }
+    } else {
+        passwordsNotIdentical();
+    }
+}
+
+function activeTab() {
+    let currentElement = document.getElementById('contactID' + c);
+    let allElements = document.querySelectorAll('.contact');
+
+    allElements.forEach((element) => {
+        element.style.backgroundColor = '#F5F5F5';
+        element.style.color = 'black';
+        // element.classList.remove('.activeContact');
+    })
+        currentElement.style.backgroundColor = '#2A3647';
+        currentElement.style.color = 'white';
+
+        // currentElement.classList.add('.activeContact');
+
+}
+
+
+

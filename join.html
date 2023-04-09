@@ -6,14 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<<<<<<< HEAD:summery.html
     <link rel="stylesheet" href="/styles/styleSummary.css" />
     <link rel="stylesheet" href="/styles/styleSummery.css" />
     <link rel="stylesheet" href="/styles/board.css" />
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/addTask.css">
     <link rel="stylesheet" href="/styles/createTask.css">
+=======
+    <link rel="stylesheet" href="./styles/styleSummary.css" />
+    <link rel="stylesheet" href="./styles/styleSummery.css" />
+    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <!-- <link rel="stylesheet" href="./styles/addTask.css"> -->
+    <link rel="stylesheet" href="./styles/createTask.css">
+>>>>>>> 09ead00a95da33a203c38b1069680749561dbf00:join.html
     <script src="script.js"></script>
     <script src="addTask.js"></script>
+    <script src="./js/createTask.js"></script>
     <script src="backend.js"></script>
     <script src="mini_backend.js"></script>
 
@@ -31,26 +41,29 @@
         <div w3-include-html="templates\sideNavBar.html"></div>
 
         <div class="placeholderRight">
-            <div class="placeholderTop">
-                <div class="topNavBarLeftText">Kanban Project Management Tool</div>
-                <div class="topNavBarRightImg">
-                    <img src="img/questionmark.svg" class="topNavBarRightImgQuestionmark">
-                    <img src="img/picture.svg" class="topNavBarRightImgPicture" onclick="logout()">
-                </div>
-            </div>
+
+            <!-- Topbar -->
+            <div w3-include-html="templates\topBar.html"></div>
+
             <div class="placeholderBottom">
 
                 <!-- Board -->
-                <div w3-include-html="templates\board.html"></div>
-
+                <div class="mainBoardContainerDisplay" id="mainBoardContainerDisplay">
+                    <div w3-include-html="templates\board.html"></div>
+                </div>
                 <!-- Summary -->
-                <!-- <div w3-include-html="templates\summary.html"></div> -->
-
+                <div class="mainSummaryContainerDisplay" id="mainSummaryContainerDisplay">
+                    <div w3-include-html="templates\summary.html"></div>
+                </div>
                 <!-- addTask -->
-                <!-- <div w3-include-html="templates\createTask.html"></div> -->
+                <div class="mainAddTaskContainerDisplay" id="mainAddTaskContainerDisplay">
+                    <div w3-include-html="templates\createTask.html"></div>
+                </div>
 
-                <!-- TestContact -->
-                <!-- <div w3-include-html="testContact.html"></div> -->
+                <!-- contacts -->
+                <div class="mainContactsContainerDisplay" id="mainContactsContainerDisplay">
+                    <div w3-include-html="templates\contacts.html"></div>
+                </div>
 
                 <!-- <div class="placeholderRightLeft"></div>
                 <div class="placeholderRightRight"></div> -->

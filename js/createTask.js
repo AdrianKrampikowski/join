@@ -17,14 +17,14 @@ setTimeout(() => {
 function addAssignedToList() {
     document.getElementById('assignedToChoices').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
-        let userID = users[i]["id"];
+        let userID = users[i]["userid"];
         // let contact = users[i];
         let name = users[i]["name"];
         document.getElementById('assignedToChoices').innerHTML += `
         <div class="assigned-to-line"><label for="assigned-to-${i}" 
         id="assigned_name${i}">${name}
         </label><input type="checkbox" id="assigned-to-${i}" 
-        value="${name}"></div>`
+        value="${userID}"></div>`
     }
 }
 

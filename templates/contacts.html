@@ -5,27 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contacts</title>
 
+    <!-- ============================ Styles =========================== -->
     <link rel="stylesheet" href="../styles/contacts.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/styleSummery.css">
+    <link rel="stylesheet" href="../styles/addTask.css">
 
-    <script src="../Backend/backend.js"></script>
+    <!-- ============================ Scripts =========================== -->
+    <script src="../backend.js"></script>
+    <script src="../contacts.js"></script>
     <script src="../mini_backend.js"></script>
+
+    <!-- ============================ Favicon =========================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#2a3647">
+    <meta name="msapplication-TileColor" content="#2a3647">
+    <meta name="theme-color" content="#2a3647">
 
 </head>
 
 <body onload="initContacts()">
 
     <div class="mainContainer">
-        <!-- LogoTopLeftCorner -->
-        <div class="sideNavBarLogo">
+
+<!--         <div class="sideNavBarLogo">
             <img id="startScreenLogo" src="../img/whitelogo.svg" class="whiteLogo" />
             <img src="../img/blacklogo.svg" class="blackLogo" />
         </div>
 
-        <!-- Sidebar -->
         <div class="sideNavBar">
             <div class="sideNavBarList">
                 <div> 
@@ -49,14 +61,17 @@
                 </div>
             </div>
         </div>
-
+ -->
 
         <div class="placeholderRight">
             <div class="placeholderTop">
                 <div class="topNavBarLeftText">Kanban Project Management Tool</div>
                 <div class="topNavBarRightImg">
                     <img src="../img/questionmark.svg" class="topNavBarRightImgQuestionmark">
-                    <img src="../img/picture.svg" class="topNavBarRightImgPicture">
+                    <img src="../img/picture.svg" class="topNavBarRightImgPicture" onclick="showLogoutButton()">
+                    <div id="logoutButton" class="logoutButton" onclick="backToLoginScreen()">
+                        <span>Logout</span>
+                    </div>
                 </div>
             </div>
 
@@ -77,20 +92,27 @@
                     </div>
             
                     <div id="contactsContainer" class="contactsContainer">
-                        <div class="contactsContentHeader">
-                            <div>
-                                <h1>Contacts</h1>
+                        <div class="contactsContentHeaderContainer">
+                            <div class="contactsContentHeader">
+                                <div class="contactsTopNavBarText">Kanban Project Management Tool</div>
+                                <div>
+                                    <h1>Contacts</h1>
+                                </div>
+                                <div class="contactsVline"></div>
+                                <div>
+                                    Better with a team
+                                </div>
+                                <div class="contactsVline2"></div>
                             </div>
-                            <div class="contactsVline">
-                            </div>
-                            <div>
-                                Better with a team
+                            <div onclick="backToContactsList()">
+                                <img src="../img/arrowLeft.svg">
                             </div>
                         </div>
+
             
                         <div id="contactsContent" class="contactsContent">
-                            <div class="contactDetails" id="contactDetails">
-            <!--                <div>
+          <!--              <div class="contactDetails" id="contactDetails">
+                                <div>
                                     <div>
                                         <div class="contactIconBig">
                                             <span>AM</span>
@@ -141,13 +163,13 @@
                                         </div>
                                     </div>
                                 </div>
-             -->
                             </div>
+                        -->
                         </div>
                     </div>
 
            
-                    <button class="newContactButton" onclick="newContact()">
+                    <button id="newContactButton" class="newContactButton" onclick="newContact()">
                         <span>New contact</span>
                         <img src="../img/newContact.svg">
                     </button>
@@ -288,7 +310,8 @@
             </div>
         </div>
     </div>
-          
+       
+    
     <!-- ================================== SNACKBAR INPUT REQUIRED ======================================= -->
     <div id="inputRequired">Input required</div>
 

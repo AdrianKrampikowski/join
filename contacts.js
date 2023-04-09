@@ -143,8 +143,9 @@
             newSurname.value = '';
             newEmail.value = '';
             newPhone.value = '';
-            renderContacts();
+            renderLetters();
             showContactCreatedPupup();
+            document.getElementById('addContactBackground').style.display = 'none';
         }
     }
 
@@ -156,7 +157,9 @@
     }
 
     function openContactInfo(c) {
-        let contactInformation = document.getElementById('contactDetails');
+        activeContact(c);
+
+        let contactInformation = document.getElementById('contactsContent');
         contactInformation.innerHTML = '';
 
         let contactInfoName = contacts[c]['name'];
@@ -168,16 +171,31 @@
         getFirstLetter(c);
 
         contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone);
-        document.getElementById('contactIconBig' + i).style.backgroundColor = contactInfoBgColor;
+        document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
+        document.getElementById('contactDetails' + c).style.animation = 'flying 225ms ease-in-out';
 
         if (window.innerWidth < 950) {
             document.getElementById('contactsBar').classList.add('d-none');
             document.getElementById('contactsContainer').classList.add('contactsContainerMobile');
-        } 
+            document.getElementById('newContactButton').classList.add('d-none');
+        }
+    }
+
+    function activeContact(c) {
+        let currentElement = document.getElementById('contactID' + c);
+        let allElements = document.querySelectorAll('.contact');
+
+        allElements.forEach((element) => {
+            element.style.backgroundColor = '#F5F5F5';
+            element.style.color = 'black';
+        })
+            currentElement.style.backgroundColor = '#2A3647';
+            currentElement.style.color = 'white';
     }
 
     function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
         return `
+            <div class="contactDetails" id="contactDetails${c}">
                 <div>
                     <div>
                         <div id="contactIconBig${c}" class="contactIconBig">
@@ -191,7 +209,7 @@
                                 <span>${contactInfoSurname}</span>
                             </div>
                         </div>
-                        <div class="addTask">
+                        <div onclick="addTaskViaContact()" class="addTask">
                             <img src="../img/plus.svg"><span>Add Task</span>
                         </div>
                     </div>
@@ -220,16 +238,21 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="deleteContact">
-                        <div onclick="deleteContact(${c})">
-                            <span>Delete contact</span>
-                            <img src="../img/delete.svg">
-                        </div>
-                    </div>
                 </div>
+            </div>
+
+            <div class="deleteContact">
+                <div onclick="deleteContact(${c})">
+                    <span>Delete contact</span>
+                    <img src="../img/delete.svg">
+                </div>
+            </div>
+
         `;
+        }
+
+        function addTaskViaContact() {
+            window.location.href = 'addTask.html';
         }
 
         function editContact(i) {
@@ -248,7 +271,7 @@
                 <button class="createContact" onclick="saveChanges(${i})">  
                     <span>Save</span>
                 </button>
-        `;
+                `;
 
             getFirstLetter(i);
 
@@ -256,8 +279,7 @@
             <div id="contactImgBg${i}" class="contactImgBg">
                 <span>${firstLetters}</span>
             </div>
-        `;
-
+            `;
             document.getElementById('contactImgBg' + i).style.backgroundColor = contactInfoBgColor;
         }
 
@@ -268,7 +290,7 @@
             contacts[i]['phone'] = editPhone.value;
 
             saveContacts();
-            renderContacts();
+            renderLetters();
             contactChangesSavedPupup();
             editContactPopUp.style.display = 'none';
         }
@@ -277,6 +299,13 @@
             contacts.splice(i, 1);
             saveContacts();
             renderContacts();
+        }
+
+        function backToContactsList() {
+            document.getElementById('contactsBar').classList.remove('d-none');
+            document.getElementById('contactsContainer').classList.remove('contactsContainerMobile');
+            document.getElementById('newContactButton').classList.remove('d-none');
+
         }
 
         /* ================================== SNACKBAR =======================================*/

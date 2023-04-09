@@ -98,7 +98,7 @@ body {
   margin-top: 0;
 }
 
-.loginHeading > div {
+.blueLigne {
     height: 3px;
     background-color: #29abe2;
     width: 30%;
@@ -252,15 +252,15 @@ body {
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#sendEmail, #passwordReset,#passwordsNotIdentical  {
+#sendEmail, #passwordReset,#passwordsNotIdentical, #noEmailInsertedPopup  {
   visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px; /* Set a default minimum width */
-  margin-left: -125px; /* Divide value of min-width by 2 */
+  min-width: 280px; /* Set a default minimum width */
+  margin-left: -140px; /* Divide value of min-width by 2 */
   background-color: #2A3647; /* Black background color */
   color: #fff; /* White text color */
   text-align: center; /* Centered text */
   border-radius: 10px; /* Rounded borders */
-  padding: 16px; /* Padding */
+  padding: 16px 8px; /* Padding */
   position: fixed; /* Sit on top of the screen */
   z-index: 5; /* Add a z-index if needed */
   left: 50%; /* Center the snackbar */
@@ -278,7 +278,7 @@ body {
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#sendEmail.show, #passwordReset.show, #passwordsNotIdentical.show  {
+#sendEmail.show, #passwordReset.show, #passwordsNotIdentical.show, #noEmailInsertedPopup.show  {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
@@ -366,6 +366,10 @@ body {
     width: 100%;
  }
 
+ ::placeholder {
+  font-size: 16px;
+}
+
  .inputContainer {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -379,6 +383,7 @@ body {
   .startScreen {
     margin-left: 15px !important;
   }
+
 
 }
 
