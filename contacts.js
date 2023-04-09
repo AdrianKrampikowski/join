@@ -251,9 +251,9 @@
         `;
         }
 
-        function addTaskViaContact() {
-            window.location.href = 'addTask.html';
-        }
+        // function addTaskViaContact() {
+        //     window.location.href = 'addTask.html';
+        // }
 
         function editContact(i) {
             editContactPopUp.style.display = 'flex';
