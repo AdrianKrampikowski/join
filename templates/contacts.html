@@ -1,329 +1,235 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
-
-    <!-- ============================ Styles =========================== -->
-    <link rel="stylesheet" href="../styles/contacts.css">
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/styleSummery.css">
-    <link rel="stylesheet" href="../styles/addTask.css">
-
-    <!-- ============================ Scripts =========================== -->
-    <script src="../backend.js"></script>
-    <script src="../contacts.js"></script>
-    <script src="../mini_backend.js"></script>
-
-    <!-- ============================ Favicon =========================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#2a3647">
-    <meta name="msapplication-TileColor" content="#2a3647">
-    <meta name="theme-color" content="#2a3647">
-
-</head>
-
-<body onload="initContacts()">
-
-    <div class="mainContainer">
-
-<!--         <div class="sideNavBarLogo">
-            <img id="startScreenLogo" src="../img/whitelogo.svg" class="whiteLogo" />
-            <img src="../img/blacklogo.svg" class="blackLogo" />
-        </div>
-
-        <div class="sideNavBar">
-            <div class="sideNavBarList">
-                <div> 
-                    <a href="www.google.com" class="sideNavBarTask"><img src="../img/summary.svg"
-                            class="svg"><span>Summary</span></a>
+<div class="contactsMainContainer">
+    <div id="contactsBar" class="contactsBar">
+        <div id="contactList" class="contactList">
+<!--            <div id='contactContainer${i}' class="contactContainer">
+                <div class="letter">
+                    <div>${letter}</div>
                 </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="../img/board.svg" class="svg"><span>Board</span></a>
+                <div class="contactsHline"></div>
+                <div id="sortedContacts${i}" class="sortedContacts">
                 </div>
-                <div>
-                    <a href="www.google.com" class="sideNavBarTask"><img src="../img/addtask.svg" class="svg"><span>Add
-                            Task</span></a>
-                </div>
-                <div>
-                    <a class="sideNavBarTask"><img src="../img/contacts.svg"
-                            class="svg"><span>Contacts</span></a>
-                </div>
-                <div class="sideNavBarLegalNotice">
-                    <a href="www.google.com" class="sideNavBarTask"><img src="../img/legalnotice.svg" class="svg">Legal
-                        Notice</a>
-                </div>
-            </div>
-        </div>
- -->
-
-        <div class="placeholderRight">
-            <div class="placeholderTop">
-                <div class="topNavBarLeftText">Kanban Project Management Tool</div>
-                <div class="topNavBarRightImg">
-                    <img src="../img/questionmark.svg" class="topNavBarRightImgQuestionmark">
-                    <img src="../img/picture.svg" class="topNavBarRightImgPicture" onclick="showLogoutButton()">
-                    <div id="logoutButton" class="logoutButton" onclick="backToLoginScreen()">
-                        <span>Logout</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="placeholderBottom">
-                <div class="contactsMainContainer">
-
-                    <div id="contactsBar" class="contactsBar">
-                        <div id="contactList" class="contactList">
-            <!--            <div>
-                                <div class="letter">
-                                    <div>A</div>
-                                </div>
-                                <div class="contactsHline"></div>
-                                <div id="sortedContacts" class="sortedContacts">
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-            
-                    <div id="contactsContainer" class="contactsContainer">
-                        <div class="contactsContentHeaderContainer">
-                            <div class="contactsContentHeader">
-                                <div class="contactsTopNavBarText">Kanban Project Management Tool</div>
-                                <div>
-                                    <h1>Contacts</h1>
-                                </div>
-                                <div class="contactsVline"></div>
-                                <div>
-                                    Better with a team
-                                </div>
-                                <div class="contactsVline2"></div>
-                            </div>
-                            <div onclick="backToContactsList()">
-                                <img src="../img/arrowLeft.svg">
-                            </div>
-                        </div>
-
-            
-                        <div id="contactsContent" class="contactsContent">
-          <!--              <div class="contactDetails" id="contactDetails">
-                                <div>
-                                    <div>
-                                        <div class="contactIconBig">
-                                            <span>AM</span>
-                                        </div>
-                                    </div>
-                                    <div class="contactDetailsName">
-                                        <div class="name">
-                                            <div>
-                                                <span>Anton</span>
-                                                <span>Mayer</span>
-                                            </div>
-                                        </div>
-                                        <div class="addTask">
-                                            <img src="../img/plus.svg"><span>Add Task</span>
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="contactInformation">
-                                    <div>
-                                        <div class="contactInformationHeader">
-                                            <div>
-                                                <span>Contact Information</span>
-                                            </div>
-                                            <div calss="editContact">
-                                                <img src="../img/edit.svg">
-                                                <span>Edit Contact</span>
-                                            </div>
-                                        </div>
-                
-                                        <div class="contactInformationMain">
-                                            <div>
-                                                <span>Email</span>
-                                                <a href="antom@gmail.com">antom@gmail.com</a>
-                                            </div>
-                                            <div>
-                                                <span>Phone</span>
-                                                <a href="tel:+491111111111">+49 1111 111 11 1</a>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-            
-                                    <div class="deleteContact">
-                                        <div onclick="deleteContact()">
-                                            <span>Delete contact</span>
-                                            <img src="../img/delete.svg">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        -->
-                        </div>
-                    </div>
-
-           
-                    <button id="newContactButton" class="newContactButton" onclick="newContact()">
-                        <span>New contact</span>
-                        <img src="../img/newContact.svg">
-                    </button>
-                </div>
-
-            </div>
+            </div> -->
         </div>
     </div>
 
-    <!-- ======================== AddContacts Overlay ======================== -->
-    <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
-
-        <div class="addContactContainer" onclick="doNotClose(event)">
-            <div class="addContactLeftSide">
-                <img src="../img/logo.svg">
-                <h1>Add contact</h1>
-                <span>Task are better with a Team!</span>
-                <div></div>
+    <div id="contactsContainer" class="contactsContainer">
+        <div class="contactsContentHeaderContainer">
+            <div class="contactsContentHeader">
+                <div class="contactsTopNavBarText">Kanban Project Management Tool</div>
+                <div>
+                    <h1>Contacts</h1>
+                </div>
+                <div class="contactsVline"></div>
+                <div>
+                    Better with a team
+                </div>
+                <div class="contactsVline2"></div>
             </div>
+            <div onclick="backToContactsList()">
+                <img src="../img/arrowLeft.svg">
+            </div>
+        </div>
 
-            <div class="addContactRightSide">
-                <div class="contactImg">
+
+        <div id="contactsContent" class="contactsContent">
+<!--              <div class="contactDetails" id="contactDetails">
+                <div>
                     <div>
-                        <img src="../img/addUserIcon.svg">
+                        <div class="contactIconBig">
+                            <span>AM</span>
+                        </div>
+                    </div>
+                    <div class="contactDetailsName">
+                        <div class="name">
+                            <div>
+                                <span>Anton</span>
+                                <span>Mayer</span>
+                            </div>
+                        </div>
+                        <div class="addTask">
+                            <img src="../img/plus.svg"><span>Add Task</span>
+                        </div>
                     </div>
                 </div>
-                <div class="contactInfo">
+
+                <div class="contactInformation">
                     <div>
-                        <div onclick="canclePopup()">
-                            <img src="../img/close.svg">
+                        <div class="contactInformationHeader">
+                            <div>
+                                <span>Contact Information</span>
+                            </div>
+                            <div calss="editContact">
+                                <img src="../img/edit.svg">
+                                <span>Edit Contact</span>
+                            </div>
+                        </div>
+
+                        <div class="contactInformationMain">
+                            <div>
+                                <span>Email</span>
+                                <a href="antom@gmail.com">antom@gmail.com</a>
+                            </div>
+                            <div>
+                                <span>Phone</span>
+                                <a href="tel:+491111111111">+49 1111 111 11 1</a>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
-                                <img src="../img/userIcon.svg" class="img" />
-                            </div>
-                        </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="contactSurname" class="inputFields" type="text" placeholder="Surname"
-                                    required />
-                                <img src="../img/userIcon.svg" class="img" />
-                            </div>
-                        </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="../img/letter.svg" class="img" />
-                            </div>
-                        </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="contactPhone" class="inputFields" type="number" placeholder="Phone"
-                                    required />
-                                <img src="../img/phone.svg" class="img" />
-                            </div>
-                        </div>
-                        <div class="buttons">
 
-                            <button class="cancleButton" onclick="canclePopup()">
-                                <span>Cancle</span>
-                                <img src="../img/cancel.svg">
-                            </button>
-                            <button class="createContact" onclick="createContact()">
-                                <span>Create contact</span>
-                                <img src="../img/tick.svg">
-                            </button>
+
+                    <div class="deleteContact">
+                        <div onclick="deleteContact()">
+                            <span>Delete contact</span>
+                            <img src="../img/delete.svg">
                         </div>
+                    </div>
+                </div>
+            </div>
+        -->
+        </div>
+    </div>
+
+    <button id="newContactButton" class="newContactButton" onclick="newContact()">
+        <span>New contact</span>
+        <img src="../img/newContact.svg">
+    </button>
+</div>
+
+<!-- ======================== AddContacts Overlay ======================== -->
+<div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
+
+    <div class="addContactContainer" onclick="doNotClose(event)">
+        <div class="addContactLeftSide">
+            <img src="../img/logo.svg">
+            <h1>Add contact</h1>
+            <span>Task are better with a Team!</span>
+            <div></div>
+        </div>
+
+        <div class="addContactRightSide">
+            <div class="contactImg">
+                <div>
+                    <img src="../img/addUserIcon.svg">
+                </div>
+            </div>
+            <div class="contactInfo">
+                <div>
+                    <div onclick="canclePopup()">
+                        <img src="../img/close.svg">
+                    </div>
+                </div>
+                <div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
+                            <img src="../img/userIcon.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactSurname" class="inputFields" type="text" placeholder="Surname"
+                                required />
+                            <img src="../img/userIcon.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
+                            <img src="../img/letter.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="contactPhone" class="inputFields" type="number" placeholder="Phone"
+                                required />
+                            <img src="../img/phone.svg" class="img" />
+                        </div>
+                    </div>
+                    <div class="buttons">
+
+                        <button class="cancleButton" onclick="canclePopup()">
+                            <span>Cancle</span>
+                            <img src="../img/cancel.svg">
+                        </button>
+                        <button class="createContact" onclick="createContact()">
+                            <span>Create contact</span>
+                            <img src="../img/tick.svg">
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-                
-    <!-- ======================== Edit Contacts Overlay ======================== -->
-    <div id="editContactBackground" class="addContactBackground" onclick="closePopup()">
+</div>
+            
+<!-- ======================== Edit Contacts Overlay ======================== -->
+<div id="editContactBackground" class="addContactBackground" onclick="closePopup()">
 
-        <div class="addContactContainer" onclick="doNotClose(event)">
+    <div class="addContactContainer" onclick="doNotClose(event)">
 
-            <div class="addContactLeftSide">
-                <img src="../img/logo.svg">
-                <h1>Edit contact</h1>
-                <span>Task are better with a Team!</span>
-                <div></div>
+        <div class="addContactLeftSide">
+            <img src="../img/logo.svg">
+            <h1>Edit contact</h1>
+            <span>Task are better with a Team!</span>
+            <div></div>
+        </div>
+
+        <div class="addContactRightSide">
+            <div id="contactImg" class="contactImg">
+        <!--    <div>
+                    <img src="../img/addUserIcon.svg">
+                </div>              -->
             </div>
-
-            <div class="addContactRightSide">
-                <div id="contactImg" class="contactImg">
-                    <!--                <div>
-                        <img src="../img/addUserIcon.svg">
+            <div class="contactInfo">
+                <div>
+                    <div onclick="canclePopup()">
+                        <img src="../img/close.svg">
                     </div>
-    -->
                 </div>
-                <div class="contactInfo">
-                    <div>
-                        <div onclick="canclePopup()">
-                            <img src="../img/close.svg">
+                <div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="editContactName" class="inputFields" type="text" placeholder="Name"
+                                required />
+                            <img src="../img/userIcon.svg" class="img" />
                         </div>
                     </div>
-                    <div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="editContactName" class="inputFields" type="text" placeholder="Name"
-                                    required />
-                                <img src="../img/userIcon.svg" class="img" />
-                            </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname"
+                                required />
+                            <img src="../img/userIcon.svg" class="img" />
                         </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname"
-                                    required />
-                                <img src="../img/userIcon.svg" class="img" />
-                            </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="editContactEmail" class="inputFields" type="email" placeholder="Email" />
+                            <img src="../img/letter.svg" class="img" />
                         </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="editContactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="../img/letter.svg" class="img" />
-                            </div>
+                    </div>
+                    <div class="inputContainer">
+                        <div class="inputFieldContainer">
+                            <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone"
+                                required />
+                            <img src="../img/phone.svg" class="img" />
                         </div>
-                        <div class="inputContainer">
-                            <div class="inputFieldContainer">
-                                <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone"
-                                    required />
-                                <img src="../img/phone.svg" class="img" />
-                            </div>
-                        </div>
-                        <div class="buttons editButton" id="saveChangesButton">
-                            <!--                            <button class="createContact" onclick="saveChanges()">
-                                    <span>Save</span>
-                                </button>
-    -->
-                        </div>
+                    </div>
+                    <div class="buttons editButton" id="saveChangesButton">
+                    <!--    <button class="createContact" onclick="saveChanges()">
+                                <span>Save</span>
+                            </button>               -->         
                     </div>
                 </div>
             </div>
         </div>
     </div>
-       
-    
-    <!-- ================================== SNACKBAR INPUT REQUIRED ======================================= -->
-    <div id="inputRequired">Input required</div>
+</div>
 
-    <!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
-    <div id="contactCreated">Contact succesfully created</div>
+<!-- ================================== SNACKBAR INPUT REQUIRED ======================================= -->
+<div id="inputRequired">Input required</div>
 
-    <!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
-    <div id="contactChangesSaved">Changes saved</div>
+<!-- ================================== SNACKBAR CONTACT CREATED ======================================= -->
+<div id="contactCreated">Contact succesfully created</div>
 
-
-    <script src="../contacts.js"></script>
-
-</body>
-
-</html>
+<!-- ================================== SNACKBAR CHANGES SAVED ======================================= -->
+<div id="contactChangesSaved">Changes saved</div>

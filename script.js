@@ -419,6 +419,7 @@ function displayMainSummaryPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "none";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";   
 }
 
 function displayMainBoardPage() {
@@ -426,6 +427,7 @@ function displayMainBoardPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "block";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";   
 }
 
 function displayMainAddTaskPage() {
@@ -433,6 +435,7 @@ function displayMainAddTaskPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "none";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "block";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
 }
 
 function displayMainContacsPage() {
@@ -440,4 +443,14 @@ function displayMainContacsPage() {
     document.getElementById("mainBoardContainerDisplay").style.display = "none";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "block";
+    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    initContacts();
+}
+
+function displayMainLegalNoticePage() {
+document.getElementById("mainSummaryContainerDisplay").style.display = "none";
+document.getElementById("mainBoardContainerDisplay").style.display = "none";
+document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
+document.getElementById("mainContactsContainerDisplay").style.display = "none";
+document.getElementById("mainLegalNoticeContainerDisplay").style.display = "block";
 }
