@@ -65,7 +65,7 @@
             let contactBgColor = contacts[c]['background']
 
             randomBackground();
-            getFirstLetter(c);
+            nameGetFirstLetter(c);
 
             if(firstLetters.charAt(0) == letter) {
                 sortedContacts.innerHTML += `
@@ -97,7 +97,7 @@
         }
     }
      
-    function getFirstLetter(c) {
+    function nameGetFirstLetter(c) {
         let x = contacts[c]['name'];
         x = x.split(' ').map(word => word.charAt(0)).join('');
         let y = contacts[c]['surname'];
@@ -168,7 +168,7 @@
         let contactInfoPhone = contacts[c]['phone'];
         let contactInfoBgColor = contacts[c]['background'];
 
-        getFirstLetter(c);
+        nameGetFirstLetter(c);
 
         contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone);
         document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
@@ -273,7 +273,7 @@
                 </button>
                 `;
 
-            getFirstLetter(i);
+            nameGetFirstLetter(i);
 
             document.getElementById('contactImg').innerHTML = `
             <div id="contactImgBg${i}" class="contactImgBg">

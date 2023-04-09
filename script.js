@@ -444,6 +444,7 @@ function displayMainContacsPage() {
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "block";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
+    initContacts();
 }
 
 function displayMainLegalNoticePage() {
