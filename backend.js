@@ -46,6 +46,7 @@ function addUser() {
     }
 
     let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: userColorValue, userid: userId};
+    let contactData = {name: name.value, surname: surname.value, email: email.value, phone: '-'};
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -56,6 +57,7 @@ function addUser() {
         password.value = '';
     } else {
         users.push(userData);
+        contacts.push(contactData);
         save();
         successfullySignedUpPopup();
         setInterval(backToLoginScreen, 1200);
