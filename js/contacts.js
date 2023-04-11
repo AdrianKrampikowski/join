@@ -134,7 +134,7 @@
     function createContact() {
         if (newName.value == '' || newEmail.value == '') {
             inputRequiredPopup();
-        } else {s
+        } else {
             randomBackground();
             let newContact = { name: newName.value, surname: newSurname.value, email: newEmail.value, phone: newPhone.value, background: bgColor};
             contacts.push(newContact);

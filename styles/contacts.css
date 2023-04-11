@@ -40,7 +40,6 @@
 }
 
 /* ================================ SCROLLBAR ====================================== */
-
 .contactList::-webkit-scrollbar {
     width: 10px;
     scrollbar-gutter: stable;

@@ -46,10 +46,74 @@ span {
 }
 
 .addTaskMainContainer {
+  height: calc(100vh - 89px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.addTaskMainSubContainer {
+  height: inherit;
+  width: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: auto;
 }
+
+/* ================================ SCROLLBAR ====================================== */
+
+.addTaskMainSubContainer::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-gutter: stable;
+}
+
+/* .contactList::-webkit-scrollbar-track {
+  background-color: white;
+} */
+
+.addTaskMainSubContainer::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button {
+  color: #A8A8A8;
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button {
+  display: block;
+  background-repeat: no-repeat;   
+  background-size: 50%;
+  background-position: center;
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url(../img/upArrow.svg);
+  background-size: 10px 4px;  
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.addTaskMainSubContainer::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url(../img/downArrow.svg);   
+  background-size: 10px 4px;  
+}
+/* ================================================================================== */
+
+.addTaskMainSubContainer > form {
+  height: 100%;
+}
+
 
 .addTaskContainer {
   display: flex;
@@ -222,4 +286,12 @@ span {
   .addTaskContainer {
     flex-direction: column;
   }
+
+  .addTaskMainSubContainer > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+   }
+
 }

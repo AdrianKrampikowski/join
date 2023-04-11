@@ -91,7 +91,7 @@ function generateToDoHTML(element, index) {
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
         progressBarHTML = `
-            <div class="boardContainerProgress">
+            <div class="boardContainerProgress" onclick="openTask()" >
                 <div class="progress">
                     <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
@@ -256,6 +256,9 @@ async function showAllContacts() {
         })
 }
 
+function openTask() {
+    
+}
 
 function taskCounter() {
     let taskCounter = toDos.length;
