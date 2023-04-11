@@ -29,7 +29,7 @@
 
       <div class="header">
         <div class="startScreen forgotPwScreen">
-          <img id="startScreenLogo" class="logo logoForgotPwScreen" src="img/blacklogo.svg"  />
+          <img id="startScreenLogo" class="logo logoForgotPwScreen" src="../img/blacklogo.svg"  />
         </div>
       </div>
 
@@ -37,7 +37,7 @@
           <div class="loginScreen">
 
               <div class="arrowBack" onclick="backToLoginScreen()">
-                <img src="./img/arrowLeft.svg">
+                <img src="../img/arrowLeft.svg">
               </div>       
                      
               <div class="loginHeading">
@@ -52,7 +52,7 @@
               <form id="forgotPwForm" class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" onsubmit="return(checkForCorrectEmail())" method="post">
                   <div class="inputFieldContainer">
                     <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email"/>
-                    <img src="img/letter.svg" class="img" />
+                    <img src="../img/letter.svg" class="img" />
                   </div>
                     <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
                   <button id="submitButton" type="submit" class="loginButton">Send me the email</button>
@@ -63,7 +63,7 @@
     </div>
 
       <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
-      <div id="sendEmail"><img src="./img/emailSent.svg">An E-Mail has been sent to you</div>
+      <div id="sendEmail"><img src="../img/emailSent.svg">An E-Mail has been sent to you</div>
 
       <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
       <div id="noEmailInsertedPopup">Please insert you E-Mail</div>
