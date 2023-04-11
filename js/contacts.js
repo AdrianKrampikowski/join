@@ -257,7 +257,7 @@
 
         function editContact(i) {
 
-            editContactPopUp.style.display = 'block';
+            editContactPopUp.style.display = 'flex';
 
             editName.value = contacts[i]['name'];
             editSurname.value = contacts[i]['surname'];
@@ -299,6 +299,7 @@
         function deleteContact(i) {
             contacts.splice(i, 1);
             saveContacts();
+            document.getElementById('contactsContent').innerHTML = '';
             renderLetters();
         }
 
