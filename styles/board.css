@@ -2,9 +2,7 @@
 .placeholderBoard {
   height: calc(100vh - 89px);
   padding: 2rem;
-  padding-left: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 1rem 1rem 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -141,7 +139,6 @@
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  gap: 26px;
   overflow-x: hidden;
   overflow-y: scroll;
   overflow: auto;
@@ -196,6 +193,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-right: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -233,14 +231,36 @@
 }
 
 .boardContainerTop {
-  width: 103px;
-  height: 27px;
-  background-color: #ff7a00;
-  border-radius: 8px;
+  width: 100%;
+/*   width: 103px;
+ */  height: 27px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boardContainerTop > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 30%;
+  background-color: #ff7a00;
+  border-radius: 8px;
+}
+
+.boardContainerTop > div > div {
   color: white;
+}
+
+.boardContainerTop > img {
+  height: 15px;
+  width: auto;
+  cursor: pointer;
+}
+
+.boardContainerTop > img:hover {
+  scale: 1.1;
 }
 
 .boardContainerHeadline h2 {

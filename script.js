@@ -86,7 +86,6 @@ function pushArrayToDo() {
     toDos = tasks;
 }
 
-
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
@@ -107,7 +106,10 @@ function generateToDoHTML(element, index) {
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
             <div class="boardContainerTop">
-                ${element["category"]}
+                <div>
+                    <div>${element["category"]}</div>
+                </div>
+                <img onclick="deleteTask(${index})" src="../img/delete.svg">
             </div>
             <div class="boardContainerHeadline">
                 <h2>${element["title"]}</h2>
