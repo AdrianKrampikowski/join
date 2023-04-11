@@ -36,7 +36,7 @@ select::-ms-expand {
   /* Standardpfeil im IE 10 und 11 entfernen */
 }
 
-button {
+.addTaskMainContainer button {
   border: none;
 }
 

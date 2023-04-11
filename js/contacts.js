@@ -112,10 +112,10 @@
     function closePopup() {
         document.getElementById('addContactBackground').style.display = 'none';
         document.getElementById('editContactBackground').style.display = 'none';
-        name.value = '';
-        surname.value = '';
-        email.value = '';
-        phone.value = '';
+        newName.value = '';
+        newSurname.value = '';
+        newEmail.value = '';
+        newPhone.value = '';
     }
 
     function canclePopup() {
@@ -134,7 +134,7 @@
     function createContact() {
         if (newName.value == '' || newEmail.value == '') {
             inputRequiredPopup();
-        } else {
+        } else {s
             randomBackground();
             let newContact = { name: newName.value, surname: newSurname.value, email: newEmail.value, phone: newPhone.value, background: bgColor};
             contacts.push(newContact);
@@ -256,7 +256,8 @@
         // }
 
         function editContact(i) {
-            editContactPopUp.style.display = 'flex';
+
+            editContactPopUp.style.display = 'block';
 
             editName.value = contacts[i]['name'];
             editSurname.value = contacts[i]['surname'];
