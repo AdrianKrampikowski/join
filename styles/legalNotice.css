@@ -1,4 +1,4 @@
-* {
+.legalNoticeContainer *, .helpContainer * {
     box-sizing: border-box;
     font-family: 'Inter';
     color: black;

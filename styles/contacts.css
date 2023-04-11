@@ -1,11 +1,11 @@
-* {
+/* * {
     box-sizing: border-box;
     font-family: 'Inter';
-}
+} */
 
-body {
+/* body {
     margin: 0;
-}
+} */
 
 .contactsMainContainer {
     display: flex;
