@@ -89,6 +89,7 @@ function createTask() {
     saveTasks();
     console.log("Tasks", taskData);
     // window.location.href = 'index.html';
+    taskCreatedPopup();
 }
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
@@ -203,7 +204,6 @@ function saveSelectedCategory() {
 }
 
 //ToDoEnd
-
 // ================================================ LOGIN ==========================================================
 function login() {
     let emailLog = document.getElementById('emailLog');
@@ -369,6 +369,17 @@ function sendEmailPopup() {
 function passwordsNotIdentical() {
     // Get the snackbar DIV
     var x = document.getElementById("passwordsNotIdentical");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function taskCreatedPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("taskCreated");
   
     // Add the "show" class to DIV
     x.className = "show";

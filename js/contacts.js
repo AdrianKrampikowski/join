@@ -67,12 +67,12 @@
             randomBackground();
             nameGetFirstLetter(c);
 
-            if(firstLetters.charAt(0) == letter) {
+            if(firstLetters.charAt(0).toUpperCase() == letter) {
                 sortedContacts.innerHTML += `
                     <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
-                                <span>${firstLetters}</span>
+                                <span>${firstLetters.toUpperCase()}</span>
                             </div>
                         </div>
                         <div>
@@ -299,7 +299,7 @@
         function deleteContact(i) {
             contacts.splice(i, 1);
             saveContacts();
-            renderContacts();
+            renderLetters();
         }
 
         function backToContactsList() {
@@ -308,6 +308,7 @@
             document.getElementById('newContactButton').classList.remove('d-none');
 
         }
+        
 
         /* ================================== SNACKBAR =======================================*/
         function showContactCreatedPupup() {

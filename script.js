@@ -256,9 +256,6 @@ async function showAllContacts() {
         })
 }
 
-function openTask() {
-    
-}
 
 function taskCounter() {
     let taskCounter = toDos.length;
