@@ -933,6 +933,15 @@
 }
 
 @media (max-width: 720px) {
+    .contactsBar {
+        height: calc(100vh - 169px);
+    }
+
+    .contactsContainer {
+        height: calc(100vh - 169px);
+
+    }
+    
     .newContactButton {
         width: 160px;
         height: 43px;
