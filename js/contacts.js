@@ -209,7 +209,7 @@
                                 <span>${contactInfoSurname}</span>
                             </div>
                         </div>
-                        <div onclick="addTaskViaContact()" class="addTask">
+                        <div onclick="displayMainAddTaskPage()" class="addTask">
                             <img src="../img/plus.svg"><span>Add Task</span>
                         </div>
                     </div>
