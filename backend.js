@@ -59,6 +59,7 @@ function addUser() {
         users.push(userData);
         contacts.push(contactData);
         save();
+        saveContacts();
         successfullySignedUpPopup();
         setInterval(backToLoginScreen, 1200);
     }
