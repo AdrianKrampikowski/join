@@ -109,7 +109,7 @@ function generateToDoHTML(element, index) {
                 <div>
                     <div>${element["category"]}</div>
                 </div>
-                <img onclick="deleteTask(${index})" src="../img/delete.svg">
+                <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
             </div>
             <div class="boardContainerHeadline">
                 <h2>${element["title"]}</h2>
@@ -258,6 +258,91 @@ async function showAllContacts() {
         })
 }
 
+// Die boardContainer benötigen eine eindeutige ID. 
+
+/*    function deleteTask(taskId) {
+        for (let i = 0; i < toDos.lengtht; i++) {
+            if (taskId == toDos[i]['taskId']) {
+                toDos.splice(i, 1);
+                updateHTML();
+            }
+        }
+    } */ 
+
+
+/* function openTask(index) {
+    let openTask = document.getElementById('openTaskBackground');
+    openTask.display = 'flex';
+
+    let openTaskContainer = document.getElementById('openTaskContainer');
+    openTaskContainer.innerHTML = '';
+    openTaskContainer.innerHTML = openTaskTemplate(index);
+
+    for (let i = 0; i < tasks[index]['assignTo'].length; i++) {
+
+        let assignedUser = tasks[index]['assignTo'][i];
+        
+        document.getElementById('assignedToContainer' + index).innerHTML =  `
+            
+            <div class="openTaskAssignedPerson">
+                <div>
+                    <span>DE</span>
+                </div>
+                <div>${assignedUser}</div>
+            </div>
+        `;
+    }
+} */
+
+/* function openTaskTemplate(index) {
+    return `
+        <div id="openTask${index}" class="openTask">
+            <div class="openTaskTop">
+                <div>
+                    <span>${tasks[index]['category']}</span>
+                </div>
+                <div>
+                    <img src="../img/close.svg">
+                </div>
+            </div>
+
+            <div class="openTaskHeader">
+                <h1>${tasks[index]['title']}</h1>
+                <span>${tasks[index]['description']}</span>
+            </div>
+
+            <div class="openTaskMain">
+
+                <div class="openTaskDate">
+                    <div>Due date:</div>
+                    <div>${tasks[index]['dueDate']}</div>
+                </div>
+
+                <div class="openTaskPriority">
+                    <div>Priority:</div>
+                    <div>
+                        <div>
+                            <span>${tasks[index]['priorityValue']}</span>
+                            <img src="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="openTaskAssigned">
+                    <div>Assigned To:</div>
+                    <div id="assignedToContainer${index}">
+
+                    </div>                
+                </div>
+            </div>
+        </div>
+
+        <div class="openTaskEditButton">
+            <img src="../img/edit.svg">
+        </div>
+    `;
+} */
+
 
 function taskCounter() {
     let taskCounter = toDos.length;
@@ -265,7 +350,6 @@ function taskCounter() {
     ${taskCounter}
     `;
 }
-
 
 function awaitingFeedbackCounter() {
     let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
