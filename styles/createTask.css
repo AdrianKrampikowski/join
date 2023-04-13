@@ -1,3 +1,6 @@
+button {
+    cursor: pointer;
+}
 .d-none {
   display: none !important;
 }
@@ -87,14 +90,14 @@ span {
 
 .addTaskMainSubContainer::-webkit-scrollbar-button {
   display: block;
-  background-repeat: no-repeat;   
+  background-repeat: no-repeat;
   background-size: 50%;
   background-position: center;
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button:vertical:start:increment {
   background-image: url(../img/upArrow.svg);
-  background-size: 10px 4px;  
+  background-size: 10px 4px;
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button:vertical:start:decrement {
@@ -106,12 +109,13 @@ span {
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button:vertical:end:decrement {
-  background-image: url(../img/downArrow.svg);   
-  background-size: 10px 4px;  
+  background-image: url(../img/downArrow.svg);
+  background-size: 10px 4px;
 }
+
 /* ================================================================================== */
 
-.addTaskMainSubContainer > form {
+.addTaskMainSubContainer>form {
   height: 100%;
 }
 
@@ -173,6 +177,7 @@ span {
   align-items: center;
   padding: 7px 20px;
 }
+
 .category:hover {
   background-color: lightgray;
 }
@@ -242,65 +247,97 @@ span {
 
 .clearAndCreateButton {
   display: flex;
-  justify-content: flex-end;
-  gap: 20px;
+  position: absolute;
+  bottom: 130px;
 }
 
-.clearButton {
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 10px;
-  gap: 10px;
-
-  width: 136px;
-  height: 61px;
-
-  /* Version 2/ main color  */
-  border: 1px solid #2a3647;
+.clearAndCreateButton button {
+  font-size: 1.5rem;
   border-radius: 10px;
+  padding: 18px 10px;
+  margin-left: 25px;
+  transition: background 255ms ease-in-out;
 }
 
 .createTaskButton {
+  background: #2A3647;
+  color: white;
+  border: none;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 18px 10px;
   gap: 10px;
-
-  width: 177px;
-  height: 61px;
-
-  background: #2a3647;
-  border-radius: 10px;
-
-  color: white;
+  font-weight: 700;
+  transition: all 100ms ease-in-out;
 }
+
+.createTaskButton:hover {
+  background-color: #29ABE2;
+  border: 2px solid #29ABE2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.clearButton {
+  border: solid 1px #2A3647;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 18px 10px;
+  margin-left: 25px;
+  transition: background 255ms ease-in-out;
+  color: #2A3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 136px;
+  gap: 10px;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  color: #29ABE2;
+  border: 2px solid #29ABE2;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
 
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #taskCreated {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 280px; /* Set a default minimum width */
-  margin-left: -140px; /* Divide value of min-width by 2 */
-  background-color: #2A3647; /* Black background color */
-  color: #fff; /* White text color */
-  text-align: center; /* Centered text */
-  border-radius: 10px; /* Rounded borders */
-  padding: 16px 8px; /* Padding */
-  position: fixed; /* Sit on top of the screen */
-  z-index: 10; /* Add a z-index if needed */
-  left: 50%; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 280px;
+  /* Set a default minimum width */
+  margin-left: -140px;
+  /* Divide value of min-width by 2 */
+  background-color: #2A3647;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 10px;
+  /* Rounded borders */
+  padding: 16px 8px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 10;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #taskCreated.show {
-  visibility: visible; /* Show the snackbar */
+  visibility: visible;
+  /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -309,24 +346,53 @@ span {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
+
 /* =================================================================================*/
 
 
@@ -334,15 +400,16 @@ span {
   .middleGap {
     display: none;
   }
+
   .addTaskContainer {
     flex-direction: column;
   }
 
-  .addTaskMainSubContainer > form {
+  .addTaskMainSubContainer>form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-   }
+  }
 
 }
