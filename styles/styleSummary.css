@@ -152,6 +152,12 @@
 }
 
 .middleCardUrgentText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.middleCardUrgentText > span {
   font-weight: 400;
   font-size: 16px;
   color: #2a3647;
@@ -269,9 +275,62 @@
 
 @media (max-width: 480px){
   .summaryMainContainer {
-    height: calc(100vh - 169px);
+    height: calc(100vh - 163px);
     align-items: flex-start;
+    padding-bottom: 1rem;
+    padding-right: 0;
+    overflow-y: hidden;
   }
+
+  .summaryLeftContainer {
+    width: 100%;
+    height: 100%;
+    padding-right: 0.5rem;
+    overflow: auto;
+  }
+
+/* ================================ SCROLLBAR ====================================== */
+.summaryLeftContainer::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-gutter: stable;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button {
+  color: #A8A8A8;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button {
+  display: block;
+  background-repeat: no-repeat;   
+  background-size: 50%;
+  background-position: center;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url(../img/upArrow.svg);
+  background-size: 10px 4px;  
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.summaryLeftContainer::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url(../img/downArrow.svg);   
+  background-size: 10px 4px;  
+}
+
+/* ================================================================================== */
 
   .summaryBothContainer {
     gap: 0;
@@ -309,11 +368,22 @@
     flex-direction: row;
     justify-content: space-evenly;
     height: 100px;
+    padding: 10px;
   }
 
   .middleCard {
     width: 100%;
-    gap: 30px;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .middleCardUrgent {
+    gap: 10px;
+  }
+
+  .middleCardUrgent > img {
+    height: 50px;
+    width: 50px;
   }
 
   .allBottomCards {
@@ -325,10 +395,18 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-evenly;
+    padding: 10px;
+  }
+
+  .bottomCard img {
+    height: 50px;
+    width: 50px;
   }
 
   }
 
-
-
-
+  @media (max-width: 480px){
+  .middleCard {
+    gap: 10px;
+  }
+  }
