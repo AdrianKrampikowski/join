@@ -25,8 +25,14 @@
 
 .placeholderBoardTopRight {
   display: flex;
-  align-items: center;
+  align-items: flex;
   gap: 35px;
+}
+
+.placeholderBoardTopRight > .inputContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* .findTaskInputField {
@@ -555,12 +561,30 @@
     padding-left: 1rem;
     padding-right: 0;
   }
+  .placeholderBoardTopLeft > h1 {
+    margin-right: 1rem;
+  }
+  .placeholderBoardTop {
+    padding-right: 0.5rem;
+  }
+  .placeholderBoardTopRight .inputFields {
+    height: 45px;
+  }
 }
 
 @media (max-width: 480px) {
   .openTaskContainer {
     width: 100%;
     height: 100%;
+  }
+  .placeholderBoardTop {
+    flex-direction: column;
+    align-items: flex-start;
+    
+  }
+
+  .placeholderBoardTop .inputContainer {
+    justify-content: flex-start;
   }
 
 }
