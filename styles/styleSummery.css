@@ -138,12 +138,12 @@ a {
   gap: 10px;
 }
 
-/* .topNavBarRightImgQuestionmark {
+.topNavBarRightImgQuestionmark {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-} */
+}
 
 .topNavBarRightImgPicture {
   border-radius: 50%;

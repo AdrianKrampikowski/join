@@ -1,12 +1,19 @@
 /* ================================ BOARD MAIN ================================ */
 .placeholderBoard {
-  height: 100%;
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  height: calc(100vh - 89px);
+  padding: 2rem;
+  padding: 1rem 1rem 1rem 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  align-items: flex-start;
+  gap: 15px;
 }
 
 .placeholderBoardTop {
   width: 100%;
-  height: 25%;
+  height: 130px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,8 +25,14 @@
 
 .placeholderBoardTopRight {
   display: flex;
-  align-items: center;
+  align-items: flex;
   gap: 35px;
+}
+
+.placeholderBoardTopRight > .inputContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* .findTaskInputField {
@@ -128,17 +141,65 @@
 }
 
 .placeholderBoardBottom {
+  height: calc(100vh - 235px);
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  gap: 26px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: auto;
 }
+
+/* ================================ SCROLLBAR ====================================== */
+.placeholderBoardBottom::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-gutter: stable;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button {
+  color: #A8A8A8;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button {
+  display: block;
+  background-repeat: no-repeat;   
+  background-size: 50%;
+  background-position: center;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url(../img/upArrow.svg);
+  background-size: 10px 4px;  
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.placeholderBoardBottom::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url(../img/downArrow.svg);   
+  background-size: 10px 4px;  
+}
+
+/* ================================================================================== */
+
 
 .boardParts {
   width: 380px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-right: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -166,23 +227,46 @@
 
 .boardContainer {
   /* height: 100%; */
-  border-radius: 30px;
+  border-radius: 15px;
   padding: 18px 20.5px;
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
   /* border: 1px solid black; */
+  margin-bottom: 1em;
 }
 
 .boardContainerTop {
-  width: 103px;
-  height: 27px;
-  background-color: #ff7a00;
-  border-radius: 8px;
+  width: 100%;
+/*   width: 103px;
+ */  height: 27px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boardContainerTop > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 30%;
+  background-color: #ff7a00;
+  border-radius: 8px;
+}
+
+.boardContainerTop > div > div {
   color: white;
+}
+
+.boardContainerTop > img {
+  height: 15px;
+  width: auto;
+  cursor: pointer;
+}
+
+.boardContainerTop > img:hover {
+  scale: 1.1;
 }
 
 .boardContainerHeadline h2 {
@@ -278,13 +362,13 @@
 }
 
 /* ================================ OPEN TASK ================================ */
-.background {
+.backgroundOpenTask {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: #f5f5f5;
@@ -472,6 +556,20 @@
   .openTaskContainer {
     width: 80%;
   }
+  .placeholderBoard {
+    height: calc(100vh - 163px);
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+  .placeholderBoardTopLeft > h1 {
+    margin-right: 1rem;
+  }
+  .placeholderBoardTop {
+    padding-right: 0.5rem;
+  }
+  .placeholderBoardTopRight .inputFields {
+    height: 45px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -479,4 +577,14 @@
     width: 100%;
     height: 100%;
   }
+  .placeholderBoardTop {
+    flex-direction: column;
+    align-items: flex-start;
+    
+  }
+
+  .placeholderBoardTop .inputContainer {
+    justify-content: flex-start;
+  }
+
 }

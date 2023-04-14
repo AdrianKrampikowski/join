@@ -46,6 +46,7 @@ function addUser() {
     }
 
     let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: userColorValue, userid: userId};
+    let contactData = {name: name.value, surname: surname.value, email: email.value, phone: '-'};
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -56,7 +57,9 @@ function addUser() {
         password.value = '';
     } else {
         users.push(userData);
+        contacts.push(contactData);
         save();
+        saveContacts();
         successfullySignedUpPopup();
         setInterval(backToLoginScreen, 1200);
     }
@@ -86,6 +89,7 @@ function createTask() {
     saveTasks();
     console.log("Tasks", taskData);
     // window.location.href = 'index.html';
+    taskCreatedPopup();
 }
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
@@ -200,7 +204,6 @@ function saveSelectedCategory() {
 }
 
 //ToDoEnd
-
 // ================================================ LOGIN ==========================================================
 function login() {
     let emailLog = document.getElementById('emailLog');
@@ -366,6 +369,17 @@ function sendEmailPopup() {
 function passwordsNotIdentical() {
     // Get the snackbar DIV
     var x = document.getElementById("passwordsNotIdentical");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function taskCreatedPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("taskCreated");
   
     // Add the "show" class to DIV
     x.className = "show";
