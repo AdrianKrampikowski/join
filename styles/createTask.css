@@ -253,7 +253,11 @@ span {
 
 .clearAndCreateButton {
   display: flex;
-  margin: auto;
+
+  bottom: 100px;
+
+
+
 }
 
 .clearAndCreateButton button {
@@ -262,6 +266,7 @@ span {
   padding: 18px 10px;
   margin-left: 25px;
   transition: background 255ms ease-in-out;
+
 }
 
 .createTaskButton {
@@ -274,6 +279,7 @@ span {
   gap: 10px;
   font-weight: 700;
   transition: all 100ms ease-in-out;
+  margin-left: auto;
 }
 
 .createTaskButton:hover {
@@ -416,5 +422,11 @@ span {
     justify-content: flex-start;
     align-items: flex-start;
   }
+
+  .clearAndCreateButton butto {
+    margin: 37px;
+  }
+
+  
 
 }
