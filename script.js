@@ -290,9 +290,9 @@ function deleteTask(currentTaskId) {
                 </div>
             `;
         } 
-} */
+} 
 
-/* function openTaskTemplate(currentTask) {
+function openTaskTemplate(currentTask) {
     return `
         <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
