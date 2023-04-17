@@ -33,14 +33,15 @@ setTimeout(() => {
     displayUserName();
 }, 1500);
 
+
+/* ============================================= VARIABLES ========================================= */
 let allTasks = [];
 let toDos = [];
 let userChar = [];
 let allUsers = [];
-
 let currentDraggedElement;
 
-
+/* ========================================= BOARD FUNCTIONS ========================================= */
 function updateHTML() {
     if (toDos.length > 0) {
         for (let index = 0; index < toDos.length; index++) {
@@ -81,7 +82,6 @@ function updateHTML() {
     }
 }
 
-
 function pushArrayToDo() {
     toDos = tasks;
 }
@@ -90,7 +90,7 @@ function generateToDoHTML(element, index) {
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
         progressBarHTML = `
-            <div class="boardContainerProgress" onclick="openTask()" >
+            <div class="boardContainerProgress" onclick="openTask(${element["taskId"]})" >
                 <div class="progress">
                     <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
@@ -104,7 +104,7 @@ function generateToDoHTML(element, index) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
             <div class="boardContainerTop">
                 <div>
                     <div>${element["category"]}</div>
@@ -142,7 +142,6 @@ function getFirstLetter(index, i) {
     }
 }
 
-
 function createBubbles() {
     for (let j = 0; j < toDos.length; j++) {
         let bubbleTaskId = toDos[j]["taskId"];
@@ -176,7 +175,6 @@ function createBubbles() {
         }
     }
 }
-
 
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
@@ -226,7 +224,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-
 let startWithLetter = [];
 async function showAllContacts() {
     await fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
@@ -260,46 +257,47 @@ async function showAllContacts() {
 
 // Die boardContainer benötigen eine eindeutige ID. 
 
-/*    function deleteTask(taskId) {
-        for (let i = 0; i < toDos.lengtht; i++) {
-            if (taskId == toDos[i]['taskId']) {
-                toDos.splice(i, 1);
-                updateHTML();
-            }
-        }
-    } */ 
+function deleteTask(currentTaskId) {
+    let existingTask = tasks.find(u => u.taskId == currentTaskId)
+    let currentTask = tasks.indexOf(existingTask);
+
+    tasks.splice(currentTask, 1);
+    updateHTML();
+} 
 
 
-/* function openTask(index) {
+/* function openTask(currentTaskId) {
     let openTask = document.getElementById('openTaskBackground');
     openTask.display = 'flex';
 
+    let existingTask = tasks.find(u => u.taskId == currentTaskId)
+    let currentTask = tasks.indexOf(existingTask);
+
     let openTaskContainer = document.getElementById('openTaskContainer');
     openTaskContainer.innerHTML = '';
-    openTaskContainer.innerHTML = openTaskTemplate(index);
+    openTaskContainer.innerHTML = openTaskTemplate(currentTask);
 
-    for (let i = 0; i < tasks[index]['assignTo'].length; i++) {
+        for (let i = 0; i < tasks[currentTask]['assignTo'].length; i++) {
 
-        let assignedUser = tasks[index]['assignTo'][i];
-        
-        document.getElementById('assignedToContainer' + index).innerHTML =  `
+            let assignedUser = tasks[currentTask]['assignTo'][i];
             
-            <div class="openTaskAssignedPerson">
-                <div>
-                    <span>DE</span>
+            document.getElementById('assignedToContainer' + currentTask).innerHTML =  `
+                <div class="openTaskAssignedPerson">
+                    <div>
+                        <span>DE</span>
+                    </div>
+                    <div>${assignedUser}</div>
                 </div>
-                <div>${assignedUser}</div>
-            </div>
-        `;
-    }
+            `;
+        } 
 } */
 
-/* function openTaskTemplate(index) {
+/* function openTaskTemplate(currentTask) {
     return `
-        <div id="openTask${index}" class="openTask">
+        <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
                 <div>
-                    <span>${tasks[index]['category']}</span>
+                    <span>${tasks[currentTask]['category']}</span>
                 </div>
                 <div>
                     <img src="../img/close.svg">
@@ -307,22 +305,22 @@ async function showAllContacts() {
             </div>
 
             <div class="openTaskHeader">
-                <h1>${tasks[index]['title']}</h1>
-                <span>${tasks[index]['description']}</span>
+                <h1>${tasks[currentTask]['title']}</h1>
+                <span>${tasks[currentTask]['description']}</span>
             </div>
 
             <div class="openTaskMain">
 
                 <div class="openTaskDate">
                     <div>Due date:</div>
-                    <div>${tasks[index]['dueDate']}</div>
+                    <div>${tasks[currentTask]['dueDate']}</div>
                 </div>
 
                 <div class="openTaskPriority">
                     <div>Priority:</div>
                     <div>
                         <div>
-                            <span>${tasks[index]['priorityValue']}</span>
+                            <span>${tasks[currentTask]['priorityValue']}</span>
                             <img src="">
                         </div>
                     </div>
@@ -330,7 +328,7 @@ async function showAllContacts() {
 
                 <div class="openTaskAssigned">
                     <div>Assigned To:</div>
-                    <div id="assignedToContainer${index}">
+                    <div id="assignedToContainer${currentTask}">
 
                     </div>                
                 </div>
@@ -343,7 +341,44 @@ async function showAllContacts() {
     `;
 } */
 
+function searchFunction() {
+    let originalToDos = toDos;
+    let input = document.getElementById('searchValue');
+    input.addEventListener('input', debounce(function (event) {
+        let selectedValue = event.target.value.trim();
+        let newArray;
+        if (selectedValue === '') {
+            newArray = [...originalToDos];
+            toDos = originalToDos;
+        } else {
+            newArray = toDos.filter(item => {
+                if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                    return item;
+                }
+            });
+            if (newArray.length === 0 || selectedValue.length > 0) {
+                newArray = originalToDos.filter(item => {
+                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                        return item;
+                    }
+                });
+            }
+        }
+        toDos = newArray;
+        updateHTML();
+        if (toDos.length > 0) {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "block";
+            });
+        } else {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "none";
+            });
+        }
+    }, 100));
+}
 
+/* =============================== SUMMARY FUNCTIONS =================================== */
 function taskCounter() {
     let taskCounter = toDos.length;
     document.getElementById("taskCounter").innerHTML = `
@@ -447,50 +482,12 @@ function abbreviateName(name, maxLength) {
     }
 }
 
+/* ================================== TOP BAR FUNCTION ============================================ */
 
 function logout() {
     localStorage.removeItem("userName");
     window.location.href = 'index.html';
 }
-
-
-function searchFunction() {
-    let originalToDos = toDos;
-    let input = document.getElementById('searchValue');
-    input.addEventListener('input', debounce(function (event) {
-        let selectedValue = event.target.value.trim();
-        let newArray;
-        if (selectedValue === '') {
-            newArray = [...originalToDos];
-            toDos = originalToDos;
-        } else {
-            newArray = toDos.filter(item => {
-                if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
-                    return item;
-                }
-            });
-            if (newArray.length === 0 || selectedValue.length > 0) {
-                newArray = originalToDos.filter(item => {
-                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
-                        return item;
-                    }
-                });
-            }
-        }
-        toDos = newArray;
-        updateHTML();
-        if (toDos.length > 0) {
-            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
-                card.style.display = "block";
-            });
-        } else {
-            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
-                card.style.display = "none";
-            });
-        }
-    }, 100));
-}
-
 
 function debounce(func, delay) {
     let timeoutId;
