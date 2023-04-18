@@ -1,3 +1,4 @@
+/* ================================== INCLUDE HTML ================================================== */
 //Source: https://developer-akademie.teachable.com/courses/902235/lectures/31232815
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -206,7 +207,6 @@ function generateRandomColor() {
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
     currentDraggedElement = toDos.findIndex(obj => obj.taskId === id);
-
 }
 
 function moveTo(statusCategory) {
@@ -254,8 +254,6 @@ async function showAllContacts() {
             }
         })
 }
-
-// Die boardContainer benötigen eine eindeutige ID. 
 
 function deleteTask(currentTaskId) {
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
@@ -396,7 +394,6 @@ function awaitingFeedbackCounter() {
     `;
 }
 
-
 function inProgressCounter() {
     let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
@@ -404,7 +401,6 @@ function inProgressCounter() {
     ${inProgressCounter}
     `;
 }
-
 
 function urgentCounter() {
     let urgentCounter = toDos.filter(t => t["priorityValue"] == "urgent");
@@ -431,7 +427,6 @@ function doneCounter() {
     ${doneCounter}
     `;
 }
-
 
 function deadlineDate() {
     let sortedDueDate = toDos
