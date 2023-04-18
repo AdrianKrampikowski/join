@@ -105,7 +105,7 @@ function generateToDoHTML(element, index) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" >
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
             <div class="boardContainerTop">
                 <div>
                     <div>${element["category"]}</div>
@@ -266,9 +266,8 @@ function deleteTask(currentTaskId) {
 } 
 
 
-/* function openTask(currentTaskId) {
-    let openTask = document.getElementById('openTaskBackground');
-    openTask.display = 'flex';
+function openTask(currentTaskId) {
+    document.getElementById('openTaskBackground').style.display = 'flex';
 
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
     let currentTask = tasks.indexOf(existingTask);
@@ -290,9 +289,9 @@ function deleteTask(currentTaskId) {
                 </div>
             `;
         } 
-}  */
+} 
 
-/* function openTaskTemplate(currentTask) {
+function openTaskTemplate(currentTask) {
     return `
         <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
@@ -339,7 +338,7 @@ function deleteTask(currentTaskId) {
             <img src="../img/edit.svg">
         </div>
     `;
-} */
+}
 
 function searchFunction() {
     let originalToDos = toDos;
