@@ -298,7 +298,7 @@ function openTaskTemplate(currentTask) {
                 <div>
                     <span>${tasks[currentTask]['category']}</span>
                 </div>
-                <div>
+                <div onclick="closeTask()">
                     <img src="../img/close.svg">
                 </div>
             </div>
@@ -338,6 +338,10 @@ function openTaskTemplate(currentTask) {
             <img src="../img/edit.svg">
         </div>
     `;
+}
+
+function closeTask() {
+    document.getElementById('openTaskBackground').style.display = 'none';
 }
 
 function searchFunction() {
