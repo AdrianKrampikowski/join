@@ -104,7 +104,7 @@ function generateToDoHTML(element, index) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" >
             <div class="boardContainerTop">
                 <div>
                     <div>${element["category"]}</div>
@@ -262,7 +262,9 @@ function deleteTask(currentTaskId) {
     let currentTask = tasks.indexOf(existingTask);
 
     tasks.splice(currentTask, 1);
+    updateTasks();
     updateHTML();
+
 } 
 
 
@@ -290,9 +292,9 @@ function deleteTask(currentTaskId) {
                 </div>
             `;
         } 
-} 
+}  */
 
-function openTaskTemplate(currentTask) {
+/* function openTaskTemplate(currentTask) {
     return `
         <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
