@@ -437,10 +437,18 @@
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
+.openTaskHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
 .openTaskHeader > h1 {
   font-size: 61px;
   color: #2a3647;
-  margin-bottom: 1rem;
 }
 
 .openTaskMain {
@@ -458,7 +466,7 @@
 .openTaskMain > div > div:first-of-type {
   font-weight: bold;
   font-size: 21px;
-  width: 200px;
+  width: 160px;
 }
 
 .openTaskDate,
@@ -468,26 +476,32 @@
   align-items: center;
 }
 
-.openTaskAssigned > div:first-of-type {
-  margin-bottom: 1rem;
-}
-
-.openTaskAssigned > div:last-of-type {
+.openTaskAssigned {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-.openTaskAssigned > div:last-of-type > div {
+.openTaskAssigned > div:first-of-type {
   margin-bottom: 1rem;
 }
+
+.assignedToContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 
 .openTaskAssignedPerson {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .openTaskAssignedPerson > div:first-of-type {
@@ -501,21 +515,41 @@
   margin-right: 1rem;
 }
 
-.openTaskAssignedPerson > span {
+.openTaskAssignedPerson span {
   color: white;
 }
 
-.openTaskEditButton {
+.openTaskButtonContainer {
   position: absolute;
   right: 50px;
   bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.openTaskEditButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 57px;
   height: 57px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   background-color: #2a3647;
+  border: 1px solid #2a3647;
+  cursor: pointer;
+}
+
+.deleteTaskButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 10px 0 0 10px;
+  background-color: white;
+  border: 1px solid #2a3647;
+
   cursor: pointer;
 }
 

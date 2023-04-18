@@ -110,8 +110,8 @@ function generateToDoHTML(element, index) {
                 <div>
                     <div>${element["category"]}</div>
                 </div>
-                <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
-            </div>
+                    
+                </div>
             <div class="boardContainerHeadline">
                 <h2>${element["title"]}</h2>
             </div>
@@ -255,17 +255,6 @@ async function showAllContacts() {
         })
 }
 
-function deleteTask(currentTaskId) {
-    let existingTask = tasks.find(u => u.taskId == currentTaskId)
-    let currentTask = tasks.indexOf(existingTask);
-
-    tasks.splice(currentTask, 1);
-    updateTasks();
-    updateHTML();
-
-} 
-
-
 function openTask(currentTaskId) {
     document.getElementById('openTaskBackground').style.display = 'flex';
 
@@ -276,19 +265,7 @@ function openTask(currentTaskId) {
     openTaskContainer.innerHTML = '';
     openTaskContainer.innerHTML = openTaskTemplate(currentTask);
 
-        for (let i = 0; i < tasks[currentTask]['assignTo'].length; i++) {
-
-            let assignedUser = tasks[currentTask]['assignTo'][i];
-            
-            document.getElementById('assignedToContainer' + currentTask).innerHTML =  `
-                <div class="openTaskAssignedPerson">
-                    <div>
-                        <span>DE</span>
-                    </div>
-                    <div>${assignedUser}</div>
-                </div>
-            `;
-        } 
+    renderAssignedUsers(currentTask);
 } 
 
 function openTaskTemplate(currentTask) {
@@ -327,17 +304,64 @@ function openTaskTemplate(currentTask) {
 
                 <div class="openTaskAssigned">
                     <div>Assigned To:</div>
-                    <div id="assignedToContainer${currentTask}">
+                    <div id="assignedToContainer" class="assignedToContainer">
 
                     </div>                
                 </div>
             </div>
         </div>
 
-        <div class="openTaskEditButton">
-            <img src="../img/edit.svg">
+        <div class="openTaskButtonContainer">
+            <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
+                <img src="./img/deleteTask.svg">
+            </div>
+            <div class="openTaskEditButton" onclick="editTask()">
+                <img src="./img/editWhite.svg">
+            </div>
+
         </div>
     `;
+}
+
+function deleteTask(currentTask) {
+    //let existingTask = tasks.find(u => u.taskId == currentTaskId)
+    //let currentTask = tasks.indexOf(existingTask);
+
+    tasks.splice(currentTask, 1);
+    updateTasks();
+    updateHTML();
+    document.getElementById('openTaskBackground').style.display = 'none';
+
+    // <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
+    //=> Template für generateToDoHTML / Task generieren
+} 
+
+function renderAssignedUsers(currentTask) {
+
+    let assignedUsers = tasks[currentTask]['assignTo'];
+
+
+    for (let i = 0; i < assignedUsers.length; i++) {
+
+        let assignedUser = assignedUsers[i];
+        
+        document.getElementById('assignedToContainer').innerHTML +=  `
+            <div class="openTaskAssignedPerson">
+                <div>
+                    <span>DE</span>
+                </div>
+                <div>${assignedUser}</div>
+            </div>
+        `;
+    } 
+}
+
+function editTask() {
+
+
+
+
+
 }
 
 function closeTask() {
