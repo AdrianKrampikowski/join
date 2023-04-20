@@ -299,7 +299,7 @@ function openTaskTemplate(currentTask) {
                     <div>Priority:</div>
                     <div>
                         <div>
-                            <button class="urgent prioButton" id="priority">
+                            <button class="prioButton2" id="priority">
                             <span>${tasks[currentTask]['priorityValue']}</span>
                             </button>
                         </div>
@@ -349,22 +349,27 @@ function renderAssignedUsers(currentTask) {
 
         let assignedUser = assignedUsers[i];
 
-        let existingAssignUser = tasks.find(u => u.userid == assignedUser)
-        let currentAssignUser = tasks.indexOf(existingAssignUser);
+        let existingAssignUser = users.find(u => u.userid == assignedUser)
+        let currentAssignUser = users.indexOf(existingAssignUser);
 
         let assignName = users[currentAssignUser]['name'];
-        let assignSurname = users[currentAssignUser]['Surname'];
-    
+        let assignSurname = users[currentAssignUser]['surname'];
+
+        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
+
+        let assignColor = users[currentAssignUser]['color'];
         
         document.getElementById('assignedToContainer').innerHTML +=  `
             <div class="openTaskAssignedPerson">
-                <div>
-                    <span>DE</span>
+                <div style="background-color: ${assignColor};">
+                    <span>${assignFirstLetters.toUpperCase()}</span>
                 </div>
                 <div>${assignName} ${assignSurname}</div>
             </div>
         `;
     } 
+
+    //style="background-color: '${assignColor}';
 }
 
 function prioritySymbol(currentTask) {
