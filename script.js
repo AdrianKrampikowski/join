@@ -1,3 +1,4 @@
+/* ================================== INCLUDE HTML ================================================== */
 //Source: https://developer-akademie.teachable.com/courses/902235/lectures/31232815
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -33,14 +34,15 @@ setTimeout(() => {
     displayUserName();
 }, 1500);
 
+
+/* ============================================= VARIABLES ========================================= */
 let allTasks = [];
 let toDos = [];
 let userChar = [];
 let allUsers = [];
-
 let currentDraggedElement;
 
-
+/* ========================================= BOARD FUNCTIONS ========================================= */
 function updateHTML() {
     if (toDos.length > 0) {
         for (let index = 0; index < toDos.length; index++) {
@@ -81,17 +83,15 @@ function updateHTML() {
     }
 }
 
-
 function pushArrayToDo() {
     toDos = tasks;
 }
-
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
     if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
         progressBarHTML = `
-            <div class="boardContainerProgress">
+            <div class="boardContainerProgress" onclick="openTask(${element["taskId"]})" >
                 <div class="progress">
                     <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
@@ -105,10 +105,13 @@ function generateToDoHTML(element, index) {
     }
 
     return `
-        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})">
+        <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
             <div class="boardContainerTop">
-                ${element["category"]}
-            </div>
+                <div>
+                    <div>${element["category"]}</div>
+                </div>
+                    
+                </div>
             <div class="boardContainerHeadline">
                 <h2>${element["title"]}</h2>
             </div>
@@ -139,7 +142,6 @@ function getFirstLetter(index, i) {
         return x;
     }
 }
-
 
 function createBubbles() {
     for (let j = 0; j < toDos.length; j++) {
@@ -175,7 +177,6 @@ function createBubbles() {
     }
 }
 
-
 function calculateProgressbar(index) {
     let x = toDos[index]["numerator"] / toDos[index]["denominator"];
     x = x * 100;
@@ -206,7 +207,6 @@ function generateRandomColor() {
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
     currentDraggedElement = toDos.findIndex(obj => obj.taskId === id);
-
 }
 
 function moveTo(statusCategory) {
@@ -223,7 +223,6 @@ async function updateTasks() {
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 let startWithLetter = [];
 async function showAllContacts() {
@@ -256,14 +255,163 @@ async function showAllContacts() {
         })
 }
 
+function openTask(currentTaskId) {
+    document.getElementById('openTaskBackground').style.display = 'flex';
 
+    let existingTask = tasks.find(u => u.taskId == currentTaskId)
+    let currentTask = tasks.indexOf(existingTask);
+
+    let openTaskContainer = document.getElementById('openTaskContainer');
+    openTaskContainer.innerHTML = '';
+    openTaskContainer.innerHTML = openTaskTemplate(currentTask);
+
+    renderAssignedUsers(currentTask);
+} 
+
+function openTaskTemplate(currentTask) {
+    return `
+        <div id="openTask${currentTask}" class="openTask">
+            <div class="openTaskTop">
+                <div>
+                    <span>${tasks[currentTask]['category']}</span>
+                </div>
+                <div onclick="closeTask()">
+                    <img src="../img/close.svg">
+                </div>
+            </div>
+
+            <div class="openTaskHeader">
+                <h1>${tasks[currentTask]['title']}</h1>
+                <span>${tasks[currentTask]['description']}</span>
+            </div>
+
+            <div class="openTaskMain">
+
+                <div class="openTaskDate">
+                    <div>Due date:</div>
+                    <div>${tasks[currentTask]['dueDate']}</div>
+                </div>
+
+                <div class="openTaskPriority">
+                    <div>Priority:</div>
+                    <div>
+                        <div>
+                            <span>${tasks[currentTask]['priorityValue']}</span>
+                            <img src="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="openTaskAssigned">
+                    <div>Assigned To:</div>
+                    <div id="assignedToContainer" class="assignedToContainer">
+
+                    </div>                
+                </div>
+            </div>
+        </div>
+
+        <div class="openTaskButtonContainer">
+            <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
+                <img src="./img/deleteTask.svg">
+            </div>
+            <div class="openTaskEditButton" onclick="editTask()">
+                <img src="./img/editWhite.svg">
+            </div>
+
+        </div>
+    `;
+}
+
+function deleteTask(currentTask) {
+    //let existingTask = tasks.find(u => u.taskId == currentTaskId)
+    //let currentTask = tasks.indexOf(existingTask);
+
+    tasks.splice(currentTask, 1);
+    updateTasks();
+    updateHTML();
+    document.getElementById('openTaskBackground').style.display = 'none';
+
+    // <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
+    //=> Template für generateToDoHTML / Task generieren
+} 
+
+function renderAssignedUsers(currentTask) {
+
+    let assignedUsers = tasks[currentTask]['assignTo'];
+
+
+    for (let i = 0; i < assignedUsers.length; i++) {
+
+        let assignedUser = assignedUsers[i];
+        
+        document.getElementById('assignedToContainer').innerHTML +=  `
+            <div class="openTaskAssignedPerson">
+                <div>
+                    <span>DE</span>
+                </div>
+                <div>${assignedUser}</div>
+            </div>
+        `;
+    } 
+}
+
+function editTask() {
+
+
+
+
+
+}
+
+function closeTask() {
+    document.getElementById('openTaskBackground').style.display = 'none';
+}
+
+function searchFunction() {
+    let originalToDos = toDos;
+    let input = document.getElementById('searchValue');
+    input.addEventListener('input', debounce(function (event) {
+        let selectedValue = event.target.value.trim();
+        let newArray;
+        if (selectedValue === '') {
+            newArray = [...originalToDos];
+            toDos = originalToDos;
+        } else {
+            newArray = toDos.filter(item => {
+                if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                    return item;
+                }
+            });
+            if (newArray.length === 0 || selectedValue.length > 0) {
+                newArray = originalToDos.filter(item => {
+                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                        return item;
+                    }
+                });
+            }
+        }
+        toDos = newArray;
+        updateHTML();
+        if (toDos.length > 0) {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "block";
+            });
+        } else {
+            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
+                card.style.display = "none";
+            });
+        }
+    }, 100));
+}
+
+/* =============================== SUMMARY FUNCTIONS =================================== */
 function taskCounter() {
     let taskCounter = toDos.length;
     document.getElementById("taskCounter").innerHTML = `
     ${taskCounter}
     `;
 }
-
 
 function awaitingFeedbackCounter() {
     let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
@@ -273,7 +421,6 @@ function awaitingFeedbackCounter() {
     `;
 }
 
-
 function inProgressCounter() {
     let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
@@ -281,7 +428,6 @@ function inProgressCounter() {
     ${inProgressCounter}
     `;
 }
-
 
 function urgentCounter() {
     let urgentCounter = toDos.filter(t => t["priorityValue"] == "urgent");
@@ -308,7 +454,6 @@ function doneCounter() {
     ${doneCounter}
     `;
 }
-
 
 function deadlineDate() {
     let sortedDueDate = toDos
@@ -361,50 +506,12 @@ function abbreviateName(name, maxLength) {
     }
 }
 
+/* ================================== TOP BAR FUNCTION ============================================ */
 
 function logout() {
     localStorage.removeItem("userName");
     window.location.href = 'index.html';
 }
-
-
-function searchFunction() {
-    let originalToDos = toDos;
-    let input = document.getElementById('searchValue');
-    input.addEventListener('input', debounce(function (event) {
-        let selectedValue = event.target.value.trim();
-        let newArray;
-        if (selectedValue === '') {
-            newArray = [...originalToDos];
-            toDos = originalToDos;
-        } else {
-            newArray = toDos.filter(item => {
-                if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
-                    return item;
-                }
-            });
-            if (newArray.length === 0 || selectedValue.length > 0) {
-                newArray = originalToDos.filter(item => {
-                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
-                        return item;
-                    }
-                });
-            }
-        }
-        toDos = newArray;
-        updateHTML();
-        if (toDos.length > 0) {
-            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
-                card.style.display = "block";
-            });
-        } else {
-            Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
-                card.style.display = "none";
-            });
-        }
-    }, 100));
-}
-
 
 function debounce(func, delay) {
     let timeoutId;

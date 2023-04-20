@@ -67,12 +67,12 @@
             randomBackground();
             nameGetFirstLetter(c);
 
-            if(firstLetters.charAt(0) == letter) {
+            if(firstLetters.charAt(0).toUpperCase() == letter) {
                 sortedContacts.innerHTML += `
                     <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
                         <div>
                             <div style="background-color:${contactBgColor};"class="contactIcon">
-                                <span>${firstLetters}</span>
+                                <span>${firstLetters.toUpperCase()}</span>
                             </div>
                         </div>
                         <div>
@@ -112,10 +112,10 @@
     function closePopup() {
         document.getElementById('addContactBackground').style.display = 'none';
         document.getElementById('editContactBackground').style.display = 'none';
-        name.value = '';
-        surname.value = '';
-        email.value = '';
-        phone.value = '';
+        newName.value = '';
+        newSurname.value = '';
+        newEmail.value = '';
+        newPhone.value = '';
     }
 
     function canclePopup() {
@@ -256,6 +256,7 @@
         // }
 
         function editContact(i) {
+
             editContactPopUp.style.display = 'flex';
 
             editName.value = contacts[i]['name'];
@@ -298,7 +299,8 @@
         function deleteContact(i) {
             contacts.splice(i, 1);
             saveContacts();
-            renderContacts();
+            document.getElementById('contactsContent').innerHTML = '';
+            renderLetters();
         }
 
         function backToContactsList() {
@@ -307,6 +309,7 @@
             document.getElementById('newContactButton').classList.remove('d-none');
 
         }
+        
 
         /* ================================== SNACKBAR =======================================*/
         function showContactCreatedPupup() {

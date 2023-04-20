@@ -1,28 +1,29 @@
-* {
+.legalNoticeContainer *, .helpContainer * {
     box-sizing: border-box;
     font-family: 'Inter';
     color: black;
 }
 
-h1, h2, h3, p, li {
+.legalNoticeContainer h1, .helpContainer h1, .helpContainer h2, .legalNoticeContainer h2, .helpContainer h3, .legalNoticeContainer h3, .helpContainer p, .legalNoticeContainer p, .helpContainer li, .legalNoticeContainer li {
     hyphens: auto;
 }
 
-h1 {
+
+.legalNoticeContainer h1, .helpContainer h1 {
     font-size: 61px;
 }
 
-h2 {
+.legalNoticeContainer h2, .helpContainer h2 {
     font-size: 27px;
     margin-bottom: 0;
 }
 
-h3 {
+.legalNoticeContainer h3, .helpContainer h3 {
     font-size: 20px;
     margin-bottom: 0;
 }
 
-p {
+.legalNoticeContainer p, .helpContainer p {
     font-size: 16px;
     color: black;
 }
@@ -45,7 +46,7 @@ p {
     height: calc(100vh - 89px);
 }
 
-ul li {
+.legalNoticeContainer ul li, .helpContainer ul li {
     color: black;
     display: list-item;
     list-style-type: circle;
@@ -98,7 +99,7 @@ ul li {
 }
 
 @media(max-width: 950px) {
-    h1 {
+    .legalNoticeContainer h1, .helpContainer h1 {
         font-size: 50px;
     }
 }
@@ -106,39 +107,36 @@ ul li {
 @media(max-width: 720px) {
     .innerHelpContainer, .innerLegalNoticeContainer {
         padding: 1rem 1rem 1rem 1rem;  
+        height: calc(100vh - 163px);
+
     }
     .helpContainer {
         padding-left: 1rem;
         padding-right: 1rem;
     }
 
-    h1 {
+    .legalNoticeContainer h1, .helpContainer h1 {
     font-size: 40px;
     }
 
-    h2 {
+    .legalNoticeContainer h2,.helpContainer h2 {
         font-size: 20px;
         margin-bottom: 0;
     }
 
-    h3 {
+    .legalNoticeContainer h3, .helpContainer h3 {
         font-size: 17px;
         margin-bottom: 0;
     }
 
-    p, li {
+    .legalNoticeContainer p, .helpContainer p, .legalNoticeContainer li, .helpContainer li {
         font-size: 15px;
     }
 }
 
 @media(max-width: 480px) {
     .helpContainer {
-        height: 100%;
         padding: 0;
-    }
-
-    .innerHelpContainer, .innerLegalNoticeContainer {
-        height: inherit;
     }
 
     .legalNoticeContainer, .helpContainer {
@@ -147,21 +145,21 @@ ul li {
         height: inherit;
     }
 
-    h1 {
+    .legalNoticeContainer h1, .helpContainer h1 {
         font-size: 35px;
         }
     
-    h2 {
+    .legalNoticeContainer h2, .helpContainer h2 {
         font-size: 17px;
         margin-bottom: 0;
     }
 
-    h3 {
+    .legalNoticeContainer h3, .helpContainer h3 {
         font-size: 15px;
         margin-bottom: 0;
     }
 
-    p, li {
+    .legalNoticeContainer p, .helpContainer p, .legalNoticeContainer li, .helpContainer li {
         font-size: 13px;
     }
 }

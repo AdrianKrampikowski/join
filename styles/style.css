@@ -202,22 +202,6 @@ a {
  */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .blueLigne {
   height: 3px;
   background-color: #29abe2;
@@ -265,6 +249,13 @@ a {
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 21px;
+
+  appearance: none;
+  background-image: url(../img/down-arrow.svg);
+  background-repeat: no-repeat;
+  background-position: right 0.8rem top 50%;
+  background-size: 1rem auto;
+  cursor: pointer;
 }
 
 
