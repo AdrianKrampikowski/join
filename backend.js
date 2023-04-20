@@ -86,7 +86,6 @@ function createTask() {
     saveTasks();
     console.log("Tasks", taskData);
     // window.location.href = 'index.html';
-    taskCreatedPopup();
 }
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
