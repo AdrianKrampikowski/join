@@ -20,9 +20,13 @@ async function includeHTML() {
             searchFunction();
         }, 500);
     }, 1250);
+
+    setTimeout(() => {
+        counters();
+    }, 1500);
 }
 
-setTimeout(() => {
+function counters() {
     taskCounter();
     inProgressCounter();
     awaitingFeedbackCounter();
@@ -32,8 +36,7 @@ setTimeout(() => {
     doneCounter();
     greeting();
     displayUserName();
-}, 1500);
-
+}
 
 /* ============================================= VARIABLES ========================================= */
 let allTasks = [];
