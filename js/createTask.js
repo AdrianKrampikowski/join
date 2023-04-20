@@ -2,7 +2,9 @@
 function createDropdownUsers() {
     for (let i = 0; i < users.length; i++) {
         document.getElementById("assignedToUsers").innerHTML += `
-        <option value="${users[i]["id"]}"><input type="checkbox">${users[i]["name"]}</option>
+        <option value="${users[i]["id"]}">
+            <input type="checkbox">${users[i]["name"]}>
+        </option>
         `;
     }
 }
@@ -21,10 +23,10 @@ function addAssignedToList() {
         // let contact = users[i];
         let name = users[i]["name"];
         document.getElementById('assignedToChoices').innerHTML += `
-        <div class="assigned-to-line"><label for="assigned-to-${i}" 
-        id="assigned_name${i}">${name}
-        </label><input type="checkbox" id="assigned-to-${i}" 
-        value="${userID}"></div>`
+        <div class="assigned-to-line">
+            <label for="assigned-to-${i}" id="assigned_name${i}">${name}</label>
+            <input type="checkbox" id="assigned-to-${i}"value="${userID}">
+        </div>`
     }
 }
 
