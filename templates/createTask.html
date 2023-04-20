@@ -7,12 +7,12 @@
                 <div class="addTaskLeftandRightContainer">
                     <div class="selectionContainer preventSelect">
                         <span>Title</span>
-                        <input placeholder="Enter a title" id="title">
+                        <input placeholder="Enter a title" id="title" required="">
                     </div>
 
                     <div class="selectionContainer preventSelect">
                         <span>Description</span>
-                        <input placeholder="Enter a Description" id="description">
+                        <input placeholder="Enter a Description" id="description" required="">
                     </div>
 
                     <div class="selectionContainer preventSelect">
@@ -82,9 +82,8 @@
 
                     <div class="clearAndCreateButton">
                         <div><button class="clearButton" onclick="clearAll()">Clear<img class="clear-img" src="../img/iconoir_cancel.svg"></button></div> 
-                        <div><button type="submit" class="createTaskButton">Create Task<img src="../img/akar-icons_check.svg"></button></div>
+                        <div><button type="submit" onclick="taskCreatedPopup()" class="createTaskButton">Create Task<img src="../img/akar-icons_check.svg"></button></div>
                     </div>
-                    
                 </div>
             </div>
         </form>

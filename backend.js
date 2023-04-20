@@ -9,10 +9,9 @@ async function init() {
     setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
-    contacts = JSON.parse(backend.getItem('contacts')) || [];
     tasks = JSON.parse(backend.getItem('tasks')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
 }
-
 
 // ================================================ REGISTRIEREN ==========================================================
 // Am besten eine separate "register.js" Datei erstellen
@@ -24,7 +23,6 @@ function generateTaskId() {
     taskId = Math.floor((Math.random() * 1000000) + 1);
     return taskId;
 }
-
 
 function addUser() {
     generateUserId();
@@ -88,7 +86,6 @@ function createTask() {
     saveTasks();
     console.log("Tasks", taskData);
     // window.location.href = 'index.html';
-    taskCreatedPopup();
 }
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);

@@ -20,9 +20,13 @@ async function includeHTML() {
             searchFunction();
         }, 500);
     }, 1250);
+
+    setTimeout(() => {
+        counters();
+    }, 1500);
 }
 
-setTimeout(() => {
+function counters() {
     taskCounter();
     inProgressCounter();
     awaitingFeedbackCounter();
@@ -32,8 +36,7 @@ setTimeout(() => {
     doneCounter();
     greeting();
     displayUserName();
-}, 1500);
-
+}
 
 /* ============================================= VARIABLES ========================================= */
 let allTasks = [];
@@ -195,14 +198,12 @@ function changeColorBubble() {
     return colors[randomColor];
 }
 
-
 function generateRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
 }
-
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
@@ -225,6 +226,7 @@ function allowDrop(ev) {
 }
 
 let startWithLetter = [];
+
 async function showAllContacts() {
     await fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
         .then(response => {
