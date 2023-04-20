@@ -268,6 +268,7 @@ function openTask(currentTaskId) {
     openTaskContainer.innerHTML = openTaskTemplate(currentTask);
 
     renderAssignedUsers(currentTask);
+    prioritySymbol(currentTask);
 } 
 
 function openTaskTemplate(currentTask) {
@@ -298,8 +299,9 @@ function openTaskTemplate(currentTask) {
                     <div>Priority:</div>
                     <div>
                         <div>
+                            <button class="urgent prioButton" id="priority">
                             <span>${tasks[currentTask]['priorityValue']}</span>
-                            <img src="">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -346,16 +348,36 @@ function renderAssignedUsers(currentTask) {
     for (let i = 0; i < assignedUsers.length; i++) {
 
         let assignedUser = assignedUsers[i];
+
+        let existingAssignUser = tasks.find(u => u.userid == assignedUser)
+        let currentAssignUser = tasks.indexOf(existingAssignUser);
+
+        let assignName = users[currentAssignUser]['name'];
+        let assignSurname = users[currentAssignUser]['Surname'];
+    
         
         document.getElementById('assignedToContainer').innerHTML +=  `
             <div class="openTaskAssignedPerson">
                 <div>
                     <span>DE</span>
                 </div>
-                <div>${assignedUser}</div>
+                <div>${assignName} ${assignSurname}</div>
             </div>
         `;
     } 
+}
+
+function prioritySymbol(currentTask) {
+    let currentPriority = tasks[currentTask]['priorityValue'];
+    let priority = document.getElementById('priority');
+
+    if(currentPriority == 'urgent') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/urgentArrow.svg">`;
+    } else if (currentPriority == 'medium') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/medium.svg">`;
+    } else if (currentPriority == 'low') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/low.svg">`;
+    }
 }
 
 function editTask() {
