@@ -7,7 +7,6 @@ let taskId;
 // Immer als erste Funktion ausführen!
 async function init() {
     setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
-
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];

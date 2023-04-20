@@ -279,14 +279,13 @@ span {
   font-weight: 700;
   transition: all 100ms ease-in-out;
   margin-left: auto;
+  border: 2px solid white ;
 }
 
 .createTaskButton:hover {
   background-color: #29ABE2;
-  border: 2px solid #29ABE2;
+    border: 2px solid #29ABE2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-
 }
 
 .clearButton {
@@ -425,7 +424,11 @@ span {
   .clearAndCreateButton butto {
     margin: 37px;
   }
+}
 
-  
+@media (max-width: 720px) {
+  .addTaskMainContainer {
+    height: calc(100vh - 163px);
+  }
 
 }

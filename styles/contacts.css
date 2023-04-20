@@ -607,6 +607,7 @@
 
 .inputFieldContainer {
     position: relative;
+    width: 100%;
 }
 
 .inputFields {
@@ -931,6 +932,10 @@
     .buttons {
         justify-content: space-between;
     }
+
+    .editButton {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 720px) {
@@ -1041,16 +1046,12 @@
         width: 100%;
     }
 
-/*      .cancleButton{
-        width: 100px;
+    .cancleButton span, .createContact span, .inputFields, ::placeholder {
+        font-size: 16px;
     }
 
-    .createContact{
-        width: 150pxs;
-    } */
-
-    .cancleButton, .createContact, .inputFields, ::placeholder {
-        font-size: 16px;
+    .buttons {
+        gap: 10px;
     }
 
 }

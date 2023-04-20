@@ -81,21 +81,16 @@
         </div>
     </div>
 
-
-
-
-
-
-
     <!-- =============================================== OPEN TASK =============================================== -->
-    <div class="backgroundOpenTask">
-        <div class="openTaskContainer">
-            <div class="openTask">
+
+    <div id="openTaskBackground" class="openTaskBackground" onclick="closeTask()">
+        <div id="openTaskContainer" class="openTaskContainer" onclick="doNotClose(event)">
+<!--        <div class="openTask">
                 <div class="openTaskTop">
                     <div>
                         <span>Sales</span>
                     </div>
-                    <div>
+                    <div onclick="closeTask()">
                         <img src="../img/close.svg">
                     </div>
                 </div>
@@ -156,7 +151,7 @@
 
             <div class="openTaskEditButton">
                 <img src="../img/edit.svg">
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -285,79 +280,6 @@
         </div>
     </div>
 
-    <!-- =============================================== OPEN TASK =============================================== -->
-    <div id="openTaskBackground" class="background">
-        <div id="openTaskContainer" class="openTaskContainer">
-<!--        <div class="openTask">
-                <div class="openTaskTop">
-                    <div>
-                        <span>Sales</span>
-                    </div>
-                    <div>
-                        <img src="../img/close.svg">
-                    </div>
-                </div>
-
-                <div class="openTaskHeader">
-                    <h1>Call potential clients</h1>
-                    <span>Make the product presentation to prospective buyers</span>
-                </div>
-
-                <div class="openTaskMain">
-
-                    <div class="openTaskDate">
-                        <div>Due date:</div>
-                        <div>05-08-2022</div>
-                    </div>
-
-                    <div class="openTaskPriority">
-                        <div>Priority:</div>
-                        <div>
-                            <div>
-                                <span>Urgent</span>
-                                <img src="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="openTaskAssigned">
-                        <div>Assigned To:</div>
-                        <div>
-                            <div class="openTaskAssignedPerson">
-                                <div>
-                                    <span>DE</span>
-                                </div>
-                                <div>David Eisenberg</div>
-                            </div>
-                            <div class="openTaskAssignedPerson">
-                                <div>
-                                    <span>BZ</span>
-                                </div>
-                                <div>Benedikt Ziegler</div>
-                            </div>
-                            <div class="openTaskAssignedPerson">
-                                <div>
-                                    <span>MB</span>
-                                </div>
-                                <div>Marcel Bauer</div>
-                            </div>
-                            <div class="openTaskAssignedPerson">
-                                <div>
-                                    <span>SF</span>
-                                </div>
-                                <div>Stefanie Farber</div>
-                            </div>
-                        </div>                
-                    </div>
-                </div>
-            </div>
-
-            <div class="openTaskEditButton">
-                <img src="../img/edit.svg">
-            </div>
- -->        </div>
-    </div>
-
 
     <!-- ================================== SNACKBAR INPUT REQUIRED =======================================  -->    
     <div id="inputRequired">Input required</div>
@@ -370,7 +292,6 @@
 
     <!-- ================================== TASK CREATED =============================================  -->    
     <div id="taskCreated">Task created</div>
-
     
 
     <script>includeHTML();</script>
