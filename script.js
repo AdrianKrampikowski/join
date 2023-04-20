@@ -319,7 +319,7 @@ function openTaskTemplate(currentTask) {
             <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
                 <img src="./img/deleteTask.svg">
             </div>
-            <div class="openTaskEditButton" onclick="editTask()">
+            <div class="openTaskEditButton" onclick="editTask(${currentTask})">
                 <img src="./img/editWhite.svg">
             </div>
 
@@ -385,8 +385,61 @@ function prioritySymbol(currentTask) {
     }
 }
 
-function editTask() {
+function editTask(currentTask) {
+    document.getElementById('openTaskContainer').innerHTML = `
+        <div id="openTask${currentTask}" class="openTask">
+            <div class="openTaskTop">
+                <div>
+                    <span>${tasks[currentTask]['category']}</span>
+                </div>
+                <div onclick="closeTask()">
+                    <img src="../img/close.svg">
+                </div>
+            </div>
 
+            <div class="openTaskHeader">
+                <input type="text" placeholder="${tasks[currentTask]['title']}">
+                <input type="text" placeholder="${tasks[currentTask]['description']}">
+            </div>
+
+            <div class="openTaskMain">
+                <div class="openTaskDate">
+                    <div>Due date:</div>
+                    <input type="date" placeholder="${tasks[currentTask]['dueDate']}">
+                </div>
+
+                <div class="openTaskPriority">
+                    <div>Priority:</div>
+                    <div>
+                        <div>
+                            <button class="prioButton2" id="priority">
+                            <span>${tasks[currentTask]['priorityValue']}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="openTaskAssigned">
+                    <div>Assigned To:</div>
+                    <div id="assignedToContainer" class="assignedToContainer">
+
+                    </div>                
+                </div>
+            </div>
+        </div>
+
+        <div class="openTaskButtonContainer">
+            <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
+                <img src="./img/deleteTask.svg">
+            </div>
+            <div class="openTaskEditButton" onclick="editTask(${currentTask})">
+                <img src="./img/editWhite.svg">
+            </div>
+        </div>
+
+   
+   
+    `;
 
 
 
