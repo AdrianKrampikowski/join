@@ -86,9 +86,11 @@ function updateHTML() {
     }
 }
 
+
 function pushArrayToDo() {
     toDos = tasks;
 }
+
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
@@ -146,6 +148,7 @@ function getFirstLetter(index, i) {
     }
 }
 
+
 function createBubbles() {
     for (let j = 0; j < toDos.length; j++) {
         let bubbleTaskId = toDos[j]["taskId"];
@@ -174,7 +177,7 @@ function createBubbles() {
                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
                 `;
             let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
-            userBubbleOne.style.backgroundColor = "black";
+            userBubbleOne.style.backgroundColor = "black"; 
 
         }
     }
