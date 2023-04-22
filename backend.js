@@ -30,20 +30,20 @@ function addUser() {
     let surname = document.getElementById('surname');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-    let color = document.getElementById('color');
+    // let color = document.getElementById('color');
     let userId = id;
-
     let userColor = document.getElementById('userColor');
     let userColorValue = userColor.options[userColor.selectedIndex].value;
+    debugger
 
     for (let i = 0; i < users.length; i++) {
-        if(users[i]['userid'].includes === id) {
+        if (users[i]['userid'].includes === id) {
             generateUserId();
-        } 
+        }
     }
 
-    let userData = {name: name.value, surname: surname.value, email: email.value, password: password.value, color: userColorValue, userid: userId};
-    let contactData = {name: name.value, surname: surname.value, email: email.value, phone: '-'};
+    let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
+    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-' };
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -77,11 +77,12 @@ function createTask() {
     let statusCategory = "toDo";
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);;
+    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);
+    let categoryColor = addBackgroundColorCategory(category);
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = {taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor,assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
     tasks.push(taskData);
     saveTasks();
     console.log("Tasks", taskData);
@@ -141,7 +142,7 @@ function selectUrgent() {
     document.getElementById("urgent").style.color = white;
     document.getElementById("medium").style.color = black;
     document.getElementById("low").style.color = black;
-    
+
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
@@ -172,6 +173,23 @@ function selectLow() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
+
+
+function addBackgroundColorCategory(element) {
+    if (element == "Marketing") {
+        return "#0038ff";
+    } else if (element == "Media") {
+        return "#ffc702";
+    } else if (element == "Backoffice") {
+        return "#1FD7C1";
+    } else if (element == "Design") {
+        return "#ff7a00";
+    } else if (element == "Sales") {
+        return "fc71ff";
+    }
+    
+}
+
 
 let categoryValue = "";
 let previousCategoryValue = "";
@@ -204,11 +222,11 @@ function saveSelectedCategory() {
 function login() {
     let emailLog = document.getElementById('emailLog');
     let passwordLog = document.getElementById('passwordLog');
-    
+
     let user = users.find(u => u.email == emailLog.value && u.password == passwordLog.value);
     let existingUser = users.find(u => u.email == emailLog.value);
-    
-    if(user) {
+
+    if (user) {
         //********************************** */
         let userName = user.name;
         localStorage.setItem('userName', userName);
@@ -240,8 +258,8 @@ function forwardToSummery(userId) {
     window.location.href = 'join.html?id=' + userId;    // Die URL wird so geändert, dass die Login Seite angezeigt wird mit einem query Parameter    
 }
 
-function userColor(userColor){
-    document.getElementById('topNavBarRightImgPicture').style.borderColor = userColor;  
+function userColor(userColor) {
+    document.getElementById('topNavBarRightImgPicture').style.borderColor = userColor;
 }
 
 function showLogoutButton() {
@@ -288,100 +306,100 @@ function showLogoutButton() {
 function alreadySignedUpPupup() {
     // Get the snackbar DIV
     var x = document.getElementById("alreadySignedUp");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function successfullySignedUpPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("successfullySignedUp");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-  function userDoesNotExistPopup() {
+function userDoesNotExistPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("userDoesNotExist");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-  function pwEmailIncorrectPopup() {
+function pwEmailIncorrectPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("pwEmailIncorrect");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-  function noEmailInsertedPopup() {
+function noEmailInsertedPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("noEmailInsertedPopup");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function sendEmailPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("sendEmail");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-  function passwordResetPopup() {
+function passwordResetPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("passwordReset");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function passwordsNotIdentical() {
     // Get the snackbar DIV
     var x = document.getElementById("passwordsNotIdentical");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function taskCreatedPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("taskCreated");
-  
+
     // Add the "show" class to DIV
     x.className = "show";
-  
+
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 /* ======================================================================================*/
@@ -393,29 +411,29 @@ async function saveContacts() {
 
 function checkForCorrectEmail() {
 
-    let sendEmailToResetPw = document.getElementById('sendEmailToResetPw');  
+    let sendEmailToResetPw = document.getElementById('sendEmailToResetPw');
     let emails = users[i]['email'];
 
     for (let i = 0; i < emails.length; i++) {
         let existingEmail = emails.find(u => u.email == sendEmailToResetPw.value);
 
 
-        
+
     }
 
-    if(sendEmailToResetPw.value == '') {
+    if (sendEmailToResetPw.value == '') {
         noEmailInsertedPopup();
         return false;
-    } 
-    
-    if(!existingEmail) {
-        userDoesNotExistPopup();  
+    }
+
+    if (!existingEmail) {
+        userDoesNotExistPopup();
         return false;
     }
 
     setInterval(sendEmailPopup, 1200);
-    return(true);
-} 
+    return (true);
+}
 
 function resetPassword() {
     let urlParams = new URLSearchParams(window.location.search);
@@ -448,10 +466,10 @@ function activeTab() {
         element.style.color = 'black';
         // element.classList.remove('.activeContact');
     })
-        currentElement.style.backgroundColor = '#2A3647';
-        currentElement.style.color = 'white';
+    currentElement.style.backgroundColor = '#2A3647';
+    currentElement.style.color = 'white';
 
-        // currentElement.classList.add('.activeContact');
+    // currentElement.classList.add('.activeContact');
 
 }
 

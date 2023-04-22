@@ -86,9 +86,11 @@ function updateHTML() {
     }
 }
 
+
 function pushArrayToDo() {
     toDos = tasks;
 }
+
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
@@ -110,7 +112,7 @@ function generateToDoHTML(element, index) {
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
             <div class="boardContainerTop">
-                <div>
+                <div style = "background-color:${element["categoryColor"]}">
                     <div>${element["category"]}</div>
                 </div>
                     
@@ -146,6 +148,7 @@ function getFirstLetter(index, i) {
     }
 }
 
+
 function createBubbles() {
     for (let j = 0; j < toDos.length; j++) {
         let bubbleTaskId = toDos[j]["taskId"];
@@ -157,7 +160,7 @@ function createBubbles() {
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
                     `;
                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                userBubbleOne.style.backgroundColor = changeColorBubble();
+                userBubbleOne.style.backgroundColor = users[j]["userColor"];
             }
         }
         else if (toDos[j]["assignTo"].length > 3) {
@@ -167,14 +170,14 @@ function createBubbles() {
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
                     `;
                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                userBubbleOne.style.backgroundColor = changeColorBubble();
+                userBubbleOne.style.backgroundColor = users[j]["userColor"];
             }
             let remainingCount = toDos[j]["assignTo"].length - 2;
             document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
                 `;
             let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
-            userBubbleOne.style.backgroundColor = "black";
+            userBubbleOne.style.backgroundColor = "black"; 
 
         }
     }

@@ -1,13 +1,13 @@
 
-function createDropdownUsers() {
-    for (let i = 0; i < users.length; i++) {
-        document.getElementById("assignedToUsers").innerHTML += `
-        <option value="${users[i]["id"]}">
-            <input type="checkbox">${users[i]["name"]}>
-        </option>
-        `;
-    }
-}
+// function createDropdownUsers() {
+//     for (let i = 0; i < users.length; i++) {
+//         document.getElementById("assignedToUsers").innerHTML += `
+//         <option value="${users[i]["id"]}">
+//             <input type="checkbox">${users[i]["name"]}>
+//         </option>
+//         `;
+//     }
+// }
 setTimeout(() => {
     // createDropdownUsers();
     // createDropdownCheckboxes();
