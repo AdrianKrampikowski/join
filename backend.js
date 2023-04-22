@@ -336,6 +336,17 @@ function userDoesNotExistPopup() {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function userDoesNotExistPopup2() {
+    // Get the snackbar DIV
+    var x = document.getElementById("userDoesNotExist2");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function pwEmailIncorrectPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("pwEmailIncorrect");
@@ -410,28 +421,21 @@ async function saveContacts() {
 }
 
 function checkForCorrectEmail() {
+    let sendEmailToResetPw = document.getElementById('sendEmailToResetPw').value;
+    let existingEmail = users.find(u => u.email == sendEmailToResetPw);
+    let correctUser = users.indexOf(existingEmail);
 
-    let sendEmailToResetPw = document.getElementById('sendEmailToResetPw');
-    let emails = users[i]['email'];
-
-    for (let i = 0; i < emails.length; i++) {
-        let existingEmail = emails.find(u => u.email == sendEmailToResetPw.value);
-
-
-
-    }
-
-    if (sendEmailToResetPw.value == '') {
+    if (sendEmailToResetPw == '') {
         noEmailInsertedPopup();
         return false;
     }
 
-    if (!existingEmail) {
-        userDoesNotExistPopup();
+    if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
+        userDoesNotExistPopup2();
         return false;
     }
 
-    setInterval(sendEmailPopup, 1200);
+    setInterval(sendEmailPopup, 1800);
     return (true);
 }
 

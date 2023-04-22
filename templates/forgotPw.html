@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../styles/forgotPw.css">
 
     <!-- ============================== SCRIPTS ================================= -->
-    <script src="../Backend/backend.js"></script>
+    <script src="../backend.js"></script>
     <script src="../mini_backend.js"></script>
 
     <!-- ============================ Favicon =========================== -->
@@ -49,7 +49,7 @@
               
 <!--           action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" -->
 
-              <form id="forgotPwForm" class="inputContainer" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" onsubmit="return(checkForCorrectEmail())" method="post">
+              <form id="forgotPwForm" class="inputContainer" onsubmit="return(checkForCorrectEmail())" action="https://gruppenarbeit-486join.developerakademie.net/backend_test_tobias/send_mail.php" method="post">
                   <div class="inputFieldContainer">
                     <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email"/>
                     <img src="../img/letter.svg" class="img" />
@@ -63,10 +63,11 @@
     </div>
 
       <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
-      <div id="sendEmail"><img src="../img/emailSent.svg">An E-Mail has been sent to you</div>
-
-      <!-- ================================== SNACKBAR E-MAIL SENT ======================================= -->
       <div id="noEmailInsertedPopup">Please insert you E-Mail</div>
+
+      <!-- ================================== SNACKBAR USER NOT EXISTING ======================================= -->
+      <div id="userDoesNotExist2">User does not exist, please sign up</div>
+
 
   </body>
 </html>
