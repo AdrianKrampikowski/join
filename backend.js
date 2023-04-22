@@ -435,7 +435,7 @@ function checkForCorrectEmail() {
         return false;
     }
 
-    setInterval(sendEmailPopup, 1800);
+    sendEmailPopup();
     return (true);
 }
 
