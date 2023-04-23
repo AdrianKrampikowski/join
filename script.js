@@ -272,7 +272,7 @@ function openTask(currentTaskId) {
 
 function openTaskTemplate(currentTask, categoryColor) {
     return `
-        <div id="openTask${currentTask}" class="openTask">
+        <div id="openTask" class="openTask">
             <div class="openTaskTop">
                 <div style="background-color: ${tasks[currentTask]['categoryColor']};">
                     <span>${tasks[currentTask]['category']}</span>
@@ -417,7 +417,7 @@ function editTask(currentTask) {
     let descriptionEdit = document.getElementById('descriptionEdit');
     descriptionEdit.value = tasks[currentTask]['description'];
 
-    document.getElementById('editSelectCategory').value = tasks[currentTask]['category'].toLowerCase();
+    document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
 
     renderAssignedUsersEdit(currentTask);
 }
@@ -449,7 +449,7 @@ function editOpenTaskTemplate(currentTask) {
 
             <div class="openTaskMain">
 
-                <div class="openTaskDate">
+                <div class="openTaskDate openTaskDateEdit">
                     <div>Due date:</div>
                     <input class="date" type="date" id="editDueDate" value="${tasks[currentTask]['dueDate']}">
                 </div>
@@ -457,16 +457,16 @@ function editOpenTaskTemplate(currentTask) {
                 <div class="openTaskPriority openTaskPriorityEdit">
                     <div>Priority:</div>
                     <div>
-                        <div class="prioButtons">
-                            <button class="urgent prioButton" id="urgentEdit" type="button" onclick="selectUrgentEdit()">
+                        <div class="prioButtons prioButtonsEdit">
+                            <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit()">
                                 Urgent
                                 <img id="imgUrgentEdit" src="./img/urgentArrow.svg">
                             </button>
-                            <button class="medium prioButton" id="mediumEdit" type="button" onclick="selectMediumEdit()">
+                            <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit()">
                                 Medium
                                 <img id="imgMediumEdit" src="./img/medium.svg">
                             </button>
-                            <button class="low prioButton" id="lowEdit" type="button" onclick="selectLowEdit()">
+                            <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit()">
                                 Low
                                 <img id="imgLowEdit" src="./img/low.svg">
                             </button>
@@ -484,10 +484,10 @@ function editOpenTaskTemplate(currentTask) {
         </div>
 
         <div class="openTaskButtonContainer">
-            <div class="deleteTaskButton" onclick="">
+            <div class="cancleTaskEditButton" onclick="closeTask()">
                 Cancle
             </div>
-            <div class="openTaskEditButton" onclick="saveEditedTask(${currentTask})">
+            <div class="saveChangesTask" onclick="saveEditedTask(${currentTask})">
                 Save
             </div>
 
@@ -507,14 +507,15 @@ function saveEditedTask(currentTask) {
     tasks[currentTask]['title'] = document.getElementById('titleEdit').value;
     tasks[currentTask]['description'] = document.getElementById('descriptionEdit').value;
     tasks[currentTask]['dueDate'] = document.getElementById('editDueDate').value;
-    //tasks[currentTask]['priority'] = 
+    tasks[currentTask]['priorityValue'] = priorityEdit;
     //tasks[currentTask]['assignTo'] = 
     //let assignTo = selectedValues;
-    //let priorityValue = priority;
 
     updateTasks();
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
+
+    setTimeout(saveSelectedPriority, 1500);
 }
 
 function closeTask() {

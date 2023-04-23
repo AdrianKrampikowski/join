@@ -227,7 +227,7 @@ span {
 
 }
 
-.prioButton {
+.prioButton, .prioButtonEdit {
   display: flex;
   flex-direction: row;
   justify-content: center;

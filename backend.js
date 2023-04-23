@@ -121,6 +121,8 @@ function saveSelectedUsers() {
     });
 }
 let priority = "";
+let priorityEdit = "";
+
 function saveSelectedPriority() {
     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -128,6 +130,18 @@ function saveSelectedPriority() {
         });
     });
 }
+
+function saveSelectedPriorityEdit() {
+    Array.from(document.getElementsByClassName("prioButtonEdit")).forEach((button) => {
+        button.addEventListener('click', (event) => {
+            priorityEdit = event.target.id;
+        });
+    });
+}
+
+
+
+
 let black = "#000000";
 let white = "#FFFFFF";
 let orange = "#FF3D00";
