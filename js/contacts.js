@@ -13,7 +13,7 @@
 
     let newContactPopUp = document.getElementById('addContactBackground');
     let editContactPopUp = document.getElementById('editContactBackground');
-
+    
     let bgColor;
     let firstLetters;
 
