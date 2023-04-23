@@ -261,11 +261,10 @@ function openTask(currentTaskId) {
     
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
     let currentTask = tasks.indexOf(existingTask);
-    let categoryColor = addBackgroundColorCategory(tasks[currentTask]['category']);
 
     let openTaskContainer = document.getElementById('openTaskContainer');
     openTaskContainer.innerHTML = '';
-    openTaskContainer.innerHTML = openTaskTemplate(currentTask, categoryColor);
+    openTaskContainer.innerHTML = openTaskTemplate(currentTask);
 
     renderAssignedUsers(currentTask);
     prioritySymbol(currentTask);
@@ -275,7 +274,7 @@ function openTaskTemplate(currentTask, categoryColor) {
     return `
         <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
-                <div style="background-color: ${categoryColor};">
+                <div style="background-color: ${tasks[currentTask]['categoryColor']};">
                     <span>${tasks[currentTask]['category']}</span>
                 </div>
                 <div onclick="closeTask()">
@@ -319,7 +318,7 @@ function openTaskTemplate(currentTask, categoryColor) {
             <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
                 <img src="./img/deleteTask.svg">
             </div>
-            <div class="openTaskEditButton" onclick="editTask(${currentTask}, '${categoryColor}')">
+            <div class="openTaskEditButton" onclick="editTask(${currentTask})">
                 <img src="./img/editWhite.svg">
             </div>
 
@@ -339,8 +338,8 @@ function deleteTask(currentTask) {
 
 function renderAssignedUsers(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
+    
     for (let i = 0; i < assignedUsers.length; i++) {
-
         let assignedUser = assignedUsers[i];
         let existingAssignUser = users.find(u => u.userid == assignedUser)
         let currentAssignUser = users.indexOf(existingAssignUser);
@@ -351,6 +350,32 @@ function renderAssignedUsers(currentTask) {
         let assignColor = users[currentAssignUser]['color'];
         
         document.getElementById('assignedToContainer').innerHTML +=  `
+            <div class="openTaskAssignedPerson">
+                <div style="background-color: ${assignColor};">
+                    <span>${assignFirstLetters.toUpperCase()}</span>
+                </div>
+                <div>${assignName} ${assignSurname}</div>
+            </div>
+        `;
+    } 
+
+    //style="background-color: '${assignColor}';
+}
+
+function renderAssignedUsersEdit(currentTask) {
+    let assignedUsers = tasks[currentTask]['assignTo'];
+    
+    for (let i = 0; i < assignedUsers.length; i++) {
+        let assignedUser = assignedUsers[i];
+        let existingAssignUser = users.find(u => u.userid == assignedUser)
+        let currentAssignUser = users.indexOf(existingAssignUser);
+
+        let assignName = users[currentAssignUser]['name'];
+        let assignSurname = users[currentAssignUser]['surname'];
+        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
+        let assignColor = users[currentAssignUser]['color'];
+
+        document.getElementById('assignedToContainerEdit').innerHTML +=  `
             <div class="openTaskAssignedPerson">
                 <div style="background-color: ${assignColor};">
                     <span>${assignFirstLetters.toUpperCase()}</span>
@@ -376,8 +401,8 @@ function prioritySymbol(currentTask) {
     }
 }
 
-function editTask(currentTask, categoryColor) {
-    document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask, categoryColor);
+function editTask(currentTask) {
+    document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
 
     if(tasks[currentTask]['category'] == 'urgent'){
         selectUrgentEdit();
@@ -392,20 +417,23 @@ function editTask(currentTask, categoryColor) {
     let descriptionEdit = document.getElementById('descriptionEdit');
     descriptionEdit.value = tasks[currentTask]['description'];
 
+    document.getElementById('editSelectCategory').value = tasks[currentTask]['category'].toLowerCase();
+
+    renderAssignedUsersEdit(currentTask);
 }
 
-function editOpenTaskTemplate(currentTask, categoryColor) {
+function editOpenTaskTemplate(currentTask) {
     return `
         <div id="openTask${currentTask}" class="openTask">
             <div class="openTaskTop">
 
-                <div style="background-color: ${categoryColor};">
-                    <select class="selectCategory" name="category" id="selectCategory" value="${tasks[currentTask]['category']}">
-                        <option value="marketing" style="background-color: #0038ff;">Marketing</option>
-                        <option value="media" style="background-color: #ffc702;">Media</option>
-                        <option value="backoffice" style="background-color: #1FD7C1;">Backoffice</option>
-                        <option value="design" style="background-color: #ff7a00;">Design</option>
-                        <option value="sales" style="background-color: #fc71ff;">Sales</option>
+                <div style="background-color: ${tasks[currentTask]['categoryColor']};">
+                    <select class="selectCategory" name="category" id="editSelectCategory">
+                        <option value="Marketing" style="background-color: #0038ff;">Marketing</option>
+                        <option value="Media" style="background-color: #ffc702;">Media</option>
+                        <option value="Backoffice" style="background-color: #1FD7C1;">Backoffice</option>
+                        <option value="Design" style="background-color: #ff7a00;">Design</option>
+                        <option value="Sales" style="background-color: #fc71ff;">Sales</option>
                     </select>
                 </div>
 
@@ -426,21 +454,21 @@ function editOpenTaskTemplate(currentTask, categoryColor) {
                     <input class="date" type="date" id="editDueDate" value="${tasks[currentTask]['dueDate']}">
                 </div>
 
-                <div class="openTaskPriority">
+                <div class="openTaskPriority openTaskPriorityEdit">
                     <div>Priority:</div>
                     <div>
                         <div class="prioButtons">
                             <button class="urgent prioButton" id="urgentEdit" type="button" onclick="selectUrgentEdit()">
                                 Urgent
-                                <img id="imgUrgentEdit" src="img/urgentArrow.svg">
+                                <img id="imgUrgentEdit" src="./img/urgentArrow.svg">
                             </button>
                             <button class="medium prioButton" id="mediumEdit" type="button" onclick="selectMediumEdit()">
                                 Medium
-                                <img id="imgMediumEdit" src="img/medium.svg">
+                                <img id="imgMediumEdit" src="./img/medium.svg">
                             </button>
                             <button class="low prioButton" id="lowEdit" type="button" onclick="selectLowEdit()">
                                 Low
-                                <imgd="imgLowEdit" src="img/low.svg">
+                                <img id="imgLowEdit" src="./img/low.svg">
                             </button>
                         </div>
                     </div>
@@ -448,16 +476,7 @@ function editOpenTaskTemplate(currentTask, categoryColor) {
 
                 <div class="openTaskAssigned">
                     <div>Assigned To:</div>
-                    <div id="assignedToContainer" class="assignedToContainer">
-
-                        <div class="selectWrapper assignedToWrapper">
-                            <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
-                                <p id="assignedToHeader">Select contacts to assign</p><img src="/img/Vector 2.png">
-                            </div>
-                            <div class="assignedToChoices d-none" id="assignedToChoices">
-                            </div>
-                        </div>
-
+                    <div id="assignedToContainerEdit" class="assignedToContainer">
 
                     </div>                
                 </div>
@@ -465,33 +484,37 @@ function editOpenTaskTemplate(currentTask, categoryColor) {
         </div>
 
         <div class="openTaskButtonContainer">
-            <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
-                <img src="./img/deleteTask.svg">
+            <div class="deleteTaskButton" onclick="">
+                Cancle
             </div>
-            <div class="openTaskEditButton" onclick="editTask(${currentTask})">
-                <img src="./img/editWhite.svg">
+            <div class="openTaskEditButton" onclick="saveEditedTask(${currentTask})">
+                Save
             </div>
 
         </div>
     `;
 }
 
+function saveEditedTask(currentTask) {
+    let editCategory = document.getElementById('editSelectCategory').value;
 
-function saveEditedTask() {
-    let taskId = generateTaskId();
-    let statusCategory = "toDo";
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);
-    let categoryColor = addBackgroundColorCategory(category);
-    let assignTo = selectedValues;
-    let dueDate = document.getElementById('dueDate');
-    let priorityValue = priority;
-    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor,assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
-    tasks.push(taskData);
-    saveTasks();
-    console.log("Tasks", taskData);
-    // window.location.href = 'index.html';
+    //let firstLetter = editCategory.charAt(0).toUpperCase();
+    //let remainingLetters = editCategory.slice(1);
+    //let editCategoryCorrect = firstLetter + remainingLetters;
+
+    tasks[currentTask]['category'] = editCategory;
+    tasks[currentTask]['categoryColor'] = addBackgroundColorCategory(editCategory);
+    tasks[currentTask]['title'] = document.getElementById('titleEdit').value;
+    tasks[currentTask]['description'] = document.getElementById('descriptionEdit').value;
+    tasks[currentTask]['dueDate'] = document.getElementById('editDueDate').value;
+    //tasks[currentTask]['priority'] = 
+    //tasks[currentTask]['assignTo'] = 
+    //let assignTo = selectedValues;
+    //let priorityValue = priority;
+
+    updateTasks();
+    updateHTML();
+    document.getElementById('openTaskBackground').style.display = 'none';
 }
 
 function closeTask() {

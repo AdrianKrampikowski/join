@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
     <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="/styles/styleSummary.css" />
-    <link rel="stylesheet" href="/styles/styleSummery.css" />
-    <link rel="stylesheet" href="/styles/board.css" />
-    <link rel="stylesheet" href="/styles/contacts.css" />
-    <link rel="stylesheet" href="/styles/fonts.css">
-    <link rel="stylesheet" href="/styles/createTask.css">
-    <link rel="stylesheet" href="/styles/legalNotice.css">
+    <link rel="stylesheet" href="./styles/styleSummary.css" />
+    <link rel="stylesheet" href="./styles/styleSummery.css" />
+    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./styles/contacts.css" />
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/createTask.css">
+    <link rel="stylesheet" href="./styles/legalNotice.css">
 
     <!-- ============================== SCRIPTS ================================= -->
     <script src="backend.js"></script>
@@ -23,11 +23,11 @@
     <script src="./js/contacts.js"></script>
 
     <!-- ============================ Favicon =========================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#2a3647">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#2a3647">
     <meta name="msapplication-TileColor" content="#2a3647">
     <meta name="theme-color" content="#2a3647">
 </head>
@@ -162,7 +162,7 @@
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
         <div class="addContactContainer" onclick="doNotClose(event)">
             <div class="addContactLeftSide">
-                <img src="../img/logo.svg">
+                <img src="./img/logo.svg">
                 <h1>Add contact</h1>
                 <span>Task are better with a Team!</span>
                 <div></div>
@@ -171,51 +171,51 @@
             <div class="addContactRightSide">
                 <div class="contactImg">
                     <div>
-                        <img src="../img/addUserIcon.svg">
+                        <img src="./img/addUserIcon.svg">
                     </div>
                 </div>
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
-                            <img src="../img/close.svg">
+                            <img src="./img/close.svg">
                         </div>
                     </div>
                     <div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
-                                <img src="../img/userIcon.svg" class="img" />
+                                <img src="./img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactSurname" class="inputFields" type="text" placeholder="Surname"
                                     required />
-                                <img src="../img/userIcon.svg" class="img" />
+                                <img src="./img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="../img/letter.svg" class="img" />
+                                <img src="./img/letter.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactPhone" class="inputFields" type="number" placeholder="Phone"
                                     required />
-                                <img src="../img/phone.svg" class="img" />
+                                <img src="./img/phone.svg" class="img" />
                             </div>
                         </div>
                         <div class="buttons">
 
                             <button class="cancleButton" onclick="canclePopup()">
                                 <span>Cancle</span>
-                                <img src="../img/cancel.svg">
+                                <img src="./img/cancel.svg">
                             </button>
                             <button class="createContact" onclick="createContact()">
                                 <span>Create contact</span>
-                                <img src="../img/tick.svg">
+                                <img src="./img/tick.svg">
                             </button>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
         <div class="addContactContainer" onclick="doNotClose(event)">
 
             <div class="addContactLeftSide">
-                <img src="../img/logo.svg">
+                <img src="./img/logo.svg">
                 <h1>Edit contact</h1>
                 <span>Task are better with a Team!</span>
                 <div></div>
@@ -243,7 +243,7 @@
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
-                            <img src="../img/close.svg">
+                            <img src="./img/close.svg">
                         </div>
                     </div>
                     <div>
@@ -251,27 +251,27 @@
                             <div class="inputFieldContainer">
                                 <input id="editContactName" class="inputFields" type="text" placeholder="Name"
                                     required />
-                                <img src="../img/userIcon.svg" class="img" />
+                                <img src="./img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname"
                                     required />
-                                <img src="../img/userIcon.svg" class="img" />
+                                <img src="./img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="../img/letter.svg" class="img" />
+                                <img src="./img/letter.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone"
                                     required />
-                                <img src="../img/phone.svg" class="img" />
+                                <img src="./img/phone.svg" class="img" />
                             </div>
                         </div>
                         <div class="buttons editButton" id="saveChangesButton">
@@ -295,12 +295,6 @@
 
     <!-- ================================== TASK CREATED =============================================  -->    
     <div id="taskCreated">Task created</div>
-    
-
-
-
-
-
 
     <script>includeHTML();</script>
 

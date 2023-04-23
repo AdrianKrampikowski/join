@@ -82,7 +82,7 @@ function createTask() {
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor,assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
     tasks.push(taskData);
     saveTasks();
     console.log("Tasks", taskData);
