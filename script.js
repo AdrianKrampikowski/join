@@ -364,8 +364,46 @@ function renderAssignedUsers(currentTask) {
 
 function renderAssignedUsersEdit(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
-    
-    for (let i = 0; i < assignedUsers.length; i++) {
+
+    for (let j = 0; j < users.length; j++) {
+        
+        let userid = users[j]['userid'];
+        let useridAsString = userid.toString();
+       
+
+        if(assignedUsers.includes(useridAsString)) {
+
+            let assignName = users[j]['name'];
+            let assignSurname = users[j]['surname'];
+            let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
+
+            document.getElementById('assignedToContainerEdit').innerHTML +=  `
+                <div class="openTaskAssignedPerson">
+                    <input type="checkbox" value="${users[j]['userid']}" checked>
+                    <div style="background-color: ${users[j]['color']};">
+                        <span>${assignFirstLetters}</span>
+                    </div>
+                    <div>${users[j]['name']} ${users[j]['surname']}</div>
+                </div>
+            `;
+
+        } else {
+            document.getElementById('assignedToContainerEdit').innerHTML += `
+            <div class="openTaskAssignedPerson">
+                <input type="checkbox" value="${users[j]['userid']}">
+                <div style="background-color: ${users[j]['color']};">
+                    <span>${assignFirstLetters}</span>
+                </div>
+                <div>${users[j]['name']} ${users[j]['surname']}</div>
+            </div>
+            `;
+        }
+    }
+
+
+
+
+/*     for (let i = 0; i < assignedUsers.length; i++) {
         let assignedUser = assignedUsers[i];
         let existingAssignUser = users.find(u => u.userid == assignedUser)
         let currentAssignUser = users.indexOf(existingAssignUser);
@@ -377,16 +415,17 @@ function renderAssignedUsersEdit(currentTask) {
 
         document.getElementById('assignedToContainerEdit').innerHTML +=  `
             <div class="openTaskAssignedPerson">
+                <input type="checkbox" value="${users[currentAssignUser]['userid']}" checked>
                 <div style="background-color: ${assignColor};">
                     <span>${assignFirstLetters.toUpperCase()}</span>
                 </div>
                 <div>${assignName} ${assignSurname}</div>
             </div>
-        `;
-    } 
+        `; */
 
     //style="background-color: '${assignColor}';
 }
+
 
 function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
@@ -493,6 +532,20 @@ function editOpenTaskTemplate(currentTask) {
 
         </div>
     `;
+}
+
+function addAssignedToListEdit() {
+    document.getElementById('assignedToChoices').innerHTML = '';
+    for (let i = 0; i < users.length; i++) {
+        let userID = users[i]["userid"];
+        // let contact = users[i];
+        let name = users[i]["name"];
+        document.getElementById('assignedToChoices').innerHTML += `
+        <div class="assigned-to-line">
+            <label for="assigned-to-${i}" id="assigned_name${i}">${name}</label>
+            <input type="checkbox" id="assigned-to-${i}"value="${userID}">
+        </div>`
+    }
 }
 
 function saveEditedTask(currentTask) {

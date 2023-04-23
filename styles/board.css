@@ -601,7 +601,8 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  }
+  gap: 10px;
+}
 
 .openTaskAssignedPerson > div:first-of-type {
   display: flex;
@@ -611,7 +612,6 @@
   height: 45px;
   border-radius: 50%;
 /*   background-color: #9327ff; */  
-margin-right: 1rem;
 }
 
 .openTaskAssignedPerson span {
