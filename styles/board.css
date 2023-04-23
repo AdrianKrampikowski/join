@@ -379,22 +379,18 @@
 .openTaskContainer {
   position: relative;
   width: 500px;
-  height: 824px;
+  height: 750px;
   border-radius: 30px;
 }
 
 .openTask {
-  /*         position: relative;
-    top: 0;
-    left: 0;
-*/
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: #ffffff;
-  padding: 50px;
+  padding: 40px;
   gap: 25px;
   border-radius: 30px;
 }
@@ -412,7 +408,6 @@
   border-radius: 8px;
   padding: 4px 37px;
   gap: 10px;
-  background-color: #fc71ff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -421,6 +416,13 @@
 .openTaskTop > div:first-of-type > span {
   font-size: 27px;
   color: white;
+}
+
+.selectCategory {
+  width: 100%;
+  height: inherit;
+  padding: 5px;
+  font-size: 16px;
 }
 
 .openTaskTop > div:last-of-type {
@@ -452,11 +454,12 @@
 }
 
 .openTaskMain {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
 }
 
 .openTaskMain > div {
@@ -495,10 +498,12 @@
 
 .openTaskAssigned {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .openTaskAssigned > div:first-of-type {
@@ -506,20 +511,70 @@
 }
 
 .assignedToContainer {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: auto;
 }
 
+/* ================================ SCROLLBAR ====================================== */
+.assignedToContainer::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-gutter: stable;
+}
+
+/* .contactList::-webkit-scrollbar-track {
+  background-color: white;
+} */
+
+.assignedToContainer::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.assignedToContainer::-webkit-scrollbar-button {
+  color: #A8A8A8;
+}
+
+.assignedToContainer::-webkit-scrollbar-button {
+  display: block;
+  background-repeat: no-repeat;   
+  background-size: 50%;
+  background-position: center;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url(../img/upArrow.svg);
+  background-size: 10px 4px;  
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url(../img/downArrow.svg);   
+  background-size: 10px 4px;  
+}
+/* =========================================================================== */
 
 .openTaskAssignedPerson {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
-}
+  }
 
 .openTaskAssignedPerson > div:first-of-type {
   display: flex;

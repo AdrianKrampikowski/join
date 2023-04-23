@@ -3,7 +3,7 @@
 ########### CONFIG ###############
 $recipient = $_POST['email'];
 $redirect = 'index.html';
-$message = 'Hi there, click on the following link to reset your password => https://gruppenarbeit-486join.developerakademie.net/resetPw.html?email=' . $recipient;
+$message = 'Hi there, click on the following link to reset your password => https://gruppenarbeit-486join.developerakademie.net/templates/resetPw.html?email=' . $recipient;
 $name = 'JOIN Support Team';
 
 ########### CONFIG END ###########
@@ -32,8 +32,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $headers = "From:  noreply@developerakademie.com";
 
         mail($recipient, $subject, $message, $headers);
-        sleep(3);
-        header('Location: https://gruppenarbeit-486join.developerakademie.net/index.html')
+        header("Location: https://gruppenarbeit-486join.developerakademie.net/index.html");
         // "location:".$_SERVER['HTTP_REFERER']
 
         break;

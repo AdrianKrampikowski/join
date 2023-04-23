@@ -147,6 +147,21 @@ function selectUrgent() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+
+function selectUrgentEdit() {
+    document.getElementById("urgentEdit").style.background = orange;
+    document.getElementById("mediumEdit").style.background = white;
+    document.getElementById("lowEdit").style.background = white;
+
+    document.getElementById("urgentEdit").style.color = white;
+    document.getElementById("mediumEdit").style.color = black;
+    document.getElementById("lowEdit").style.color = black;
+
+    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+}
+
 function selectMedium() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = lightorange;
@@ -160,6 +175,21 @@ function selectMedium() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+
+function selectMediumEdit() {
+    document.getElementById("urgentEdit").style.background = white;
+    document.getElementById("mediumEdit").style.background = lightorange;
+    document.getElementById("lowEdit").style.background = white;
+
+    document.getElementById("urgentEdit").style.color = black;
+    document.getElementById("mediumEdit").style.color = white;
+    document.getElementById("lowEdit").style.color = black;
+
+    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+}
+
 function selectLow() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = white;
@@ -172,6 +202,20 @@ function selectLow() {
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+}
+
+function selectLowEdit() {
+    document.getElementById("urgentEdit").style.background = white;
+    document.getElementById("mediumEdit").style.background = white;
+    document.getElementById("lowEdit").style.background = green;
+
+    document.getElementById("urgentEdit").style.color = black;
+    document.getElementById("mediumEdit").style.color = black;
+    document.getElementById("lowEdit").style.color = white;
+
+    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 
 
@@ -187,7 +231,6 @@ function addBackgroundColorCategory(element) {
     } else if (element == "Sales") {
         return "fc71ff";
     }
-    
 }
 
 
@@ -430,13 +473,14 @@ function checkForCorrectEmail() {
         return false;
     }
 
+
     if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
         userDoesNotExistPopup2();
         return false;
     }
-
-    sendEmailPopup();
-    return (true);
+   
+    setTimeout(sendEmailPopup, 3000);
+    return true;
 }
 
 function resetPassword() {
