@@ -487,7 +487,6 @@ function checkForCorrectEmail() {
         return false;
     }
 
-
     if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
         userDoesNotExistPopup2();
         return false;

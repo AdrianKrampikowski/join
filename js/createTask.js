@@ -14,7 +14,7 @@ setTimeout(() => {
     // getSelectedUsers();
     addAssignedToList();
     setDateToday();
-}, 1250);
+}, 2000);
 
 function addAssignedToList() {
     document.getElementById('assignedToChoices').innerHTML = '';

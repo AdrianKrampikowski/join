@@ -362,6 +362,65 @@ function renderAssignedUsers(currentTask) {
     //style="background-color: '${assignColor}';
 }
 
+
+/*     for (let i = 0; i < assignedUsers.length; i++) {
+        let assignedUser = assignedUsers[i];
+        let existingAssignUser = users.find(u => u.userid == assignedUser)
+        let currentAssignUser = users.indexOf(existingAssignUser);
+
+        let assignName = users[currentAssignUser]['name'];
+        let assignSurname = users[currentAssignUser]['surname'];
+        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
+        let assignColor = users[currentAssignUser]['color'];
+
+        document.getElementById('assignedToContainerEdit').innerHTML +=  `
+            <div class="openTaskAssignedPerson">
+                <input type="checkbox" value="${users[currentAssignUser]['userid']}" checked>
+                <div style="background-color: ${assignColor};">
+                    <span>${assignFirstLetters.toUpperCase()}</span>
+                </div>
+                <div>${assignName} ${assignSurname}</div>
+            </div>
+        `; */
+
+    //style="background-color: '${assignColor}';
+
+
+
+function prioritySymbol(currentTask) {
+    let currentPriority = tasks[currentTask]['priorityValue'];
+    let priority = document.getElementById('priority');
+
+    if(currentPriority == 'urgent') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/urgentArrow.svg">`;
+    } else if (currentPriority == 'medium') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/medium.svg">`;
+    } else if (currentPriority == 'low') {
+        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/low.svg">`;
+    }
+}
+
+function editTask(currentTask) {
+    document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
+
+    if(tasks[currentTask]['category'] == 'urgent'){
+        selectUrgentEdit();
+    } else if(tasks[currentTask]['category'] == 'medium') {
+        selectMediumEdit();
+    } else if(tasks[currentTask]['category'] == 'low') {
+        selectLowEdit();
+    }
+
+    let titleEdit = document.getElementById('titleEdit');
+    titleEdit.value = tasks[currentTask]['title'];
+    let descriptionEdit = document.getElementById('descriptionEdit');
+    descriptionEdit.value = tasks[currentTask]['description'];
+
+    document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
+
+    renderAssignedUsersEdit(currentTask);
+}
+
 function renderAssignedUsersEdit(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
 
@@ -399,66 +458,6 @@ function renderAssignedUsersEdit(currentTask) {
             `;
         }
     }
-
-
-
-
-/*     for (let i = 0; i < assignedUsers.length; i++) {
-        let assignedUser = assignedUsers[i];
-        let existingAssignUser = users.find(u => u.userid == assignedUser)
-        let currentAssignUser = users.indexOf(existingAssignUser);
-
-        let assignName = users[currentAssignUser]['name'];
-        let assignSurname = users[currentAssignUser]['surname'];
-        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
-        let assignColor = users[currentAssignUser]['color'];
-
-        document.getElementById('assignedToContainerEdit').innerHTML +=  `
-            <div class="openTaskAssignedPerson">
-                <input type="checkbox" value="${users[currentAssignUser]['userid']}" checked>
-                <div style="background-color: ${assignColor};">
-                    <span>${assignFirstLetters.toUpperCase()}</span>
-                </div>
-                <div>${assignName} ${assignSurname}</div>
-            </div>
-        `; */
-
-    //style="background-color: '${assignColor}';
-}
-
-
-function prioritySymbol(currentTask) {
-    let currentPriority = tasks[currentTask]['priorityValue'];
-    let priority = document.getElementById('priority');
-
-    if(currentPriority == 'urgent') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/urgentArrow.svg">`;
-    } else if (currentPriority == 'medium') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/medium.svg">`;
-    } else if (currentPriority == 'low') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/low.svg">`;
-    }
-}
-
-function editTask(currentTask) {
-    document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
-
-    if(tasks[currentTask]['category'] == 'urgent'){
-        selectUrgentEdit();
-    } else if(tasks[currentTask]['category'] == 'medium') {
-        selectMediumEdit();
-    } else if(tasks[currentTask]['category'] == 'low') {
-        selectLowEdit();
-    }
-
-    let titleEdit = document.getElementById('titleEdit');
-    titleEdit.value = tasks[currentTask]['title'];
-    let descriptionEdit = document.getElementById('descriptionEdit');
-    descriptionEdit.value = tasks[currentTask]['description'];
-
-    document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
-
-    renderAssignedUsersEdit(currentTask);
 }
 
 function editOpenTaskTemplate(currentTask) {
@@ -534,7 +533,7 @@ function editOpenTaskTemplate(currentTask) {
     `;
 }
 
-function addAssignedToListEdit() {
+/* function addAssignedToListEdit() {
     document.getElementById('assignedToChoices').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let userID = users[i]["userid"];
@@ -546,7 +545,7 @@ function addAssignedToListEdit() {
             <input type="checkbox" id="assigned-to-${i}"value="${userID}">
         </div>`
     }
-}
+} */
 
 function saveEditedTask(currentTask) {
     let editCategory = document.getElementById('editSelectCategory').value;
