@@ -86,7 +86,6 @@ function updateHTML() {
     }
 }
 
-
 function pushArrayToDo() {
     toDos = tasks;
 }
@@ -384,8 +383,6 @@ function renderAssignedUsers(currentTask) {
         `; */
 
     //style="background-color: '${assignColor}';
-
-
 
 function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
