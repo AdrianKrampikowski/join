@@ -379,22 +379,18 @@
 .openTaskContainer {
   position: relative;
   width: 500px;
-  height: 824px;
+  height: 750px;
   border-radius: 30px;
 }
 
 .openTask {
-  /*         position: relative;
-    top: 0;
-    left: 0;
-*/
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: #ffffff;
-  padding: 50px;
+  padding: 40px;
   gap: 25px;
   border-radius: 30px;
 }
@@ -412,7 +408,6 @@
   border-radius: 8px;
   padding: 4px 37px;
   gap: 10px;
-  background-color: #fc71ff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -420,6 +415,16 @@
 
 .openTaskTop > div:first-of-type > span {
   font-size: 27px;
+  color: white;
+}
+
+.selectCategory {
+  width: 130px;
+  height: inherit;
+  padding: 5px;
+  font-size: 22px;
+  background: transparent;
+  border: none;
   color: white;
 }
 
@@ -451,12 +456,26 @@
   color: #2a3647;
 }
 
+.openTaskHeader input {
+  border: none;
+  border-bottom: 1px solid #2a3647;
+  padding-left: 0;
+  color: #2a3647;
+  width: 100%;
+}
+
+.openTaskHeader input:first-of-type {
+  font-size: 40px;
+  font-weight: bold;
+}
+
 .openTaskMain {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
 }
 
 .openTaskMain > div {
@@ -476,12 +495,42 @@
   align-items: center;
 }
 
+.openTaskDate > input {
+  border: none;
+  border-bottom: 1px solid #2a3647;
+}
+
+.openTaskPriorityEdit {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.prioButton2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  gap: 10px;
+  border: 1px solid #D1D1D1 !important;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 400;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  position: relative;
+  transition: all 100ms ease-in-out;
+}
+
 .openTaskAssigned {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .openTaskAssigned > div:first-of-type {
@@ -489,19 +538,70 @@
 }
 
 .assignedToContainer {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: auto;
 }
 
+/* ================================ SCROLLBAR ====================================== */
+.assignedToContainer::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-gutter: stable;
+}
+
+/* .contactList::-webkit-scrollbar-track {
+  background-color: white;
+} */
+
+.assignedToContainer::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.assignedToContainer::-webkit-scrollbar-button {
+  color: #A8A8A8;
+}
+
+.assignedToContainer::-webkit-scrollbar-button {
+  display: block;
+  background-repeat: no-repeat;   
+  background-size: 50%;
+  background-position: center;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url(../img/upArrow.svg);
+  background-size: 10px 4px;  
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.assignedToContainer::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url(../img/downArrow.svg);   
+  background-size: 10px 4px;  
+}
+/* =========================================================================== */
 
 .openTaskAssignedPerson {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
+  gap: 10px;
 }
 
 .openTaskAssignedPerson > div:first-of-type {
@@ -511,8 +611,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #9327ff;
-  margin-right: 1rem;
+/*   background-color: #9327ff; */  
 }
 
 .openTaskAssignedPerson span {
@@ -540,6 +639,10 @@
   cursor: pointer;
 }
 
+.openTaskEditButton:hover {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
 .deleteTaskButton {
   display: flex;
   justify-content: center;
@@ -549,9 +652,42 @@
   border-radius: 10px 0 0 10px;
   background-color: white;
   border: 1px solid #2a3647;
-
   cursor: pointer;
 }
+
+.deleteTaskButton:hover {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cancleTaskEditButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #2a3647;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 1rem ;
+}
+
+
+.saveChangesTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #2a3647;
+  border: 1px solid #2a3647;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
 
 .priorityImg {
   width: 17px;
@@ -606,12 +742,28 @@
   .placeholderBoardTopRight .inputFields {
     height: 45px;
   }
+
+  .openTaskDateEdit {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .prioButtonsEdit {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 480px) {
   .openTaskContainer {
     width: 100%;
     height: 100%;
+    border-radius: 0;
+  }
+
+  .openTask {
+    border-radius: 0;
+    padding: 20px;
+
   }
   .placeholderBoardTop {
     flex-direction: column;
