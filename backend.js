@@ -34,7 +34,7 @@ function addUser() {
     let userId = id;
     let userColor = document.getElementById('userColor');
     let userColorValue = userColor.options[userColor.selectedIndex].value;
-    debugger
+    // debugger
 
     for (let i = 0; i < users.length; i++) {
         if (users[i]['userid'].includes === id) {
@@ -122,7 +122,10 @@ function saveSelectedUsers() {
 }
 let priority = "";
 let priorityEdit = "";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 function saveSelectedPriority() {
     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -131,6 +134,7 @@ function saveSelectedPriority() {
     });
 }
 
+<<<<<<< HEAD
 function saveSelectedPriorityEdit() {
     Array.from(document.getElementsByClassName("prioButtonEdit")).forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -139,6 +143,8 @@ function saveSelectedPriorityEdit() {
     });
 }
 
+=======
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 
 
 
@@ -161,8 +167,13 @@ function selectUrgent() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+<<<<<<< HEAD
 
 function selectUrgentEdit() {
+=======
+function selectUrgentEdit() {
+    priorityEdit = "urgent";
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
     document.getElementById("urgentEdit").style.background = orange;
     document.getElementById("mediumEdit").style.background = white;
     document.getElementById("lowEdit").style.background = white;
@@ -175,7 +186,10 @@ function selectUrgentEdit() {
     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 function selectMedium() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = lightorange;
@@ -189,8 +203,14 @@ function selectMedium() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+<<<<<<< HEAD
 
 function selectMediumEdit() {
+=======
+function selectMediumEdit() {
+    priorityEdit = "medium";
+
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
     document.getElementById("urgentEdit").style.background = white;
     document.getElementById("mediumEdit").style.background = lightorange;
     document.getElementById("lowEdit").style.background = white;
@@ -203,7 +223,10 @@ function selectMediumEdit() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 function selectLow() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = white;
@@ -216,6 +239,21 @@ function selectLow() {
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+}
+function selectLowEdit() {
+    priorityEdit = "low";
+
+    document.getElementById("urgentEdit").style.background = white;
+    document.getElementById("mediumEdit").style.background = white;
+    document.getElementById("lowEdit").style.background = green;
+
+    document.getElementById("urgentEdit").style.color = black;
+    document.getElementById("mediumEdit").style.color = black;
+    document.getElementById("lowEdit").style.color = white;
+
+    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 
 function selectLowEdit() {
@@ -245,6 +283,10 @@ function addBackgroundColorCategory(element) {
     } else if (element == "Sales") {
         return "fc71ff";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 }
 
 
