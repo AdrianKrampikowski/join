@@ -43,7 +43,7 @@ function addUser() {
     }
 
     let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
-    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-' };
+    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue};
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -95,8 +95,9 @@ async function saveTasks() {
 
 // Define an empty array to store the selected values
 selectedValues = [];
+
 setTimeout(() => {
-    saveSelectedUsers();
+    //saveSelectedUsers();
     saveSelectedPriority();
     saveSelectedCategory();
 }, 1500);
@@ -120,12 +121,9 @@ function saveSelectedUsers() {
         });
     });
 }
-let priority = "";
-let priorityEdit = "";
-<<<<<<< HEAD
 
-=======
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
+let priority = "";
+
 function saveSelectedPriority() {
     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -133,19 +131,6 @@ function saveSelectedPriority() {
         });
     });
 }
-
-<<<<<<< HEAD
-function saveSelectedPriorityEdit() {
-    Array.from(document.getElementsByClassName("prioButtonEdit")).forEach((button) => {
-        button.addEventListener('click', (event) => {
-            priorityEdit = event.target.id;
-        });
-    });
-}
-
-=======
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
-
 
 
 let black = "#000000";
@@ -167,13 +152,8 @@ function selectUrgent() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
-<<<<<<< HEAD
 
 function selectUrgentEdit() {
-=======
-function selectUrgentEdit() {
-    priorityEdit = "urgent";
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
     document.getElementById("urgentEdit").style.background = orange;
     document.getElementById("mediumEdit").style.background = white;
     document.getElementById("lowEdit").style.background = white;
@@ -186,10 +166,7 @@ function selectUrgentEdit() {
     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 function selectMedium() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = lightorange;
@@ -203,14 +180,8 @@ function selectMedium() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
-<<<<<<< HEAD
 
 function selectMediumEdit() {
-=======
-function selectMediumEdit() {
-    priorityEdit = "medium";
-
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
     document.getElementById("urgentEdit").style.background = white;
     document.getElementById("mediumEdit").style.background = lightorange;
     document.getElementById("lowEdit").style.background = white;
@@ -219,14 +190,19 @@ function selectMediumEdit() {
     document.getElementById("mediumEdit").style.color = white;
     document.getElementById("lowEdit").style.color = black;
 
+    //document.getElementById("urgentEdit").style.background = white;
+    //document.getElementById("mediumEdit").style.background = lightorange;
+    //document.getElementById("lowEdit").style.background = white;
+
+    //document.getElementById("urgentEdit").style.color = black;
+    //document.getElementById("mediumEdit").style.color = white;
+    //document.getElementById("lowEdit").style.color = black;
+ 
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 function selectLow() {
     document.getElementById("urgent").style.background = white;
     document.getElementById("medium").style.background = white;
@@ -241,8 +217,6 @@ function selectLow() {
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 function selectLowEdit() {
-    priorityEdit = "low";
-
     document.getElementById("urgentEdit").style.background = white;
     document.getElementById("mediumEdit").style.background = white;
     document.getElementById("lowEdit").style.background = green;
@@ -256,19 +230,7 @@ function selectLowEdit() {
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
 
-function selectLowEdit() {
-    document.getElementById("urgentEdit").style.background = white;
-    document.getElementById("mediumEdit").style.background = white;
-    document.getElementById("lowEdit").style.background = green;
-
-    document.getElementById("urgentEdit").style.color = black;
-    document.getElementById("mediumEdit").style.color = black;
-    document.getElementById("lowEdit").style.color = white;
-
-    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-}
+let editedTaskPririty = [];
 
 
 function addBackgroundColorCategory(element) {
@@ -283,10 +245,6 @@ function addBackgroundColorCategory(element) {
     } else if (element == "Sales") {
         return "fc71ff";
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 }
 
 

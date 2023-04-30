@@ -12,7 +12,7 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    showAllContacts();
+/*     showAllContacts();
     setTimeout(() => {
         pushArrayToDo();
         setTimeout(() => {
@@ -24,6 +24,15 @@ async function includeHTML() {
     setTimeout(() => {
         counters();
     }, 1500);
+ */
+
+    await init();
+    updateHTML();
+    searchFunction();
+    counters();
+    addAssignedToList();
+    setDateToday();
+
 }
 
 function counters() {
@@ -44,51 +53,54 @@ let toDos = [];
 let userChar = [];
 let allUsers = [];
 let currentDraggedElement;
+let priorityValueEdit;
+let usersTaskEdit = [];
 
 /* ========================================= BOARD FUNCTIONS ========================================= */
-function updateHTML() {
-    if (toDos.length > 0) {
-        for (let index = 0; index < toDos.length; index++) {
-            let taskId = toDos[index]["taskId"];
 
-            let toDo = toDos.filter(t => t["statusCategory"] == "toDo");
+function updateHTML() {
+    if (tasks.length > 0) {
+        for (let index = 0; index < tasks.length; index++) {
+            let taskId = tasks[index]["taskId"];
+
+            let toDo = tasks.filter(t => t["statusCategory"] == "toDo");
             document.getElementById("toDoCard").innerHTML = ``;
             for (let i = 0; i < toDo.length; i++) {
                 let element = toDo[i];
                 document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, index);
             }
 
-            let inProgress = toDos.filter(t => t["statusCategory"] == "inProgress");
+            let inProgress = tasks.filter(t => t["statusCategory"] == "inProgress");
             document.getElementById("inProgress").innerHTML = ``;
             for (let i = 0; i < inProgress.length; i++) {
                 let element = inProgress[i];
                 document.getElementById("inProgress").innerHTML += generateToDoHTML(element, index);
             }
 
-            let awaitingFeedback = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
+            let awaitingFeedback = tasks.filter(t => t["statusCategory"] == "awaitingFeedback");
             document.getElementById("awaitingFeedback").innerHTML = ``;
             for (let i = 0; i < awaitingFeedback.length; i++) {
                 let element = awaitingFeedback[i];
                 document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, index);
             }
 
-            let done = toDos.filter(t => t["statusCategory"] == "done");
+            let done = tasks.filter(t => t["statusCategory"] == "done");
             document.getElementById("done").innerHTML = ``;
             for (let i = 0; i < done.length; i++) {
                 let element = done[i];
                 document.getElementById("done").innerHTML += generateToDoHTML(element, index);
             }
         }
-        for (let i = 0; i < toDos.length; i++) {
+        for (let i = 0; i < tasks.length; i++) {
             calculateProgressbar(i);
         }
         createBubbles();
     }
 }
 
-function pushArrayToDo() {
+/* function pushArrayToDo() {
     toDos = tasks;
-}
+} */
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
@@ -133,8 +145,8 @@ function generateToDoHTML(element, index) {
 }
 
 function getFirstLetter(index, i) {
-    if (i < toDos[index]["assignTo"].length) {
-        let y = toDos[index]["assignTo"][i];
+    if (i < tasks[index]["assignTo"].length) {
+        let y = tasks[index]["assignTo"][i];
         let x = users.filter(obj => {
             if (obj.userid == y) {
                 return obj.name;
@@ -146,11 +158,11 @@ function getFirstLetter(index, i) {
 }
 
 function createBubbles() {
-    for (let j = 0; j < toDos.length; j++) {
-        let bubbleTaskId = toDos[j]["taskId"];
+    for (let j = 0; j < tasks.length; j++) {
+        let bubbleTaskId = tasks[j]["taskId"];
 
-        if (toDos[j]["assignTo"].length < 3) {
-            for (let i = 0; i < toDos[j]["assignTo"].length; i++) {
+        if (tasks[j]["assignTo"].length < 3) {
+            for (let i = 0; i < tasks[j]["assignTo"].length; i++) {
                 let name = getFirstLetter(j, i);
                 document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
@@ -161,7 +173,7 @@ function createBubbles() {
                 }
             }
         }
-        else if (toDos[j]["assignTo"].length >= 3) {
+        else if (tasks[j]["assignTo"].length >= 3) {
             for (let i = 0; i < 2; i++) {
                 let name = getFirstLetter(j, i);
                 document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
@@ -172,7 +184,7 @@ function createBubbles() {
                     userBubbleOne.style.backgroundColor = users[j] ? users[j]["userColor"] : users[j]["background"];
                 }
             }
-            let remainingCount = toDos[j]["assignTo"].length - 2;
+            let remainingCount = tasks[j]["assignTo"].length - 2;
             document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
                 `;
@@ -184,7 +196,7 @@ function createBubbles() {
 }
 
 function calculateProgressbar(index) {
-    let x = toDos[index]["numerator"] / toDos[index]["denominator"];
+    let x = tasks[index]["numerator"] / tasks[index]["denominator"];
     x = x * 100;
     let progressBarElements = document.getElementsByClassName("progressBar");
     // progressBarElements[index].style.width = x + "%";
@@ -209,17 +221,17 @@ function generateRandomColor() {
 
 //Source: www.w3schools.com/html/html5_draganddrop.asp
 function startDragging(id) {
-    currentDraggedElement = toDos.findIndex(obj => obj.taskId === id);
+    currentDraggedElement = tasks.findIndex(obj => obj.taskId === id);
 }
 
 function moveTo(statusCategory) {
-    toDos[currentDraggedElement]["statusCategory"] = statusCategory;
+    tasks[currentDraggedElement]["statusCategory"] = statusCategory;
     updateTasks();
     updateHTML();
 }
 
 async function updateTasks() {
-    let tasksAsString = JSON.stringify(toDos);
+    let tasksAsString = JSON.stringify(tasks);
     await backend.setItem('tasks', tasksAsString);
 }
 
@@ -229,7 +241,7 @@ function allowDrop(ev) {
 
 let startWithLetter = [];
 
-async function showAllContacts() {
+/* async function showAllContacts() {
     await fetch("https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever/database.json")
         .then(response => {
             return response.json();
@@ -257,27 +269,18 @@ async function showAllContacts() {
                 let tasks = JSON.parse(data.tasks);
             }
         })
-}
+} */
 
-<<<<<<< HEAD
 function openTask(currentTaskId) {
     document.getElementById('openTaskBackground').style.display = 'flex';
     
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
     let currentTask = tasks.indexOf(existingTask);
-=======
-// function openTask(currentTaskId) {
-//     document.getElementById('openTaskBackground').style.display = 'flex';
 
-//     let existingTask = tasks.find(u => u.taskId == currentTaskId)
-//     let currentTask = tasks.indexOf(existingTask);
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
+    let openTaskContainer = document.getElementById('openTaskContainer');
+    openTaskContainer.innerHTML = '';
+    openTaskContainer.innerHTML = openTaskTemplate(currentTask);
 
-//     let openTaskContainer = document.getElementById('openTaskContainer');
-//     openTaskContainer.innerHTML = '';
-//     openTaskContainer.innerHTML = openTaskTemplate(currentTask);
-
-<<<<<<< HEAD
     renderAssignedUsers(currentTask);
     prioritySymbol(currentTask);
 } 
@@ -293,36 +296,18 @@ function openTaskTemplate(currentTask, categoryColor) {
                     <img src="../img/close.svg">
                 </div>
             </div>
-=======
-//     renderAssignedUsers(currentTask);
-// }
 
-// function openTaskTemplate(currentTask) {
-//     return `
-//         <div id="openTask${currentTask}" class="openTask">
-//             <div class="openTaskTop">
-//                 <div>
-//                     <span>${tasks[currentTask]['category']}</span>
-//                 </div>
-//                 <div onclick="closeTask()">
-//                     <img src="../img/close.svg">
-//                 </div>
-//             </div>
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
+            <div class="openTaskHeader">
+                 <h1>${tasks[currentTask]['title']}</h1>
+                 <span>${tasks[currentTask]['description']}</span>
+            </div>
 
-//             <div class="openTaskHeader">
-//                 <h1>${tasks[currentTask]['title']}</h1>
-//                 <span>${tasks[currentTask]['description']}</span>
-//             </div>
+            <div class="openTaskMain">
+                <div class="openTaskDate">
+                    <div>Due date:</div>
+                    <div>${tasks[currentTask]['dueDate']}</div>
+                </div>
 
-//             <div class="openTaskMain">
-
-//                 <div class="openTaskDate">
-//                     <div>Due date:</div>
-//                     <div>${tasks[currentTask]['dueDate']}</div>
-//                 </div>
-
-<<<<<<< HEAD
                 <div class="openTaskPriority">
                     <div>Priority:</div>
                     <div>
@@ -333,28 +318,16 @@ function openTaskTemplate(currentTask, categoryColor) {
                         </div>
                     </div>
                 </div>
-=======
-//                 <div class="openTaskPriority">
-//                     <div>Priority:</div>
-//                     <div>
-//                         <div>
-//                             <span>${tasks[currentTask]['priorityValue']}</span>
-//                             <img src="">
-//                         </div>
-//                     </div>
-//                 </div>
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 
-//                 <div class="openTaskAssigned">
-//                     <div>Assigned To:</div>
-//                     <div id="assignedToContainer" class="assignedToContainer">
+                <div class="openTaskAssigned">
+                     <div>Assigned To:</div>
+                     <div id="assignedToContainer" class="assignedToContainer">
 
-//                     </div>                
-//                 </div>
-//             </div>
-//         </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
 
-<<<<<<< HEAD
         <div class="openTaskButtonContainer">
             <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
                 <img src="./img/deleteTask.svg">
@@ -362,42 +335,20 @@ function openTaskTemplate(currentTask, categoryColor) {
             <div class="openTaskEditButton" onclick="editTask(${currentTask})">
                 <img src="./img/editWhite.svg">
             </div>
-=======
-//         <div class="openTaskButtonContainer">
-//             <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
-//                 <img src="./img/deleteTask.svg">
-//             </div>
-//             <div class="openTaskEditButton" onclick="editTask()">
-//                 <img src="./img/editWhite.svg">
-//             </div>
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
+        </div>
+     `;
+}
 
-//         </div>
-//     `;
-// }
-
-<<<<<<< HEAD
 function deleteTask(currentTask) {
     tasks.splice(currentTask, 1);
     updateTasks();
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
-=======
-// function deleteTask(currentTask) {
-//     //let existingTask = tasks.find(u => u.taskId == currentTaskId)
-//     //let currentTask = tasks.indexOf(existingTask);
-
-//     tasks.splice(currentTask, 1);
-//     updateTasks();
-//     updateHTML();
-//     document.getElementById('openTaskBackground').style.display = 'none';
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 
 //     // <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
 //     //=> Template für generateToDoHTML / Task generieren
-// }
+}
 
-<<<<<<< HEAD
 function renderAssignedUsers(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
     
@@ -409,7 +360,7 @@ function renderAssignedUsers(currentTask) {
         let assignName = users[currentAssignUser]['name'];
         let assignSurname = users[currentAssignUser]['surname'];
         let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
-        let assignColor = users[currentAssignUser]['color'];
+        let assignColor = users[currentAssignUser]['userColor'];
         
         document.getElementById('assignedToContainer').innerHTML +=  `
             <div class="openTaskAssignedPerson">
@@ -423,29 +374,6 @@ function renderAssignedUsers(currentTask) {
 
     //style="background-color: '${assignColor}';
 }
-
-
-/*     for (let i = 0; i < assignedUsers.length; i++) {
-        let assignedUser = assignedUsers[i];
-        let existingAssignUser = users.find(u => u.userid == assignedUser)
-        let currentAssignUser = users.indexOf(existingAssignUser);
-
-        let assignName = users[currentAssignUser]['name'];
-        let assignSurname = users[currentAssignUser]['surname'];
-        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
-        let assignColor = users[currentAssignUser]['color'];
-
-        document.getElementById('assignedToContainerEdit').innerHTML +=  `
-            <div class="openTaskAssignedPerson">
-                <input type="checkbox" value="${users[currentAssignUser]['userid']}" checked>
-                <div style="background-color: ${assignColor};">
-                    <span>${assignFirstLetters.toUpperCase()}</span>
-                </div>
-                <div>${assignName} ${assignSurname}</div>
-            </div>
-        `; */
-
-    //style="background-color: '${assignColor}';
 
 function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
@@ -463,61 +391,20 @@ function prioritySymbol(currentTask) {
 function editTask(currentTask) {
     document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
 
-    if(tasks[currentTask]['category'] == 'urgent'){
-        selectUrgentEdit();
-    } else if(tasks[currentTask]['category'] == 'medium') {
-        selectMediumEdit();
-    } else if(tasks[currentTask]['category'] == 'low') {
-        selectLowEdit();
-    }
-
     let titleEdit = document.getElementById('titleEdit');
     titleEdit.value = tasks[currentTask]['title'];
     let descriptionEdit = document.getElementById('descriptionEdit');
     descriptionEdit.value = tasks[currentTask]['description'];
-
     document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
 
-    renderAssignedUsersEdit(currentTask);
-}
-
-function renderAssignedUsersEdit(currentTask) {
-    let assignedUsers = tasks[currentTask]['assignTo'];
-
-    for (let j = 0; j < users.length; j++) {
-        
-        let userid = users[j]['userid'];
-        let useridAsString = userid.toString();
-       
-
-        if(assignedUsers.includes(useridAsString)) {
-
-            let assignName = users[j]['name'];
-            let assignSurname = users[j]['surname'];
-            let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
-
-            document.getElementById('assignedToContainerEdit').innerHTML +=  `
-                <div class="openTaskAssignedPerson">
-                    <input type="checkbox" value="${users[j]['userid']}" checked>
-                    <div style="background-color: ${users[j]['color']};">
-                        <span>${assignFirstLetters}</span>
-                    </div>
-                    <div>${users[j]['name']} ${users[j]['surname']}</div>
-                </div>
-            `;
-
-        } else {
-            document.getElementById('assignedToContainerEdit').innerHTML += `
-            <div class="openTaskAssignedPerson">
-                <input type="checkbox" value="${users[j]['userid']}">
-                <div style="background-color: ${users[j]['color']};">
-                    <span>${assignFirstLetters}</span>
-                </div>
-                <div>${users[j]['name']} ${users[j]['surname']}</div>
-            </div>
-            `;
-        }
+    let assignedUsersToCurrentTask = tasks[currentTask]['assignTo'];
+    for (let i = 0; i < assignedUsersToCurrentTask.length; i++) {
+        let assignedUser = assignedUsersToCurrentTask[i];
+        usersTaskEdit.push(assignedUser);
     }
+
+    renderUrgency(currentTask);
+    renderAssignedUsersEdit(currentTask);
 }
 
 function editOpenTaskTemplate(currentTask) {
@@ -556,15 +443,15 @@ function editOpenTaskTemplate(currentTask) {
                     <div>Priority:</div>
                     <div>
                         <div class="prioButtons prioButtonsEdit">
-                            <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit()">
+                            <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit(), savePriorityValueEdit('urgent')">
                                 Urgent
                                 <img id="imgUrgentEdit" src="./img/urgentArrow.svg">
                             </button>
-                            <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit()">
+                            <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit(), savePriorityValueEdit('medium')">
                                 Medium
                                 <img id="imgMediumEdit" src="./img/medium.svg">
                             </button>
-                            <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit()">
+                            <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit(), savePriorityValueEdit('low')">
                                 Low
                                 <img id="imgLowEdit" src="./img/low.svg">
                             </button>
@@ -593,19 +480,69 @@ function editOpenTaskTemplate(currentTask) {
     `;
 }
 
-/* function addAssignedToListEdit() {
-    document.getElementById('assignedToChoices').innerHTML = '';
-    for (let i = 0; i < users.length; i++) {
-        let userID = users[i]["userid"];
-        // let contact = users[i];
-        let name = users[i]["name"];
-        document.getElementById('assignedToChoices').innerHTML += `
-        <div class="assigned-to-line">
-            <label for="assigned-to-${i}" id="assigned_name${i}">${name}</label>
-            <input type="checkbox" id="assigned-to-${i}"value="${userID}">
-        </div>`
+function renderUrgency(currentTask) {
+    if(tasks[currentTask]['priorityValue'] == 'urgent'){
+        selectUrgentEdit();
+    } else if(tasks[currentTask]['priorityValue'] == 'medium') {
+        selectMediumEdit();
+    } else if(tasks[currentTask]['priorityValue'] == 'low') {
+        selectLowEdit();
     }
-} */
+}
+
+function renderAssignedUsersEdit(currentTask) {
+    let assignedUsers = tasks[currentTask]['assignTo'];
+
+    for (let j = 0; j < users.length; j++) {
+        
+        let userid = users[j]['userid'];
+        let assignName = users[j]['name'];
+        let assignSurname = users[j]['surname'];
+        let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
+
+        if(assignedUsers.includes(userid.toString())) {
+            document.getElementById('assignedToContainerEdit').innerHTML +=  `
+                <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
+                    <input type="checkbox" value="${users[j]['userid']}" checked>
+                    <div style="background-color: ${users[j]['userColor']};">
+                        <span>${assignFirstLetters}</span>
+                    </div>
+                    <div>${users[j]['name']} ${users[j]['surname']}</div>
+                </div>
+            `;
+        } else {
+            document.getElementById('assignedToContainerEdit').innerHTML +=  `
+            <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
+                <input type="checkbox" value="${users[j]['userid']}">
+                <div style="background-color: ${users[j]['userColor']};">
+                    <span>${assignFirstLetters}</span>
+                </div>
+                <div>${users[j]['name']} ${users[j]['surname']}</div>
+            </div>
+            `;
+        }
+    }
+}
+
+function saveSelectedUsersEdit() {
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+            const selectedValue = event.target.value;
+            if (event.target.checked) {
+                if (!usersTaskEdit.includes(selectedValue)) { // Check for duplicates
+                    usersTaskEdit.push(selectedValue);
+                }
+            } else {
+                const index = usersTaskEdit.indexOf(selectedValue);
+                if (index > -1) {
+                    usersTaskEdit.splice(index, 1);
+                }
+            }
+            console.log(usersTaskEdit); // Print the selected values to the console
+        });
+    });
+}
+
 
 function saveEditedTask(currentTask) {
     let editCategory = document.getElementById('editSelectCategory').value;
@@ -619,80 +556,24 @@ function saveEditedTask(currentTask) {
     tasks[currentTask]['title'] = document.getElementById('titleEdit').value;
     tasks[currentTask]['description'] = document.getElementById('descriptionEdit').value;
     tasks[currentTask]['dueDate'] = document.getElementById('editDueDate').value;
-    tasks[currentTask]['priorityValue'] = priorityEdit;
-    //tasks[currentTask]['assignTo'] = 
-    //let assignTo = selectedValues;
+    tasks[currentTask]['priorityValue'] = priorityValueEdit;
+    tasks[currentTask]['assignTo'] = usersTaskEdit;
 
     updateTasks();
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
+}
 
-    setTimeout(saveSelectedPriority, 1500);
+function savePriorityValueEdit(priority) {
+    priorityValueEdit = priority;
 }
 
 function closeTask() {
     document.getElementById('openTaskBackground').style.display = 'none';
 }
-=======
-// function renderAssignedUsers(currentTask) {
-//     let assignedUsers = tasks[currentTask]['assignTo'];
-//     let currentName = "";
-//     // for (let i = 0; i < assignedUsers.length; i++) {
-
-//     // let y = toDos[index]["assignTo"][i];
-//     let x = users.filter(obj => {
-//         assignedUsers.filter((x) => {
-//             if (obj.userid == x) {
-//                 currentName = obj.name;
-//                 console.log(currentName)
-
-//                 renderName(currentName);
-//             }
-//         })
-//     });
-
-// }
-
-// function renderName(currentName) {
-//     let shortName = currentName.split(' ').map(word => word.charAt(0)).join('');
-//     document.getElementById('assignedToContainer').innerHTML += `
-//     <div class="openTaskAssignedPerson">
-//         <div>
-//             <span>${shortName}</span>
-//         </div>
-//         <div>${currentName}</div>
-//     </div>
-// `;
-// }
-
-// function editTask(currentTask) {
-    // document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
-
-    // if(tasks[currentTask]['category'] == 'urgent'){
-    //     selectUrgentEdit();
-    // } else if(tasks[currentTask]['category'] == 'medium') {
-    //     selectMediumEdit();
-    // } else if(tasks[currentTask]['category'] == 'low') {
-    //     selectLowEdit();
-    // }
-
-    // let titleEdit = document.getElementById('titleEdit');
-    // titleEdit.value = tasks[currentTask]['title'];
-    // let descriptionEdit = document.getElementById('descriptionEdit');
-    // descriptionEdit.value = tasks[currentTask]['description'];
-
-    // document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
-
-    // renderAssignedUsersEdit(currentTask);
-// }
-
-// function closeTask() {
-//     document.getElementById('openTaskBackground').style.display = 'none';
-// }
->>>>>>> 4a61fd63143e21c9f607e0c93312048bce6d8216
 
 function searchFunction() {
-    let originalToDos = toDos;
+    let originalToDos = tasks;
     let input = document.getElementById('searchValue');
     input.addEventListener('input', debounce(function (event) {
         let selectedValue = event.target.value.trim();
@@ -701,7 +582,7 @@ function searchFunction() {
             newArray = [...originalToDos];
             toDos = originalToDos;
         } else {
-            newArray = toDos.filter(item => {
+            newArray = tasks.filter(item => {
                 if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
                     return item;
                 }
@@ -714,7 +595,7 @@ function searchFunction() {
                 });
             }
         }
-        toDos = newArray;
+        tasks = newArray;
         updateHTML();
         if (toDos.length > 0) {
             Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
@@ -730,14 +611,14 @@ function searchFunction() {
 
 /* =============================== SUMMARY FUNCTIONS =================================== */
 function taskCounter() {
-    let taskCounter = toDos.length;
+    let taskCounter = tasks.length;
     document.getElementById("taskCounter").innerHTML = `
     ${taskCounter}
     `;
 }
 
 function awaitingFeedbackCounter() {
-    let awaitingFeedbackCounter = toDos.filter(t => t["statusCategory"] == "awaitingFeedback");
+    let awaitingFeedbackCounter = tasks.filter(t => t["statusCategory"] == "awaitingFeedback");
     awaitingFeedbackCounter = awaitingFeedbackCounter.length;
     document.getElementById("awaitingFeedbackCounter").innerHTML = `
     ${awaitingFeedbackCounter}
@@ -745,7 +626,7 @@ function awaitingFeedbackCounter() {
 }
 
 function inProgressCounter() {
-    let inProgressCounter = toDos.filter(t => t["statusCategory"] == "inProgress");
+    let inProgressCounter = tasks.filter(t => t["statusCategory"] == "inProgress");
     inProgressCounter = inProgressCounter.length;
     document.getElementById("inProgressCounter").innerHTML = `
     ${inProgressCounter}
@@ -753,7 +634,7 @@ function inProgressCounter() {
 }
 
 function urgentCounter() {
-    let urgentCounter = toDos.filter(t => t["priorityValue"] == "urgent");
+    let urgentCounter = tasks.filter(t => t["priorityValue"] == "urgent");
     urgentCounter = urgentCounter.length;
     document.getElementById("urgentCounter").innerHTML = `
     ${urgentCounter}
@@ -762,7 +643,7 @@ function urgentCounter() {
 
 
 function todoCounter() {
-    let toDoCounter = toDos.filter(t => t["statusCategory"] == "toDo");
+    let toDoCounter = tasks.filter(t => t["statusCategory"] == "toDo");
     toDoCounter = toDoCounter.length;
     document.getElementById("todoCounter").innerHTML = `
     ${toDoCounter}
@@ -771,7 +652,7 @@ function todoCounter() {
 
 
 function doneCounter() {
-    let doneCounter = toDos.filter(t => t["statusCategory"] == "done");
+    let doneCounter = tasks.filter(t => t["statusCategory"] == "done");
     doneCounter = doneCounter.length;
     document.getElementById("doneCounter").innerHTML = `
     ${doneCounter}
@@ -779,7 +660,7 @@ function doneCounter() {
 }
 
 function deadlineDate() {
-    let sortedDueDate = toDos
+    let sortedDueDate = tasks
         .filter((t) => t.dueDate)
         .map((t) => new Date(t.dueDate))
         .filter((d) => !isNaN(d.getTime()))
@@ -808,13 +689,18 @@ function greeting() {
     `;
 }
 
-
 function displayUserName() {
     let userName = localStorage.getItem("userName");
     let abbreviatedName = abbreviateName(userName, 10);
-    document.getElementById("userName").innerHTML = `
-    ${abbreviatedName}
-    `;
+
+    if(userName == undefined) {
+        document.getElementById("userName").innerHTML = 'Guest';
+
+    } else {
+        document.getElementById("userName").innerHTML = `
+        ${abbreviatedName}
+        `;
+    }
 }
 
 
@@ -880,7 +766,6 @@ function displayMainContacsPage() {
     document.getElementById("mainContactsContainerDisplay").style.display = "block";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
     document.getElementById("mainhelpContainerDisplay").style.display = "none";
-    initContacts();
 }
 
 function displayMainLegalNoticePage() {
@@ -901,9 +786,14 @@ function displayMainHelpPage() {
     document.getElementById("mainhelpContainerDisplay").style.display = "block";
 }
 
-// 27.04.2023
 
-function openTask(currentTaskId) {
+
+
+
+
+// 27.04.2023 ==================================================================================================
+
+/* function openTask(currentTaskId) {
     document.getElementById('openTaskBackground').style.display = 'flex';
 
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
@@ -1006,7 +896,7 @@ function renderAssignedUsers(currentTask) {
     }
 
     //style="background-color: '${assignColor}';
-}
+} */
 
 
 /*     for (let i = 0; i < assignedUsers.length; i++) {
@@ -1031,7 +921,7 @@ function renderAssignedUsers(currentTask) {
 
 //style="background-color: '${assignColor}';
 
-function prioritySymbol(currentTask) {
+/* function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
     let priority = document.getElementById('priority');
 
@@ -1109,7 +999,7 @@ function renderAssignedUsersEdit(currentTask) {
     }
 }
 
-testValues = []
+testValues = [] */
 
 // function addOrRemoveUser() {
 //     document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
@@ -1133,7 +1023,7 @@ testValues = []
 // }
 
 
-function addOrRemoveUser(currentTask) {
+/* function addOrRemoveUser(currentTask) {
     document.getElementById('assignedToContainerEdit').addEventListener('change', (event) => {
         if (event.target.matches('.checkbox-class')) {
             const selectedValue = event.target.value;
@@ -1151,8 +1041,6 @@ function addOrRemoveUser(currentTask) {
         }
     });
 }
-
-
 
 function editOpenTaskTemplate(currentTask) {
     return `
@@ -1189,15 +1077,15 @@ function editOpenTaskTemplate(currentTask) {
                     <div>Priority:</div>
                     <div>
                         <div class="prioButtons prioButtonsEdit">
-                            <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit()">
+                            <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit(), savePriorityValueEdit('urgent')">
                                 Urgent
                                 <img id="imgUrgentEdit" src="./img/urgentArrow.svg">
                             </button>
-                            <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit()">
+                            <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit(), savePriorityValueEdit('medium')">
                                 Medium
                                 <img id="imgMediumEdit" src="./img/medium.svg">
                             </button>
-                            <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit()">
+                            <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit(), savePriorityValueEdit('low')">
                                 Low
                                 <img id="imgLowEdit" src="./img/low.svg">
                             </button>
@@ -1224,7 +1112,7 @@ function editOpenTaskTemplate(currentTask) {
 
         </div>
     `;
-}
+} */
 
 /* function addAssignedToListEdit() {
     document.getElementById('assignedToChoices').innerHTML = '';
@@ -1240,7 +1128,8 @@ function editOpenTaskTemplate(currentTask) {
     }
 } */
 
-function saveEditedTask(currentTask) {
+
+/* function saveEditedTask(currentTask) {
     let editCategory = document.getElementById('editSelectCategory').value;
 
     //let firstLetter = editCategory.charAt(0).toUpperCase();
@@ -1252,19 +1141,16 @@ function saveEditedTask(currentTask) {
     tasks[currentTask]['title'] = document.getElementById('titleEdit').value;
     tasks[currentTask]['description'] = document.getElementById('descriptionEdit').value;
     tasks[currentTask]['dueDate'] = document.getElementById('editDueDate').value;
-    tasks[currentTask]['priorityValue'] = priorityEdit;
+    tasks[currentTask]['priorityValue'] = priorityValueEdit;
     //tasks[currentTask]['assignTo'] = 
     //let assignTo = selectedValues;
 
     updateTasks();
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
-
-    setTimeout(saveSelectedPriority, 1500);
 }
-
 
 
 function closeTask() {
     document.getElementById('openTaskBackground').style.display = 'none';
-}
+} */
