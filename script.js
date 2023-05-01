@@ -44,7 +44,7 @@ let toDos = [];
 let userChar = [];
 let allUsers = [];
 let currentDraggedElement;
-
+let subtasks = [];
 /* ========================================= BOARD FUNCTIONS ========================================= */
 function updateHTML() {
     if (toDos.length > 0) {
