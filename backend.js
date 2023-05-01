@@ -72,7 +72,7 @@ async function save() {
 }
 
 // ToDoStart
-function createTask() {
+async function createTask() {
     let taskId = generateTaskId();
     let statusCategory = "toDo";
     let title = document.getElementById('title');
@@ -82,10 +82,11 @@ function createTask() {
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    let taskData = {taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue};
     tasks.push(taskData);
-    saveTasks();
-    console.log("Tasks", taskData);
+    await saveTasks();
+
+    //console.log("Tasks", taskData);
     // window.location.href = 'index.html';
 }
 async function saveTasks() {
@@ -97,7 +98,7 @@ async function saveTasks() {
 selectedValues = [];
 
 setTimeout(() => {
-    //saveSelectedUsers();
+    saveSelectedUsers();
     saveSelectedPriority();
     saveSelectedCategory();
 }, 1500);
@@ -321,11 +322,10 @@ function userColor(userColor) {
 
 function showLogoutButton() {
     let logoutButton = document.getElementById('logoutButton');
-
-    if (logoutButton.style.display == "none") {
-        logoutButton.style.display = "flex";
-    } else {
+    if (logoutButton.style.display == "flex") {
         logoutButton.style.display = "none";
+    } else {
+        logoutButton.style.display = "flex";
     }
 }
 
