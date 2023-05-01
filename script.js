@@ -29,7 +29,7 @@ async function includeHTML() {
     await init();
     pushArrayToDo();
     updateHTML();
-    //searchFunction();
+    searchFunction();
     counters();
     addAssignedToList();
     setDateToday();

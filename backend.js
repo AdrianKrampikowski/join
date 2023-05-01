@@ -243,7 +243,7 @@ function addBackgroundColorCategory(element) {
     } else if (element == "Design") {
         return "#ff7a00";
     } else if (element == "Sales") {
-        return "fc71ff";
+        return "#fc71ff";
     }
 }
 
