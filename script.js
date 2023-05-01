@@ -27,12 +27,12 @@ async function includeHTML() {
  */
 
     await init();
+    pushArrayToDo();
     updateHTML();
-    searchFunction();
+    //searchFunction();
     counters();
     addAssignedToList();
     setDateToday();
-
 }
 
 function counters() {
@@ -54,6 +54,12 @@ let userChar = [];
 let allUsers = [];
 let currentDraggedElement;
 let subtasks = [];
+<<<<<<< HEAD
+=======
+let priorityValueEdit;
+let usersTaskEdit = [];
+
+>>>>>>> 69bf32aed05257d0805b88dff16542916823b14f
 /* ========================================= BOARD FUNCTIONS ========================================= */
 
 function updateHTML() {
@@ -96,9 +102,9 @@ function updateHTML() {
     }
 }
 
-/* function pushArrayToDo() {
+function pushArrayToDo() {
     toDos = tasks;
-} */
+}
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
@@ -150,8 +156,15 @@ function getFirstLetter(index, i) {
                 return obj.name;
             }
         });
+        let x1 = users.filter(obj => {
+            if (obj.userid == y) {
+                return obj.surname;
+            }
+        });
         x = x[0]["name"].split(' ').map(word => word.charAt(0)).join('');
-        return x;
+        x1 = x1[0]["surname"].split(' ').map(word => word.charAt(0)).join('');
+        let xx1 = x.toUpperCase() + x1.toUpperCase();
+        return xx1;
     }
 }
 
