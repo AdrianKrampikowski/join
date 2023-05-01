@@ -621,8 +621,8 @@
 
 .openTaskButtonContainer {
   position: absolute;
-  right: 50px;
-  bottom: 50px;
+  right: 40px;
+  bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -728,6 +728,7 @@
 @media (max-width: 720px) {
   .openTaskContainer {
     width: 80%;
+    height: 850px;
   }
   .placeholderBoard {
     height: calc(100vh - 163px);
@@ -751,6 +752,10 @@
 
   .prioButtonsEdit {
     flex-wrap: wrap;
+  }
+
+  .openTaskAssigned {
+    height: 240px;
   }
 }
 
@@ -776,4 +781,17 @@
     justify-content: flex-start;
   }
 
+  .openTaskMain {
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+
+}
+
+@media (max-width: 320px) {
+  .openTaskPriority {
+    flex-direction: column;  
+    align-items: flex-start;
+    gap: 15px;
+}
 }

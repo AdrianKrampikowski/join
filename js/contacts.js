@@ -104,7 +104,7 @@
         x = x.split(' ').map(word => word.charAt(0)).join('');
         let y = contacts[c]['surname'];
         y = y.split(' ').map(word => word.charAt(0)).join('');
-        firstLetters = x + y;
+        firstLetters = x.toUpperCase() + y.toUpperCase();
     }
 
     function newContact() {
@@ -114,19 +114,19 @@
     function closePopup() {
         document.getElementById('addContactBackground').style.display = 'none';
         document.getElementById('editContactBackground').style.display = 'none';
-        newName.value = '';
-        newSurname.value = '';
-        newEmail.value = '';
-        newPhone.value = '';
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactSurname').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactPhone').value = '';
     }
 
     function canclePopup() {
         document.getElementById('addContactBackground').style.display = 'none';
         document.getElementById('editContactBackground').style.display = 'none';
-        newName.value = '';
-        newSurname.value = '';
-        newEmail.value = '';
-        newPhone.value = '';
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactSurname').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactPhone').value = '';
     }
 
     function doNotClose(event) {
@@ -134,18 +134,17 @@
     }
 
     function createContact() {
-        debugger;
-        if (contactName.value == '' || contactEmail.value == '') {
+        if (document.getElementById('contactName').value == '' || document.getElementById('contactEmail').value == '') {
             inputRequiredPopup();
         } else {
             randomBackground();
-            let newContact = {name: contactName.value, surname: contactSurname.value, email: contactEmail.value, phone: contactPhone.value, contactColor: bgColor};
+            let newContact = {name: document.getElementById('contactName').value, surname: document.getElementById('contactSurname').value, email: document.getElementById('contactEmail').value, phone: document.getElementById('contactPhone').value, contactColor: bgColor};
             contacts.push(newContact);
             saveContacts();
-            contactName.value = '';
-            contactSurname.value = '';
-            contactEmail.value = '';
-            contactPhone.value = '';
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactSurname').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactPhone').value = '';
             renderLetters();
             showContactCreatedPupup();
             document.getElementById('addContactBackground').style.display = 'none';
@@ -259,16 +258,12 @@
         // }
 
         function editContact(i) {
-
             document.getElementById('editContactBackground').style.display = 'flex';
-
-            editName.value = contacts[i]['name'];
-            editSurname.value = contacts[i]['surname'];
-            editEmail.value = contacts[i]['email'];
-            editPhone.value = contacts[i]['phone'];
+            document.getElementById('editContactName').value = contacts[i]['name'];
+            document.getElementById('editContactSurname').value = contacts[i]['surname'];
+            document.getElementById('editContactEmail').value = contacts[i]['email'];
+            document.getElementById('editContactPhone').value = contacts[i]['phone'];
             let contactInfoBgColor = contacts[i]['contactColor'];
-
-
             let saveChangesButton = document.getElementById('saveChangesButton');
 
             saveChangesButton.innerHTML = `
@@ -288,15 +283,15 @@
         }
 
         function saveChanges(i) {
-            contacts[i]['name'] = editName.value;
-            contacts[i]['surname'] = editSurname.value;
-            contacts[i]['email'] = editEmail.value;
-            contacts[i]['phone'] = editPhone.value;
+            contacts[i]['name'] = document.getElementById('editContactName').value;
+            contacts[i]['surname'] = document.getElementById('editContactSurname').value;
+            contacts[i]['email'] = document.getElementById('editContactEmail').value;
+            contacts[i]['phone'] = document.getElementById('editContactPhone').value;
 
             saveContacts();
             renderLetters();
             contactChangesSavedPupup();
-            editContactPopUp.style.display = 'none';
+            document.getElementById('editContactBackground').style.display = 'none';
         }
 
         function deleteContact(i) {
@@ -310,9 +305,7 @@
             document.getElementById('contactsBar').classList.remove('d-none');
             document.getElementById('contactsContainer').classList.remove('contactsContainerMobile');
             document.getElementById('newContactButton').classList.remove('d-none');
-
         }
-        
 
         /* ================================== SNACKBAR =======================================*/
         function showContactCreatedPupup() {

@@ -27,12 +27,12 @@ async function includeHTML() {
  */
 
     await init();
+    pushArrayToDo();
     updateHTML();
-    searchFunction();
+    //searchFunction();
     counters();
     addAssignedToList();
     setDateToday();
-
 }
 
 function counters() {
@@ -98,9 +98,9 @@ function updateHTML() {
     }
 }
 
-/* function pushArrayToDo() {
+function pushArrayToDo() {
     toDos = tasks;
-} */
+}
 
 function generateToDoHTML(element, index) {
     let progressBarHTML = '';
@@ -152,8 +152,15 @@ function getFirstLetter(index, i) {
                 return obj.name;
             }
         });
+        let x1 = users.filter(obj => {
+            if (obj.userid == y) {
+                return obj.surname;
+            }
+        });
         x = x[0]["name"].split(' ').map(word => word.charAt(0)).join('');
-        return x;
+        x1 = x1[0]["surname"].split(' ').map(word => word.charAt(0)).join('');
+        let xx1 = x.toUpperCase() + x1.toUpperCase();
+        return xx1;
     }
 }
 
