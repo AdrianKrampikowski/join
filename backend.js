@@ -34,7 +34,7 @@ function addUser() {
     let userId = id;
     let userColor = document.getElementById('userColor');
     let userColorValue = userColor.options[userColor.selectedIndex].value;
-    debugger
+    // debugger
 
     for (let i = 0; i < users.length; i++) {
         if (users[i]['userid'].includes === id) {
@@ -43,7 +43,7 @@ function addUser() {
     }
 
     let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
-    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-' };
+    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue};
     let user = users.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
@@ -82,7 +82,7 @@ function createTask() {
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor,assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
+    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
     tasks.push(taskData);
     saveTasks();
     console.log("Tasks", taskData);
@@ -95,8 +95,9 @@ async function saveTasks() {
 
 // Define an empty array to store the selected values
 selectedValues = [];
+
 setTimeout(() => {
-    saveSelectedUsers();
+    //saveSelectedUsers();
     saveSelectedPriority();
     saveSelectedCategory();
 }, 1500);
@@ -120,7 +121,9 @@ function saveSelectedUsers() {
         });
     });
 }
+
 let priority = "";
+
 function saveSelectedPriority() {
     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -128,6 +131,8 @@ function saveSelectedPriority() {
         });
     });
 }
+
+
 let black = "#000000";
 let white = "#FFFFFF";
 let orange = "#FF3D00";
@@ -185,6 +190,14 @@ function selectMediumEdit() {
     document.getElementById("mediumEdit").style.color = white;
     document.getElementById("lowEdit").style.color = black;
 
+    //document.getElementById("urgentEdit").style.background = white;
+    //document.getElementById("mediumEdit").style.background = lightorange;
+    //document.getElementById("lowEdit").style.background = white;
+
+    //document.getElementById("urgentEdit").style.color = black;
+    //document.getElementById("mediumEdit").style.color = white;
+    //document.getElementById("lowEdit").style.color = black;
+ 
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
@@ -203,7 +216,6 @@ function selectLow() {
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
-
 function selectLowEdit() {
     document.getElementById("urgentEdit").style.background = white;
     document.getElementById("mediumEdit").style.background = white;
@@ -217,6 +229,8 @@ function selectLowEdit() {
     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
 }
+
+let editedTaskPririty = [];
 
 
 function addBackgroundColorCategory(element) {
@@ -472,7 +486,6 @@ function checkForCorrectEmail() {
         noEmailInsertedPopup();
         return false;
     }
-
 
     if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
         userDoesNotExistPopup2();

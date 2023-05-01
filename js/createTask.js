@@ -8,13 +8,15 @@
 //         `;
 //     }
 // }
-setTimeout(() => {
+
+
+/* setTimeout(() => {
     // createDropdownUsers();
     // createDropdownCheckboxes();
     // getSelectedUsers();
     addAssignedToList();
     setDateToday();
-}, 1250);
+}, 2000); */
 
 function addAssignedToList() {
     document.getElementById('assignedToChoices').innerHTML = '';
@@ -23,7 +25,7 @@ function addAssignedToList() {
         // let contact = users[i];
         let name = users[i]["name"];
         document.getElementById('assignedToChoices').innerHTML += `
-        <div class="assigned-to-line">
+        <div class="assigned-to-line" onclick="saveSelectedUsers()">
             <label for="assigned-to-${i}" id="assigned_name${i}">${name}</label>
             <input type="checkbox" id="assigned-to-${i}"value="${userID}">
         </div>`

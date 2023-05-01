@@ -1,10 +1,10 @@
     let contacts = [];
     let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-    let newName = document.getElementById('contactName');
-    let newSurname = document.getElementById('contactSurname');
-    let newEmail = document.getElementById('contactEmail');
-    let newPhone = document.getElementById('contactPhone');
+    let contactName = document.getElementById('contactName');
+    let contactSurname = document.getElementById('contactSurname');
+    let contactEmail = document.getElementById('contactEmail');
+    let contactPhone = document.getElementById('contactPhone');
 
     let editName = document.getElementById('editContactName');
     let editSurname = document.getElementById('editContactSurname');
@@ -17,13 +17,15 @@
     let bgColor;
     let firstLetters;
 
-    async function initContacts() {
+/*     async function initContacts() {
         setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
         await downloadFromServer();
         contacts = JSON.parse(backend.getItem('contacts')) || [];
-
+        users = JSON.parse(backend.getItem('users')) || [];
+        tasks = JSON.parse(backend.getItem('tasks')) || [];
+    
         renderLetters();
-    } 
+    }  */
 
 
     function renderLetters() {
@@ -62,7 +64,7 @@
             let contactListName = contacts[c]['name'];
             let contactListSurname = contacts[c]['surname'];
             let contactEmail = contacts[c]['email'];
-            let contactBgColor = contacts[c]['background']
+            let contactBgColor = contacts[c]['contactColor'];
 
             randomBackground();
             nameGetFirstLetter(c);
@@ -132,17 +134,18 @@
     }
 
     function createContact() {
-        if (newName.value == '' || newEmail.value == '') {
+        debugger;
+        if (contactName.value == '' || contactEmail.value == '') {
             inputRequiredPopup();
         } else {
             randomBackground();
-            let newContact = { name: newName.value, surname: newSurname.value, email: newEmail.value, phone: newPhone.value, background: bgColor};
+            let newContact = {name: contactName.value, surname: contactSurname.value, email: contactEmail.value, phone: contactPhone.value, contactColor: bgColor};
             contacts.push(newContact);
             saveContacts();
-            newName.value = '';
-            newSurname.value = '';
-            newEmail.value = '';
-            newPhone.value = '';
+            contactName.value = '';
+            contactSurname.value = '';
+            contactEmail.value = '';
+            contactPhone.value = '';
             renderLetters();
             showContactCreatedPupup();
             document.getElementById('addContactBackground').style.display = 'none';
@@ -166,11 +169,11 @@
         let contactInfoSurname = contacts[c]['surname'];
         let contactInfoEmail = contacts[c]['email'];
         let contactInfoPhone = contacts[c]['phone'];
-        let contactInfoBgColor = contacts[c]['background'];
+        let contactInfoBgColor = contacts[c]['contactColor'];
 
         nameGetFirstLetter(c);
 
-        contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone);
+        contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone, contactInfoBgColor);
         document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
         document.getElementById('contactDetails' + c).style.animation = 'flying 225ms ease-in-out';
 
@@ -193,12 +196,12 @@
             currentElement.style.color = 'white';
     }
 
-    function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone) {
+    function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone, contactInfoBgColor) {
         return `
             <div class="contactDetails" id="contactDetails${c}">
                 <div>
                     <div>
-                        <div id="contactIconBig${c}" class="contactIconBig">
+                        <div id="contactIconBig${c}" class="contactIconBig" style="background-color: ${contactInfoBgColor};">
                             <span>${firstLetters}</span>
                         </div>
                     </div>
@@ -257,13 +260,13 @@
 
         function editContact(i) {
 
-            editContactPopUp.style.display = 'flex';
+            document.getElementById('editContactBackground').style.display = 'flex';
 
             editName.value = contacts[i]['name'];
             editSurname.value = contacts[i]['surname'];
             editEmail.value = contacts[i]['email'];
             editPhone.value = contacts[i]['phone'];
-            let contactInfoBgColor = contacts[i]['background'];
+            let contactInfoBgColor = contacts[i]['contactColor'];
 
 
             let saveChangesButton = document.getElementById('saveChangesButton');
@@ -287,7 +290,7 @@
         function saveChanges(i) {
             contacts[i]['name'] = editName.value;
             contacts[i]['surname'] = editSurname.value;
-            contacts[i]['emailpho'] = editEmail.value;
+            contacts[i]['email'] = editEmail.value;
             contacts[i]['phone'] = editPhone.value;
 
             saveContacts();
