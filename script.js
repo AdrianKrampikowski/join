@@ -54,9 +54,6 @@ let userChar = [];
 let allUsers = [];
 let currentDraggedElement;
 let subtasks = [];
-let priorityValueEdit;
-let usersTaskEdit = [];
-
 /* ========================================= BOARD FUNCTIONS ========================================= */
 
 function updateHTML() {
