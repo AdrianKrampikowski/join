@@ -61,7 +61,7 @@ function inputChangeSubIcons() {
 function addSubtask() {
     let subtask = document.getElementById('subtask').value;
     if (!subtask == '') {
-        document.getElementById('subtask-list').innerHTML += `<li>${subtask}</li>`;
+        document.getElementById('subtaskList').innerHTML += `<li>${subtask}</li>`;
         document.getElementById('subtask').value = '';
         subtasks.push({
             'subtaskName': subtask,
@@ -91,5 +91,5 @@ function clearAll() {
     //      }
     //  }
     //  document.getElementById('dueDate').value = '';
-    //  document.getElementById('subtask-list').innerHTML = '';
+    //  document.getElementById('subtaskList').innerHTML = '';
 }
