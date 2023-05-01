@@ -176,9 +176,16 @@ function createBubbles() {
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
                     `;
                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                if (users[j]) {
-                    userBubbleOne.style.backgroundColor = users[j] ? users[j]["userColor"] : users[j]["background"];
-                }
+
+                let currentUserId = tasks[j]['assignTo'][i];
+                let existingUser = users.find(u => u.userid == parseInt(currentUserId));
+                let correctUser = users.indexOf(existingUser);
+                let correctUserBg = users[correctUser]['userColor']
+                userBubbleOne.style.backgroundColor = correctUserBg;
+
+                //if (users[j]) {
+                //    userBubbleOne.style.backgroundColor = users[j] ? users[j]["userColor"] : users[j]["background"];
+                //}
             }
         }
         else if (tasks[j]["assignTo"].length >= 3) {
@@ -188,10 +195,18 @@ function createBubbles() {
                     <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
                     `;
                 let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-                if (users[j]) {
-                    userBubbleOne.style.backgroundColor = users[j] ? users[j]["userColor"] : users[j]["background"];
-                }
+
+                let currentUserId = tasks[j]['assignTo'][i];
+                let existingUser = users.find(u => u.userid == parseInt(currentUserId));
+                let correctUser = users.indexOf(existingUser);
+                let correctUserBg = users[correctUser]['userColor']
+                userBubbleOne.style.backgroundColor = correctUserBg;
+
+                //if (users[j]) {
+                //    userBubbleOne.style.backgroundColor = users[j] ? users[j]["userColor"] : users[j]["background"];
+                //}
             }
+
             let remainingCount = tasks[j]["assignTo"].length - 2;
             document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
                 <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
