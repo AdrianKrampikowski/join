@@ -478,9 +478,9 @@ span {
     height: calc(100vh - 163px);
   }
 
-  .topNavBarRightImg {
+  /* .topNavBarRightImg {
     display: none;
-  }
+  } */
 
   .clearButton {
     display: none;

@@ -4,6 +4,8 @@ let tasks = [];
 let id;
 let taskId;
 
+let allValueCheck = false;
+
 // Immer als erste Funktion ausführen!
 async function init() {
     setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
@@ -43,22 +45,28 @@ function addUser() {
     }
 
     let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
-    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue};
+    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue };
     let user = users.find(u => u.email == email.value && u.password == password.value);
-
-    if (user) {
-        alreadySignedUpPupup();
-        name.value = '';
-        surname.value = '';
-        email.value = '';
-        password.value = '';
-    } else {
-        users.push(userData);
-        contacts.push(contactData);
-        save();
-        saveContacts();
-        successfullySignedUpPopup();
-        setInterval(backToLoginScreen, 1200);
+    if (userData.name && userData.surname && userData.email && userData.password && userData.userColor && userData.userColor != "none") {
+        debugger
+        if (user) {
+            alreadySignedUpPopup();
+            name.value = '';
+            surname.value = '';
+            email.value = '';
+            password.value = '';
+        } else {
+            debugger
+            users.push(userData);
+            contacts.push(contactData);
+            save();
+            saveContacts();
+            successfullySignedUpPopup();
+            setInterval(backToLoginScreen, 1200);
+        }
+    }
+    else {
+        missingSignedUpPopup();
     }
 }
 
@@ -82,7 +90,7 @@ async function createTask() {
     let assignTo = selectedValues;
     let dueDate = document.getElementById('dueDate');
     let priorityValue = priority;
-    let taskData = {taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue};
+    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
     tasks.push(taskData);
     await saveTasks();
 
@@ -198,7 +206,7 @@ function selectMediumEdit() {
     //document.getElementById("urgentEdit").style.color = black;
     //document.getElementById("mediumEdit").style.color = white;
     //document.getElementById("lowEdit").style.color = black;
- 
+
     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
@@ -360,7 +368,18 @@ function showLogoutButton() {
 
 
 /* ================================== SNACKBAR =======================================*/
-function alreadySignedUpPupup() {
+function missingSignedUpPopup() {
+    // Get the snackbar DIV
+    var x = document.getElementById("missingSignedUp");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function alreadySignedUpPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("alreadySignedUp");
 
@@ -491,7 +510,7 @@ function checkForCorrectEmail() {
         userDoesNotExistPopup2();
         return false;
     }
-   
+
     setTimeout(sendEmailPopup, 3000);
     return true;
 }

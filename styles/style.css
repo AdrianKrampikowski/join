@@ -384,7 +384,7 @@ a {
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#alreadySignedUp, #successfullySignedUp, #userDoesNotExist, #pwEmailIncorrect, #sendEmail {
+#missingSignedUp, #alreadySignedUp, #successfullySignedUp, #userDoesNotExist, #pwEmailIncorrect, #sendEmail {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 280px; /* Set a default minimum width */
   margin-left: -140px; /* Divide value of min-width by 2 */
@@ -399,8 +399,12 @@ a {
   bottom: 30px; /* 30px from the bottom */
 }
 
+#missingSignedUp {
+  background-color: red;
+}
+
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#alreadySignedUp.show, #successfullySignedUp.show, #userDoesNotExist.show, #pwEmailIncorrect.show, #sendEmail.show {
+#missingSignedUp.show, #alreadySignedUp.show, #successfullySignedUp.show, #userDoesNotExist.show, #pwEmailIncorrect.show, #sendEmail.show {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
