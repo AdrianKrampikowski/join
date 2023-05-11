@@ -7,7 +7,7 @@
                 <div class="addTaskLeftandRightContainer">
                     <div class="selectionContainer preventSelect">
                         <span>Title</span>
-                        <input placeholder="Enter a title" id="title" required="">
+                        <input placeholder="Enter a title" id="title" class="titleInput" required="">
                     </div>
 
                     <div class="selectionContainer preventSelect">
@@ -17,7 +17,7 @@
 
                     <div class="selectionContainer preventSelect">
                         <span>Category</span>
-                        <div class="selectWrapper" onclick="openDropdown('categoryChoices')">
+                        <div class="selectWrapper selectWrapperHeight" onclick="openDropdown('categoryChoices')">
                             <div class="sectorTop">
                                 <p id="selectCategory">Select task category</p><img src="/img/arrow.svg">
                             </div>
@@ -48,7 +48,7 @@
 
                     <div class="selectionContainer preventSelect">
                         <span>Assigned To</span>
-                        <div class="selectWrapper assignedToWrapper">
+                        <div class="selectWrapper selectWrapperHeight assignedToWrapper">
                             <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
                                 <p id="assignedToHeader">Select contacts to assign</p><img src="/img/Vector 2.png">
                             </div>

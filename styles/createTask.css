@@ -18,6 +18,10 @@ select,
   outline: none;
 }
 
+.selectWrapperHeight {
+  padding: 0px 21px;
+}
+
 select {
   appearance: none;
   background: url(/img/arrow.svg) 96% / 3% no-repeat white;

@@ -628,7 +628,7 @@ function searchFunction() {
                 card.style.display = "none";
             });
         }
-    }, 100));
+    }, 200));
 }
 
 /* =============================== SUMMARY FUNCTIONS =================================== */
