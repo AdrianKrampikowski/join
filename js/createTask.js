@@ -25,12 +25,13 @@ function addAssignedToList() {
         // let contact = users[i];
         let name = users[i]["name"];
         document.getElementById('assignedToChoices').innerHTML += `
-        <div class="assigned-to-line">
+        <div class="assignedToLine">
             <label for="assigned-to-${i}" id="assigned_name${i}">${name}</label>
             <input type="checkbox" id="assigned-to-${i}"value="${userID}">
         </div>`
     }
 }
+
 
 function openDropdown(id) {
     if (document.getElementById(id).classList.contains('d-none')) {

@@ -64,7 +64,7 @@ span {
   height: inherit;
   width: inherit;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 1.5rem;
   overflow-x: hidden;
@@ -84,13 +84,13 @@ span {
 } */
 
 .addTaskMainSubContainer::-webkit-scrollbar-thumb {
-  background-color: #A8A8A8;
+  background-color: #a8a8a8;
   border: 2px solid white;
   border-radius: 6px;
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button {
-  color: #A8A8A8;
+  color: #a8a8a8;
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button {
@@ -120,10 +120,9 @@ span {
 
 /* ================================================================================== */
 
-.addTaskMainSubContainer>form {
+.addTaskMainSubContainer > form {
   height: 100%;
 }
-
 
 .addTaskContainer {
   display: flex;
@@ -228,17 +227,17 @@ span {
 .prioButtons {
   display: flex;
   gap: 10px;
-
 }
 
-.prioButton, .prioButtonEdit {
+.prioButton,
+.prioButtonEdit {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 10px 10px;
   gap: 10px;
-  border: 1px solid #D1D1D1 !important;
+  border: 1px solid #d1d1d1 !important;
   border-radius: 10px;
   font-size: 21px;
   font-weight: 400;
@@ -248,7 +247,6 @@ span {
   transition: all 100ms ease-in-out;
   cursor: pointer;
 }
-
 
 .prioButton:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
@@ -265,7 +263,7 @@ span {
 .subtaskContainer {
   width: 100%;
   background-color: white;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-size: 21px;
   font-weight: 400;
@@ -278,7 +276,6 @@ span {
 
 .subtaskInput {
   border: 0px !important;
-  width: 80%;
   outline: none;
   cursor: pointer;
 }
@@ -290,7 +287,6 @@ span {
 .subtaskImgContainer {
   display: flex;
   gap: 9px;
-  padding-right: 15px;
 }
 
 .subTaskIcons {
@@ -299,15 +295,12 @@ span {
 
 .gapImgSubtask {
   width: 1px;
-  background-color: #D1D1D1;
+  background-color: #d1d1d1;
 }
 
 .clearAndCreateButton {
   display: flex;
   bottom: 100px;
-
-
-
 }
 
 .clearAndCreateButton button {
@@ -316,11 +309,10 @@ span {
   padding: 18px 10px;
   margin-left: 25px;
   transition: background 255ms ease-in-out;
-
 }
 
 .createTaskButton {
-  background: #2A3647;
+  background: #2a3647;
   color: white;
   border: none;
   display: flex;
@@ -334,19 +326,19 @@ span {
 }
 
 .createTaskButton:hover {
-  background-color: #29ABE2;
-  border: 2px solid #29ABE2;
+  background-color: #29abe2;
+  border: 2px solid #29abe2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .clearButton {
-  border: solid 1px #2A3647;
+  border: solid 1px #2a3647;
   font-size: 1.5rem;
   border-radius: 10px;
   padding: 18px 10px;
   margin-left: 25px;
   transition: background 255ms ease-in-out;
-  color: #2A3647;
+  color: #2a3647;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -357,12 +349,10 @@ span {
 }
 
 .clearButton:hover {
-  color: #29ABE2;
-  border: 2px solid #29ABE2;
+  color: #29abe2;
+  border: 2px solid #29abe2;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-
-
 
 /* ================================== SNACKBAR =======================================*/
 
@@ -374,7 +364,7 @@ span {
   /* Set a default minimum width */
   margin-left: -140px;
   /* Divide value of min-width by 2 */
-  background-color: #2A3647;
+  background-color: #2a3647;
   /* Black background color */
   color: #fff;
   /* White text color */
@@ -404,6 +394,11 @@ span {
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+.assignedToLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {
@@ -455,7 +450,6 @@ span {
 
 /* =================================================================================*/
 
-
 @media (max-width: 1100px) {
   .middleGap {
     display: none;
@@ -465,7 +459,7 @@ span {
     flex-direction: column;
   }
 
-  .addTaskMainSubContainer>form {
+  .addTaskMainSubContainer > form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -495,7 +489,7 @@ span {
   }
 
   .addTaskMobile {
-    background-color: #F6F7F8;
+    background-color: #f6f7f8;
     border: none;
     z-index: 11;
     display: block !important;

@@ -50,7 +50,7 @@ function addUser() {
     if (userData.name && userData.surname && userData.email && userData.password && userData.userColor && userData.userColor != "none") {
         debugger
         if (user) {
-            alreadySignedUpPopup();
+            displaySignedUpPopup('alreadySignedUp');
             name.value = '';
             surname.value = '';
             email.value = '';
@@ -61,12 +61,12 @@ function addUser() {
             contacts.push(contactData);
             save();
             saveContacts();
-            successfullySignedUpPopup();
+            displaySignedUpPopup('successfullySignedUp');
             setInterval(backToLoginScreen, 1200);
         }
     }
     else {
-        missingSignedUpPopup();
+        displaySignedUpPopup('missingSignedUp');
     }
 }
 
@@ -148,99 +148,169 @@ let orange = "#FF3D00";
 let lightorange = "#FFA800";
 let green = "#7AE229";
 
+let prevPriorityElement = null; // keep track of previously clicked button
+
+function select(id, idsToDeselect, filtersToDeselect, idsToSelect, filtersToSelect) {
+    // Set background and color for IDs to deselect
+    for (var i = 0; i < idsToDeselect.length; i++) {
+        var element = document.getElementById(idsToDeselect[i]);
+        element.style.background = "white";
+        element.style.color = "black";
+        if (filtersToDeselect[i]) {
+            var imgElement = document.getElementById(filtersToDeselect[i]);
+            imgElement.style.filter = "";
+        }
+    }
+
+    // Set background and color for IDs to select
+    for (var i = 0; i < idsToSelect.length; i++) {
+        var element = document.getElementById(idsToSelect[i]);
+        switch (idsToSelect[i]) {
+            case "urgent":
+                element.style.background = orange;
+                element.style.color = white;
+                break;
+            case "medium":
+                element.style.background = lightorange;
+                element.style.color = white; // change to white
+                break;
+            case "low":
+                element.style.background = green;
+                element.style.color = white; // change to white
+                break;
+            default:
+                element.style.background = white;
+                element.style.color = black;
+        }
+
+
+        if (filtersToSelect[i]) {
+            var imgElement = document.getElementById(filtersToSelect[i]);
+            imgElement.style.filter = "brightness(0) invert(1)";
+        }
+
+    }
+}
+
+
 function selectUrgent() {
-    document.getElementById("urgent").style.background = orange;
-    document.getElementById("medium").style.background = white;
-    document.getElementById("low").style.background = white;
-
-    document.getElementById("urgent").style.color = white;
-    document.getElementById("medium").style.color = black;
-    document.getElementById("low").style.color = black;
-
-    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+    select("urgent", ["medium", "low"], ["imgMedium", "imgLow"], ["urgent"], ["imgUrgent"]);
 }
 
 function selectUrgentEdit() {
-    document.getElementById("urgentEdit").style.background = orange;
-    document.getElementById("mediumEdit").style.background = white;
-    document.getElementById("lowEdit").style.background = white;
-
-    document.getElementById("urgentEdit").style.color = white;
-    document.getElementById("mediumEdit").style.color = black;
-    document.getElementById("lowEdit").style.color = black;
-
-    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+    select("urgentEdit", ["mediumEdit", "lowEdit"], ["imgMediumEdit", "imgLowEdit"], ["urgentEdit"], ["imgUrgentEdit"]);
 }
 
 function selectMedium() {
-    document.getElementById("urgent").style.background = white;
-    document.getElementById("medium").style.background = lightorange;
-    document.getElementById("low").style.background = white;
-
-    document.getElementById("urgent").style.color = black;
-    document.getElementById("medium").style.color = white;
-    document.getElementById("low").style.color = black;
-
-    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+    select("medium", ["urgent", "low"], ["imgUrgent", "imgLow"], ["medium"], ["imgMedium"]);
 }
 
 function selectMediumEdit() {
-    document.getElementById("urgentEdit").style.background = white;
-    document.getElementById("mediumEdit").style.background = lightorange;
-    document.getElementById("lowEdit").style.background = white;
-
-    document.getElementById("urgentEdit").style.color = black;
-    document.getElementById("mediumEdit").style.color = white;
-    document.getElementById("lowEdit").style.color = black;
-
-    //document.getElementById("urgentEdit").style.background = white;
-    //document.getElementById("mediumEdit").style.background = lightorange;
-    //document.getElementById("lowEdit").style.background = white;
-
-    //document.getElementById("urgentEdit").style.color = black;
-    //document.getElementById("mediumEdit").style.color = white;
-    //document.getElementById("lowEdit").style.color = black;
-
-    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+    select("mediumEdit", ["urgentEdit", "lowEdit"], ["imgUrgent", "imgLowEdit"], ["mediumEdit"], ["imgMedium"]);
 }
 
 function selectLow() {
-    document.getElementById("urgent").style.background = white;
-    document.getElementById("medium").style.background = white;
-    document.getElementById("low").style.background = green;
-
-    document.getElementById("urgent").style.color = black;
-    document.getElementById("medium").style.color = black;
-    document.getElementById("low").style.color = white;
-
-    document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-    document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-    document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    select("low", ["urgent", "medium"], ["imgUrgent", "imgMedium"], ["low"], ["imgLow"]);
 }
+
 function selectLowEdit() {
-    document.getElementById("urgentEdit").style.background = white;
-    document.getElementById("mediumEdit").style.background = white;
-    document.getElementById("lowEdit").style.background = green;
-
-    document.getElementById("urgentEdit").style.color = black;
-    document.getElementById("mediumEdit").style.color = black;
-    document.getElementById("lowEdit").style.color = white;
-
-    document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-    document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-    document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+    select("lowEdit", ["urgentEdit", "mediumEdit"], ["imgUrgent", "imgMediumEdit"], ["lowEdit"], ["imgLow"]);
 }
+
+
+
+// function selectUrgent() {
+//     document.getElementById("urgent").style.background = orange;
+//     document.getElementById("medium").style.background = white;
+//     document.getElementById("low").style.background = white;
+
+//     document.getElementById("urgent").style.color = white;
+//     document.getElementById("medium").style.color = black;
+//     document.getElementById("low").style.color = black;
+
+//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+// }
+
+// function selectUrgentEdit() {
+//     document.getElementById("urgentEdit").style.background = orange;
+//     document.getElementById("mediumEdit").style.background = white;
+//     document.getElementById("lowEdit").style.background = white;
+
+//     document.getElementById("urgentEdit").style.color = white;
+//     document.getElementById("mediumEdit").style.color = black;
+//     document.getElementById("lowEdit").style.color = black;
+
+//     document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+//     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+// }
+
+// function selectMedium() {
+//     document.getElementById("urgent").style.background = white;
+//     document.getElementById("medium").style.background = lightorange;
+//     document.getElementById("low").style.background = white;
+
+//     document.getElementById("urgent").style.color = black;
+//     document.getElementById("medium").style.color = white;
+//     document.getElementById("low").style.color = black;
+
+//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+// }
+
+// function selectMediumEdit() {
+//     document.getElementById("urgentEdit").style.background = white;
+//     document.getElementById("mediumEdit").style.background = lightorange;
+//     document.getElementById("lowEdit").style.background = white;
+
+//     document.getElementById("urgentEdit").style.color = black;
+//     document.getElementById("mediumEdit").style.color = white;
+//     document.getElementById("lowEdit").style.color = black;
+
+//     //document.getElementById("urgentEdit").style.background = white;
+//     //document.getElementById("mediumEdit").style.background = lightorange;
+//     //document.getElementById("lowEdit").style.background = white;
+
+//     //document.getElementById("urgentEdit").style.color = black;
+//     //document.getElementById("mediumEdit").style.color = white;
+//     //document.getElementById("lowEdit").style.color = black;
+
+//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
+// }
+
+// function selectLow() {
+//     document.getElementById("urgent").style.background = white;
+//     document.getElementById("medium").style.background = white;
+//     document.getElementById("low").style.background = green;
+
+//     document.getElementById("urgent").style.color = black;
+//     document.getElementById("medium").style.color = black;
+//     document.getElementById("low").style.color = white;
+
+//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+// }
+// function selectLowEdit() {
+//     document.getElementById("urgentEdit").style.background = white;
+//     document.getElementById("mediumEdit").style.background = white;
+//     document.getElementById("lowEdit").style.background = green;
+
+//     document.getElementById("urgentEdit").style.color = black;
+//     document.getElementById("mediumEdit").style.color = black;
+//     document.getElementById("lowEdit").style.color = white;
+
+//     document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
+//     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
+//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
+// }
 
 let editedTaskPririty = [];
-
 
 function addBackgroundColorCategory(element) {
     if (element == "Marketing") {
@@ -307,9 +377,9 @@ function login() {
         userColor(userColor);
 
     } else if (existingUser) {
-        pwEmailIncorrectPopup();
+        displaySignedUpPopup('pwEmailIncorrect');
     } else {
-        userDoesNotExistPopup();
+        displaySignedUpPopup('userDoesNotExist');
     }
 }
 
@@ -368,126 +438,132 @@ function showLogoutButton() {
 
 
 /* ================================== SNACKBAR =======================================*/
-function missingSignedUpPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("missingSignedUp");
-
-    // Add the "show" class to DIV
+function displaySignedUpPopup(popupId) {
+    var x = document.getElementById(popupId);
     x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function alreadySignedUpPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("alreadySignedUp");
+// function missingSignedUpPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("missingSignedUp");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function successfullySignedUpPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("successfullySignedUp");
+// function alreadySignedUpPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("alreadySignedUp");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function userDoesNotExistPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("userDoesNotExist");
+// function successfullySignedUpPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("successfullySignedUp");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function userDoesNotExistPopup2() {
-    // Get the snackbar DIV
-    var x = document.getElementById("userDoesNotExist2");
+// function userDoesNotExistPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("userDoesNotExist");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function pwEmailIncorrectPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("pwEmailIncorrect");
+// function userDoesNotExistPopup2() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("userDoesNotExist2");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function noEmailInsertedPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("noEmailInsertedPopup");
+// function pwEmailIncorrectPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("pwEmailIncorrect");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function sendEmailPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("sendEmail");
+// function noEmailInsertedPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("noEmailInsertedPopup");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function passwordResetPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("passwordReset");
+// function sendEmailPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("sendEmail");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function passwordsNotIdentical() {
-    // Get the snackbar DIV
-    var x = document.getElementById("passwordsNotIdentical");
+// function passwordResetPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("passwordReset");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
-function taskCreatedPopup() {
-    // Get the snackbar DIV
-    var x = document.getElementById("taskCreated");
+// function passwordsNotIdentical() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("passwordsNotIdentical");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+//     // Add the "show" class to DIV
+//     x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
+
+// function taskCreatedPopup() {
+//     // Get the snackbar DIV
+//     var x = document.getElementById("taskCreated");
+
+//     // Add the "show" class to DIV
+//     x.className = "show";
+
+//     // After 3 seconds, remove the show class from DIV
+//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+// }
 
 /* ======================================================================================*/
 
@@ -502,12 +578,12 @@ function checkForCorrectEmail() {
     let correctUser = users.indexOf(existingEmail);
 
     if (sendEmailToResetPw == '') {
-        noEmailInsertedPopup();
+        displaySignedUpPopup('noEmailInsertedPopup');
         return false;
     }
 
     if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
-        userDoesNotExistPopup2();
+        displaySignedUpPopup('userDoesNotExistTwo');
         return false;
     }
 
@@ -533,7 +609,7 @@ function resetPassword() {
             setInterval(backToLoginScreen, 1200);
         }
     } else {
-        passwordsNotIdentical();
+        displaySignedUpPopup('passwordsNotIdentical');
     }
 }
 

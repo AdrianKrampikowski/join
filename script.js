@@ -12,19 +12,19 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-/*     showAllContacts();
-    setTimeout(() => {
-        pushArrayToDo();
+    /*     showAllContacts();
         setTimeout(() => {
-            updateHTML();
-            searchFunction();
-        }, 500);
-    }, 1250);
-
-    setTimeout(() => {
-        counters();
-    }, 1500);
- */
+            pushArrayToDo();
+            setTimeout(() => {
+                updateHTML();
+                searchFunction();
+            }, 500);
+        }, 1250);
+    
+        setTimeout(() => {
+            counters();
+        }, 1500);
+     */
 
     await init();
     pushArrayToDo();
@@ -295,7 +295,7 @@ let startWithLetter = [];
 
 function openTask(currentTaskId) {
     document.getElementById('openTaskBackground').style.display = 'flex';
-    
+
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
     let currentTask = tasks.indexOf(existingTask);
 
@@ -305,7 +305,7 @@ function openTask(currentTaskId) {
 
     renderAssignedUsers(currentTask);
     prioritySymbol(currentTask);
-} 
+}
 
 function openTaskTemplate(currentTask, categoryColor) {
     return `
@@ -367,13 +367,13 @@ function deleteTask(currentTask) {
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
 
-//     // <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
-//     //=> Template für generateToDoHTML / Task generieren
+    //     // <img onclick="deleteTask(${element["taskId"]})" src="../img/deleteBlue.svg">
+    //     //=> Template für generateToDoHTML / Task generieren
 }
 
 function renderAssignedUsers(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
-    
+
     for (let i = 0; i < assignedUsers.length; i++) {
         let assignedUser = assignedUsers[i];
         let existingAssignUser = users.find(u => u.userid == assignedUser)
@@ -383,8 +383,8 @@ function renderAssignedUsers(currentTask) {
         let assignSurname = users[currentAssignUser]['surname'];
         let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
         let assignColor = users[currentAssignUser]['userColor'];
-        
-        document.getElementById('assignedToContainer').innerHTML +=  `
+
+        document.getElementById('assignedToContainer').innerHTML += `
             <div class="openTaskAssignedPerson">
                 <div style="background-color: ${assignColor};">
                     <span>${assignFirstLetters.toUpperCase()}</span>
@@ -392,7 +392,7 @@ function renderAssignedUsers(currentTask) {
                 <div>${assignName} ${assignSurname}</div>
             </div>
         `;
-    } 
+    }
 
     //style="background-color: '${assignColor}';
 }
@@ -401,7 +401,7 @@ function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
     let priority = document.getElementById('priority');
 
-    if(currentPriority == 'urgent') {
+    if (currentPriority == 'urgent') {
         priority.innerHTML += `<img id="openTaskImgPriority" src="./img/urgentArrow.svg">`;
     } else if (currentPriority == 'medium') {
         priority.innerHTML += `<img id="openTaskImgPriority" src="./img/medium.svg">`;
@@ -502,12 +502,13 @@ function editOpenTaskTemplate(currentTask) {
     `;
 }
 
+
 function renderUrgency(currentTask) {
-    if(tasks[currentTask]['priorityValue'] == 'urgent'){
+    if (tasks[currentTask]['priorityValue'] == 'urgent') {
         selectUrgentEdit();
-    } else if(tasks[currentTask]['priorityValue'] == 'medium') {
+    } else if (tasks[currentTask]['priorityValue'] == 'medium') {
         selectMediumEdit();
-    } else if(tasks[currentTask]['priorityValue'] == 'low') {
+    } else if (tasks[currentTask]['priorityValue'] == 'low') {
         selectLowEdit();
     }
 }
@@ -516,14 +517,14 @@ function renderAssignedUsersEdit(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
 
     for (let j = 0; j < users.length; j++) {
-        
+
         let userid = users[j]['userid'];
         let assignName = users[j]['name'];
         let assignSurname = users[j]['surname'];
         let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
 
-        if(assignedUsers.includes(userid.toString())) {
-            document.getElementById('assignedToContainerEdit').innerHTML +=  `
+        if (assignedUsers.includes(userid.toString())) {
+            document.getElementById('assignedToContainerEdit').innerHTML += `
                 <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
                     <input type="checkbox" value="${users[j]['userid']}" checked>
                     <div style="background-color: ${users[j]['userColor']};">
@@ -533,7 +534,7 @@ function renderAssignedUsersEdit(currentTask) {
                 </div>
             `;
         } else {
-            document.getElementById('assignedToContainerEdit').innerHTML +=  `
+            document.getElementById('assignedToContainerEdit').innerHTML += `
             <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
                 <input type="checkbox" value="${users[j]['userid']}">
                 <div style="background-color: ${users[j]['userColor']};">
@@ -602,7 +603,7 @@ function searchFunction() {
         let newArray;
         if (selectedValue === '') {
             newArray = [...originalToDos];
-            toDos = originalToDos;
+            tasks = originalToDos;
         } else {
             newArray = tasks.filter(item => {
                 if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
@@ -619,7 +620,7 @@ function searchFunction() {
         }
         tasks = newArray;
         updateHTML();
-        if (toDos.length > 0) {
+        if (tasks.length > 0) {
             Array.from(document.getElementsByClassName("boardContainer")).forEach((card) => {
                 card.style.display = "block";
             });
@@ -629,7 +630,15 @@ function searchFunction() {
             });
         }
     }, 200));
+
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Backspace' || event.key === 'Delete') {
+            input.dispatchEvent(new Event('input'));
+        }
+    });
 }
+
+
 
 /* =============================== SUMMARY FUNCTIONS =================================== */
 function taskCounter() {
@@ -715,7 +724,7 @@ function displayUserName() {
     let userName = localStorage.getItem("userName");
     let abbreviatedName = abbreviateName(userName, 10);
 
-    if(userName == undefined) {
+    if (userName == undefined) {
         document.getElementById("userName").innerHTML = 'Guest';
 
     } else {
@@ -754,64 +763,15 @@ function debounce(func, delay) {
     };
 }
 
-function displayMainSummaryPage() {
-    document.getElementById("mainSummaryContainerDisplay").style.display = "block";
-    document.getElementById("mainBoardContainerDisplay").style.display = "none";
-    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
-    document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
-    document.getElementById("mainhelpContainerDisplay").style.display = "none";
-}
-
-function displayMainBoardPage() {
-    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
-    document.getElementById("mainBoardContainerDisplay").style.display = "block";
-    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
-    document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
-    document.getElementById("mainhelpContainerDisplay").style.display = "none";
-}
-
-function displayMainAddTaskPage() {
-    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
-    document.getElementById("mainBoardContainerDisplay").style.display = "none";
-    document.getElementById("mainAddTaskContainerDisplay").style.display = "block";
-    document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
-    document.getElementById("mainhelpContainerDisplay").style.display = "none";
-}
-
-function displayMainContacsPage() {
-    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
-    document.getElementById("mainBoardContainerDisplay").style.display = "none";
-    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
-    document.getElementById("mainContactsContainerDisplay").style.display = "block";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
-    document.getElementById("mainhelpContainerDisplay").style.display = "none";
-}
-
-function displayMainLegalNoticePage() {
-    document.getElementById("mainSummaryContainerDisplay").style.display = "none";
-    document.getElementById("mainBoardContainerDisplay").style.display = "none";
-    document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
-    document.getElementById("mainContactsContainerDisplay").style.display = "none";
-    document.getElementById("mainLegalNoticeContainerDisplay").style.display = "block";
-    document.getElementById("mainhelpContainerDisplay").style.display = "none";
-}
-
-function displayMainHelpPage() {
+function displayPage(pageId) {
     document.getElementById("mainSummaryContainerDisplay").style.display = "none";
     document.getElementById("mainBoardContainerDisplay").style.display = "none";
     document.getElementById("mainAddTaskContainerDisplay").style.display = "none";
     document.getElementById("mainContactsContainerDisplay").style.display = "none";
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
-    document.getElementById("mainhelpContainerDisplay").style.display = "block";
+    document.getElementById("mainhelpContainerDisplay").style.display = "none";
+    document.getElementById(pageId).style.display = "block";
 }
-
-
-
-
-
 
 // 27.04.2023 ==================================================================================================
 
@@ -867,7 +827,7 @@ function openTaskTemplate(currentTask, categoryColor) {
                     <div>Assigned To:</div>
                     <div id="assignedToContainer" class="assignedToContainer">
 
-                    </div>                
+                    </div>
                 </div>
             </div>
         </div>
@@ -993,7 +953,7 @@ function renderAssignedUsersEdit(currentTask) {
             let assignSurname = users[currentAssignUser]['surname'];
             let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
 
-    
+
 
             let assignColor = users[currentAssignUser]['userColor'];
 
