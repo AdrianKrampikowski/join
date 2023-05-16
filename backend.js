@@ -36,7 +36,6 @@ function addUser() {
     let userId = id;
     let userColor = document.getElementById('userColor');
     let userColorValue = userColor.options[userColor.selectedIndex].value;
-    // debugger
 
     for (let i = 0; i < users.length; i++) {
         if (users[i]['userid'].includes === id) {
@@ -48,7 +47,6 @@ function addUser() {
     let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue };
     let user = users.find(u => u.email == email.value && u.password == password.value);
     if (userData.name && userData.surname && userData.email && userData.password && userData.userColor && userData.userColor != "none") {
-        debugger
         if (user) {
             displaySignedUpPopup('alreadySignedUp');
             name.value = '';
@@ -56,7 +54,6 @@ function addUser() {
             email.value = '';
             password.value = '';
         } else {
-            debugger
             users.push(userData);
             contacts.push(contactData);
             save();
@@ -192,7 +189,6 @@ function select(id, idsToDeselect, filtersToDeselect, idsToSelect, filtersToSele
     }
 }
 
-
 function selectUrgent() {
     select("urgent", ["medium", "low"], ["imgMedium", "imgLow"], ["urgent"], ["imgUrgent"]);
 }
@@ -217,99 +213,6 @@ function selectLowEdit() {
     select("lowEdit", ["urgentEdit", "mediumEdit"], ["imgUrgent", "imgMediumEdit"], ["lowEdit"], ["imgLow"]);
 }
 
-
-
-// function selectUrgent() {
-//     document.getElementById("urgent").style.background = orange;
-//     document.getElementById("medium").style.background = white;
-//     document.getElementById("low").style.background = white;
-
-//     document.getElementById("urgent").style.color = white;
-//     document.getElementById("medium").style.color = black;
-//     document.getElementById("low").style.color = black;
-
-//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
-// }
-
-// function selectUrgentEdit() {
-//     document.getElementById("urgentEdit").style.background = orange;
-//     document.getElementById("mediumEdit").style.background = white;
-//     document.getElementById("lowEdit").style.background = white;
-
-//     document.getElementById("urgentEdit").style.color = white;
-//     document.getElementById("mediumEdit").style.color = black;
-//     document.getElementById("lowEdit").style.color = black;
-
-//     document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-//     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
-// }
-
-// function selectMedium() {
-//     document.getElementById("urgent").style.background = white;
-//     document.getElementById("medium").style.background = lightorange;
-//     document.getElementById("low").style.background = white;
-
-//     document.getElementById("urgent").style.color = black;
-//     document.getElementById("medium").style.color = white;
-//     document.getElementById("low").style.color = black;
-
-//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
-// }
-
-// function selectMediumEdit() {
-//     document.getElementById("urgentEdit").style.background = white;
-//     document.getElementById("mediumEdit").style.background = lightorange;
-//     document.getElementById("lowEdit").style.background = white;
-
-//     document.getElementById("urgentEdit").style.color = black;
-//     document.getElementById("mediumEdit").style.color = white;
-//     document.getElementById("lowEdit").style.color = black;
-
-//     //document.getElementById("urgentEdit").style.background = white;
-//     //document.getElementById("mediumEdit").style.background = lightorange;
-//     //document.getElementById("lowEdit").style.background = white;
-
-//     //document.getElementById("urgentEdit").style.color = black;
-//     //document.getElementById("mediumEdit").style.color = white;
-//     //document.getElementById("lowEdit").style.color = black;
-
-//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(92%) sepia(41%) saturate(6077%) hue-rotate(32deg) brightness(96%) contrast(85%)";
-// }
-
-// function selectLow() {
-//     document.getElementById("urgent").style.background = white;
-//     document.getElementById("medium").style.background = white;
-//     document.getElementById("low").style.background = green;
-
-//     document.getElementById("urgent").style.color = black;
-//     document.getElementById("medium").style.color = black;
-//     document.getElementById("low").style.color = white;
-
-//     document.getElementById("imgUrgent").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-//     document.getElementById("imgMedium").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-//     document.getElementById("imgLow").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-// }
-// function selectLowEdit() {
-//     document.getElementById("urgentEdit").style.background = white;
-//     document.getElementById("mediumEdit").style.background = white;
-//     document.getElementById("lowEdit").style.background = green;
-
-//     document.getElementById("urgentEdit").style.color = black;
-//     document.getElementById("mediumEdit").style.color = black;
-//     document.getElementById("lowEdit").style.color = white;
-
-//     document.getElementById("imgUrgentEdit").style.filter = "brightness(0) saturate(100%) invert(29%) sepia(82%) saturate(2522%) hue-rotate(0deg) brightness(99%) contrast(109%)";
-//     document.getElementById("imgMediumEdit").style.filter = "brightness(0) saturate(100%) invert(74%) sepia(88%) saturate(4267%) hue-rotate(9deg) brightness(116%) contrast(102%)";
-//     document.getElementById("imgLowEdit").style.filter = "brightness(0) saturate(100%) invert(87%) sepia(69%) saturate(1%) hue-rotate(72deg) brightness(108%) contrast(101%)";
-// }
-
 let editedTaskPririty = [];
 
 function addBackgroundColorCategory(element) {
@@ -325,7 +228,6 @@ function addBackgroundColorCategory(element) {
         return "#fc71ff";
     }
 }
-
 
 let categoryValue = "";
 let previousCategoryValue = "";
@@ -444,129 +346,6 @@ function displaySignedUpPopup(popupId) {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-// function missingSignedUpPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("missingSignedUp");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function alreadySignedUpPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("alreadySignedUp");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function successfullySignedUpPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("successfullySignedUp");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function userDoesNotExistPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("userDoesNotExist");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function userDoesNotExistPopup2() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("userDoesNotExist2");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function pwEmailIncorrectPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("pwEmailIncorrect");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function noEmailInsertedPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("noEmailInsertedPopup");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function sendEmailPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("sendEmail");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function passwordResetPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("passwordReset");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function passwordsNotIdentical() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("passwordsNotIdentical");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-// function taskCreatedPopup() {
-//     // Get the snackbar DIV
-//     var x = document.getElementById("taskCreated");
-
-//     // Add the "show" class to DIV
-//     x.className = "show";
-
-//     // After 3 seconds, remove the show class from DIV
-//     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-// }
-
-/* ======================================================================================*/
-
 async function saveContacts() {
     let contactsAsString = JSON.stringify(contacts);
     await backend.setItem('contacts', contactsAsString);
@@ -620,13 +399,9 @@ function activeTab() {
     allElements.forEach((element) => {
         element.style.backgroundColor = '#F5F5F5';
         element.style.color = 'black';
-        // element.classList.remove('.activeContact');
     })
     currentElement.style.backgroundColor = '#2A3647';
     currentElement.style.color = 'white';
-
-    // currentElement.classList.add('.activeContact');
-
 }
 
 
