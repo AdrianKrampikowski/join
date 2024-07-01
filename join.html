@@ -35,8 +35,8 @@
 <body>
     <div class="mainContainer">
         <!-- LogoTopLeftCorner -->
-        <div class="sideNavBarLogo" onclick="displayMainSummaryPage()">
-            <img id="startScreenLogo" src="img/whitelogo.svg" class="whiteLogo" />
+        <div class="sideNavBarLogo" onclick="displayPage('mainSummaryContainerDisplay'), counters()">
+            <img id=" startScreenLogo" src="img/whitelogo.svg" class="whiteLogo" />
             <img src="img/blacklogo.svg" class="blackLogo" />
         </div>
 
@@ -85,15 +85,18 @@
     <!-- =============================================== OPEN TASK =============================================== -->
 
     <div id="openTaskBackground" class="openTaskBackground" onclick="closeTask()">
-        <div id="openTaskContainer" class="openTaskContainer" onclick="doNotClose(event)">
+        <div id="openTaskContainer" class="openTaskContainer openTaskContainerHeight" onclick="doNotClose(event)">
         </div>
     </div>
 
     <!-- ======================== AddContacts Overlay ======================== -->
     <div id="addContactBackground" class="addContactBackground" onclick="closePopup()">
         <div class="addContactContainer" onclick="doNotClose(event)">
-            <div class="addContactLeftSide">
-                <img src="./img/logo.svg">
+            <div class="addContactLeftSide" onclick="canclePopup()">
+                <img src="img/logo.svg">
+                <div class="contactCancelImg">
+                    <img src="img/cancel.svg">
+                </div>
                 <h1>Add contact</h1>
                 <span>Task are better with a Team!</span>
                 <div></div>
@@ -102,51 +105,51 @@
             <div class="addContactRightSide">
                 <div class="contactImg">
                     <div>
-                        <img src="./img/addUserIcon.svg">
+                        <img src="img/addUserIcon.svg">
                     </div>
                 </div>
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
-                            <img src="./img/close.svg">
+                            <img src="img/close.svg">
                         </div>
                     </div>
                     <div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactName" class="inputFields" type="text" placeholder="Name" required />
-                                <img src="./img/userIcon.svg" class="img" />
+                                <img src="img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactSurname" class="inputFields" type="text" placeholder="Surname"
                                     required />
-                                <img src="./img/userIcon.svg" class="img" />
+                                <img src="img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="./img/letter.svg" class="img" />
+                                <img src="img/letter.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="contactPhone" class="inputFields" type="number" placeholder="Phone"
                                     required />
-                                <img src="./img/phone.svg" class="img" />
+                                <img src="img/phone.svg" class="img" />
                             </div>
                         </div>
                         <div class="buttons">
 
                             <button class="cancleButton" onclick="canclePopup()">
                                 <span>Cancle</span>
-                                <img src="./img/cancel.svg">
+                                <img src="img/cancel.svg">
                             </button>
                             <button class="createContact" onclick="createContact()">
                                 <span>Create contact</span>
-                                <img src="./img/tick.svg">
+                                <img src="img/tick.svg">
                             </button>
                         </div>
                     </div>
@@ -160,7 +163,7 @@
         <div class="addContactContainer" onclick="doNotClose(event)">
 
             <div class="addContactLeftSide">
-                <img src="./img/logo.svg">
+                <img src="img/logo.svg">
                 <h1>Edit contact</h1>
                 <span>Task are better with a Team!</span>
                 <div></div>
@@ -173,7 +176,7 @@
                 <div class="contactInfo">
                     <div>
                         <div onclick="canclePopup()">
-                            <img src="./img/close.svg">
+                            <img src="img/close.svg">
                         </div>
                     </div>
                     <div>
@@ -181,32 +184,30 @@
                             <div class="inputFieldContainer">
                                 <input id="editContactName" class="inputFields" type="text" placeholder="Name"
                                     required />
-                                <img src="./img/userIcon.svg" class="img" />
+                                <img src="img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactSurname" class="inputFields" type="text" placeholder="Surname"
                                     required />
-                                <img src="./img/userIcon.svg" class="img" />
+                                <img src="img/userIcon.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactEmail" class="inputFields" type="email" placeholder="Email" />
-                                <img src="./img/letter.svg" class="img" />
+                                <img src="img/letter.svg" class="img" />
                             </div>
                         </div>
                         <div class="inputContainer">
                             <div class="inputFieldContainer">
                                 <input id="editContactPhone" class="inputFields" type="number" placeholder="Phone"
                                     required />
-                                <img src="./img/phone.svg" class="img" />
+                                <img src="img/phone.svg" class="img" />
                             </div>
                         </div>
-                        <div class="buttons editButton" id="saveChangesButton">
-
-                        </div>
+                        <div id="saveChangesButton"></div>
                     </div>
                 </div>
             </div>
@@ -227,6 +228,9 @@
 
     <!-- ================================== TASK CREATED =============================================  -->
     <div id="taskCreated">Task created</div>
+
+    <!-- ================================== TASK ERROR =============================================  -->
+    <div id="taskError"></div>
 
 
     <script>includeHTML();</script>

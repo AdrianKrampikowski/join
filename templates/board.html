@@ -8,15 +8,15 @@
 
             <div class="inputContainer">
                 <div class="inputFieldContainer">
-                    <input class="inputFields" placeholder="Find Task" id="searchValue"/>
+                    <input class="inputFields" placeholder="Find Task" id="searchValue" />
                     <div class="inputFieldVerticalLine"></div>
-                    <img src="../img/searchicon.svg" class="img" />
+                    <img src="img/searchicon.svg" class="img" />
                 </div>
             </div>
 
             <button class="addTaskButton">
                 <span>Add task</span>
-                <img src="../img/whiteplus.svg">
+                <img src="img/whiteplus.svg">
             </button>
 
         </div>
@@ -25,130 +25,43 @@
     <div class="placeholderBoardBottom">
         <div class="boardParts" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
             <!-- toDoHeadline -->
-            <div class="boardTask">
+            <div class="boardTask" onclick="displayPage('mainAddTaskContainerDisplay'), setStatusCategoryValue('toDo')">
                 <div>To do</div>
-                <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
+                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
             <!-- toDoCards -->
             <div class="toDoCard" id="toDoCard">
-
             </div>
-
-
-            <!-- 
-                    
-                
-                    <div class="boardContainerUserBubbles">
-                        <div class="userBubble">
-                            <div class="userBubbleOne">SM</div>
-                            <div class="userBubbleTwo">MV</div>
-                            <div class="userBubbleConcatenation">+2</div>
-                        </div>
-                        <div><img src="img/greenArrow.svg"></div>
-                    </div>
-                </div> -->
 
         </div>
 
         <div class="boardParts" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
             <!-- inProgress -->
-            <div class="boardTask">
+            <div class="boardTask"
+                onclick="displayPage('mainAddTaskContainerDisplay'), setStatusCategoryValue('inProgress')">
                 <div>In Progress</div>
-                <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
+                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
             <div id="inProgress"></div>
         </div>
 
         <div class="boardParts" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
             <!-- AwaitingFeedback -->
-            <div class="boardTask">
+            <div class="boardTask"
+                onclick="displayPage('mainAddTaskContainerDisplay'), setStatusCategoryValue('awaitingFeedback')">
                 <div>Awaiting Feedback</div>
-                <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
+                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
             <div id="awaitingFeedback"></div>
         </div>
 
         <div class="boardParts" ondrop="moveTo('done')" ondragover="allowDrop(event)">
             <!-- Done -->
-            <div class="boardTask">
+            <div class="boardTask" onclick="displayPage('mainAddTaskContainerDisplay'), setStatusCategoryValue('done')">
                 <div>Done</div>
-                <div><img src="../img/plusbuttonv1.svg" style="height: 15px;"></div>
+                <div><img src="img/plusbuttonv1.svg" style="height: 15px;"></div>
             </div>
             <div id="done"></div>
         </div>
     </div>
 </div>
-
-<!-- =============================================== OPEN TASK =============================================== -->
-<!-- <div class="background">
-    <div class="openTaskContainer">
-        <div class="openTask">
-            <div class="openTaskTop">
-                <div>
-                    <span>Sales</span>
-                </div>
-                <div>
-                    <img src="../img/close.svg">
-                </div>
-            </div>
-
-            <div class="openTaskHeader">
-                <h1>Call potential clients</h1>
-                <span>Make the product presentation to prospective buyers</span>
-            </div>
-
-            <div class="openTaskMain">
-
-                <div class="openTaskDate">
-                    <div>Due date:</div>
-                    <div>05-08-2022</div>
-                </div>
-
-                <div class="openTaskPriority">
-                    <div>Priority:</div>
-                    <div>
-                        <div>
-                            <span>Urgent</span>
-                            <img src="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="openTaskAssigned">
-                    <div>Assigned To:</div>
-                    <div>
-                        <div class="openTaskAssignedPerson">
-                            <div>
-                                <span>DE</span>
-                            </div>
-                            <div>David Eisenberg</div>
-                        </div>
-                        <div class="openTaskAssignedPerson">
-                            <div>
-                                <span>BZ</span>
-                            </div>
-                            <div>Benedikt Ziegler</div>
-                        </div>
-                        <div class="openTaskAssignedPerson">
-                            <div>
-                                <span>MB</span>
-                            </div>
-                            <div>Marcel Bauer</div>
-                        </div>
-                        <div class="openTaskAssignedPerson">
-                            <div>
-                                <span>SF</span>
-                            </div>
-                            <div>Stefanie Farber</div>
-                        </div>
-                    </div>                
-                </div>
-            </div>
-        </div>
-
-        <div class="openTaskEditButton">
-            <img src="../img/edit.svg">
-        </div>
-    </div>
-</div>
- -->

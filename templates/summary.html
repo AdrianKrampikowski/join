@@ -14,21 +14,23 @@
         <div class="summaryBothContainer">
             <div class="summaryLeftCards">
                 <div class="allTopCards">
-                    <div class="topCardLeft positionInsideAllCards allCardsBorderRadius topCard">
+                    <div class="topCardLeft positionInsideAllCards allCardsBorderRadius topCard" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
                         <div class="topCardNumber cardNumberTopBottom allCardsNumberFontSize" id="taskCounter"></div>
                         <div class="topCardText cardTextTopBottom">Tasks in <br> Board</div>
                     </div>
-                    <div class="topCardmiddle positionInsideAllCards allCardsBorderRadius topCard">
-                        <div class="topCardNumber cardNumberTopBottom allCardsNumberFontSize" id="inProgressCounter"></div>
-                        <div class="topCardText cardTextTopBottom">Tasks in Progress</div>
+                    <div class="topCardmiddle positionInsideAllCards allCardsBorderRadius topCard" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
+                        <div class="topCardNumber cardNumberTopBottom allCardsNumberFontSize" id="inProgressCounter">
+                        </div>
+                        <div class="topCardText cardTextTopBottom">Tasks in <br> Progress</div>
                     </div>
-                    <div class="topCardRight positionInsideAllCards allCardsBorderRadius topCard">
-                        <div class="topCardNumber cardNumberTopBottom allCardsNumberFontSize" id="awaitingFeedbackCounter"></div>
+                    <div class="topCardRight positionInsideAllCards allCardsBorderRadius topCard" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
+                        <div class="topCardNumber cardNumberTopBottom allCardsNumberFontSize"
+                            id="awaitingFeedbackCounter"></div>
                         <div class="topCardText cardTextTopBottom">Awaiting Feedback</div>
                     </div>
                 </div>
 
-                <div class="middleCard allCardsBorderRadius">
+                <div class="middleCard allCardsBorderRadius" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
                     <div class="middleCardUrgent">
                         <img src="img/urgent.svg">
                         <div class="positionInsideAllCards">
@@ -36,7 +38,7 @@
                             <div class="middleCardUrgentText">
                                 <span>
                                     Urgent
-                                </span> 
+                                </span>
                             </div>
                         </div>
 
@@ -48,19 +50,20 @@
                     </div>
                 </div>
 
-
                 <div class="allBottomCards">
-                    <div class="bottomCardLeft allCardsBorderRadius bottomCard">
+                    <div class="bottomCardLeft allCardsBorderRadius bottomCard" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
                         <img src="img/todo.svg" class="bottomCardsImg">
                         <div class="positionInsideAllCards">
-                            <div class="bottomCardNumber cardNumberTopBottom allCardsNumberFontSize"id="todoCounter"></div>
+                            <div class="bottomCardNumber cardNumberTopBottom allCardsNumberFontSize" id="todoCounter">
+                            </div>
                             <div class="bottomCardText cardTextTopBottom">To-Do</div>
                         </div>
                     </div>
-                    <div class="bottomCardRight allCardsBorderRadius bottomCard">
+                    <div class="bottomCardRight allCardsBorderRadius bottomCard" onclick="displayPage('mainBoardContainerDisplay'), updateHTML()">
                         <img src="img/done.svg" class="bottomCardsImg">
                         <div class="bottomCardsDetails">
-                            <div class="bottomCardNumber cardNumberTopBottom allCardsNumberFontSize" id="doneCounter"></div>
+                            <div class="bottomCardNumber cardNumberTopBottom allCardsNumberFontSize" id="doneCounter">
+                            </div>
                             <div class="bottomCardText cardTextTopBottom">Done</div>
                         </div>
                     </div>

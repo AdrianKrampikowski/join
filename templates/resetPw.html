@@ -1,66 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
 
-    <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/forgotPw.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- ============================== SCRIPTS ================================= -->
-    <script src="../backend.js"></script>
-    <script src="../mini_backend.js"></script>
+  <!-- ============================== CSS FILES ================================= -->
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/forgotPw.css">
 
-    <!-- ============================ Favicon =========================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#2a3647">
-    <meta name="msapplication-TileColor" content="#2a3647">
-    <meta name="theme-color" content="#2a3647">
+  <!-- ============================== SCRIPTS ================================= -->
+  <script src="../backend.js"></script>
+  <script src="../mini_backend.js"></script>
 
-  </head>
-  <body onload="init()">
+  <!-- ============================ Favicon =========================== -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="img/favicon/site.webmanifest">
+  <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#2a3647">
+  <meta name="msapplication-TileColor" content="#2a3647">
+  <meta name="theme-color" content="#2a3647">
 
-    <div class="mainContainer">
+</head>
 
-      <div class="header">
-        <div class="startScreen forgotPwScreen">
-          <img id="startScreenLogo" class="logo logoForgotPwScreen" src="../img/blacklogo.svg"  />
-        </div>
+<body onload="init()">
+
+  <div class="mainContainer">
+
+    <div class="header">
+      <div class="startScreen forgotPwScreen">
+        <img id="startScreenLogo" class="logo logoForgotPwScreen" src="img/blacklogo.svg" />
       </div>
-    
-        <div class="contentContainer">
-            <div class="loginScreen loginScreen2">
-                <div class="loginHeading loginHeading2">
-                  <h1>Reset your password</h1>
-                  <div class="blueLigne"></div>
-                </div>
-
-                <span>Change your account password</span>
-
-                <div class="inputContainer">
-
-                    <form class="inputFieldContainer2" onsubmit="">
-                        <input id="newPassword" type="password" class="inputFields" placeholder="New password" required/>
-                        <input id="confirmPassword" type="password" class="inputFields" placeholder="Confirm password" required/>
-                    </form>
-                </div>
-
-                <button class="loginButton" onclick="resetPassword()">Continue</button>
-            </div>
-<!--             <button class="loginButton"><img src="./img/SendCheck.svg">An E-Mail has been sent to you</button>
- -->
-        </div>
     </div>
 
-      <!-- ================================== SNACKBAR PW RESET/INCORRECT ======================================= -->
-      <div id="passwordReset">Your password has succesfully been reset!</div>
-      <div id="passwordsNotIdentical">Passwords are not identical!</div>
+    <div class="contentContainer">
+      <div class="loginScreen loginScreen2">
+        <div class="loginHeading loginHeading2">
+          <h1>Reset your password</h1>
+          <div class="blueLigne"></div>
+        </div>
 
-  </body>
+        <span>Change your account password</span>
+
+        <div class="inputContainer">
+
+          <form class="inputFieldContainer2" onsubmit="">
+            <input id="newPassword" type="password" class="inputFields" placeholder="New password" required />
+            <input id="confirmPassword" type="password" class="inputFields" placeholder="Confirm password" required />
+          </form>
+        </div>
+
+        <button class="loginButton" onclick="resetPassword()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================== SNACKBAR PW RESET/INCORRECT ======================================= -->
+  <div id="passwordReset">Your password has succesfully been reset!</div>
+  <div id="passwordsNotIdentical">Passwords are not identical!</div>
+
+</body>
+
 </html>

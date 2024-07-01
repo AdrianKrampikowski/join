@@ -81,7 +81,7 @@
 }
 
 .innerHelpContainer::-webkit-scrollbar-button:vertical:start:increment, .innerLegalNoticeContainer::-webkit-scrollbar-button:vertical:start:increment  {
-    background-image: url(../img/upArrow.svg);
+    background-image: url(img/upArrow.svg);
     background-size: 10px 4px;  
 }
 
@@ -94,7 +94,7 @@
 }
 
 .innerHelpContainer::-webkit-scrollbar-button:vertical:end:decrement, .innerLegalNoticeContainer::-webkit-scrollbar-button:vertical:end:decrement {
-    background-image: url(../img/downArrow.svg);   
+    background-image: url(img/downArrow.svg);   
     background-size: 10px 4px;  
 }
 

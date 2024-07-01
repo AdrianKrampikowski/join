@@ -2,6 +2,10 @@ button {
   cursor: pointer;
 }
 
+h1 {
+  margin-left: 50px;
+}
+
 .d-none {
   display: none !important;
 }
@@ -16,6 +20,7 @@ select,
   padding: 13px 21px;
   background-color: white;
   outline: none;
+  max-width: 100%;
 }
 
 .selectWrapperHeight {
@@ -24,7 +29,7 @@ select,
 
 select {
   appearance: none;
-  background: url(/img/arrow.svg) 96% / 3% no-repeat white;
+  background: url(img/arrow.svg) 96% / 3% no-repeat white;
   cursor: pointer;
 }
 
@@ -37,16 +42,14 @@ textarea {
   resize: vertical;
   font-size: 21px;
   font-weight: 400;
+  max-height: 200px;
+  max-width: 100%;
 }
 
 select::-ms-expand {
   display: none;
   /* Standardpfeil im IE 10 und 11 entfernen */
 }
-
-/* .addTaskMainContainer button {
-  border: none;
-} */
 
 span {
   font-weight: 400;
@@ -79,10 +82,6 @@ span {
   scrollbar-gutter: stable;
 }
 
-/* .contactList::-webkit-scrollbar-track {
-  background-color: white;
-} */
-
 .addTaskMainSubContainer::-webkit-scrollbar-thumb {
   background-color: #a8a8a8;
   border: 2px solid white;
@@ -101,7 +100,7 @@ span {
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button:vertical:start:increment {
-  background-image: url(../img/upArrow.svg);
+  background-image: url(img/upArrow.svg);
   background-size: 10px 4px;
 }
 
@@ -114,7 +113,7 @@ span {
 }
 
 .addTaskMainSubContainer::-webkit-scrollbar-button:vertical:end:decrement {
-  background-image: url(../img/downArrow.svg);
+  background-image: url(img/downArrow.svg);
   background-size: 10px 4px;
 }
 
@@ -134,6 +133,18 @@ span {
   justify-content: flex-start;
   gap: 25px;
   margin-top: 42px;
+  margin-left: 50px;
+}
+
+.headlineAndCross {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.headlineAndCross img {
+  height: 40px;
+  display: none;
 }
 
 .selectionContainer {
@@ -202,7 +213,8 @@ span {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  height: 200px;
+  margin-bottom: 5px;
+  max-height: 200px;
   overflow-y: scroll;
 }
 
@@ -222,9 +234,7 @@ span {
 
 .prioButtons {
   display: flex;
-}
-
-.prioButtons {
+  max-width: 100%;
   display: flex;
   gap: 10px;
 }
@@ -239,7 +249,7 @@ span {
   gap: 10px;
   border: 1px solid #d1d1d1 !important;
   border-radius: 10px;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 400;
   background-color: rgb(255, 255, 255);
   width: 100%;
@@ -250,7 +260,7 @@ span {
 
 .prioButton:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
-  width: 110%;
+  width: 105%;
 }
 
 .featuresContainer {
@@ -261,7 +271,6 @@ span {
 }
 
 .subtaskContainer {
-  width: 100%;
   background-color: white;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
@@ -295,19 +304,20 @@ span {
 
 .gapImgSubtask {
   width: 1px;
+  height: 21px;
   background-color: #d1d1d1;
 }
 
 .clearAndCreateButton {
   display: flex;
   bottom: 100px;
+  gap: 12px;
 }
 
 .clearAndCreateButton button {
   font-size: 1.5rem;
   border-radius: 10px;
-  padding: 18px 10px;
-  margin-left: 25px;
+  padding: 18px 9px;
   transition: background 255ms ease-in-out;
 }
 
@@ -336,7 +346,7 @@ span {
   font-size: 1.5rem;
   border-radius: 10px;
   padding: 18px 10px;
-  margin-left: 25px;
+  margin-left: 0px;
   transition: background 255ms ease-in-out;
   color: #2a3647;
   display: flex;
@@ -357,7 +367,8 @@ span {
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#taskCreated {
+#taskCreated,
+#taskError {
   visibility: hidden;
   /* Hidden by default. Visible on click */
   min-width: 280px;
@@ -385,7 +396,8 @@ span {
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#taskCreated.show {
+#taskCreated.show,
+#taskError.show {
   visibility: visible;
   /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
@@ -399,6 +411,63 @@ span {
   justify-content: space-between;
   padding: 0px 15px;
 }
+
+.selectYourOwnCategoryItem {
+  display: none;
+}
+.enterYourOwnCategoryInput {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+.enterYourOwnCategoryInput input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.enterYourOwnCategoryInput .inputIcons {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.cancelYourOwnCategoryImg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.lockYourOwnCategoryImg {
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.selectYourOwnCategoryColors {
+  display: flex;
+  width: 100%;
+  gap: 5%;
+  margin-top: 9px;
+}
+
+.circle.selected {
+  height: 18px;
+  width: 18px;
+}
+
+.addedSubTasks {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 100%;
+}
+
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {
@@ -465,20 +534,12 @@ span {
     justify-content: flex-start;
     align-items: flex-start;
   }
-
-  .clearAndCreateButton butto {
-    margin: 37px;
-  }
 }
 
 @media (max-width: 720px) {
   .addTaskMainContainer {
     height: calc(100vh - 163px);
   }
-
-  /* .topNavBarRightImg {
-    display: none;
-  } */
 
   .clearButton {
     display: none;
@@ -497,5 +558,39 @@ span {
     top: -6px;
     right: 27px;
     cursor: pointer;
+  }
+}
+@media (max-width: 480px) {
+  .prioButtons {
+    flex-direction: column;
+  }
+  input,
+  textarea,
+  .prioButtons,
+  .selectWrapper {
+    max-width: 100%;
+  }
+
+  .headlineAndCross img {
+    display: flex;
+  }
+
+  .subtaskContainer {
+    max-width: 90vw;
+  }
+
+  .subtaskInput {
+    max-width: 69%;
+  }
+  .addTaskMainContainer {
+    padding: 0;
+  }
+  .addTaskLeftandRightContainer {
+    margin: 0;
+  }
+
+  .addTaskMainSubContainer {
+    padding: 0;
+    margin: 0;
   }
 }

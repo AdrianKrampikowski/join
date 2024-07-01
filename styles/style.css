@@ -1,4 +1,3 @@
-
 * {
   font-family: "Inter";
   box-sizing: border-box;
@@ -89,6 +88,7 @@ a {
 
 .signInField button {
   margin: 0;
+  border: none;
 }
 
 .contentContainer {
@@ -101,43 +101,24 @@ a {
 
 .loginScreen {
   position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-/*  height: 30%;
- */ padding: 1.5rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    background-color: white;
-    width: 650px;
-    border-radius: 30px;
-    height: 550px;
-/*  padding: 35px 0px; */
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-}
-
-/* .loginScreen {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   padding: 1.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  border-radius: 30px;
-  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   background-color: white;
   width: 650px;
-  height: 500px;
+  border-radius: 30px;
+  height: 550px;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
- */
- .signUpScreen {
+
+.signUpScreen {
   height: 600px;
-} 
+}
 
 .arrowBack {
   position: absolute;
@@ -149,43 +130,6 @@ a {
   cursor: pointer;
 }
 
-
-/* .loginHeading {
-  width: 315px;
-  height: 73px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 61px;
-  line-height: 120%;
-  text-align: center;
-  color: #000000;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  position: relative;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-} */
-
-/* .loginHeading:before {
-  content: "";
-  border-bottom: 3px solid #29abe2;
-  position: absolute;
-  left: 25%;
-  bottom: -24px;
-  height: 1px;
-  width: 50%;
-} */
-
-/* .loginHeading > h1 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  text-align: center;
-} */
-
-
 .loginHeading {
   display: flex;
   flex-direction: column;
@@ -196,10 +140,8 @@ a {
 
 .loginHeading > h1 {
   text-align: center;
-
   font-size: 3rem;
-/*   font-weight: bold;
- */
+  margin-bottom: 0.25em;
 }
 
 .blueLigne {
@@ -251,13 +193,12 @@ a {
   font-size: 21px;
 
   appearance: none;
-  background-image: url(../img/down-arrow.svg);
+  background-image: url(/img/down-arrow.svg);
   background-repeat: no-repeat;
   background-position: right 0.8rem top 50%;
   background-size: 1rem auto;
   cursor: pointer;
 }
-
 
 .color {
   display: flex;
@@ -345,7 +286,7 @@ a {
   }
 }
 
-.startSignUpScreen{
+.startSignUpScreen {
   animation: none;
   height: 150px;
   width: 133px;
@@ -384,11 +325,16 @@ a {
 /* ================================== SNACKBAR =======================================*/
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#missingSignedUp, #alreadySignedUp, #successfullySignedUp, #userDoesNotExist, #pwEmailIncorrect, #sendEmail {
+#missingSignedUp,
+#alreadySignedUp,
+#successfullySignedUp,
+#userDoesNotExist,
+#pwEmailIncorrect,
+#sendEmail {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 280px; /* Set a default minimum width */
   margin-left: -140px; /* Divide value of min-width by 2 */
-  background-color: #2A3647; /* Black background color */
+  background-color: #2a3647; /* Black background color */
   color: #fff; /* White text color */
   text-align: center; /* Centered text */
   border-radius: 10px; /* Rounded borders */
@@ -404,7 +350,12 @@ a {
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#missingSignedUp.show, #alreadySignedUp.show, #successfullySignedUp.show, #userDoesNotExist.show, #pwEmailIncorrect.show, #sendEmail.show {
+#missingSignedUp.show,
+#alreadySignedUp.show,
+#successfullySignedUp.show,
+#userDoesNotExist.show,
+#pwEmailIncorrect.show,
+#sendEmail.show {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
@@ -414,23 +365,47 @@ a {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 /* =========================== RESPONSIVENESS ======================= */
@@ -438,23 +413,21 @@ a {
 @media (max-width: 720px) {
   .loginScreen {
     width: 100%;
-}
+  }
   .contentContainer {
     padding-left: 50px;
     padding-right: 50px;
-
   }
 
   .loginHeading:before {
     bottom: -16px;
-}
+  }
 }
 
 @media (max-width: 600px) {
   .signUpScreen {
     height: 550px;
-  } 
-  
+  }
 
   .signInContainer {
     width: 100%;
@@ -480,10 +453,10 @@ a {
     gap: 10px;
     width: 327px;
     height: 41px;
-      width: 100%;
-   }
-  
-   .selectColor {
+    width: 100%;
+  }
+
+  .selectColor {
     padding-top: 5px;
     padding-bottom: 5px;
   }
@@ -551,11 +524,9 @@ a {
     bottom: -11px;
   }
   .contentContainer {
-/*     top: -150px;
- */    padding-left: 25px;
+    padding-left: 25px;
     padding-right: 25px;
-/*     padding-top: 20px;
- */   }
+  }
 }
 
 @media (max-width: 480px) {
@@ -584,8 +555,8 @@ a {
       width: auto;
     }
   }
-  
-  .startSignUpScreen{
+
+  .startSignUpScreen {
     animation: none;
     height: 125px;
     width: 111px;
@@ -600,18 +571,18 @@ a {
   .loginScreen {
     padding-left: 20px;
     padding-right: 20px;
+    height: 500px;
   }
- 
 
   .inputContainer {
     width: 100%;
-  }  
+  }
 
   .inputFieldContainer {
     width: 100%;
     margin-left: 10px;
     margin-right: 10px;
-  }  
+  }
 
   .rememberOrForgetFields {
     flex-direction: column-reverse;
@@ -619,7 +590,7 @@ a {
     width: 90%;
     margin-left: 20px;
   }
-  .rememberOrForgetFields p{
+  .rememberOrForgetFields p {
     margin: 10px 0;
   }
 
@@ -630,7 +601,7 @@ a {
     display: flex;
     flex-direction: column;
     position: relative;
- }
+  }
 
   .contentContainer {
     padding-left: 15px;
@@ -641,7 +612,7 @@ a {
     font-size: 16px;
   }
 
-  .arrowBack img{
+  .arrowBack img {
     width: 25px;
     height: 25px;
   }
@@ -651,7 +622,7 @@ a {
     padding-right: 15px;
   }
 
-    .signInField {
+  .signInField {
     gap: 20px;
   }
 
@@ -662,13 +633,36 @@ a {
   .signInField > button {
     scale: 0.9;
   }
+
+  .loginHeading > h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-height: 750px) {
+  .mainContainer {
+    height: 95%;
+  }
+  .header {
+    height: 150px;
+  }
+  .loginHeading h1 {
+    margin: 0.25em;
+  }
+  .signInContainer {
+    bottom: -30px;
+    padding-bottom: 15px;
+  }
+  .loginScreen {
+    height: 450px;
+  }
 }
 
 @media (max-width: 300px) {
   .inputFieldContainer {
     margin-left: 10px;
     margin-right: 10px;
-  }  
+  }
 
   .rememberOrForgetFields {
     margin-left: 10px;
@@ -677,5 +671,4 @@ a {
   .signInField {
     gap: 0;
   }
-  }
-
+}

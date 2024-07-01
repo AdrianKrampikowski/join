@@ -1,40 +1,23 @@
 let contacts = [];
 let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 let contactName = document.getElementById('contactName');
 let contactSurname = document.getElementById('contactSurname');
 let contactEmail = document.getElementById('contactEmail');
 let contactPhone = document.getElementById('contactPhone');
-
 let editName = document.getElementById('editContactName');
 let editSurname = document.getElementById('editContactSurname');
 let editEmail = document.getElementById('editContactEmail');
 let editPhone = document.getElementById('editContactPhone');
-
 let newContactPopUp = document.getElementById('addContactBackground');
 let editContactPopUp = document.getElementById('editContactBackground');
-
 let bgColor;
 let firstLetters;
-
-/*     async function initContacts() {
-        setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
-        await downloadFromServer();
-        contacts = JSON.parse(backend.getItem('contacts')) || [];
-        users = JSON.parse(backend.getItem('users')) || [];
-        tasks = JSON.parse(backend.getItem('tasks')) || [];
-    
-        renderLetters();
-    }  */
-
 
 function renderLetters() {
     let contactList = document.getElementById('contactList');
     contactList.innerHTML = '';
-
     for (let i = 0; i < letters.length; i++) {
         let letter = letters[i];
-
         contactList.innerHTML += `
                 <div id='contactContainer${i}' class="contactContainer">
                     <div class="letter">
@@ -53,7 +36,6 @@ function renderLetters() {
 function renderContacts(i, letter) {
     let sortedContacts = document.getElementById('sortedContacts' + i);
     sortedContacts.innerHTML = '';
-
     contactsSorted = contacts.sort((a, b) => {
         if (a.name < b.name) {
             return -1;
@@ -65,29 +47,31 @@ function renderContacts(i, letter) {
         let contactListSurname = contacts[c]['surname'];
         let contactEmail = contacts[c]['email'];
         let contactBgColor = contacts[c]['contactColor'];
-
         randomBackground();
         nameGetFirstLetter(c);
-
         if (firstLetters.charAt(0).toUpperCase() == letter) {
-            sortedContacts.innerHTML += `
-                    <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
-                        <div>
-                            <div style="background-color:${contactBgColor};"class="contactIcon">
-                                <span>${firstLetters.toUpperCase()}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="contactName">
-                                <span>${contactListName}</span>
-                                <span>${contactListSurname}</span>
-                            </div>
-                            <a class="contactEmail" href="${contactEmail}">${contactEmail}</a> 
-                        </div>
-                    </div>
-                    `;
+            sortedContacts.innerHTML += showContactList(c, contactBgColor, firstLetters, contactListName, contactListSurname, contactEmail);
         }
     }
+}
+
+function showContactList(c, contactBgColor, firstLetters, contactListName, contactListSurname, contactEmail) {
+    return `
+            <div id="contactID${c}" class="contact" onclick="openContactInfo(${c})">
+                <div>
+                    <div style="background-color:${contactBgColor};"class="contactIcon">
+                        <span>${firstLetters.toUpperCase()}</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactName">
+                        <span>${contactListName}</span>
+                        <span>${contactListSurname}</span>
+                    </div>
+                        <a class="contactEmail" href="mailto:${contactEmail}">${contactEmail}</a> 
+                </div>
+            </div>
+            `;
 }
 
 function checkForEmptyLetters(i) {
@@ -142,18 +126,22 @@ function createContact() {
         if (newContact.email.search('@') > -1) {
             contacts.push(newContact);
             saveContacts();
-            document.getElementById('contactName').value = '';
-            document.getElementById('contactSurname').value = '';
-            document.getElementById('contactEmail').value = '';
-            document.getElementById('contactPhone').value = '';
+            removingContactValues();
             renderLetters();
             showContactCreatedPupup();
-            document.getElementById('addContactBackground').style.display = 'none';
         }
         else {
             incorrectEMailPopup();
         }
     }
+}
+
+function removingContactValues() {
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactSurname').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactPhone').value = '';
+    document.getElementById('addContactBackground').style.display = 'none';
 }
 
 function randomBackground() {
@@ -165,22 +153,21 @@ function randomBackground() {
 
 function openContactInfo(c) {
     activeContact(c);
-
     let contactInformation = document.getElementById('contactsContent');
     contactInformation.innerHTML = '';
-
     let contactInfoName = contacts[c]['name'];
     let contactInfoSurname = contacts[c]['surname'];
     let contactInfoEmail = contacts[c]['email'];
     let contactInfoPhone = contacts[c]['phone'];
     let contactInfoBgColor = contacts[c]['contactColor'];
-
     nameGetFirstLetter(c);
-
     contactInformation.innerHTML += contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, c, contactInfoEmail, contactInfoPhone, contactInfoBgColor);
     document.getElementById('contactIconBig' + c).style.backgroundColor = contactInfoBgColor;
     document.getElementById('contactDetails' + c).style.animation = 'flying 225ms ease-in-out';
+    contactsContainerVisualisation();
+}
 
+function contactsContainerVisualisation() {
     if (window.innerWidth < 950) {
         document.getElementById('contactsBar').classList.add('d-none');
         document.getElementById('contactsContainer').classList.add('contactsContainerMobile');
@@ -191,7 +178,6 @@ function openContactInfo(c) {
 function activeContact(c) {
     let currentElement = document.getElementById('contactID' + c);
     let allElements = document.querySelectorAll('.contact');
-
     allElements.forEach((element) => {
         element.style.backgroundColor = '#F5F5F5';
         element.style.color = 'black';
@@ -217,7 +203,7 @@ function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, 
                             </div>
                         </div>
                         <div onclick="displayMainAddTaskPage()" class="addTask">
-                            <img src="../img/plus.svg"><span>Add Task</span>
+                            <img src="img/plus.svg"><span>Add Task</span>
                         </div>
                     </div>
                 </div>
@@ -229,7 +215,7 @@ function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, 
                                 <span>Contact Information</span>
                             </div>
                             <div class="editContact" onclick="editContact(${c})">
-                                <img src="../img/edit.svg">
+                                <img src="img/edit.svg">
                                 <span>Edit Contact</span>
                             </div>
                         </div>
@@ -237,7 +223,7 @@ function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, 
                         <div class="contactInformationMain">
                             <div>
                                 <span>Email</span>
-                                <a href="${contactInfoEmail}">${contactInfoEmail}</a>
+                                <a href="mailto:${contactInfoEmail}">${contactInfoEmail}</a>
                             </div>
                             <div>
                                 <span>Phone</span>
@@ -251,16 +237,13 @@ function contactInfoTemplate(firstLetters, contactInfoName, contactInfoSurname, 
             <div class="deleteContact">
                 <div onclick="deleteContact(${c})">
                     <span>Delete contact</span>
-                    <img src="../img/delete.svg">
+                    <img src="
+                    img/delete.svg">
                 </div>
             </div>
 
         `;
 }
-
-// function addTaskViaContact() {
-//     window.location.href = 'addTask.html';
-// }
 
 function editContact(i) {
     document.getElementById('editContactBackground').style.display = 'flex';
@@ -270,21 +253,26 @@ function editContact(i) {
     document.getElementById('editContactPhone').value = contacts[i]['phone'];
     let contactInfoBgColor = contacts[i]['contactColor'];
     let saveChangesButton = document.getElementById('saveChangesButton');
-
-    saveChangesButton.innerHTML = `
-                <button class="createContact" onclick="saveChanges(${i})">  
-                    <span>Save</span>
-                </button>
-                `;
-
+    saveChangesButton.innerHTML = saveChangesButton2(i);
     nameGetFirstLetter(i);
-
-    document.getElementById('contactImg').innerHTML = `
-            <div id="contactImgBg${i}" class="contactImgBg">
-                <span>${firstLetters}</span>
-            </div>
-            `;
+    document.getElementById('contactImg').innerHTML = contactImg(i, firstLetters);
     document.getElementById('contactImgBg' + i).style.backgroundColor = contactInfoBgColor;
+}
+
+function saveChangesButton2(i) {
+    return `
+        <button class="createContact" onclick="saveChanges(${i})">  
+            <span>Save</span>
+        </button>
+        `;
+}
+
+function contactImg(i, firstLetters) {
+    return `
+        <div id="contactImgBg${i}" class="contactImgBg">
+            <span>${firstLetters}</span>
+        </div>
+        `;
 }
 
 function saveChanges(i) {
@@ -292,11 +280,11 @@ function saveChanges(i) {
     contacts[i]['surname'] = document.getElementById('editContactSurname').value;
     contacts[i]['email'] = document.getElementById('editContactEmail').value;
     contacts[i]['phone'] = document.getElementById('editContactPhone').value;
-
     saveContacts();
     renderLetters();
     contactChangesSavedPupup();
     document.getElementById('editContactBackground').style.display = 'none';
+    openContactInfo(i);
 }
 
 function deleteContact(i) {
@@ -316,10 +304,8 @@ function backToContactsList() {
 function showContactCreatedPupup() {
     // Get the snackbar DIV
     var x = document.getElementById("contactCreated");
-
     // Add the "show" class to DIV
     x.className = "show";
-
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
@@ -327,10 +313,8 @@ function showContactCreatedPupup() {
 function contactChangesSavedPupup() {
     // Get the snackbar DIV
     var x = document.getElementById("contactChangesSaved");
-
     // Add the "show" class to DIV
     x.className = "show";
-
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
@@ -338,21 +322,17 @@ function contactChangesSavedPupup() {
 function inputRequiredPopup() {
     // Get the snackbar DIV
     var x = document.getElementById("inputRequired");
-
     // Add the "show" class to DIV
     x.className = "show";
-
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function incorrectEMailPopup() {
-        // Get the snackbar DIV
-        var x = document.getElementById("incorrectEMail");
-
-        // Add the "show" class to DIV
-        x.className = "show";
-    
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-    }
+    // Get the snackbar DIV
+    var x = document.getElementById("incorrectEMail");
+    // Add the "show" class to DIV
+    x.className = "show";
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}

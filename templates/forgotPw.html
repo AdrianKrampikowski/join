@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forgot Password</title>
 
-    <!-- ============================== CSS FILES ================================= -->
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/forgotPw.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgot Password</title>
 
-    <!-- ============================== SCRIPTS ================================= -->
-    <script src="../backend.js"></script>
-    <script src="../mini_backend.js"></script>
+  <!-- ============================== CSS FILES ================================= -->
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/forgotPw.css">
 
-    <!-- ============================ Favicon =========================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#2a3647">
-    <meta name="msapplication-TileColor" content="#2a3647">
-    <meta name="theme-color" content="#2a3647">
+  <!-- ============================== SCRIPTS ================================= -->
+  <script src="backend.js"></script>
+  <script src="mini_backend.js"></script>
 
-  </head>
-  <body onload="init()">
-    <div class="mainContainer">
+  <!-- ============================ Favicon =========================== -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="img/favicon/site.webmanifest">
+  <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#2a3647">
+  <meta name="msapplication-TileColor" content="#2a3647">
+  <meta name="theme-color" content="#2a3647">
 
-      <div class="header">
-        <div class="startScreen forgotPwScreen">
-          <img id="startScreenLogo" class="logo logoForgotPwScreen" src="../img/blacklogo.svg"  />
-        </div>
+</head>
+
+<body onload="init()">
+  <div class="mainContainer">
+
+    <div class="header">
+      <div class="startScreen forgotPwScreen">
+        <img id="startScreenLogo" class="logo logoForgotPwScreen" src="img/blacklogo.svg" />
       </div>
-
-      <div class="contentContainer">
-          <div class="loginScreen">
-
-              <div class="arrowBack" onclick="backToLoginScreen()">
-                <img src="../img/arrowLeft.svg">
-              </div>       
-                     
-              <div class="loginHeading">
-                <h1>I forgot my password</h1>
-                <div class="blueLigne"></div>
-              </div>
-
-              <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
-              
-              <form id="forgotPwForm" class="inputContainer" onsubmit="return(checkForCorrectEmail())" action="https://gruppenarbeit-486join.developerakademie.net/send_mail.php" method="post">
-                  <div class="inputFieldContainer">
-                    <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email"/>
-                    <img src="../img/letter.svg" class="img" />
-                  </div>
-                    <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
-                  <button id="submitButton" type="submit" class="loginButton">Send me the email</button>
-              </form>
-          </div>
-      </div>
-      
     </div>
 
-      <!-- ================================== SNACKBAR USER NOT EXISTING ======================================= -->
-      <div id="userDoesNotExistTwo">User does not exist, please sign up</div>
-      
-      <!-- ================================== SNACKBAR NO EMAIL INSERTED ======================================= -->
-      <div id="noEmailInsertedPopup">Please insert you E-Mail</div>
+    <div class="contentContainer">
+      <div class="loginScreen">
 
+        <div class="arrowBack" onclick="backToLoginScreen()">
+          <img src="img/arrowLeft.svg">
+        </div>
 
-  </body>
+        <div class="loginHeading">
+          <h1>I forgot my password</h1>
+          <div class="blueLigne"></div>
+        </div>
+
+        <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
+
+        <form id="forgotPwForm" class="inputContainer" onsubmit="return(checkForCorrectEmail())"
+          action="https://join.adrian-krampikowski.com/send_mail.php" method="post">
+          <div class="inputFieldContainer">
+            <input id="sendEmailToResetPw" name="email" class="inputFields" type="email" placeholder="Email" />
+            <img src="img/letter.svg" class="img" />
+          </div>
+          <!--  <input name="userId" class="userIdForgotPw" type="number"/>  -->
+          <button id="submitButton" type="submit" class="loginButton">Send me the email</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================================== SNACKBAR USER NOT EXISTING ======================================= -->
+  <div id="userDoesNotExistTwo">User does not exist, please sign up</div>
+  <!-- ================================== SNACKBAR NO EMAIL INSERTED ======================================= -->
+  <div id="noEmailInsertedPopup">Please insert you E-Mail</div>
+
+</body>
+
 </html>

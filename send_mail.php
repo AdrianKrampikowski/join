@@ -3,7 +3,9 @@
 ########### CONFIG ###############
 $recipient = $_POST['email'];
 $redirect = 'index.html';
-$message = 'Hi there, click on the following link to reset your password => https://gruppenarbeit-486join.developerakademie.net/templates/resetPw.html?email=' . $recipient;
+$message = 'Hi there, click on the following link to reset your password => https://join.adrian-krampikowski.com/templates/resetPw.html?email=' . $recipient;
+
+
 $name = 'JOIN Support Team';
 
 ########### CONFIG END ###########
@@ -29,10 +31,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         header("Access-Control-Allow-Origin: *");
 
         $subject = "Contact From " . $name;
-        $headers = "From:  noreply@developerakademie.com";
+        $headers = "From:  info@adrian-krampikowski.com";
 
         mail($recipient, $subject, $message, $headers);
-        header("Location: https://gruppenarbeit-486join.developerakademie.net/index.html");
+        header("Location: https://join.adrian-krampikowski.com/smallest_backend_ever");
+        
         // "location:".$_SERVER['HTTP_REFERER']
 
         break;

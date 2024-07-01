@@ -1,28 +1,7 @@
-
-// function createDropdownUsers() {
-//     for (let i = 0; i < users.length; i++) {
-//         document.getElementById("assignedToUsers").innerHTML += `
-//         <option value="${users[i]["id"]}">
-//             <input type="checkbox">${users[i]["name"]}>
-//         </option>
-//         `;
-//     }
-// }
-
-
-/* setTimeout(() => {
-    // createDropdownUsers();
-    // createDropdownCheckboxes();
-    // getSelectedUsers();
-    addAssignedToList();
-    setDateToday();
-}, 2000); */
-
 function addAssignedToList() {
     document.getElementById('assignedToChoices').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let userID = users[i]["userid"];
-        // let contact = users[i];
         let name = users[i]["name"];
         document.getElementById('assignedToChoices').innerHTML += `
         <div class="assignedToLine">
@@ -31,7 +10,6 @@ function addAssignedToList() {
         </div>`
     }
 }
-
 
 function openDropdown(id) {
     if (document.getElementById(id).classList.contains('d-none')) {
@@ -46,18 +24,21 @@ function setDateToday() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById("dueDate").setAttribute('min', String(today));
 }
+
 //Ändert die Symbole für Unteraufgaben in die Symbole "Löschen" und "Hinzufügen", wenn das Eingabefeld für die Unteraufgabe angeklickt wird.//
 function changeSubIcon() {
     document.getElementById('plusSubtaskImg').classList.add('d-none');
     document.getElementById('clearSubtaskImg').classList.remove('d-none');
     document.getElementById('addSubtaskImg').classList.remove('d-none');
 }
+
 //Ändert die Symbole für Unteraufgaben in die Symbole "Löschen" und "Hinzufügen", wenn das Eingabefeld geändert wird.
 function inputChangeSubIcons() {
     document.getElementById('plusSubtaskImg').classList.add('d-none');
     document.getElementById('clearSubtaskImg').classList.remove('d-none');
     document.getElementById('addSubtaskImg').classList.remove('d-none');
 }
+
 //Fügt eine Unteraufgabe zur Liste und zum Unteraufgaben-Array hinzu, wenn die Schaltfläche "Hinzufügen" angeklickt wird.
 function addSubtask() {
     let subtask = document.getElementById('subtask').value;
@@ -82,15 +63,32 @@ function clearSubtask() {
     document.getElementById('addSubtaskImg').classList.add('d-none');
 }
 
+
 function clearAll() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('selectCategory').innerHTML = 'Select your Category';
-    //  for (let i = 0; i < contactsAddTask.length; i++) {
-    //      if (document.getElementById('assigned-to-' + i).checked) {
-    //          document.getElementById('assigned-to-' + i).checked = false;
-    //      }
-    //  }
-    //  document.getElementById('dueDate').value = '';
-    //  document.getElementById('subtaskList').innerHTML = '';
+    document.getElementById('selectYourOwnCategory').innerHTML = 'Select your own Category';
+    for (let i = 0; i < users.length; i++) {
+        if (document.getElementById('assigned-to-' + i).checked) {
+            document.getElementById('assigned-to-' + i).checked = false;
+        }
+    }
+    document.getElementById('dueDate').value = '';
+    clearPrios();
+    document.getElementById("enterYourOwnCategoryInputId").value = '';
+}
+
+function clearPrios(){
+    document.getElementById('urgent').style.background = white;
+    document.getElementById('urgent').style.color = black;
+    document.getElementById('imgUrgent').style.filter = "";
+
+    document.getElementById('medium').style.background = white;
+    document.getElementById('medium').style.color = black;
+    document.getElementById('imgMedium').style.filter = "";
+
+    document.getElementById('low').style.background = white;
+    document.getElementById('low').style.color = black;
+    document.getElementById('imgLow').style.filter = "";
 }

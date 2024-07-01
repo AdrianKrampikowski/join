@@ -359,7 +359,7 @@ body {
 
 @media (max-width: 480px) {
   .loginScreen {
-        height: 500px;
+        height: 450px;
  }
 
  .inputFields, .inputContainer, .inputFieldContainer   {

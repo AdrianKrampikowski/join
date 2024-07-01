@@ -1,14 +1,27 @@
 let users = [];
 let tasks = [];
-
+let subTaskArray = [];
+let editedTaskPririty = [];
+let ownCategoryBackgroundColor = '';
 let id;
 let taskId;
-
 let allValueCheck = false;
+let priority = "";
+let black = "#000000";
+let white = "#FFFFFF";
+let orange = "#FF3D00";
+let lightorange = "#FFA800";
+let green = "#7AE229";
+let statusCategoryValueGlobal = 'toDo';
+selectedValues = []; // Define an empty array to store the selected values
+let prevPriorityElement = null; // keep track of previously clicked button
+let categoryValue = "";
+let previousCategoryValue = "";
+
 
 // Immer als erste Funktion ausführen!
 async function init() {
-    setURL('https://gruppenarbeit-486join.developerakademie.net/smallest_backend_ever');
+    setURL('https://join.adrian-krampikowski.com/smallest_backend_ever');
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
     tasks = JSON.parse(backend.getItem('tasks')) || [];
@@ -32,21 +45,18 @@ function addUser() {
     let surname = document.getElementById('surname');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-    // let color = document.getElementById('color');
     let userId = id;
     let userColor = document.getElementById('userColor');
     let userColorValue = userColor.options[userColor.selectedIndex].value;
-
     for (let i = 0; i < users.length; i++) {
         if (users[i]['userid'].includes === id) {
             generateUserId();
         }
     }
-
     let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
     let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue };
     let user = users.find(u => u.email == email.value && u.password == password.value);
-    if (userData.name && userData.surname && userData.email && userData.password && userData.userColor && userData.userColor != "none") {
+    if (userData.name && userData.surname && userData.email.includes('@') && userData.password && userData.userColor && userData.userColor != "none") {
         if (user) {
             displaySignedUpPopup('alreadySignedUp');
             name.value = '';
@@ -68,7 +78,7 @@ function addUser() {
 }
 
 function backToLoginScreen() {
-    window.location.href = '../index.html';
+    window.location.href = 'https://join.adrian-krampikowski.com/';
 }
 
 async function save() {
@@ -76,31 +86,126 @@ async function save() {
     await backend.setItem('users', usersAsString);
 }
 
+function setStatusCategoryValue(statusCategoryValue) {
+    statusCategoryValueGlobal = statusCategoryValue;
+}
+
+function nextStatusCatergory(id, statusCategory, event, direction) {
+    event.stopImmediatePropagation();
+    currentDraggedElement = tasks.findIndex(obj => obj.taskId === id);
+    if (statusCategory == 'toDo') {
+        tasks[currentDraggedElement]["statusCategory"] = 'inProgress';
+    }
+    if (statusCategory == 'inProgress') {
+        tasks[currentDraggedElement]["statusCategory"] = 'awaitingFeedback';
+    }
+    if (statusCategory == 'awaitingFeedback') {
+        tasks[currentDraggedElement]["statusCategory"] = 'done';
+    }
+    updateTasksAndHTML();
+}
+
+function beforeStatusCatergory(id, statusCategory, event) {
+    event.stopImmediatePropagation();
+    currentDraggedElement = tasks.findIndex(obj => obj.taskId === id);
+    if (statusCategory == 'inProgress') {
+        tasks[currentDraggedElement]["statusCategory"] = 'toDo';
+    }
+    if (statusCategory == 'awaitingFeedback') {
+        tasks[currentDraggedElement]["statusCategory"] = 'inProgress';
+    }
+    if (statusCategory == 'done') {
+        tasks[currentDraggedElement]["statusCategory"] = 'awaitingFeedback';
+    }
+    updateTasksAndHTML();
+}
+
+function updateTasksAndHTML() {
+    updateTasks();
+    updateHTML();
+}
+
 // ToDoStart
 async function createTask() {
     let taskId = generateTaskId();
-    let statusCategory = "toDo";
+    let statusCategory = statusCategoryValueGlobal;
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1);
-    let categoryColor = addBackgroundColorCategory(category);
-    let assignTo = selectedValues;
+    let category = categoryValue ? categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1) : '';
+    let categoryColor = category ? addBackgroundColorCategory(category) : '';
+    let assignTo = selectedValues ? selectedValues : '';
     let dueDate = document.getElementById('dueDate');
-    let priorityValue = priority;
-    let taskData = { taskId: taskId, statusCategory: statusCategory, title: title.value, description: description.value, category: category, categoryColor: categoryColor, assignTo: assignTo, dueDate: dueDate.value, priorityValue: priorityValue };
-    tasks.push(taskData);
-    await saveTasks();
-
-    //console.log("Tasks", taskData);
-    // window.location.href = 'index.html';
+    let priorityValue = priority ? priority : '';
+    let errorMessage = '';
+    if (title.value == '') {
+        errorMessage += 'Title is missing.\n';
+    }
+    if (description.value == '') {
+        errorMessage += 'Description is missing.\n';
+    }
+    if (!category || category == '' || category == 'SelectYourOwnCategory') {
+        errorMessage += 'Category is missing.\n';
+    }
+    if (assignTo == '') {
+        errorMessage += 'Assignee is missing.\n';
+    }
+    if (!priorityValue) {
+        errorMessage += 'Priority is missing.\n';
+    }
+    if (errorMessage != '') {
+        displayTaskErrorPopup('taskError', errorMessage);
+    } else {
+        let taskData = {
+            taskId: taskId,
+            statusCategory: statusCategory,
+            title: title.value,
+            description: description.value,
+            category: category,
+            categoryColor: categoryColor,
+            assignTo: assignTo,
+            dueDate: dueDate.value,
+            priorityValue: priorityValue,
+            subTaskArray: subTaskArray
+        };
+        tasks.push(taskData);
+        subTaskArray = [];
+        await saveTasks();
+        displayTaskCreatedPopup('taskCreated');
+        setTimeout(() => {
+            clearAll();
+            updateTasksAndHTML();
+            setTimeout(() => {
+                displayPage('mainBoardContainerDisplay');
+            }, 100);
+        }, 1500);
+    }
 }
+
+function createSubTask() {
+    let subTask = document.getElementById('subtask').value;
+    if (subTask) {
+        let subTaskObject = { subTask: subTask, isCompleted: false }
+        subTaskArray.push(subTaskObject);
+        document.getElementById('subtask').value = '';
+        displayCreatedSubTasks(subTaskArray);
+    }
+}
+
+function displayCreatedSubTasks(subTask) {
+    document.getElementById('addedSubTasks').innerHTML = ``;
+    subTask.forEach((item) => {
+        document.getElementById('addedSubTasks').innerHTML += `
+            <div>
+                ${item['subTask']}
+            </div>
+        `;
+    })
+}
+
 async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
     await backend.setItem('tasks', tasksAsString);
 }
-
-// Define an empty array to store the selected values
-selectedValues = [];
 
 setTimeout(() => {
     saveSelectedUsers();
@@ -123,12 +228,9 @@ function saveSelectedUsers() {
                     selectedValues.splice(index, 1);
                 }
             }
-            console.log(selectedValues); // Print the selected values to the console
         });
     });
 }
-
-let priority = "";
 
 function saveSelectedPriority() {
     Array.from(document.getElementsByClassName("prioButton")).forEach((button) => {
@@ -137,15 +239,6 @@ function saveSelectedPriority() {
         });
     });
 }
-
-
-let black = "#000000";
-let white = "#FFFFFF";
-let orange = "#FF3D00";
-let lightorange = "#FFA800";
-let green = "#7AE229";
-
-let prevPriorityElement = null; // keep track of previously clicked button
 
 function select(id, idsToDeselect, filtersToDeselect, idsToSelect, filtersToSelect) {
     // Set background and color for IDs to deselect
@@ -164,14 +257,17 @@ function select(id, idsToDeselect, filtersToDeselect, idsToSelect, filtersToSele
         var element = document.getElementById(idsToSelect[i]);
         switch (idsToSelect[i]) {
             case "urgent":
+            case "urgentEdit":
                 element.style.background = orange;
                 element.style.color = white;
                 break;
             case "medium":
+            case "mediumEdit":
                 element.style.background = lightorange;
                 element.style.color = white; // change to white
                 break;
             case "low":
+            case "lowEdit":
                 element.style.background = green;
                 element.style.color = white; // change to white
                 break;
@@ -179,13 +275,10 @@ function select(id, idsToDeselect, filtersToDeselect, idsToSelect, filtersToSele
                 element.style.background = white;
                 element.style.color = black;
         }
-
-
         if (filtersToSelect[i]) {
             var imgElement = document.getElementById(filtersToSelect[i]);
             imgElement.style.filter = "brightness(0) invert(1)";
         }
-
     }
 }
 
@@ -202,7 +295,7 @@ function selectMedium() {
 }
 
 function selectMediumEdit() {
-    select("mediumEdit", ["urgentEdit", "lowEdit"], ["imgUrgent", "imgLowEdit"], ["mediumEdit"], ["imgMedium"]);
+    select("mediumEdit", ["urgentEdit", "lowEdit"], ["imgUrgentEdit", "imgLowEdit"], ["mediumEdit"], ["imgMediumEdit"]);
 }
 
 function selectLow() {
@@ -210,10 +303,8 @@ function selectLow() {
 }
 
 function selectLowEdit() {
-    select("lowEdit", ["urgentEdit", "mediumEdit"], ["imgUrgent", "imgMediumEdit"], ["lowEdit"], ["imgLow"]);
+    select("lowEdit", ["urgentEdit", "mediumEdit"], ["imgUrgentEdit", "imgMediumEdit"], ["lowEdit"], ["imgLowEdit"]);
 }
-
-let editedTaskPririty = [];
 
 function addBackgroundColorCategory(element) {
     if (element == "Marketing") {
@@ -226,11 +317,11 @@ function addBackgroundColorCategory(element) {
         return "#ff7a00";
     } else if (element == "Sales") {
         return "#fc71ff";
+    } else {
+        return ownCategoryBackgroundColor;
     }
 }
 
-let categoryValue = "";
-let previousCategoryValue = "";
 function saveSelectedCategory() {
     Array.from(document.getElementsByClassName("category")).forEach((item) => {
         item.addEventListener('click', (event) => {
@@ -309,7 +400,6 @@ function showLogoutButton() {
     }
 }
 
-
 // ================================================ DATEN SPEICHERN ==========================================================
 // IM LOCAL STORAGE
 /* 
@@ -346,6 +436,19 @@ function displaySignedUpPopup(popupId) {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function displayTaskCreatedPopup(popupId) {
+    var x = document.getElementById(popupId);
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function displayTaskErrorPopup(popupId, errorMessage) {
+    var x = document.getElementById(popupId);
+    x.innerHTML = errorMessage;
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}
+
 async function saveContacts() {
     let contactsAsString = JSON.stringify(contacts);
     await backend.setItem('contacts', contactsAsString);
@@ -355,17 +458,14 @@ function checkForCorrectEmail() {
     let sendEmailToResetPw = document.getElementById('sendEmailToResetPw').value;
     let existingEmail = users.find(u => u.email == sendEmailToResetPw);
     let correctUser = users.indexOf(existingEmail);
-
     if (sendEmailToResetPw == '') {
         displaySignedUpPopup('noEmailInsertedPopup');
         return false;
     }
-
     if ((users.find(u => u.email == sendEmailToResetPw)) == null) {
         displaySignedUpPopup('userDoesNotExistTwo');
         return false;
     }
-
     setTimeout(sendEmailPopup, 3000);
     return true;
 }
@@ -375,10 +475,8 @@ function resetPassword() {
     let userEmail = urlParams.get('email');
     let newPassword = document.getElementById('newPassword');
     let confirmPassword = document.getElementById('confirmPassword');
-
     let existingEmail = users.find(u => u.email == userEmail)
     let currentUser = users.indexOf(existingEmail);
-
     if (newPassword.value == confirmPassword.value) {
         if (existingEmail) {
             users[currentUser]['password'] = confirmPassword.value;
@@ -395,7 +493,6 @@ function resetPassword() {
 function activeTab() {
     let currentElement = document.getElementById('contactID' + c);
     let allElements = document.querySelectorAll('.contact');
-
     allElements.forEach((element) => {
         element.style.backgroundColor = '#F5F5F5';
         element.style.color = 'black';
@@ -403,6 +500,3 @@ function activeTab() {
     currentElement.style.backgroundColor = '#2A3647';
     currentElement.style.color = 'white';
 }
-
-
-

@@ -2,26 +2,59 @@
 <div class="addTaskMainContainer">
     <div class="addTaskMainSubContainer">
         <form onsubmit="createTask();return false">
-            <h1>Add Task</h1>
+            <div class="headlineAndCross">
+                <h1>Add Task</h1>
+                <img src="img/cancel.svg" onclick="clearAll()">
+            </div>
             <div class="addTaskContainer">
                 <div class="addTaskLeftandRightContainer">
                     <div class="selectionContainer preventSelect">
                         <span>Title</span>
-                        <input placeholder="Enter a title" id="title" class="titleInput" required="">
+                        <input placeholder="Enter a title" id="title" class="titleInput">
                     </div>
 
                     <div class="selectionContainer preventSelect">
                         <span>Description</span>
-                       <textarea placeholder="Enter a description" id="description" required=""></textarea>
+                        <textarea placeholder="Enter a description" id="description"></textarea>
                     </div>
 
                     <div class="selectionContainer preventSelect">
                         <span>Category</span>
+                        <div class="selectYourOwnCategoryItem" id="selectYourOwnCategoryItem">
+                            <div class="enterYourOwnCategoryInput">
+                                <input placeholder="Enter your own Category" id="enterYourOwnCategoryInputId">
+                                <div class="inputIcons">
+                                    <img src="img/cancel.svg" onclick="cancelYourOwnCategory()"
+                                        class="cancelYourOwnCategoryImg">
+                                    <div class="gapImgSubtask"></div>
+                                    <img src="img/hacken-schwarz.png" onclick="lockYourOwnCategory()"
+                                        class="lockYourOwnCategoryImg">
+                                </div>
+                            </div>
+                            <div class="selectYourOwnCategoryColors">
+                                <div class="circle" style="background: #0038ff;"
+                                    onclick="saveOwnCategoryBackgroundColor('#0038ff;', this)"></div>
+                                <div class="circle" style="background: #ffc702;"
+                                    onclick="saveOwnCategoryBackgroundColor('#ffc702;', this)"></div>
+                                <div class="circle" style="background: #1FD7C1;"
+                                    onclick="saveOwnCategoryBackgroundColor('#1FD7C1;', this)"></div>
+                                <div class="circle" style="background: #ff7a00;"
+                                    onclick="saveOwnCategoryBackgroundColor('#ff7a00;', this)"></div>
+                                <div class="circle" style="background: #fc71ff;"
+                                    onclick="saveOwnCategoryBackgroundColor('#fc71ff;', this)"></div>
+                            </div>
+                        </div>
+
                         <div class="selectWrapper selectWrapperHeight" onclick="openDropdown('categoryChoices')">
                             <div class="sectorTop">
-                                <p id="selectCategory">Select task category</p><img src="/img/arrow.svg">
+                                <p id="selectCategory">Select task category</p><img src="img/arrow.svg">
                             </div>
                             <div class="categoryChoices d-none" id="categoryChoices">
+                                <div class="category">
+                                    <div id="selectYourOwnCategory" onclick="selectYourOwnCategory()">Select your own
+                                        Category </div>
+                                    <div class="circle" style="background: #0037ff00;"></div>
+                                </div>
                                 <div class="category">
                                     <div id="marketing">Marketing </div>
                                     <div class="circle" style="background: #0038ff;"></div>
@@ -36,7 +69,7 @@
                                 </div>
                                 <div class="category">
                                     <div id="design">Design </div>
-                                    <div class="circle" style="background:  #ff7a00;"></div>
+                                    <div class="circle" style="background: #ff7a00;"></div>
                                 </div>
                                 <div class="category">
                                     <div id="sales">Sales </div>
@@ -50,7 +83,7 @@
                         <span>Assigned To</span>
                         <div class="selectWrapper selectWrapperHeight assignedToWrapper">
                             <div class="sectorTop" onclick="openDropdown('assignedToChoices')">
-                                <p id="assignedToHeader">Select contacts to assign</p><img src="/img/Vector 2.png">
+                                <p id="assignedToHeader">Select contacts to assign</p><img src="img/vectorTwo.png">
                             </div>
                             <div class="assignedToChoices d-none" id="assignedToChoices">
                             </div>
@@ -64,49 +97,47 @@
                     <div class="addTaskLeftandRightContainer">
                         <div class="selectionContainer preventSelect">
                             <span>Due date</span>
-                            <input class="date" type="date" id="dueDate">
+                            <input class="date" type="date" value="currentdate" id="dueDate">
                         </div>
 
                         <div class="selectionContainer preventSelect">
                             <span>Prio</span>
                             <div class="prioButtons">
                                 <button class="urgent prioButton" id="urgent" type="button"
-                                    onclick="selectUrgent()">Urgent<img id="imgUrgent" src="img/urgentArrow.svg"></button>
+                                    onclick="selectUrgent()">Urgent<img id="imgUrgent"
+                                        src="img/urgentArrow.svg"></button>
                                 <button class="medium prioButton" id="medium" type="button"
                                     onclick="selectMedium()">Medium<img id="imgMedium" src="img/medium.svg"></button>
                                 <button class="low prioButton" id="low" type="button" onclick="selectLow()">Low<img
                                         id="imgLow" src="img/low.svg"></button>
                             </div>
 
-                            <div class="featuresContainer">
-                                <span>Subtasks</span>
-                                <div class="subtaskContainer">
-                                    <input class="subtaskInput" onclick="inputChangeSubIcons()" placeholder="Add new subtask" id="subtask">
-                                    <div class="subtaskImgContainer">
-                                    <img id="clearSubtaskImg" src="../img/icon_cancel_subtask.svg" onclick="clearSubtask()" class="subtaskIcons d-none">
+                        </div>
+                        <div class="featuresContainer">
+                            <span>Subtasks</span>
+                            <div class="subtaskContainer">
+                                <input class="subtaskInput" placeholder="Add new subtask" id="subtask">
+                                <div class="subtaskImgContainer">
+                                    <img id="clearSubtaskImg" src="img/icon_cancel_subtask.svg" onclick="clearSubtask()"
+                                        class="subtaskIcons">
                                     <div class="gapImgSubtask"></div>
-                                        <img id="plusSubtaskImg" class="plusIcon" src="../img/plus-icon.png" onclick="changeSubIcon()">
-
-                                    <!-- <img id="addSubtaskImg" src="../img/icon_check_subtask.svg" onclick="addSubtask()" class="subTaskIcons d-none">
-                                    </div> -->
+                                    <img id="plusSubtaskImg" class="plusIcon" src="img/plus-icon.png"
+                                        onclick="createSubTask()">
                                 </div>
-                                <!-- <div>
-                                    <ul id="subtaskList">
-                                       
-                                    </ul>
-                                </div> -->
                             </div>
+                            <div id="addedSubTasks">
+                            </div>
+                        </div>
 
+                        <div class="clearAndCreateButton">
+                            <div class="clearButton" onclick="clearAll()">Clear <img src="img/cancel.svg"></div>
+                            <div><button type="submit" class="createTaskButton">Create Task<img
+                                        src="img/akar-icons_check.svg"></button></div>
+                            <button class="addTaskMobile d-none"><img src="img/add_task_btn_mob.svg"
+                                    alt="Create task button"></button>
                         </div>
                     </div>
-
-                    <div class="clearAndCreateButton">
-                        <div><button class="clearButton" onclick="clearAll()">Clear<img class="clear-img" src="../img/iconoir_cancel.svg"></button></div> 
-                        <div><button type="submit" onclick="displaySignedUpPopup('taskCreated')" class="createTaskButton">Create Task<img src="../img/akar-icons_check.svg"></button></div>
-                        <button class="addTaskMobile d-none"><img src="../img/add_task_btn_mob.svg" alt="Create task button"></button>
-                    </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>

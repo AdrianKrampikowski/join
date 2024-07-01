@@ -12,7 +12,6 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-
     await init();
     pushArrayToDo();
     updateHTML();
@@ -44,40 +43,36 @@ let subtasks = [];
 let priorityValueEdit;
 let usersTaskEdit = [];
 let startWithLetter = [];
+let currentSubTask = '';
 /* ========================================= BOARD FUNCTIONS ========================================= */
+function saveSelectedUsersEdit(currentTask) {
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+            const selectedValue = event.target.value;
+            if (event.target.checked) {
+                if (!tasks[currentTask]['assignTo'].includes(selectedValue)) { // Check for duplicates
+                    tasks[currentTask]['assignTo'] = [... new Set(tasks[currentTask]['assignTo'])]
+                    tasks[currentTask]['assignTo'].push(selectedValue);
+                }
+            } else {
+                const index = tasks[currentTask]['assignTo'].indexOf(selectedValue);
+                if (index > -1) {
+                    tasks[currentTask]['assignTo'] = [... new Set(tasks[currentTask]['assignTo'])]
+                    tasks[currentTask]['assignTo'].splice(index, 1);
+                }
+            }
+        });
+    });
+};
 
 function updateHTML() {
     if (tasks.length > 0) {
         for (let index = 0; index < tasks.length; index++) {
             let taskId = tasks[index]["taskId"];
-
-            let toDo = tasks.filter(t => t["statusCategory"] == "toDo");
-            document.getElementById("toDoCard").innerHTML = ``;
-            for (let i = 0; i < toDo.length; i++) {
-                let element = toDo[i];
-                document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, index);
-            }
-
-            let inProgress = tasks.filter(t => t["statusCategory"] == "inProgress");
-            document.getElementById("inProgress").innerHTML = ``;
-            for (let i = 0; i < inProgress.length; i++) {
-                let element = inProgress[i];
-                document.getElementById("inProgress").innerHTML += generateToDoHTML(element, index);
-            }
-
-            let awaitingFeedback = tasks.filter(t => t["statusCategory"] == "awaitingFeedback");
-            document.getElementById("awaitingFeedback").innerHTML = ``;
-            for (let i = 0; i < awaitingFeedback.length; i++) {
-                let element = awaitingFeedback[i];
-                document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, index);
-            }
-
-            let done = tasks.filter(t => t["statusCategory"] == "done");
-            document.getElementById("done").innerHTML = ``;
-            for (let i = 0; i < done.length; i++) {
-                let element = done[i];
-                document.getElementById("done").innerHTML += generateToDoHTML(element, index);
-            }
+            toDoFilter(index, taskId);
+            inProgresFilter(index, taskId);
+            awaitingFeedback(index, taskId);
+            done(index, taskId);
         }
         for (let i = 0; i < tasks.length; i++) {
             calculateProgressbar(i);
@@ -86,22 +81,65 @@ function updateHTML() {
     }
 }
 
+function toDoFilter(index, taskId) {
+    let toDo = tasks.filter(t => t["statusCategory"] == "toDo");
+    document.getElementById("toDoCard").innerHTML = ``;
+    for (let i = 0; i < toDo.length; i++) {
+        let element = toDo[i];
+        document.getElementById("toDoCard").innerHTML += generateToDoHTML(element, index);
+        document.getElementsByClassName("beforeStatusCatergorytoDo")[i].style.display = "none";
+    }
+}
+
+function inProgresFilter(index, taskId) {
+    let inProgress = tasks.filter(t => t["statusCategory"] == "inProgress");
+    document.getElementById("inProgress").innerHTML = ``;
+    for (let i = 0; i < inProgress.length; i++) {
+        let element = inProgress[i];
+        document.getElementById("inProgress").innerHTML += generateToDoHTML(element, index);
+    }
+}
+
+function awaitingFeedback(index, taskId) {
+    let awaitingFeedback = tasks.filter(t => t["statusCategory"] == "awaitingFeedback");
+    document.getElementById("awaitingFeedback").innerHTML = ``;
+    for (let i = 0; i < awaitingFeedback.length; i++) {
+        let element = awaitingFeedback[i];
+        document.getElementById("awaitingFeedback").innerHTML += generateToDoHTML(element, index);
+    }
+}
+
+function done(index, taskId) {
+    let done = tasks.filter(t => t["statusCategory"] == "done");
+    document.getElementById("done").innerHTML = ``;
+    for (let i = 0; i < done.length; i++) {
+        let element = done[i];
+        document.getElementById("done").innerHTML += generateToDoHTML(element, index);
+        document.getElementsByClassName("nextStatusCatergorydone")[i].style.display = "none";
+    }
+}
+
 function pushArrayToDo() {
     toDos = tasks;
 }
 
 function generateToDoHTML(element, index) {
+    let subTaskLength = element["subTaskArray"].length;
+    let totallyCompletedSubTasks = element["subTaskArray"].filter((item) => {
+        return item.isCompleted == true
+    });
+    let progressBarWidth = (totallyCompletedSubTasks.length / subTaskLength) * 100;
     let progressBarHTML = '';
-    if (element.hasOwnProperty('numerator') && element.hasOwnProperty('denominator')) {
+    if (element.hasOwnProperty('subTaskArray') && subTaskLength > 0) {
         progressBarHTML = `
             <div class="boardContainerProgress" onclick="openTask(${element["taskId"]})" >
                 <div class="progress">
-                    <div class="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                    <div class="progressBar" role="progressbar" style="width:${progressBarWidth}%;" aria-valuenow="0" aria-valuemin="0"
                         aria-valuemax="100">
                     </div>
                 </div>
                 <div class="progressInNumbers">
-                    ${element["numerator"]} / ${element["denominator"]} Done
+                    ${totallyCompletedSubTasks.length} / ${subTaskLength} Done
                 </div>
             </div>
         `;
@@ -110,26 +148,33 @@ function generateToDoHTML(element, index) {
     return `
         <div class="boardContainer" draggable="true" ondragstart="startDragging(${element["taskId"]})" onclick="openTask(${element["taskId"]})">
             <div class="boardContainerTop">
+
                 <div style = "background-color:${element["categoryColor"]}">
                     <div>${element["category"]}</div>
-                </div>
-                    
-                </div>
+                    </div>
+                </div>  
+
             <div class="boardContainerHeadline">
                 <h2>${element["title"]}</h2>
             </div>
             <div class="boardContainerDescripton">
-                <span>${element["description"]}</span>
+                <span class="boardContainerDescriptonSpan">${element["description"]}</span>
             </div>
             ${progressBarHTML}
             <div class="boardContainerUserBubbles">
                 <div class="userBubble" id="userBubble${element["taskId"]}"></div>
                 <div>
-                    <img class="priorityImg" src="./img/${element["priorityValue"]}.svg">
+                    <img class="priorityImg" src="img/${element["priorityValue"]}.svg">
                 </div>
             </div>
-        </div>
-    `;
+            
+            <div class="dragAndDropArrows">
+                <img src="img/upArrow.svg" onclick="beforeStatusCatergory(${element["taskId"]}, '${element["statusCategory"]}', event,)" class="beforeStatusCatergory${element["statusCategory"]}">
+                <img src="img/downArrow.svg" onclick="nextStatusCatergory(${element["taskId"]}, '${element["statusCategory"]}', event,)" class="nextStatusCatergory${element["statusCategory"]}">
+            </div> 
+            
+            </div>
+            `;
 }
 
 function getFirstLetter(index, i) {
@@ -155,52 +200,57 @@ function getFirstLetter(index, i) {
 function createBubbles() {
     for (let j = 0; j < tasks.length; j++) {
         let bubbleTaskId = tasks[j]["taskId"];
-
         if (tasks[j]["assignTo"].length < 3) {
-            for (let i = 0; i < tasks[j]["assignTo"].length; i++) {
-                let name = getFirstLetter(j, i);
-                document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
-                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
-                    `;
-                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-
-                let currentUserId = tasks[j]['assignTo'][i];
-                let existingUser = users.find(u => u.userid == parseInt(currentUserId));
-                let correctUser = users.indexOf(existingUser);
-                let correctUserBg = users[correctUser]['userColor']
-                userBubbleOne.style.backgroundColor = correctUserBg;
-            }
+            createTwoBubbles(j, bubbleTaskId);
         }
         else if (tasks[j]["assignTo"].length >= 3) {
-            for (let i = 0; i < 2; i++) {
-                let name = getFirstLetter(j, i);
-                document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
-                    <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
-                    `;
-                let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
-
-                let currentUserId = tasks[j]['assignTo'][i];
-                let existingUser = users.find(u => u.userid == parseInt(currentUserId));
-                let correctUser = users.indexOf(existingUser);
-                let correctUserBg = users[correctUser]['userColor']
-                userBubbleOne.style.backgroundColor = correctUserBg;
-            }
-
-            let remainingCount = tasks[j]["assignTo"].length - 2;
-            document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
-                <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
-                `;
-            let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
-            userBubbleOne.style.backgroundColor = "black";
-
+            createMoreThanTwoBubbles(j, bubbleTaskId)
         }
     }
 }
 
+function createTwoBubbles(j, bubbleTaskId) {
+    for (let i = 0; i < tasks[j]["assignTo"].length; i++) {
+        let name = getFirstLetter(j, i);
+        document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
+            <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+            `;
+        let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+        let currentUserId = tasks[j]['assignTo'][i];
+        let existingUser = users.find(u => u.userid == parseInt(currentUserId));
+        let correctUser = users.indexOf(existingUser);
+        let correctUserBg = users[correctUser]['userColor']
+        userBubbleOne.style.backgroundColor = correctUserBg;
+    }
+}
+
+function createMoreThanTwoBubbles(j, bubbleTaskId) {
+    for (let i = 0; i < 2; i++) {
+        let name = getFirstLetter(j, i);
+        document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
+        <div class="userBubbleOne" id="userBubbleOne${[j]}${[i]}">${name}</div>
+        `;
+        let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[i]}`);
+        let currentUserId = tasks[j]['assignTo'][i];
+        let existingUser = users.find(u => u.userid == parseInt(currentUserId));
+        let correctUser = users.indexOf(existingUser);
+        let correctUserBg = users[correctUser]['userColor']
+        userBubbleOne.style.backgroundColor = correctUserBg;
+    }
+    let remainingCount = tasks[j]["assignTo"].length - 2;
+    document.getElementById(`userBubble${[bubbleTaskId]}`).innerHTML += `
+    <div class="userBubbleOne" id="userBubbleOne${[j]}${[2]}">+${remainingCount}</div>
+    `;
+    let userBubbleOne = document.getElementById(`userBubbleOne${[j]}${[2]}`);
+    userBubbleOne.style.backgroundColor = "black";
+}
+
+
 function calculateProgressbar(index) {
-    let x = tasks[index]["numerator"] / tasks[index]["denominator"];
-    x = x * 100;
-    let progressBarElements = document.getElementsByClassName("progressBar");
+    let subTaskLength = tasks[index]["subTaskArray"].length;
+    let totallyCompletedSubTasks = tasks[index]["subTaskArray"].filter((item) => {
+        return item.isCompleted == true
+    });
 }
 
 function changeColorBubble() {
@@ -242,16 +292,44 @@ function allowDrop(ev) {
 
 function openTask(currentTaskId) {
     document.getElementById('openTaskBackground').style.display = 'flex';
-
     let existingTask = tasks.find(u => u.taskId == currentTaskId)
     let currentTask = tasks.indexOf(existingTask);
-
     let openTaskContainer = document.getElementById('openTaskContainer');
     openTaskContainer.innerHTML = '';
     openTaskContainer.innerHTML = openTaskTemplate(currentTask);
-
+    displaySubTaskAndCompleted(currentTask);
     renderAssignedUsers(currentTask);
     prioritySymbol(currentTask);
+}
+
+function displaySubTasks(currentTask) {
+    currentSubTask = tasks[currentTask]['subTaskArray'];
+    for (let i = 0; i < currentSubTask.length; i++) {
+        let currentSubTaskIndex = tasks[currentTask]['subTaskArray'][i];
+        document.getElementById("subTaskContainer").innerHTML += `
+        <input type="checkbox" ${currentSubTaskIndex.isCompleted ? "checked" : ""} onChange='updateCheckSubTask(${i}, checked, ${currentTask})'>
+        ${currentSubTaskIndex.subTask} <br>
+        `;
+    }
+    return currentSubTask;
+}
+
+function updateCheckSubTask(i, checked, currentTask) {
+    tasks[currentTask]['subTaskArray'][i].isCompleted = checked;
+}
+
+function displaySubTaskAndCompleted(currentTask) {
+    currentSubTask = tasks[currentTask]['subTaskArray'];
+    for (let i = 0; i < currentSubTask.length; i++) {
+        let currentSubTaskIndex = tasks[currentTask]['subTaskArray'][i];
+        let completed = "Not Complete";
+        if (currentSubTaskIndex.isCompleted == true) {
+            completed = "Complete"
+        }
+        document.getElementById("displaySubTaskAndComplete").innerHTML += `
+        ${currentSubTaskIndex.subTask}: ${completed} <br>
+        `;
+    }
 }
 
 function openTaskTemplate(currentTask, categoryColor) {
@@ -262,13 +340,13 @@ function openTaskTemplate(currentTask, categoryColor) {
                     <span>${tasks[currentTask]['category']}</span>
                 </div>
                 <div onclick="closeTask()">
-                    <img src="../img/close.svg">
+                    <img src="img/close.svg">
                 </div>
             </div>
 
             <div class="openTaskHeader">
-                 <h1>${tasks[currentTask]['title']}</h1>
-                 <span>${tasks[currentTask]['description']}</span>
+                 <h2>${tasks[currentTask]['title']}</h2>
+                 <span class="boardContainerDescriptonSpan">${tasks[currentTask]['description']}</span>
             </div>
 
             <div class="openTaskMain">
@@ -282,11 +360,18 @@ function openTaskTemplate(currentTask, categoryColor) {
                     <div>
                         <div>
                             <button class="prioButton2" id="priority">
-                            <span>${tasks[currentTask]['priorityValue']}</span>
+                            <span id="priorityValueTest">${tasks[currentTask]['priorityValue']}</span>
                             </button>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div>
+                    Sub Task:
+                    </div>
+                </div>
+                    <div id="displaySubTaskAndComplete">
+                    </div>
 
                 <div class="openTaskAssigned">
                      <div>Assigned To:</div>
@@ -295,16 +380,19 @@ function openTaskTemplate(currentTask, categoryColor) {
                     </div>                
                 </div>
             </div>
+            
+            <div class="openTaskButtonContainer">
+                <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
+                    <img src="img/deleteTask.svg">
+                </div>
+                <div class="openTaskEditButton" onclick="editTask(${currentTask})">
+                    <img src="img/editWhite.svg">
+                </div>
+            </div>
+
+
         </div>
 
-        <div class="openTaskButtonContainer">
-            <div class="deleteTaskButton" onclick="deleteTask(${currentTask})">
-                <img src="./img/deleteTask.svg">
-            </div>
-            <div class="openTaskEditButton" onclick="editTask(${currentTask})">
-                <img src="./img/editWhite.svg">
-            </div>
-        </div>
      `;
 }
 
@@ -317,50 +405,51 @@ function deleteTask(currentTask) {
 
 function renderAssignedUsers(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
-
     for (let i = 0; i < assignedUsers.length; i++) {
         let assignedUser = assignedUsers[i];
         let existingAssignUser = users.find(u => u.userid == assignedUser)
         let currentAssignUser = users.indexOf(existingAssignUser);
-
         let assignName = users[currentAssignUser]['name'];
         let assignSurname = users[currentAssignUser]['surname'];
         let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
         let assignColor = users[currentAssignUser]['userColor'];
-
-        document.getElementById('assignedToContainer').innerHTML += `
-            <div class="openTaskAssignedPerson">
-                <div style="background-color: ${assignColor};">
-                    <span>${assignFirstLetters.toUpperCase()}</span>
-                </div>
-                <div>${assignName} ${assignSurname}</div>
-            </div>
-        `;
+        generateAssignedToHTML(assignedUser, existingAssignUser, currentAssignUser, assignName, assignSurname, assignFirstLetters, assignColor);
     }
+}
+
+function generateAssignedToHTML(assignedUser, existingAssignUser, currentAssignUser, assignName, assignSurname, assignFirstLetters, assignColor) {
+    document.getElementById('assignedToContainer').innerHTML += `
+    <div class="openTaskAssignedPerson">
+        <div style="background-color: ${assignColor};">
+            <span>${assignFirstLetters.toUpperCase()}</span>
+        </div>
+        <div>${assignName} ${assignSurname}</div>
+    </div>
+`;
 }
 
 function prioritySymbol(currentTask) {
     let currentPriority = tasks[currentTask]['priorityValue'];
     let priority = document.getElementById('priority');
-
     if (currentPriority == 'urgent') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/urgentArrow.svg">`;
+        priority.innerHTML += `<img id="openTaskImgPriority" src="img/urgentArrow.svg">`;
     } else if (currentPriority == 'medium') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/medium.svg">`;
+        priority.innerHTML += `<img id="openTaskImgPriority" src="img/medium.svg">`;
     } else if (currentPriority == 'low') {
-        priority.innerHTML += `<img id="openTaskImgPriority" src="./img/low.svg">`;
+        priority.innerHTML += `<img id="openTaskImgPriority" src="img/low.svg">`;
     }
 }
 
 function editTask(currentTask) {
     document.getElementById('openTaskContainer').innerHTML = editOpenTaskTemplate(currentTask);
-
+    displaySubTasks(currentTask);
+    document.getElementById('openTaskContainer').classList.remove('openTaskContainerHeight');
     let titleEdit = document.getElementById('titleEdit');
     titleEdit.value = tasks[currentTask]['title'];
     let descriptionEdit = document.getElementById('descriptionEdit');
     descriptionEdit.value = tasks[currentTask]['description'];
+    document.getElementById('editSelectCategory').innerHTML = testSelectedCategorys(currentTask);
     document.getElementById('editSelectCategory').value = tasks[currentTask]['category'];
-
     let assignedUsersToCurrentTask = tasks[currentTask]['assignTo'];
     for (let i = 0; i < assignedUsersToCurrentTask.length; i++) {
         let assignedUser = assignedUsersToCurrentTask[i];
@@ -376,17 +465,12 @@ function editOpenTaskTemplate(currentTask) {
             <div class="openTaskTop">
 
                 <div style="background-color: ${tasks[currentTask]['categoryColor']};">
-                    <select class="selectCategory" name="category" id="editSelectCategory">
-                        <option value="Marketing" style="background-color: #0038ff;">Marketing</option>
-                        <option value="Media" style="background-color: #ffc702;">Media</option>
-                        <option value="Backoffice" style="background-color: #1FD7C1;">Backoffice</option>
-                        <option value="Design" style="background-color: #ff7a00;">Design</option>
-                        <option value="Sales" style="background-color: #fc71ff;">Sales</option>
-                    </select>
+                <select class="selectCategory" name="category" id="editSelectCategory">
+                </select>
                 </div>
 
                 <div onclick="closeTask()">
-                    <img src="../img/close.svg">
+                    <img src="img/close.svg">
                 </div>
             </div>
 
@@ -404,22 +488,29 @@ function editOpenTaskTemplate(currentTask) {
 
                 <div class="openTaskPriority openTaskPriorityEdit">
                     <div>Priority:</div>
-                    <div>
+                    <div style="width: 100%;">
                         <div class="prioButtons prioButtonsEdit">
                             <button class="urgent prioButtonEdit" id="urgentEdit" type="button" onclick="selectUrgentEdit(), savePriorityValueEdit('urgent')">
                                 Urgent
-                                <img id="imgUrgentEdit" src="./img/urgentArrow.svg">
+                                <img id="imgUrgentEdit" src="img/urgentArrow.svg">
                             </button>
                             <button class="medium prioButtonEdit" id="mediumEdit" type="button" onclick="selectMediumEdit(), savePriorityValueEdit('medium')">
                                 Medium
-                                <img id="imgMediumEdit" src="./img/medium.svg">
+                                <img id="imgMediumEdit" src="img/medium.svg">
                             </button>
                             <button class="low prioButtonEdit" id="lowEdit" type="button" onclick="selectLowEdit(), savePriorityValueEdit('low')">
                                 Low
-                                <img id="imgLowEdit" src="./img/low.svg">
+                                <img id="imgLowEdit" src="img/low.svg">
                             </button>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <div>
+                    Sub Task:
+                    </div>
+                </div>
+                <div id="subTaskContainer">
                 </div>
 
                 <div class="openTaskAssigned">
@@ -429,18 +520,40 @@ function editOpenTaskTemplate(currentTask) {
                     </div>                
                 </div>
             </div>
-        </div>
-
-        <div class="openTaskButtonContainer">
+            
+            <div class="openTaskButtonContainer">
             <div class="cancleTaskEditButton" onclick="closeTask()">
-                Cancle
+            Cancle
             </div>
             <div class="saveChangesTask" onclick="saveEditedTask(${currentTask})">
-                Save
+            Save
+            </div>
+            
             </div>
 
         </div>
-    `;
+            `;
+}
+
+function testSelectedCategorys(currentTask) {
+    if (tasks[currentTask]['category'] == 'Marketing' || tasks[currentTask]['category'] == 'Media' || tasks[currentTask]['category'] == 'Backoffice' || tasks[currentTask]['category'] == 'Design' || tasks[currentTask]['category'] == 'Sales') {
+        return `
+    <option value="Marketing" style="background-color: #0038ff;">Marketing</option>
+    <option value="Media" style="background-color: #ffc702;">Media</option>
+    <option value="Backoffice" style="background-color: #1FD7C1;">Backoffice</option>
+    <option value="Design" style="background-color: #ff7a00;">Design</option>
+    <option value="Sales" style="background-color: #fc71ff;">Sales</option>
+    `
+    } else {
+        return `
+        <option value="Marketing" style="background-color: #0038ff;">Marketing</option>
+        <option value="Media" style="background-color: #ffc702;">Media</option>
+        <option value="Backoffice" style="background-color: #1FD7C1;">Backoffice</option>
+        <option value="Design" style="background-color: #ff7a00;">Design</option>
+        <option value="Sales" style="background-color: #fc71ff;">Sales</option>
+        <option value="${tasks[currentTask]['category']}" style="background-color: ${tasks[currentTask]['categoryColor']}">${tasks[currentTask]['category']}</option>
+        `
+    }
 }
 
 function renderUrgency(currentTask) {
@@ -455,71 +568,58 @@ function renderUrgency(currentTask) {
 
 function renderAssignedUsersEdit(currentTask) {
     let assignedUsers = tasks[currentTask]['assignTo'];
-
     for (let j = 0; j < users.length; j++) {
-
         let userid = users[j]['userid'];
         let assignName = users[j]['name'];
         let assignSurname = users[j]['surname'];
         let assignFirstLetters = assignName.charAt(0) + assignSurname.charAt(0);
-
         if (assignedUsers.includes(userid.toString())) {
-            document.getElementById('assignedToContainerEdit').innerHTML += `
-                <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
-                    <input type="checkbox" value="${users[j]['userid']}" checked>
-                    <div style="background-color: ${users[j]['userColor']};">
-                        <span>${assignFirstLetters}</span>
-                    </div>
-                    <div>${users[j]['name']} ${users[j]['surname']}</div>
-                </div>
-            `;
+            createAssignedUsersChecked(j, userid, assignFirstLetters, currentTask);
         } else {
-            document.getElementById('assignedToContainerEdit').innerHTML += `
-            <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit()">
-                <input type="checkbox" value="${users[j]['userid']}">
-                <div style="background-color: ${users[j]['userColor']};">
-                    <span>${assignFirstLetters}</span>
-                </div>
-                <div>${users[j]['name']} ${users[j]['surname']}</div>
-            </div>
-            `;
+            createAssignedUsers(j, userid, assignFirstLetters, currentTask);
         }
     }
 }
 
-function saveSelectedUsersEdit() {
-    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-        checkbox.addEventListener('change', (event) => {
-            const selectedValue = event.target.value;
-            if (event.target.checked) {
-                if (!usersTaskEdit.includes(selectedValue)) { // Check for duplicates
-                    usersTaskEdit.push(selectedValue);
-                }
-            } else {
-                const index = usersTaskEdit.indexOf(selectedValue);
-                if (index > -1) {
-                    usersTaskEdit.splice(index, 1);
-                }
-            }
-            console.log(usersTaskEdit); // Print the selected values to the console
-        });
-    });
+function createAssignedUsersChecked(j, userid, assignFirstLetters, currentTask) {
+    document.getElementById('assignedToContainerEdit').innerHTML += `
+    <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit(${currentTask})">
+        <input type="checkbox" value="${users[j]['userid']}" checked>
+        <div style="background-color: ${users[j]['userColor']};">
+            <span>${assignFirstLetters}</span>
+        </div>
+        <div>${users[j]['name']} ${users[j]['surname']}</div>
+    </div>
+`;
+}
+
+function createAssignedUsers(j, userid, assignFirstLetters, currentTask) {
+    document.getElementById('assignedToContainerEdit').innerHTML += `
+    <div class="openTaskAssignedPerson" onclick="saveSelectedUsersEdit(${currentTask})">
+        <input type="checkbox" value="${users[j]['userid']}">
+        <div style="background-color: ${users[j]['userColor']};">
+            <span>${assignFirstLetters}</span>
+        </div>
+        <div>${users[j]['name']} ${users[j]['surname']}</div>
+    </div>
+`;
 }
 
 function saveEditedTask(currentTask) {
     let editCategory = document.getElementById('editSelectCategory').value;
-
     tasks[currentTask]['category'] = editCategory;
     tasks[currentTask]['categoryColor'] = addBackgroundColorCategory(editCategory);
     tasks[currentTask]['title'] = document.getElementById('titleEdit').value;
     tasks[currentTask]['description'] = document.getElementById('descriptionEdit').value;
     tasks[currentTask]['dueDate'] = document.getElementById('editDueDate').value;
-    tasks[currentTask]['priorityValue'] = priorityValueEdit;
-    tasks[currentTask]['assignTo'] = usersTaskEdit;
-
+    if (priorityValueEdit) {
+        tasks[currentTask]['priorityValue'] = priorityValueEdit;
+    }
+    tasks[currentTask]['assignTo'] = [... new Set(tasks[currentTask]['assignTo'])];
     updateTasks();
     updateHTML();
     document.getElementById('openTaskBackground').style.display = 'none';
+    document.getElementById('openTaskContainer').classList.add('openTaskContainerHeight');
 }
 
 function savePriorityValueEdit(priority) {
@@ -528,6 +628,7 @@ function savePriorityValueEdit(priority) {
 
 function closeTask() {
     document.getElementById('openTaskBackground').style.display = 'none';
+    document.getElementById('openTaskContainer').classList.add('openTaskContainerHeight');
 }
 
 function searchFunction() {
@@ -535,19 +636,20 @@ function searchFunction() {
     let input = document.getElementById('searchValue');
     input.addEventListener('input', debounce(function (event) {
         let selectedValue = event.target.value.trim();
+        selectedValue = selectedValue.toLowerCase();
         let newArray;
         if (selectedValue === '') {
             newArray = [...originalToDos];
             tasks = originalToDos;
         } else {
             newArray = tasks.filter(item => {
-                if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                if (item.description.toLowerCase().includes(selectedValue) || item.title.toLowerCase().includes(selectedValue)) {
                     return item;
                 }
             });
             if (newArray.length === 0 || selectedValue.length > 0) {
                 newArray = originalToDos.filter(item => {
-                    if (item.description.includes(selectedValue) || item.title.includes(selectedValue)) {
+                    if (item.description.toLowerCase().includes(selectedValue) || item.title.toLowerCase().includes(selectedValue)) {
                         return item;
                     }
                 });
@@ -565,7 +667,6 @@ function searchFunction() {
             });
         }
     }, 200));
-
     input.addEventListener('keydown', function (event) {
         if (event.key === 'Backspace' || event.key === 'Delete') {
             input.dispatchEvent(new Event('input'));
@@ -653,7 +754,6 @@ function greeting() {
 function displayUserName() {
     let userName = localStorage.getItem("userName");
     let abbreviatedName = abbreviateName(userName, 10);
-
     if (userName == undefined) {
         document.getElementById("userName").innerHTML = 'Guest';
 
@@ -699,4 +799,60 @@ function displayPage(pageId) {
     document.getElementById("mainLegalNoticeContainerDisplay").style.display = "none";
     document.getElementById("mainhelpContainerDisplay").style.display = "none";
     document.getElementById(pageId).style.display = "block";
+    if (pageId == 'mainAddTaskContainerDisplay') {
+        let dueDateInput = document.getElementById('dueDate');
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = String(today.getMonth() + 1).padStart(2, '0');
+        let day = String(today.getDate()).padStart(2, '0');
+        let formattedDate = `${year}-${month}-${day}`;
+        dueDateInput.value = formattedDate;
+    }
+}
+
+function selectYourOwnCategory() {
+    Array.from(document.getElementsByClassName("category")).forEach((item) => {
+        item.style.display = 'none';
+    });
+    document.getElementsByClassName("selectWrapper")[0].style.display = 'none';
+    document.getElementById("selectYourOwnCategoryItem").style.display = 'block';
+}
+
+function cancelYourOwnCategory() {
+    Array.from(document.getElementsByClassName("category")).forEach((item) => {
+        item.style.display = 'flex';
+    });
+    document.getElementsByClassName("selectWrapper")[0].style.display = 'block';
+    document.getElementById("selectYourOwnCategoryItem").style.display = 'none';
+}
+
+function lockYourOwnCategory() {
+    Array.from(document.getElementsByClassName("category")).forEach((item) => {
+        item.style.display = 'flex';
+    });
+    let category = categoryValue ? categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1) : '';
+    let categoryColor = category ? addBackgroundColorCategory(category) : '';
+    let errorMessage = '';
+    if (!categoryColor) {
+        errorMessage += 'Category Color is missing.\n';
+    }
+    if (errorMessage != '') {
+        displayTaskErrorPopup('taskError', errorMessage);
+        return
+    }
+    document.getElementsByClassName("selectWrapper")[0].style.display = 'block';
+    document.getElementById("selectYourOwnCategoryItem").style.display = 'none';
+    categoryValue = document.getElementById("enterYourOwnCategoryInputId").value;
+    document.getElementById("selectCategory").innerHTML = `
+    <div>
+        ${categoryValue}<div class="circle" style="background: ${ownCategoryBackgroundColor};"></div>
+    </div>
+    `;
+}
+
+function saveOwnCategoryBackgroundColor(color, element) {
+    ownCategoryBackgroundColor = color;
+    const circles = document.querySelectorAll('.circle');
+    circles.forEach(circle => circle.classList.remove('selected'));
+    element.classList.add('selected');
 }

@@ -1,3 +1,7 @@
+h2 {
+  word-wrap: break-word;
+  max-width: 100%;
+}
 /* ================================ BOARD MAIN ================================ */
 .placeholderBoard {
   height: calc(100vh - 89px);
@@ -19,10 +23,6 @@
   align-items: center;
 }
 
-/* .placeholderBoardTopLeft {
-
-} */
-
 .placeholderBoardTopRight {
   display: flex;
   align-items: flex;
@@ -35,22 +35,8 @@
   align-items: center;
 }
 
-/* .findTaskInputField {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 13px 21px;
-  gap: 10px;
-  width: 251px;
-  height: 51px;
-  background: #FFFFFF;
-  border: 1px solid #A8A8A8;
-  border-radius: 10px;
-} */
-
 .inputFields {
   box-sizing: border-box;
-  /* gap: 10px; */
   padding: 10px;
   width: 251px;
   height: 51px;
@@ -110,13 +96,6 @@
   border: 1px solid #d1d1d1;
 }
 
-/* .inputFieldVerticalLine {
-    position: absolute;
-    width: 0px;
-    height: 31px;
-    border: 1px solid #d1d1d1;
-  } */
-
 .addTaskButton {
   display: flex;
   flex-direction: row;
@@ -174,7 +153,7 @@
 }
 
 .placeholderBoardBottom::-webkit-scrollbar-button:vertical:start:increment {
-  background-image: url(../img/upArrow.svg);
+  background-image: url(img/upArrow.svg);
   background-size: 10px 4px;
 }
 
@@ -187,7 +166,7 @@
 }
 
 .placeholderBoardBottom::-webkit-scrollbar-button:vertical:end:decrement {
-  background-image: url(../img/downArrow.svg);
+  background-image: url(img/downArrow.svg);
   background-size: 10px 4px;
 }
 
@@ -225,20 +204,16 @@
 }
 
 .boardContainer {
-  /* height: 100%; */
   border-radius: 15px;
   padding: 18px 20.5px;
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  /* border: 1px solid black; */
   margin-bottom: 1em;
 }
 
 .boardContainerTop {
   width: 100%;
-  /*   width: 103px;
- */
   height: 27px;
   display: flex;
   justify-content: space-between;
@@ -251,7 +226,6 @@
   align-items: center;
   height: 100%;
   width: 30%;
-  background-color: #ff7a00;
   border-radius: 8px;
 }
 
@@ -280,6 +254,12 @@
   color: #a8a8a8;
 }
 
+.boardContainerDescriptonSpan {
+  word-wrap: break-word;
+  max-width: 100%;
+  padding-bottom: 5px;
+}
+
 .boardContainerProgress {
   display: flex;
   justify-content: flex-start;
@@ -288,19 +268,18 @@
 }
 
 .progress {
-  height: 5px;
+  height: 8px;
   background-color: #f4f4f4;
   border-radius: 5px;
 
   width: 50%;
-  border: 1px solid purple;
+  border-radius: 2px;
 }
 
 .progressBar {
   height: 100%;
-  background-color: #4caf50;
-  width: 50%;
-  transition: width 0.5s ease-in-out;
+  background-color: #29abe2;
+  border-radius: 2px;
 }
 
 .progressInNumbers {
@@ -311,6 +290,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 7px;
 }
 
 .userBubble {
@@ -377,21 +357,24 @@
 }
 
 .openTaskContainer {
-  position: relative;
+  position: absolute;
   width: 500px;
   height: 750px;
   border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .openTask {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: #ffffff;
   padding: 40px;
-  gap: 25px;
+  /* gap: 25px; */
   border-radius: 30px;
 }
 
@@ -403,7 +386,7 @@
 }
 
 .openTaskTop > div:first-of-type {
-  width: 142px;
+  /* width: 142px; */
   height: 40px;
   border-radius: 8px;
   padding: 4px 37px;
@@ -458,7 +441,6 @@
 
 .openTaskHeader input {
   border: none;
-  /* border-bottom: 1px solid #2a3647; */
   padding-left: 0;
   color: #2a3647;
   width: 100%;
@@ -497,7 +479,6 @@
 
 .openTaskDate > input {
   border: none;
-  /* border-bottom: 1px solid #2a3647; */
 }
 
 .openTaskPriorityEdit {
@@ -557,10 +538,6 @@
   scrollbar-gutter: stable;
 }
 
-/* .contactList::-webkit-scrollbar-track {
-  background-color: white;
-} */
-
 .assignedToContainer::-webkit-scrollbar-thumb {
   background-color: #a8a8a8;
   border: 2px solid white;
@@ -578,11 +555,6 @@
   background-position: center;
 }
 
-/* .assignedToContainer::-webkit-scrollbar-button:vertical:start:increment {
-  background-image: url(../img/upArrow.svg);
-  background-size: 10px 4px;  
-} */
-
 .assignedToContainer::-webkit-scrollbar-button:vertical:start:decrement {
   display: none;
 }
@@ -590,12 +562,6 @@
 .assignedToContainer::-webkit-scrollbar-button:vertical:end:increment {
   display: none;
 }
-
-/* .assignedToContainer::-webkit-scrollbar-button:vertical:end:decrement {
-  background-image: url(../img/downArrow.svg);   
-  background-size: 10px 4px;  
-} */
-/* =========================================================================== */
 
 .openTaskAssignedPerson {
   display: flex;
@@ -612,7 +578,6 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  /*   background-color: #9327ff; */
 }
 
 .openTaskAssignedPerson span {
@@ -620,7 +585,7 @@
 }
 
 .openTaskButtonContainer {
-  position: absolute;
+  position: inherit;
   right: 40px;
   bottom: 30px;
   display: flex;
@@ -690,7 +655,11 @@
 
 .priorityImg {
   width: 17px;
-  height: 12px;
+  height: 24px;
+}
+
+.dragAndDropArrows {
+  display: none;
 }
 
 /* ================================ RESPONSIVENESS ================================ */
@@ -726,7 +695,7 @@
 @media (max-width: 720px) {
   .openTaskContainer {
     width: 80%;
-    height: 850px;
+    height: 100%;
   }
   .placeholderBoard {
     height: calc(100vh - 163px);
@@ -755,18 +724,27 @@
   .openTaskAssigned {
     height: 240px;
   }
+  .dragAndDropArrows {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+  .dragAndDropArrows img {
+    height: 15px;
+  }
 }
 
 @media (max-width: 480px) {
   .openTaskContainer {
     width: 100%;
-    height: 100%;
     border-radius: 0;
   }
 
   .openTask {
     border-radius: 0;
     padding: 20px;
+    gap: 5px;
   }
   .placeholderBoardTop {
     flex-direction: column;
@@ -779,7 +757,11 @@
 
   .openTaskMain {
     justify-content: flex-start;
-    margin-top: 2rem;
+    margin-top: 0;
+  }
+
+  .openTaskPriority {
+    width: 100%;
   }
 }
 
