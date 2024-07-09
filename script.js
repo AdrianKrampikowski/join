@@ -731,13 +731,29 @@ function deadlineDate() {
 
     if (sortedDueDate.length === 0) {
         console.log("No valid due dates found.");
+        document.getElementById("deadlineDate").innerHTML = "";
         return;
     }
+
     let currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set the current date to midnight to only compare dates
+
     let closestDate = sortedDueDate.reduce((a, b) => Math.abs(b - currentDate) < Math.abs(a - currentDate) ? b : a);
-    let closestDateString = closestDate.toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
-    document.getElementById("deadlineDate").innerHTML = closestDateString;
+    let closestDateCopy = new Date(closestDate);
+    closestDateCopy.setHours(0, 0, 0, 0); // Normalize closestDate to midnight
+
+    let closestDateString = closestDate.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+
+    if (closestDateCopy < currentDate) {
+        document.getElementById("deadlineDate").innerHTML = "";
+    } else {
+        if (closestDateCopy.getTime() === currentDate.getTime()) {
+            closestDateString = "Today";
+        }
+        document.getElementById("deadlineDate").innerHTML = closestDateString;
+    }
 }
+
 
 function greeting() {
     let currentdate = new Date();
