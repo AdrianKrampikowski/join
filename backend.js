@@ -39,74 +39,74 @@ function generateTaskId() {
     taskId = Math.floor((Math.random() * 1000000) + 1);
     return taskId;
 }
-// Old
-// function addUser() {
-//     generateUserId();
-//     let name = document.getElementById('name');
-//     let surname = document.getElementById('surname');
-//     let email = document.getElementById('email');
-//     let password = document.getElementById('password');
-//     let userId = id;
-//     let userColor = document.getElementById('userColor');
-//     let userColorValue = userColor.options[userColor.selectedIndex].value;
-//     for (let i = 0; i < users.length; i++) {
-//         if (users[i]['userid'].includes === id) {
-//             generateUserId();
-//         }
-//     }
-//     let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
-//     let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue };
-//     let user = users.find(u => u.email == email.value && u.password == password.value);
-//     if (userData.name && userData.surname && userData.email.includes('@') && userData.password && userData.userColor && userData.userColor != "none") {
-//         if (user) {
-//             displaySignedUpPopup('alreadySignedUp');
-//             name.value = '';
-//             surname.value = '';
-//             email.value = '';
-//             password.value = '';
-//         } else {
-//             users.push(userData);
-//             contacts.push(contactData);
-//             save();
-//             saveContacts();
-//             displaySignedUpPopup('successfullySignedUp');
-//             setInterval(backToLoginScreen, 1200);
-//         }
-//     }
-//     else {
-//         displaySignedUpPopup('missingSignedUp');
-//     }
-// }
-// New
+
 function addUser() {
     generateUserId();
-    let name = document.getElementById('name').value.trim();
-    let surname = document.getElementById('surname').value.trim();
-    let email = document.getElementById('email').value.trim();
-    let password = document.getElementById('password').value.trim();
-    let userColor = document.getElementById('userColor').value;
-
-    if (!name || !surname || !email.includes('@') || !password || userColor === "none") {
-        displaySignedUpPopup('missingSignedUp');
-        return;
-    }
-
-    if (users.some(user => user.email === email)) {
-        displaySignedUpPopup('alreadySignedUp');
-        return;
-    }
-
+    let name = document.getElementById('name');
+    let surname = document.getElementById('surname');
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
     let userId = id;
-    let userData = { name, surname, email, password, userColor, userid: userId };
-    let contactData = { name, surname, email, phone: '-', contactColor: userColor };
-
-    users.push(userData);
-    contacts.push(contactData);
-    save();
-    saveContacts();
-    displaySignedUpPopup('successfullySignedUp');
-    setTimeout(backToLoginScreen, 1200);
+    let userColor = document.getElementById('userColor');
+    let userColorValue = userColor.options[userColor.selectedIndex].value;
+    for (let i = 0; i < users.length; i++) {
+        if (users[i]['userid'].includes === id) {
+            generateUserId();
+        }
+    }
+    let userData = { name: name.value, surname: surname.value, email: email.value, password: password.value, userColor: userColorValue, userid: userId };
+    let contactData = { name: name.value, surname: surname.value, email: email.value, phone: '-', contactColor: userColorValue };
+    let user = users.find(u => u.email == email.value && u.password == password.value);
+    if (userData.name && userData.surname && userData.email.includes('@') && userData.password && userData.userColor && userData.userColor != "none") {
+        if (user) {
+            displaySignedUpPopup('alreadySignedUp');
+            name.value = '';
+            surname.value = '';
+            email.value = '';
+            password.value = '';
+        } else {
+            users.push(userData);
+            contacts.push(contactData);
+            save();
+            saveContacts();
+            displaySignedUpPopup('successfullySignedUp');
+            setInterval(backToLoginScreen, 1200);
+        }
+    }
+    else {
+        displaySignedUpPopup('missingSignedUp');
+    }
 }
+// // New
+// function addUser() {
+//     generateUserId();
+//     let name = document.getElementById('name').value.trim();
+//     let surname = document.getElementById('surname').value.trim();
+//     let email = document.getElementById('email').value.trim();
+//     let password = document.getElementById('password').value.trim();
+//     let userColor = document.getElementById('userColor').value;
+
+//     if (!name || !surname || !email.includes('@') || !password || userColor === "none") {
+//         displaySignedUpPopup('missingSignedUp');
+//         return;
+//     }
+
+//     if (users.some(user => user.email === email)) {
+//         displaySignedUpPopup('alreadySignedUp');
+//         return;
+//     }
+
+//     let userId = id;
+//     let userData = { name, surname, email, password, userColor, userid: userId };
+//     let contactData = { name, surname, email, phone: '-', contactColor: userColor };
+
+//     users.push(userData);
+//     contacts.push(contactData);
+//     save();
+//     saveContacts();
+//     displaySignedUpPopup('successfullySignedUp');
+//     setTimeout(backToLoginScreen, 1200);
+// }
 
 
 function backToLoginScreen() {
